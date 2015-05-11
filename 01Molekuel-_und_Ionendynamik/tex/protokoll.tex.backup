@@ -142,11 +142,7 @@ das ein Wechselfeld mit $\omega$ vorkommt. Je größer $J(\omega_L)$, umso effiz
 wenn Larmorfrequenz und Korrelationszeit $\tau_c$ einander entsprechen - $\omega_L \tau_c \approx 1$
 
 \subsubsection{Spin-Spin-Relaxation}
-Maßgeblich für diesen Prozess ist die magnetische Dipol-Dipol-Wechselwirkung, wobei die Spins einerseits selbst ein Magnetfeld erzeugen, aber auch bei anderen
-Spins abhängig vom Winkel zwischen der Momentausrichtung und der internuklearen Verbindungslinie zueinander. Bei einem Festkörper sollten die Spins statisch 
-verteilt sein, weshalb eine breite Verteilung lokaler Zusatzfelder und damit ein breiter Frequenzbereich für Resonanzabsorbtion zu erwarten ist. Bei
-einfachen Flüssigkeiten mitteln sich die Zusatzfelder durch Molekularbewegungen auf experimentellen Zeitskalen hinaus, sodass nur noch bei der Larmorfrequenz
-Resonanzabsorbtion auftritt. Hierbei erzeugte Quermagnetisierung relaxiert wenig, was einem langen $T_2$ entspricht.
+
 
 \subsection{Messmethoden}
 \subsubsection{Hahn-Echo}
