@@ -4,6 +4,7 @@
 
 \input{longheader.tex}
 \usepackage{xfrac}
+\renewcommand {\i} { \text{i} }
 
 % ========================================
 %	Angaben für das Titelblatt
@@ -106,6 +107,7 @@ Rabi-Frequenz $\omega_1 = \gamma |B_\text{eff}|$.
  \caption{Zerlegung des HF-Felds}
  \label{pic_rotSystem}
 \end{figure}
+\noindent
 Wird dieses HF-Feld nun für eine gewisse Zeit eingeschaltet, wird der Magnetisierungsvektor um einen bestimmten Winkel $\alpha$ gedreht. Eine Drehung um
 90$^\circ$ wird ($\pi$/2)-Puls genannt. Bei Anwesenheit des statischen $B_0$-Feldes induziert die Quermagnetisierung durch Präzession eine Spannung, das
 Kerninduktionssignal, die mit einer Spule gemessen werden kann. Diese Quermagnetisierung verkleinert sich, was auch auf lokale Inhomogenitäten des 
@@ -117,7 +119,7 @@ Zusammentreffen wird Hahn-Echo bezeichnet.
 
 \begin{figure}[H]
  \includegraphics[width=0.6\textwidth]{../pics/rephasierung.jpg}
- \caption{Zerlegung des HF-Felds}
+ \caption{Erzeugung von Quermagnetisierung, Dephasierung, $\pi$-Puls und Hahn-Echo}
  \label{pic_rephasierung}
 \end{figure}
 
@@ -148,9 +150,63 @@ verteilt sein, weshalb eine breite Verteilung lokaler Zusatzfelder und damit ein
 einfachen Flüssigkeiten mitteln sich die Zusatzfelder durch Molekularbewegungen auf experimentellen Zeitskalen hinaus, sodass nur noch bei der Larmorfrequenz
 Resonanzabsorbtion auftritt. Hierbei erzeugte Quermagnetisierung relaxiert wenig, was einem langen $T_2$ entspricht.
 
-\subsection{Messmethoden}
-\subsubsection{Hahn-Echo}
-\subsubsection{Stimulierte Echos}
+\subsection{Stimulierte Echos}
+Für Prozesse, die für die Anwendung des Hahn-Echos zu langsam sind, muss das Depha-sierungs- und das Rephasierungsintervall getrennt werden. Der ($\pi$)-Puls
+aus dem Hahn-Echo wird unterteilt in zwei Sequenzen. So wird zu Beginn ein ($\pi/2$)-Puls gegeben, um transversale Magnetisierung mit Amplitude $M_0$ zu
+erzeugen (vgl. Abb. \ref{pic_stimEchoFolge}) . Die Spins dephasieren in der Zeit $t_1$ und entwickeln eine Phase zueinander. Der zweite Puls kann nun den 
+$\cos$- oder den $\sin$-Anteil wieder zurückklappen. Dieser wird Speicherpuls genannt, da die longitudinale Magnetisierung mit $T_1$ relaxiert, während
+der andere während der anschließenden Mischzeit $t_m$ dephasiert und die transversale Magnetisierung verschwindet. Schließlich kann ein dritter Puls den
+gespeicherten Anteil in die Nachweisebene klappen. Die rephasierenden Spins erzeugen nach einer Zeit $t_2 = t_1$ ein Echo beispielsweise für den $\cos$-Anteil,
+welches stimuliertes Echo bezeichnet wird. Die verbliebene Magnetisierung entspricht maximal der Hälfte von $M_0$. Bei chemischem Austausch sinkt dieser
+Maximalwert auf der Zeitskala der Korrelationszeit. Daher lässt sich $\tau_c$ ermitteln aus der Echohöhe als Funktion der Mischzeit. Die stimulierten 
+Echosignale $\langle\cos(\omega_1t_1)\cos(\omega_2t_2)\rangle$ und $\langle\sin(\omega_1t_1)\sin(\omega_2t_2)\rangle$ können für $t_1=t_2=t_p$ zu
+$S(t_p,t_m) \sim \langle\exp(\i\omega_1t_p)\exp(-\i\omega_2t_p)\rangle$ zusammengefasst werden. Die $\omega_i$ sind zwei Präzessionsfrequenzen, $t_p$ die
+Evolutionszeit.
+
+\begin{figure}[H]
+ \includegraphics[width=0.6\textwidth]{../pics/stimEchoFolge.jpg}
+ \caption{Pulsfolge des stimulierten Echos}
+ \label{pic_stimEchoFolge}
+\end{figure}
+\noindent
+Der Stoff Rb$_3$D(SO$_4$)$_2$ ist ein Ionenleiter, bei dem Deuteronen von Gitterplatz zu Gitterplatz kommen. Ein einem Einkristall davon gibt es zwei
+unterscheidbare elektrische Feldgradienten beim Deuteron bzw. bei einer Leerstelle. Findet ein Sprung statt, ändert sich die NMR-Frequenz, was nachgewiesen
+werden kann. Während relativ langer Mischzeiten können Deuteronen in die Leerstellen springen. Hierbei kann sich im Allgemeinen 
+die Umgebung der Spins und damit die Präzessionsfrequenz ändern. Findet ein Sprung statt, entwickelt sich die Magnetisierung nach dem dritten Puls mit der
+neuen Frequenz. Je mehr Sprünge stattfinden, bei beispielsweise größerer Mischzeit, entwickelt sich ein immer größerer Teil der Magnetisierung mit der 
+neuen Frequenz, was in Abbildung \ref{pic_neueFrequenz} dargestellt ist.
+\begin{figure}[t]
+ \includegraphics[width=0.3\textwidth]{../pics/neueFrequenz.jpg}
+ \caption{$t_m$-abhängige Austauschintensität}
+ \label{pic_neueFrequenz}
+\end{figure}
+\subsection{Korrelationszeit}
+Die Funktion $S(t_p,t_m)$ ist analog zur inkohärenten, intermediären Streufunktion 
+$S(q,t) \sim \langle\exp(\i\vec q \vec r(t))\exp(-\i\vec q \vec r(0))\rangle$, die messbar ist. $\vec q$ ist der Streuvektor und $\vec r$ der Ortsvektor. Für
+hohe Phasendifferenzen zu erreichen, muss $\vec q$ oder $|\vec r(0)-\vec r(t)|$ bzw. $t_p$ oder $(\omega_1-\omega_2)$ groß sein. Dann findet man $\tau \approx$
+const. Beispielhaft an K$_3$D(SO$_4$)$_2$ sind NMR-Messungen in Abbildung \ref{pic_tau(tp)} gezeigt. Die Korrelationszeit ist praktisch unabhängig von $t_p$,
+was an der Kristallstruktur und den elektrischen Feldgradienten der Deuteronen plausibel wird.
+\begin{figure}[H]
+ \includegraphics[width=0.4\textwidth]{../pics/tau(tp).jpg}
+ \caption{$\tau_c$ als Funktion der Evolutionszeit $t_p$}
+ \label{pic_tau(tp)}
+\end{figure}
+\noindent
+Wenn die Deuteronen hüpfen, überwinden sie die Energiebarriere $E$ des Kristallfeldes durch thermischen Energie von $E \propto T$ mit einer Wahrscheinlichkeit
+von $\Gamma = \Gamma_0 \exp(-\sfrac{E}{k_bT})$. Dabei ist $\Gamma_0$ die Anklopffrequenz, mit der das Ion an die Potentialbarrere stößt. mit 
+$\tau = \Gamma^{-1}$ ergibt sich das Arrhenius-Gesetz
+\begin{align}
+ \tau = \tau_0 \exp \left(-\frac{E}{k_BT}\right).
+ \label{eq_korrelationszeit}
+\end{align}
+In Abbildung \ref{pic_tau(T)} sind hier NMR-Messungen für Rb$_3$D(SO$_4$)$_2$ und K$_3$D(SO$_4$)$_2$ zu sehen. Die unterschiedlichen Steigungen entsprechen
+verschiedenen Energiebarrieren.
+
+\begin{figure}[H]
+ \includegraphics[width=0.4\textwidth]{../pics/tau(T).jpg}
+ \caption{$\tau_c$ als Funktion der Temperatur $T$}
+ \label{pic_tau(T)}
+\end{figure}
 
 \section{Durchführung}
 
