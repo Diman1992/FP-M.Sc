@@ -4,3 +4,4 @@
 *.backup
 *tex/*.pdf
 *.log
+*.swp
