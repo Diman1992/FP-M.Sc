@@ -2,5 +2,5 @@
 *.aux
 *.out
 *.backup
-*.pdf
+*tex/*.pdf
 *.log
