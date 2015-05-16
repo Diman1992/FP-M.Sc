@@ -23,7 +23,7 @@ def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
 
-cryo, sample = np.loadtxt('cryoSampleTemp', unpack=True, comments='#')/1000
+cryo, sample = np.round(np.loadtxt('cryoSampleTemp', unpack=True, comments='#')/1000)
 
 
 new_1=open("01_cryoFit:m","w")
