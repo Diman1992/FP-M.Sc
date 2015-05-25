@@ -10,7 +10,7 @@
 %	Angaben für das Titelblatt
 % ========================================
 
-\title{Molekül- und Ionendynamik in Feskörpern\\untersucht mit der Festkörper-NMR-Spektroskopie\\% Titel des Versuchs 
+\title{Molekül- und Ionendynamik in Festkörpern\\untersucht mit der Festkörper-NMR-Spektroskopie\\% Titel des Versuchs 
 \large TU Dortmund, Fakultät Physik\\ 
 \normalsize Fortgeschrittenen-Praktikum}
 
@@ -94,6 +94,7 @@ Da $\vec B_0 = B_0 \textbf{e}_z$, zeigt auch die makroskopische Magnetisierung $
 \end{align}
 
 \subsubsection{Einfluss von Hochfrequenzspulen}
+\label{sec_hochfrequenz}
 Beim Übergang auf zeitlich veränderliche, äußere Magnetfelder $B_1(t)$ ist die Transformation in ein sich mit $\Omega$ um die $z$-Achse rotierendes 
 Koordinatensystem rechnerisch einfach zu handhaben. Die beiden Felder können dadurch in ein effektives Magnetfeld $B_\text{eff} = B_1 + B_0$ überführt
 und \eqref{eq_dglMagnetisierung} damit geschrieben werden. Im Fall $\Omega$ = $\omega_L$ verschwindet das effektive Feld. Explizit im Laborsystem wird
@@ -117,7 +118,7 @@ Einstrahlen eines ($\pi$)-Pulses, was in Abbildung \ref{pic_rephasierung} anscha
 Spins präzedieren und dephasieren. Der ($\pi$)-Puls erhält den Drehsinn und die Drehgeschwindigkeit, wodurch die Spins rephasieren. Das schließliche 
 Zusammentreffen wird Hahn-Echo bezeichnet.
 
-\begin{figure}[H]
+\begin{figure}[t]
  \includegraphics[width=0.6\textwidth]{../pics/rephasierung.jpg}
  \caption{Erzeugung von Quermagnetisierung, Dephasierung, $\pi$-Puls und Hahn-Echo}
  \label{pic_rephasierung}
@@ -150,7 +151,24 @@ verteilt sein, weshalb eine breite Verteilung lokaler Zusatzfelder und damit ein
 einfachen Flüssigkeiten mitteln sich die Zusatzfelder durch Molekularbewegungen auf experimentellen Zeitskalen hinaus, sodass nur noch bei der Larmorfrequenz
 Resonanzabsorbtion auftritt. Hierbei erzeugte Quermagnetisierung relaxiert wenig, was einem langen $T_2$ entspricht.
 
-\subsection{Stimulierte Echos}
+\subsection{Untersuchungsmethoden}
+Durch die Rephasierung der Isochromaten, also die Wiederherstellung der makroskopischen Magnetisierung, entsteht ein messbares Echo. Die verschiedenen 
+Möglichkeiten, ein solches herzustellen geschieht durch die charakterisierenden Sequenzen. So das einfache Hahn-Echo, angesprochen in Abschnitt 
+\ref{sec_hochfrequenz} und die hier Anwendung findenden Festkörperechos und die stimulierten Echos.
+\subsubsection{Festkörperechos}
+Festkörperechos sind im Gegensatz zu Hahn-Echos nützlich zur Refokussierung von Wechselwirkungen, die bilinear in den homonuklearen Spinoperatoren sind, wie
+zum Beispiel der Säkularanteil der Dipolwechselwirkung oder der Spinanteil der Quadrupolwechsewirkung 1. Ordnung. Der ($\pi$)-Puls des Hahn-Echos ändert den
+Hamiltonian nicht, wohingegen die Sequenz des Festkörperechos (vgl. Abb.) \ref{pic_festEchoFolge} das erreicht. Zu Beginn ein ($\pi/2$)$_x$-Puls und wartet
+eine Zeit $\tau$, worauf ein ($\pi/2$)$_y$-Puls folgt, der um 90$^\circ$ zum vorigen phasenverschoben sein soll. Nach einer weiteren Wartezeit $\tau$ ist das
+Echo dann messbar. 
+\begin{figure}[htbp]
+ \includegraphics[width=0.5\textwidth]{../pics/festEchoFolge.jpg}
+ \caption{Pulsfolge des Festkörperechos}
+ \label{pic_festEchoFolge}
+\end{figure}
+\noindent
+
+\subsubsection{Stimulierte Echos}
 Für Prozesse, die für die Anwendung des Hahn-Echos zu langsam sind, muss das Depha-sierungs- und das Rephasierungsintervall getrennt werden. Der ($\pi$)-Puls
 aus dem Hahn-Echo wird unterteilt in zwei Sequenzen. So wird zu Beginn ein ($\pi/2$)-Puls gegeben, um transversale Magnetisierung mit Amplitude $M_0$ zu
 erzeugen (vgl. Abb. \ref{pic_stimEchoFolge}) . Die Spins dephasieren in der Zeit $t_1$ und entwickeln eine Phase zueinander. Der zweite Puls kann nun den 
@@ -175,7 +193,7 @@ werden kann. Während relativ langer Mischzeiten können Deuteronen in die Leers
 die Umgebung der Spins und damit die Präzessionsfrequenz ändern. Findet ein Sprung statt, entwickelt sich die Magnetisierung nach dem dritten Puls mit der
 neuen Frequenz. Je mehr Sprünge stattfinden, bei beispielsweise größerer Mischzeit, entwickelt sich ein immer größerer Teil der Magnetisierung mit der 
 neuen Frequenz, was in Abbildung \ref{pic_neueFrequenz} dargestellt ist.
-\begin{figure}[t]
+\begin{figure}[H]
  \includegraphics[width=0.3\textwidth]{../pics/neueFrequenz.jpg}
  \caption{$t_m$-abhängige Austauschintensität}
  \label{pic_neueFrequenz}
@@ -193,7 +211,7 @@ was an der Kristallstruktur und den elektrischen Feldgradienten der Deuteronen p
 \end{figure}
 \noindent
 Wenn die Deuteronen hüpfen, überwinden sie die Energiebarriere $E$ des Kristallfeldes durch thermischen Energie von $E \propto T$ mit einer Wahrscheinlichkeit
-von $\Gamma = \Gamma_0 \exp(-\sfrac{E}{k_bT})$. Dabei ist $\Gamma_0$ die Anklopffrequenz, mit der das Ion an die Potentialbarrere stößt. mit 
+von $\Gamma = \Gamma_0 \exp(-\sfrac{E}{k_bT})$. Dabei ist $\Gamma_0$ die Anklopffrequenz, mit der das Ion an die Potentialbarriere stößt. mit 
 $\tau = \Gamma^{-1}$ ergibt sich das Arrhenius-Gesetz
 \begin{align}
  \tau = \tau_0 \exp \left(-\frac{E}{k_BT}\right).
