@@ -1,0 +1,7 @@
+*.toc
+*.aux
+*.out
+*.backup
+*tex/*.pdf
+*.log
+*.swp
