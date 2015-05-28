@@ -1,0 +1,19 @@
+Date                    : Fri Apr 24 21:51:50 2015
+Spectrometer            : ODO
+Sample                  : Li10SnP2S12sample1
+Attenuation Receiver    : 1 
+Attenuation Transmitter : 8 
+Attenuation Lock Pulse  : 0 
+lamor Frequency         : 117.622383 
+Pi-Length               : 3.5e-06 
+Experiment              : Solid Echo with saturation 
+Sampling Rate           : 2000000.000000 
+Accumulations           : 1 
+Echo Time               : 0.000015 
+Echo Width              : 0.000004 
+Indep. Variable         : repetition_time 
+Repetition time         : 0.02 
+Evolution time tau      : 2.8e-05 
+Setting Temperature     : 0 
+Sample Temperature      : 107.511226247 
+Experiment Time         : 0.0 

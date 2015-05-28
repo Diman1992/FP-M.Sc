@@ -1,0 +1,19 @@
+Date                    : Sun Apr 26 00:12:35 2015
+Spectrometer            : ODO
+Sample                  : Li10SnP2S12sample1
+Attenuation Receiver    : 1 
+Attenuation Transmitter : 8 
+Attenuation Lock Pulse  : 0 
+lamor Frequency         : 117.622383 
+Pi-Length               : 3.5e-06 
+Experiment              : Stimulated Echo Sinus 3 pulse / 8 phasecycle 
+Sampling Rate           : 2000000.000000 
+Accumulations           : 3 
+Echo Time               : 0.000015 
+Echo Width              : 0.000004 
+Indep. Variable         : tm 
+Repetition time         : 100 
+Evolution time tau      : 2e-05 
+Setting Temperature     : 102.994 
+Sample Temperature      : 107.497047058 
+Experiment Time         : None 

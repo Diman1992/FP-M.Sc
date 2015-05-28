@@ -1,0 +1,30 @@
+Date                    : Thu Apr 16 12:22:46 2015
+Spectrometer            : OBI
+Sample                  : Li10SnP2S12sample1
+Attenuation Receiver    : 19 
+Attenuation Transmitter : 19 
+Attenuation Transmitter2 : 5 
+lamor Frequency         : 117.024551 
+Pi-Length               : 3.85e-06 
+Experiment              : Solid Echo with saturation 
+Sampling Rate           : 2000000.000000 
+Accumulations           : 1 
+Echo Time               : 0.000017 
+Echo Width              : 0.000004 
+Indep. Variable         : tau 
+Repetition time         : 2 
+Evolution time tau      : 1e-05 
+Setting Temperature     : 0 
+Cryostat Temperature    : 0 
+Sample Temperature      : 424.077 
+echomax for FFT: 29
+ts_offset_percent: 50
+apo_width in Hz: 300
+Zero_filling: 10000
+Phase correction: 43
+Timesignal readout: 0.0
+Timesignal readout width: 3e-06
+Spectrum readout: 5500
+Spectrum readout width: 1400
+Spectrum Offresonanz: 0
+Spectrum central readout: 1200
