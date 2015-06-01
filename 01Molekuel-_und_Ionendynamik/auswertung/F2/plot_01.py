@@ -30,7 +30,6 @@ def kohlrausch(x,T1,v):
 def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
-def F2(path):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
     print(time)
     print(amplitude)
@@ -38,21 +37,24 @@ def F2(path):
     #plt.scatter(time,amplitude)
     #plt.show()
 
-colors = iter(cm.jet(np.linspace(0, 1, 8)))
+colors = iter(cm.jet(np.linspace(0, 1, 18)))
 
-def T1(path,ax,temp):
+def F2(path,ax,temp):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
-    print(time)
-    print(amplitude)
+    for am in amplitude:
+        if am<=0:
+            print("error")
+    #print(amplitude)
     #var, cov = optimize.curve_fit(kohlrausch, time, amplitude, maxfev=100)
-    ax.scatter(time,amplitude, color=next(colors),label=temp)
+    plt.scatter(time,amplitude, color=next(colors),label=temp)
 
 
 path='../_daten/tieftemperatur/'
 
 
-figT1 = plt.figure()
-axT1 = plt.gca()
+figF2 = plt.figure()
+axF2 = plt.gca()
+#axF2.set_yscale('log')
 
 for root, dirs, files in os.walk(path):
     options = root.split(sep="_")
@@ -64,16 +66,12 @@ for root, dirs, files in os.walk(path):
             for f in files:
                 if(f.endswith(".nmr")):
                     filePath = root+"/"+f
-                    F2(filePath)
-        if(typ=="T1"):
-            for f in files:
-                if(f.endswith(".nmr")):
-                    filePath = root+"/"+f
-                    T1(filePath,axT1,str(temperature))
-            axT1.set_xscale('log')
-            axT1.legend()
-            #temperature = round(temperature * 0.922 - 1.085)
+                    F2(filePath,axF2,temperature)
+                    #temperature = round(temperature * 0.922 - 1.085)
 
+
+#axF2.grid()
+#axF2.legend()
 plt.show()
 
 """
