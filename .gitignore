@@ -5,5 +5,7 @@
 *tex/*.pdf
 *.log
 *.swp
+*.swo
+*.gz
 
 *.ts

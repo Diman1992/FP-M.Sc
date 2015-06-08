@@ -24,8 +24,9 @@ for arg in sys.argv:
 def lin(x,m,b):
     return m*x+b
 
-def kohlrausch(x,T1,v,A,b):
-    return np.exp(-((x-b)/T1)**v)*A
+def kohlrausch(x,T1,v,A,b,c):
+    #return np.exp(-((x-b)/T1)**v)*A
+    return np.exp(-(x/T1)**v)*A+c
 
 def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
@@ -39,24 +40,25 @@ def p(var):
 
 colors = iter(cm.jet(np.linspace(0, 1, 8)))
 
-def T1(path,ax,temp):
+def T1(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
-    #print(time)
-    #print(amplitude)
 
     for am in amplitude:
         if(am<0):
             print(path)
-    var, cov = optimize.curve_fit(kohlrausch, time, amplitude, p0=(24,0,3000,0), maxfev=1000000)
+    var, cov = optimize.curve_fit(kohlrausch, time, amplitude, p0=(30,0.99,-4000,0,4000), maxfev=1000000)
     xRef = np.linspace(min(time),max(time),num=1000)
-    yRef = kohlrausch(xRef, var[0],var[1],var[2],var[3])
+    yRef = kohlrausch(xRef, var[0],var[1],var[2],var[3],var[4])
     print("T1: ", var[0])
     print("v: ", var[1])
     print("A: ", var[2])
     print("b: ", var[3])
 
-    plt.plot(xRef, yRef, "b-", label=r'Kohlrausch Fit')
-    ax.scatter(time,amplitude, color=next(colors),label=temp+"K")
+    plt.plot(xRef, yRef, "b-")
+    ax.scatter(time,amplitude, color=next(colors),label=str(int(temp))+"K")
+
+    f.write(str(temperature)+"\t"+str(var[0])+"\t"+str(cov[0,0])+"\n")
+    f2.write(str(temperature)+" & "+str(round(var[0],2))+"\\\\\\hline\n") #" & "+str(cov[0,0])+"\\\\")
 
 
 path='../_daten/tieftemperatur/'
@@ -64,58 +66,40 @@ path='../_daten/tieftemperatur/'
 
 figT1 = plt.figure()
 axT1 = plt.gca()
+outFile = open('T1_valuesTief', 'w')
+outFile2 = open('T1_valuesTief_table', 'w')
+outFile.write("# Temperatur \t T1 \t std\n")
+outFile2.write("Temperatur & T1 \\\\\\hline\n")
 
 for root, dirs, files in os.walk(path):
     options = root.split(sep="_")
     if len(options)>3:
         typ = options[3]
         temperature = options[4][:-1]
-        print(typ,temperature)
         if(typ=="T1"):
+            print("Temp: "+str(temperature))
+            print(options)
+            for f in files:
+                if(f.endswith(".info")):
+                    filePath = root+"/"+f
+                    inpFile = open(filePath)
+                    for line in inpFile:
+                        if line.startswith("Cryostat Temperature"):
+                            temperature=float(line[line.find(":")+2:])
+                            temperature = round(temperature * 0.922 - 1.085)
+
             for f in files:
                 if(f.endswith(".nmr")):
                     filePath = root+"/"+f
-                    T1(filePath,axT1,str(temperature))
-            #temperature = round(temperature * 0.922 - 1.085)
+                    T1(filePath,axT1,temperature,outFile,outFile2)
 
+outFile.close()
 axT1.set_xscale('log')
 axT1.grid()
-#axT1.legend()
-plt.savefig('T1_tiefTemperatur.pdf')
-plt.show()
-
-"""
-new_1=open("01_cryoFit:m","w")
-new_2=open("01_cryoFit:b","w")
-
-
-
-
-y = f(cryo, var[0],var[1])
-
-
-new_1.write("m = (")
-new_1.write(str(round(var[0],3)))
-new_1.write(" \pm ")
-new_1.write(str(round(cov[0,0],3)))
-new_1.write(")\,")
-new_2.write("b = (")
-new_2.write(str(round(-1/var[0],3)))
-new_2.write(" \pm ")
-new_2.write(str(round(1/(pow(var[0],2))*(cov[1,1]),3)))
-new_2.write(")\,\\text{K}")
-
-new_1.close()
-new_2.close()
-
-plt.scatter(cryo, sample, color="red", marker="+", s=70, label=r'Messwerte')
-plt.plot(cryo, y, "b-", label=r'Linearer Fit')
-plt.xlabel('T[K]')
-plt.ylabel('T[K]')
-#plt.ylabel(r"ln$\left( \frac{M_0-M_z}{2M_0} \right)$")
-plt.grid()
-plt.legend(loc='upper right')
-plt.savefig('01_regressionTemp.pdf')
-plt.show()
-#plt.close()
-"""
+plt.title("T1 Echo Amplitude Tief")
+plt.xlabel("Zeit [s]")
+plt.ylabel("Amplitude")
+axT1.legend(loc=2)
+#plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+plt.savefig('T1_tiefTemperaturFit.pdf')
+#plt.show()

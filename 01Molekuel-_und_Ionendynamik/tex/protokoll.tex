@@ -160,7 +160,7 @@ Festkörperechos sind im Gegensatz zu Hahn-Echos nützlich zur Refokussierung vo
 zum Beispiel der Säkularanteil der Dipolwechselwirkung oder der Spinanteil der Quadrupolwechsewirkung 1. Ordnung. Der ($\pi$)-Puls des Hahn-Echos ändert den
 Hamiltonian nicht, wohingegen die Sequenz des Festkörperechos (vgl. Abb.) \ref{pic_festEchoFolge} das erreicht. Zu Beginn ein ($\pi/2$)$_x$-Puls und wartet
 eine Zeit $\tau$, worauf ein ($\pi/2$)$_y$-Puls folgt, der um 90$^\circ$ zum vorigen phasenverschoben sein soll. Nach einer weiteren Wartezeit $\tau$ ist das
-Echo dann messbar. 
+Echo messbar. 
 \begin{figure}[htbp]
  \includegraphics[width=0.5\textwidth]{../pics/festEchoFolge.jpg}
  \caption{Pulsfolge des Festkörperechos}
@@ -191,7 +191,7 @@ Der Stoff Rb$_3$D(SO$_4$)$_2$ ist ein Ionenleiter, bei dem Deuteronen von Gitter
 unterscheidbare elektrische Feldgradienten beim Deuteron bzw. bei einer Leerstelle. Findet ein Sprung statt, ändert sich die NMR-Frequenz, was nachgewiesen
 werden kann. Während relativ langer Mischzeiten können Deuteronen in die Leerstellen springen. Hierbei kann sich im Allgemeinen 
 die Umgebung der Spins und damit die Präzessionsfrequenz ändern. Findet ein Sprung statt, entwickelt sich die Magnetisierung nach dem dritten Puls mit der
-neuen Frequenz. Je mehr Sprünge stattfinden, bei beispielsweise größerer Mischzeit, entwickelt sich ein immer größerer Teil der Magnetisierung mit der 
+neuen Frequenz. Je mehr Sprünge stattfinden, bei beispielsweise längerer Mischzeit, entwickelt sich ein immer größerer Teil der Magnetisierung mit der 
 neuen Frequenz, was in Abbildung \ref{pic_neueFrequenz} dargestellt ist.
 \begin{figure}[H]
  \includegraphics[width=0.3\textwidth]{../pics/neueFrequenz.jpg}
@@ -229,8 +229,90 @@ verschiedenen Energiebarrieren.
 \section{Durchführung}
 
 \section{Auswertung}
+\subsection{T1 Messung}
+Zunächst wird die $T_1$ Relaxationszeit entsprechend der in ------- beschriebenen Methode berechnet. Die gemessenen Amplituden und Zeiten sind in Abb. \ref{pic_T1_hoch} und \ref{pic_T1_tief} dargestellt. 
 
-\parskip 340pt
+\begin{figure}[htbp]
+	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_hochTemperaturFit.pdf}
+	\caption{Amplituden als Funktion der Zeit}
+	\label{pic_T1_hoch}
+\end{figure}
+\begin{figure}[htbp]
+	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_tiefTemperaturFit.pdf}
+	\caption{Amplituden als Funktion der Zeit}
+	\label{pic_T1_tief}
+\end{figure}
+Eine Regressionsfunktion der Form 
+\begin{align}
+	f(t) = A\cdot e^{-\left(\frac{t}{T_1}\right)^\nu}+c
+\end{align}
+\begin{table}[htbp]
+	\begin{tabular}{|c|c|}
+	\input{../auswertung/T1/T1_valuesHoch_table}
+	\end{tabular}
+	\caption{Temperaturen und gefittete T1 Werte des Hochtemperaturbereiches.}
+	\label{tab:T1_hoch}
+\end{table}
+\begin{table}[htbp]
+	\begin{tabular}{|c|c|}
+		\input{../auswertung/T1/T1_valuesTief_table}
+	\end{tabular}
+	\caption{Temperaturen und gefittete T1 Werte des Tieftemperaturbereiches.}
+	\label{tab:T1_tief}
+\end{table}
+wurde an die einzelne Messreihen angenähert und so für verschiedene Temperaturen die Relaxationszeit $T_1$ bestimmt. Die Ergebnisse der Fits stehen in Tabellen \ref{tab:T1_hoch} und \ref{tab:T1_tief}.
+
+Diese T1 Werte können nun in Arrhenius-Plots dargestellt werden.
+\begin{figure}[htbp]
+	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_hochTemperaturPlot.pdf}
+	\caption{Arrhenius Plot der T1 Werte des Hochtemperaturbereiches.}
+	\label{pic_T1Arr_hoch}
+\end{figure}
+\begin{figure}[htbp]
+	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_tiefTemperaturPlot.pdf}
+	\caption{Arrhenius Plot der T1 Werte des Tieftemperaturbereiches.}
+	\label{pic_T1Arr_tief}
+\end{figure}
+
+Im Hochtemperaturbereich ist die Position des Minimus von Bedeutung. Dieses wird durch den Fit einer Quadratischen Funktion der Form:
+\begin{align}
+	g(x) = a(x-b)^2+c
+\end{align}
+bestimmt. Für die Position des Minimus ergibt sich:
+\begin{align*}
+	\input{../auswertung/T1/minimum.output}
+\end{align*}
+
+\subsection{F2 Messung}
+Um die $\tau_C$ Relaxationszeit zu bestimmen, wird die Echoamplitude in einem Plot gegen die Zeit aufgetragen und anschließend im Tieftemperaturbereich eine Funktion folgender Form angefittet:
+\begin{align}
+	h(t) = \left[M_\tau+(M_{z0}-M_\tau)\cdot e^{-\left(\frac{t}{T_c}\right)^{\beta_1}}\right]\cdot e^{-\left(\frac{t}{T_1}\right)^{\beta_2}}+M_0
+\end{align}
+\begin{figure}[htbp]
+	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2Plot_log.pdf}
+	\caption{Arrhenius Plot der T1 Werte des Hochtemperaturbereiches.}
+	\label{pic_F2_hoch}
+\end{figure}
+
+Die Darstellung der Messwerte, sowie die Fitfunktionen sind in Abb. \ref{pic_T2_hoch} und \ref{pic_T2_hoch} sichtbar. Der Fit ergab für $\tau_c$ die in Tabelle
+
+\begin{table}[htbp]
+	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |}
+		\textbf{Temperatur }[K] & \tau_C & \text{Standardabweichung}\\\hline
+		\input{../auswertung/F2/tauC_values_table}
+	\end{tabular}
+	\caption{Ergebnisse des Fits aus Abb. \ref{pic_F2_hoch}.}
+	\label{tab:T2_hoch}
+\end{table}
+Trägt man diese Werte in einem Arrhenius-Plot wie in Abb. \ref{pic_F2_fit} auf, so kann aus der Steigung der Ausgleichsgeraden die Aktivierungsenergie $E_A$ bestimmt werden. 
+\begin{figure}[htbp]
+	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_hochTemperaturPlot.pdf}
+	\caption{Arrhenius Plot der $\tau_C$ Werte des Hochtemperaturbereiches und Regressionsgerade.}
+	\label{pic_F2_fit}
+\end{figure}
+
+
+\newpage
 \Large{Literatur}\\\\
 
 % ========================================
