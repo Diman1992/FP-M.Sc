@@ -24,7 +24,7 @@ for arg in sys.argv:
 def lin(x,m,b):
     return m*x+b
 
-def kohlrausch(x,T1,v,A,b,c):
+def kohlrausch(x,T1,v,A,c):
     return np.exp(-(x/T1)**v)*A+c
 
 def p(var):
@@ -42,15 +42,15 @@ colors = iter(cm.jet(np.linspace(0, 1, 14)))
 def T1(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
 
-    var, cov = optimize.curve_fit(kohlrausch, time, amplitude, p0=(0.5,0.99,-400,0,400), maxfev=1000000)
+    var, cov = optimize.curve_fit(kohlrausch, time, amplitude, p0=(0.5,0.99,-400,400), maxfev=1000000)
+    print(cov)
     xRef = np.linspace(min(time),max(time),num=1000)
-    yRef = kohlrausch(xRef, var[0],var[1],var[2],var[3],var[4])
+    yRef = kohlrausch(xRef, var[0],var[1],var[2],var[3])
 
     print("T1: ", var[0])
     print("v: ", var[1])
     print("A: ", var[2])
-    print("b: ", var[3])
-    print("c: ", var[4])
+    print("c: ", var[3])
 
     plt.plot(xRef, yRef, "b-")
     ax.scatter(time,amplitude, color=next(colors),label=str(int(temp))+"K")
