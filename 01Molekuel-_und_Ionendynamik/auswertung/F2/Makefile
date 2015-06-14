@@ -1,13 +1,13 @@
 .PHONY: all clean
 
-all: ./F2Plot_log.pdf ./F2_hochTemperaturPlot.pdf
+all: ./F2_Plot.pdf ./F2_Fit.pdf
 
 clean:
 	rm *.pdf
 
-./F2Plot_log.pdf: ./plot_01.py
+./F2_Plot.pdf: ./plot_01.py
 	python $<
 
 
-./F2_hochTemperaturPlot.pdf: ./plot_tauC_tief.py ./tauC_values
+./F2_Fit.pdf: ./plot_tauC_tief.py ./tauC_values
 	python $<

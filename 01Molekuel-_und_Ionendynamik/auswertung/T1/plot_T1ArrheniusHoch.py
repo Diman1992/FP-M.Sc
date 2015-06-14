@@ -39,18 +39,18 @@ plt.plot(xRef,yRef,label="quadratischer Fit")
 
 
 f=open("minimum.output","w")
-tempString = "b = \\left("+str('%.2E' % var[1])+"} \pm "+str('%.2E' % cov[1,1])+"}\\right) \\left[\\frac{1}{K}\\right]"
-f.write(tempString.replace("E","^{"))
+tempString = "b = \\left("+str('%.2E' % var[1])+"} \pm "+str('%.2E' % np.sqrt(cov[1,1]))+"}\\right) \\left[\\frac{1}{K}\\right]"
+f.write(tempString.replace("E","\\cdot 10^{"))
 f.close()
 
 
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.grid()
 plt.yscale("log")
-plt.xlabel("1/Temperatur [1/K]")
+plt.xlabel(r"Temperatur$^{-1}$ $\left[\frac{1}{K}\right]$")
 plt.ylabel("Zeit [s]")
 #plt.xlim((96,110))
 #plt.ylim((0.03,0.1))
 plt.legend()
-plt.title("Arrhenius Hochtemperatur T1")
+plt.title(r"Arrhenius Hochtemperatur $T_1$")
 plt.savefig('T1_hochTemperaturPlot.pdf')

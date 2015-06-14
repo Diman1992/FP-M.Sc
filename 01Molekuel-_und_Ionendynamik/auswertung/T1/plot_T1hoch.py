@@ -21,6 +21,9 @@ for arg in sys.argv:
 # Preparation				#
 #########################################
 
+colors = iter(cm.jet(np.linspace(0, 1, 14)))
+
+
 def lin(x,m,b):
     return m*x+b
 
@@ -30,33 +33,21 @@ def kohlrausch(x,T1,v,A,c):
 def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
-    time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
-    #print(time)
-    #print(amplitude)
-    #var, cov = optimize.curve_fit(kohlrausch, time, amplitude, maxfev=100)
-    #plt.scatter(time,amplitude)
-    #plt.show()
-
-colors = iter(cm.jet(np.linspace(0, 1, 14)))
 
 def T1(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
 
     var, cov = optimize.curve_fit(kohlrausch, time, amplitude, p0=(0.5,0.99,-400,400), maxfev=1000000)
-    print(cov)
     xRef = np.linspace(min(time),max(time),num=1000)
     yRef = kohlrausch(xRef, var[0],var[1],var[2],var[3])
-
-    print("T1: ", var[0])
-    print("v: ", var[1])
-    print("A: ", var[2])
-    print("c: ", var[3])
 
     plt.plot(xRef, yRef, "b-")
     ax.scatter(time,amplitude, color=next(colors),label=str(int(temp))+"K")
 
-    f.write(str(temperature)+"\t"+str(var[0])+"\t"+str(cov[0,0])+"\n")
-    f2.write(str(temperature)+" & "+str(round(var[0],2))+"\\\\\\hline\n") #" & "+str(cov[0,0])+"\\\\")
+    f.write(str(temperature)+"\t"+str(var[0])+"\t"+str(np.sqrt(cov[0,0]))+"\n")
+    tempString = str(temperature) + " & " + str('%.2E' % var[0])+"} & "+str('%.2E' % np.sqrt(cov[0,0]))+"} \\\\\\hline\n"
+    f2.write(tempString.replace("E","\\cdot 10^{"))
+
 
 path='../_daten/hochtemperatur/'
 
@@ -66,7 +57,7 @@ axT1 = plt.gca()
 outFile = open('T1_valuesHoch', 'w')
 outFile2 = open('T1_valuesHoch_table', 'w')
 outFile.write("# Temperatur \t T1 \t std\n")
-outFile2.write("Temperatur & T1 \\\\\\hline\n")
+outFile2.write("\\text{Temperatur } [K] & T_1\ [s] & \\text{Standardabweichung } [s] \\\\\\hline\n")
 
 for root, dirs, files in os.walk(path):
     options = root.split(sep="_")
@@ -74,8 +65,6 @@ for root, dirs, files in os.walk(path):
         typ = options[3]
         temperature = options[4][:-1]
         if(typ=="T1"):
-            print("\n\nTemp: "+str(temperature))
-            print(root)
             for f in files:
                 if(f.endswith(".info")):
                     filePath = root+"/"+f
@@ -84,7 +73,6 @@ for root, dirs, files in os.walk(path):
                         if line.startswith("Cryostat Temperature"):
                             temperature=float(line[line.find(":")+2:])
                             temperature = round(temperature * 0.922 - 1.085)
-                            print("Temp: "+str(temperature))
 
             for f in files:
                 if(f.endswith(".nmr")):
@@ -97,7 +85,7 @@ axT1.set_xscale('log')
 axT1.grid()
 plt.xlim((9e-4,10))
 plt.ylim((-10,700))
-plt.title("T1 Echo Amplitude Hochtemperatur")
+plt.title(r"$T_1$ Echo Amplitude Hochtemperatur")
 plt.xlabel("Zeit [s]")
 plt.ylabel("Amplitude")
 plt.legend(loc=2)
