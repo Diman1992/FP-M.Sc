@@ -69,7 +69,7 @@ outFile.write("# Temperatur \t T1 \t std\n")
 outFile2.write("Temperatur & T1 \\\\\\hline\n")
 
 for root, dirs, files in os.walk(path):
-    options = root.split(sep="_")
+    options = root.split("_")
     if len(options)>3:
         typ = options[3]
         temperature = options[4][:-1]
