@@ -27,7 +27,7 @@ def expo(x,A,Ea):
 path = './tauC_values'
 temperature, T2, error = np.loadtxt(path, usecols=(0,1,2), unpack=True, comments='#')
 
-plt.errorbar(1/temperature, T2, yerr=error, fmt="none", marker="o")
+plt.errorbar(1/temperature, T2, yerr=np.sqrt(error), fmt="none", marker="o")
 plt.plot(1/temperature, T2, marker="o",ms=3, ls="", label="Tau_C Werte")
 
 
@@ -37,18 +37,17 @@ yRef=expo(xRef,var[0],var[1])
 plt.plot(xRef,yRef,label="exponentieller Fit")
 
 fOut=open("Ea.output","w")
-fOut.write("E_A = "+str('%.2E' % var[1])+" \pm "+str('%.2E' % cov[1,1]))
+tempString = str('%.2E' % var[1])+"} \pm "+str('%.2E' % np.sqrt(cov[1,1])) +"}\n"
+fOut.write("E_A = (" + tempString.replace("E","\\cdot 10^{")+") [J]")
 fOut.close()
 
-print("Ea: ",var[1])
-print("A: ",var[0])
 plt.yticks(np.arange(10e-5, 10e-4, 0.001))
 plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 plt.grid()
 plt.yscale("log")
-plt.xlabel("1/Temperatur [1/K]")
-plt.ylabel("Tau_C")
+plt.xlabel(r"Temperatur$^{-1} \left[\frac{1}{K}\right]$")
+plt.ylabel(r"$\tau_C$ [s]")
 plt.legend()
-plt.title("tauC Hochtemperatur F2")
-plt.savefig('F2_hochTemperaturPlot.pdf')
+plt.title(r"$\tau_C$ Tieftemperatur F2")
+plt.savefig('F2_Fit.pdf')

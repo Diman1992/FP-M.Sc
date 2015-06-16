@@ -29,39 +29,23 @@ def lin(x,m,b):
 def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
-    time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
-    print(time)
-    print(amplitude)
-    #var, cov = optimize.curve_fit(kohlrausch, time, amplitude, maxfev=100)
-    #plt.scatter(time,amplitude)
-    #plt.show()
-
 colors = iter(cm.jet(np.linspace(0, 1, 18)))
 
 def F2(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
 
     var, cov = optimize.curve_fit(Mt, time, amplitude, p0=(400,700,-2,2,0.1,1,0.1), maxfev=1000000)
+
     xRef = np.logspace(-4,3,num=10000)
-
-    print("Mtau: ", var[0])
-    print("Mz0: ", var[1])
-    print("M0: ", var[2])
-    print("Tc: ", var[3])
-    print("T1: ", var[4])
-    print("beta1: ", var[5])
-    print("beta2: ", var[6])
-
     yRef = Mt(xRef, var[0],var[1],var[2],var[3],var[4],var[5],var[6])
 
     plt.scatter(time,amplitude, color=next(colors),label=temp+"K")
     plt.plot(xRef,yRef)
 
-    f.write(temp+"\t"+str(var[3])+"\t"+str(cov[3,3])+"\n")
-    tempString = temp+" & "+str('%.2E' % var[3])+"} & "+str('%.2E' % cov[3,3])+"} \\\\\\hline\n"
+    f.write(temp+"\t"+str(var[3])+"\t"+str(np.sqrt(cov[3,3]))+"\n")
+    tempString = temp+" & "+str('%.2E' % var[3])+"} & "+str('%.2E' % np.sqrt(cov[3,3]))+"} \\\\\\hline\n"
     tempString=tempString.replace("E","^{")
     f2.write(tempString)
-
 
 
 
@@ -78,7 +62,6 @@ for root, dirs, files in os.walk(path):
     if len(options)>3:
         typ = options[3]
         temperature = options[4][:-1]
-        print(typ,temperature)
         temperature = round(int(temperature) * 0.922 - 1.085)
         if(typ=="F2"):
             for f in files:
@@ -94,4 +77,4 @@ axF2.legend()
 plt.title("F2 Plot Tieftemperatur")
 plt.xlabel("Zeit [s]")
 plt.ylabel("Echo Amplitude")
-plt.savefig("F2Plot_log.pdf")
+plt.savefig("F2_Plot.pdf")

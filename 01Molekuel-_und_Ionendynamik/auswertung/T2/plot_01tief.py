@@ -21,64 +21,91 @@ for arg in sys.argv:
 # Preparation				#
 #########################################
 
-def lin(x,m,b):
-    return m*x+b
+def Mt1(t,y0,y1,y2,T21,T22,beta1,beta2):
+    return y0+y1*np.exp(-(t/T21)**beta1)#+y2*np.exp(-(t/T22)**beta2)
 
-def kohlrausch(x,T1,v):
-    return np.exp(-(x/T1)**(1-v))
-
+def Mt2(t,Mtau,Mz0,M0,T21,T22,beta1,beta2):
+    return (Mtau+(Mz0-Mtau)*np.exp(-(t/T21)**beta1))*np.exp(-(t/T22)**beta2)+M0
 def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
+colors = iter(cm.jet(np.linspace(0, 1, 7)))
+
+def T2(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
-    print(time)
-    print(amplitude)
-    #var, cov = optimize.curve_fit(kohlrausch, time, amplitude, maxfev=100)
-    #plt.scatter(time,amplitude)
+    var, cov = optimize.curve_fit(Mt2, time, amplitude, p0=(1e5,1e4,-1,1e-6,1e-8,-2,0.1), maxfev=1000000)
+    #var, cov = optimize.curve_fit(Mt1, time, amplitude, p0=(0,600000,0,1e-4,0,-0.1,0), maxfev=1000000)
+
+    print("\n\ntemp: ", temp)
+    print("0: ", var[0])
+    print("1: ", var[1])
+    print("2: ", var[2])
+    print("3: ", var[3])
+    print("4: ", var[4])
+    print("5: ", var[5])
+    print("6: ", var[6])
+
+    xRef = np.logspace(-5,-1,num=10000)
+    yRef = Mt2(xRef, var[0],var[1],var[2],var[3],var[4],var[5],var[6])
+
+    #print("T21: ", var[3])
+    #print("T22: ", var[4])
+
+    plt.plot(xRef, yRef, "b-")
+    plt.scatter(time,amplitude, color=next(colors),label=temp+"K")
+    plt.xscale("log")
+    plt.xlim((5e-6,5e-3))
     #plt.show()
 
-colors = iter(cm.jet(np.linspace(0, 1, 18)))
-
-def T2(path,ax,temp):
-    time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
-    #print(amplitude)
-    #var, cov = optimize.curve_fit(kohlrausch, time, amplitude, maxfev=100)
-    plt.scatter(time,amplitude, color=next(colors),label=temp+"K")
+    f.write(temp+"\t"+str(var[3])+"\t"+str(cov[3,3])+"\t"+str(var[4])+"\t"+str(cov[4,4])+"\n")
+    tempString = temp+" & "+str('%.2E' % var[3])+"} & "+str('%.2E' % cov[3,3])+"} & "+str('%.2E' % var[4])+"} & "+str('%.2E' % cov[4,4])+"} \\\\\\hline\n"
+    tempString=tempString.replace("E","\\cdot 10^{")
+    f2.write(tempString)
+    #plt.show()
 
 
-def Mt(t,T1,tauC,M0,Mz0,Mtau,betaTau,betaT1):
-    return(Mtau+(Mz0-Mtau)*np.exp((-(t/tauC)**betaTau)))*np.exp((-(t/betaT1)**betaTau))+M0
 
 path='../_daten/tieftemperatur/'
 
-#xTest=np.linspace(0,10,1000)
-#yTest=Mt(xTest,31,4,0,5,20,1.8,1.56)
 
 figT2 = plt.figure()
 axT2 = plt.gca()
 axT2.set_xscale('log')
-#axT2.set_yscale('log')
 
 
 
+fOut=open("T2_data","w")
+fOut.write("#Temp\ttauC\tstd\n")
+fOut2=open("T2_data_latex","w")
+fOut2.write("\\text{Temperatur } [K] & T_{21}\ [s] & \\text{Standardabweichung } [s] & T_{22}\ [s] & \\text{Standardabweichung } [s] \\\\\\hline\n")
 
 for root, dirs, files in os.walk(path):
     options = root.split(sep="_")
     if len(options)>3:
         typ = options[3]
         temperature = options[4][:-1]
-        print(typ,temperature)
         if(typ=="T2"):
+            for f in files:
+                if(f.endswith(".info")):
+                    filePath = root+"/"+f
+                    inpFile = open(filePath)
+                    for line in inpFile:
+                        if line.startswith("Cryostat Temperature"):
+                            temperature=float(line[line.find(":")+2:])
+                            temperature = round(temperature * 0.922 - 1.085)
             for f in files:
                 if(f.endswith(".nmr")):
                     filePath = root+"/"+f
-                    T2(filePath,axT2,temperature)
-                    #temperature = round(temperature * 0.922 - 1.085)
+                    T2(filePath,axT2,str(temperature),fOut,fOut2)
 
 
-axT2.grid()
-axT2.legend()
-plt.title("T2 Tieftemperatur Messwerte")
+fOut.close()
+fOut2.close()
+
+plt.grid()
+plt.legend()
+#plt.ylim((-100,1000))
+plt.title(r"$T_2$ Tieftemperatur Messwerte")
 plt.xlabel("Zeit [s]")
 plt.ylabel("Echo Amplitude")
-plt.savefig("T2Tief_log.pdf")
+plt.savefig("T2_tiefTemperaturFit.pdf")
