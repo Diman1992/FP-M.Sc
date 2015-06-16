@@ -226,7 +226,22 @@ verschiedenen Energiebarrieren.
  \label{pic_tau(T)}
 \end{figure}
 
-\section{Durchführung}
+\section{Aufbau und Durchführung}
+Das NMR-Spektrometer erfüllt hier zwei Aufgaben. Die Manipulation des Spinsystems, sowie die Detektion des Kerninduktionssignals. Das Spinsystem wird durch
+Magnetfelder gestört, welche durch Signale des HF-Generators induziert werden. Um starke Felder zu erzeugen, muss viel Leistung in den Probenstab gelangen,
+was über ein Diodenpärchen am Ende des $\lambda$/4-Kabels ermöglicht wird. Das Diodenpaar ist gesperrt, wenn die Detektion läuft, sodass das Kerninduktionssignal
+zum Vorverstärker gelangt. Dieses Signal $\omega_\text{RF}$ lässt sich nicht gut direkt messen, die Differenz davon mit $\omega_L$ jedoch schon. Daher wird
+eine Quadraturdetekion durchgeführt, bei der das Kernsignal auch mit einem um 90$^\circ$ verschobenen Signal gemischt wird. Der Probenkopf besteht im Grunde
+aus einem Reihenresonanzkreis, der auf die Larmorfrequenz abgestimmt ist, mit einer auf 50 $\Omega$ angepassten Impedanz. Die Impedanzanpassung vermeidet die 
+Reflektion der eingestrahlen Welle und ist vor jeder Messung notwendig. Für die Anpassung wird ein Netzwerkanalysator verwendet für die Ausmessung des
+Stehwellenverhältnisses VSWR, welches ein Maß für den Anteil der reflektierten Leistung ist.
+
+\noindent Zu Beginn soll der Schwingkreis auf eine Resonanzfrequenz von 46,223 MHz eingestellt werden. Die Dauer eines $(\pi)$-Pulses soll mit einem 
+Festkörperecho am Dimethylsulfon gemessen werden. $T_1$ wird durch eine saturation-recovery Messung bestimmt. Die Magnetisierung $M(t)$ soll mit einer
+Kohlrauschfunktion $\propto \exp[-(t/T_1)^{1-\nu}]$ angepasst werden. $T_2$ wird mit einem Festkörperecho ermittelt. Mit diesen Werten werden die Einstellungen
+für die stimulierten Echos festgesetzt. Bei einem bestimmten $t_p$ soll die Echohöhe in Abhängigkeit von $t_m$ gemessen werden. Die um $M(t)$ korrigierten
+Echoamplituden werden mit einer weiteren Kohlrauschfunktion gefittet. Schließlich wird die Temperatur zweimal variiert und erneut stimulierte Echos für eine einzige
+Präparationszeit gemessen.
 
 \section{Auswertung}
 \subsection{$T_1$ Messung}
@@ -339,7 +354,7 @@ Die Fit-Funktion ist:
 \end{align}
 und entspricht einer Geradengleichung in der Darstellung des Arrhenius-Plots.
 \begin{figure}[htbp]
-	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Fit.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Plot.pdf}
 	\caption{Arrhenius Plot der $\tau_C$ Werte des Tieftemperaturbereiches und Regressionsgerade. Die Steigung der Geraden entspricht der Aktivierungsenergie.}
 	\label{pic_F2_fit}
 \end{figure}
