@@ -1,0 +1,400 @@
+
+\documentclass{article}
+
+\usepackage{array}
+\usepackage [T1]{fontenc}
+\usepackage{german}
+\usepackage [latin1]{inputenc}
+\usepackage[center]{caption}
+
+\begin{document}
+
+\title{Kristalluntersuchungen\\
+mit Hilfe des Debye-Scherrer-Verfahrens\\
+\vspace{5mm}
+\normalsize{Protokoll zum Versuch am 1.11.00\\
+ von Hannes Kurtze und Janina Messerschmidt}}
+
+\date{November 2000}
+
+\maketitle
+
+\section{Einleitung}
+In diesem Versuch werden Kristallstrukturen anhand des\\ Debye-Scherrer-Verfahrens untersucht. Der Versuch teilt sich auf in zwei Teilversuche. Im ersten werden die Kristallstrukturen und die Gitterparameter von zwei bekannten Substanzen bestimmt, im zweiten Teil werden unbekannte Substanzen in einem Gemisch identifiziert.
+
+\section{Theoretische Grundlagen}
+\subsection{Kristallgitter}
+Der periodische Atomaufbau in kristallinen Festkörpern kann durch
+ein Kristallgitter dargestellt werden. Kristallgitter entstehen
+durch Translation einer Basiseinheit, der sogenannten
+Elementarzelle. Die Elementarzelle wird durch die Vektoren $
+\vec{a}, \vec{b}, \vec{c} $
+ und die Winkel
+$ \alpha, \beta, \gamma $
+gebildet und hat die Form eines Parallelepipeds (siehe Abb.1). Ein beliebiger Gitterpunkt kann dann durch ein Gittervektor
+\begin{equation}
+R=u \vec{a}+ v \vec{b}+ w \vec{c}
+\end{equation}
+erreicht werden.\\
+\begin{figure}
+\vspace{40mm}
+\caption{Elementarzelle}
+\end{figure}Die Kristallgitter werden anhand der Symmetrie der Elementarzelle in sieben Kristallsysteme unterteilt. Eine Elementarzelle ist primitiv (Symbol P), wenn sich alle Gitterpunkte auf den Eckpunkten befinden. Eine Elementarzelle kann aber auch innenzentriert (Symbol I) oder flächenzentriert (Symbol F) sein. Die Flächen nichtkubischer und nichtrigonaler Gitter besitzen nicht alle den gleichen Wert, weshalb bei diesen Kristallsystemen noch zwischen einer Zentrierung der Basisflächen (Symbol C) und der weiteren Flächen unterschieden wird. Es kann gezeigt werden, daß alle Kristalle durch 14 Gittertypen, die nach den obrigen Merkmalen eingeteilt werden, beschrieben werden können. So kann z.B. die dichteste Kugelpackung durch einen hexagonalen Gittertyp für die  Anordnung ABAB und durch einen kubischen Gittertyp für die  Anordnung  ABCABC beschrieben werden. Diese 14 Gitter nennt man Bravais-Gitter. Einen Überblick über die Kristallsysteme und
+die Bravais-Gitter liefert Tabelle 1. Zu beachten ist, daß nicht jedes Atom in der Elementarzelle ein Gitterpunkt sein muß.
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Kristallsystem & Gitterparameter & Bravais-Gitter \\
+\hline
+\hline
+kubisch & a=b=c,  $\alpha=\beta=\gamma=\pi/2$  & P,I,F \\
+\hline
+tetragonal & $a=b\neq c$, $\alpha=\beta=\gamma=\pi/2$ & P,I \\
+\hline
+orthorhombisch & $a\neq b\neq c$, $\alpha=\beta=\gamma=\pi/2$ & P,I,F,C \\
+\hline
+hexagonal & $a=b\neq c$, $\alpha=\beta=\pi/2$,$ \gamma=\pi/3$ & P \\
+\hline
+trigonal & a=b=c, $\alpha=\beta=\gamma\neq \pi/2$ & P \\
+\hline
+monoklin & $a\neq b\neq c\neq$, $\alpha=\gamma=\pi/2$,$\beta\neq \pi/3$ & P,C \\\hline
+triklin & $a\neq b\neq c\neq$, $\alpha\neq \beta\neq \gamma\neq \pi/2$ & P \\
+\hline
+\end{tabular}
+\caption{Beschreibung der sieben Kristallsysteme und der vierzehn Bravais-Gitter}
+\end{center}
+\end{table}
+\subsection{Die Netzebenen und das reziproke Gitter}
+Eine Ebene, die durch 3 nicht kolineare Gitterpunkte definiert
+wird und unendliche viele Gitterpunkte enthält wird Netzebene
+genannt. Durch die Millerschen Indizes (hkl) wird eine Netzebene
+beschrieben. (Siehe auch [Ry] S.12 ff) Man erhält diese Indizes
+aus den ganzzahligen gemachten Kehrwerten der Achsenabschnitte der
+Ebene. Alle Ebenen im Abstand d mit den gleichen Indizes bilden
+eine Netzebenenschar. Um eine Ebenenschar zu beschreiben braucht
+man 3 unabhängige Parameter (Orientierung: Normalenrichtung,
+Ebenenabstand). Eine Netzebenenschar wird daher durch den Vektor $
+\vec{g} $ , dessen Richtung die Normalenrichtung der Ebene und
+dessen Betrag gleich 1/d (Abstand der Netzebenen) ist, definiert.
+Zur weiteren Beschreibung eines Kristalls wird eine Basis ( $
+\vec{a}^{\ast}, \vec{b}^{\ast}, \vec{c}^{\ast} $ ) definiert, die
+keine physikalische Bedeutung hat, mathematische Anschauungen aber
+vereinfacht. Es ergibt sich:
+\begin{equation}
+\vec{g}=h \vec{a}^{\ast}+k \vec{b}^{\ast}+l \vec{c}^{\ast}
+\end{equation}
+Diese Basis ist orthogonal zu der Basis des Kristallgitters. Deshalb spricht man von der Basis des reziproken Gitters. Die beiden Basen lassen sich wie folgt ineinander umrechnen:
+\begin{equation}
+\vec{a}^{\ast}= \frac{\vec{b}\times \vec{c}} {V},  \vec{b}^{\ast}=
+\frac{\vec{c}\times \vec{a}} {V},  \vec{c}^{\ast}=
+\frac{\vec{a}\times \vec{b}} {V}
+\end{equation}
+mit $ V=\vec{a}(\vec{b}\times \vec{c}) $ \\
+Die Netzebenenabstände d berechnen sich aus dem Vektor $\vec{g}$ nach der Gleichung:
+\begin{equation}
+g^2=1/d^2= h^2 a^{\ast2} + k^2 b^{\ast2} + l^2 c^{\ast2} + 2( hk
+a^{\ast} b^{\ast} \cos\gamma + kl b^{\ast} c^{\ast} \cos\alpha +
+lh c^{\ast} a^{\ast} \cos\beta )
+\end{equation}
+Für Kristallstrukturen hoher Symmetrie vereinfacht sich diese Gleichung. Man erhält so z.B. für die Abstände der Netzebenen in einem kubischen Kristall:
+\begin{equation}
+\frac{1}
+     {d^2}=
+\frac{1}
+     {a^2}
+(h^2+k^2+l^2),
+\end{equation}
+in einen orthorhombischen Kristall:
+\begin{equation}
+\frac {1}
+      {d^2}=
+(\frac{h}
+      {a})^2+
+(\frac{k}
+      {b})^2+
+(\frac{l}
+      {c})^2
+\end{equation}
+in einem tetragonalen Kristall:
+\begin{equation}
+\frac{1}
+     {d^2}=
+\frac{h^2+k^2}
+     {a^2}+
+(\frac{l}
+      {c})^2
+\end{equation}
+oder in einen hexagonalen Kristall:
+\begin{equation}
+\frac {1}
+      {d^2}=
+\frac {4}
+      {3a^2}
+(h^2+hk+k^2)+
+(\frac{l}
+      {c})^2
+\end{equation}
+\subsection{Beugung an Kristallgittern}
+\subsubsection{Die Bragg-Gleichung}
+\begin{figure}
+\vspace{80mm}
+\caption{Beugung an Netzebenen}
+\end{figure}
+In der Abbildung 2 sind zwei Netzebenen dargestellt, auf die ein monochromatischer Röntgenstrahl unter dem Winkel $\theta$ fällt. Trifft eine Welle auf ein Atom, wird eine Streuwelle erzeugt. Damit für den roten Strahlengang die gebeugten Röntgenstrahlen wieder in Phase sind, muß der Einfallswinkel $\theta$ gleich dem Ausfallswinkel sein. Daher kann die Beugung an den Atomen immer als Reflexion an den Netzebenen angesehen werden. \\
+Für konstruktive Interferenz muß der Gangunterschied des grünen Strahlenverlaufs $n\pi$ betragen. Aus der Abbildung kann man dann also die Bragg-Bedingung für konstruktive Interferenz ableiten:\\
+\begin{equation}
+2d\sin\theta=n\lambda
+\end{equation}
+mit n=1,2,3,...\\
+\subsubsection{Der Strukturfaktor}
+Die Intensitäten der Reflexe von Beugungsbildern hängen von der Kristallstruktur ab. Da man durch Atome, die sich nicht auf Gitterpunkten befinden, zusätzliche Streuzentren erhält, können in nichtprimitiven Kristallsystemen einige Reflexe durch Interferenz mit Röntgenstrahlung von diesen Zentren ausgelöscht werden. Wir müssen also für den Atomstreufaktor über alle Amplituden $f_j$, der in der Elementarzelle befindlichen Atome summieren. Die Summe der gestreuten Amplituden ist demnach:
+\begin{equation}
+F=\sum_j exp(2i\pi\vec{r_j}\vec{g})
+\end{equation}
+mit\\
+$\vec{g}$ :Normalenvektor\\
+$\phi_j=2\pi\vec{r_j}\vec{g}$: die Phase der gestreuten Welle\\
+$\vec{r_j}=x_j\vec{a}+y_j\vec{b}+z_j\vec{c}$: der Ortsvektor des Atoms\\
+Die Intensitäten der Reflexe erhält man aus dem Betragsquadrat des Strukturfaktors:
+\begin{equation}
+\left|F\right|^2= (\sum_j f_j
+        \cos 2\pi
+             (hx_j+ky_j+lz_j))^2+
+(\sum_j f_j
+        \sin 2\pi
+             (hx_j+ky_j+lz_j))^2
+\end{equation}
+Wir werden nun die erlaubten Reflexe beispielhaft für das kubische raumzentrierte Gitter berechnen. Hierbei befinden sich die Atome der Elementarzelle bei den Koordinaten [000] und [$\frac {1}{2},\frac {1}{2}, \frac {1}{2}$]. Man erhält die folgenden Intensitäten:
+\begin{equation}
+\left|F\right|^2=\left\{
+\begin{array}{cl}
+4f^2 mit (h+k+l) gerade \\
+0 mit (h+k+l) ungerade
+\end{array}
+\right.
+\end{equation}
+Wenn das Gitter aus gleichen Atomen aufgebaut ist, sind die Amplituden der an den beiden Atomen gestreuten Wellen gleich. In der Tabelle 2 befindet sich eine
+Auflistung der möglichen Reflexe für primitive, raum- und flächenzentrierte kubische Kristalle und für Diamantgitter (Symbol D). Mit steigenden Symmetrieeigenschaften des Kristalls nehmen die zu beobachtenden Reflexe ab. \\
+\begin{figure}[hb]
+\vspace{120mm}
+\caption{Erlaubte Reflexe für kubische Kristalle}
+\end{figure}
+\section{Das Debye-Scherrer-Verfahren}
+\begin{figure}[h]
+\vspace{100mm}
+\caption{Strahlengang in der Debye-Scherrer-Kamera}
+\end{figure}
+Bei dem Debye-Scherrer-Verfahren wird eine fein gemahlene Probe des zu untersuchenden Materials mit einem monochromatischen Röntgenstrahl beleuchtet. Die Reflexe bilden dann Kegel mit den Öffnungswinkeln 4$\theta$. Auf der zylindrischen Oberfläche der Debye-Scherrer-Kamera mit der Probe als Achse wird ein Röntgenfilm eingelegt. In diesem befinden sich zwei Löcher für den Ein- und Austritt des Strahls. Auf dem Film erhält man als Beugungsbild Kreisbögen, die  Kegelschnitte mit dem zylindrisch eingelegtem Film. Das charakteristische Beugungsbild liefert Aussagen über die Eigenschaften des Kristalls. Aus den Abständen der Kreisbögen kann man über die Bragg-Gleichung $\theta$ und damit d berechnen.
+\subsection{Aufbau und Durchführung}
+Zum Anfertigen von Debye-Scherrer-Aufnahmen benötigt man eine Kamera und eine Röntgenröhre mit einem Filter, um monochromatische Strahlung zu erhalten. Im Zentrum der Kamera, die aus einem zylindrischen Behälter besteht, befindet sich der drehbare Probenhalter. Die gemahlenen Proben werden in Glaskapillaren gefüllt und diese im Probenhalter zentriert. In der Dunkelkammer wird dann der Film an der Innenwand der Kamera befestigt. Die Kamera wird auf die Röntgenröhre gesteckt, die eine Kupferanode enthält. Wie Röntgenstrahlung entsteht und wie man sie monochromatisiert, beschreiben wir im folgenden Kapitel. Die zwei bekannten Substanzen Niob und Kupfer und die unbekannte Substanz werden nun der Röntgenstrahlung ausgesetzt. Die Filme mit den Debye-Scherrer-Ringen werden dann anschließend in der Dunkelkammer entwickelt.
+\subsection{Das Röntgenspektrum und Filter für Röntgenstrahlung}
+In der Röntgenröhre werden von einer geheizten Kathode Elektronen emittiert, die dann in einem elektrischen Feld zwischen Kathode und Anode auf eine kinetische Energie von einigen zehntausend Elektronenvolt beschleunigt werden. Die energiereichen Elektronen treffen auf die Target-Anode, werden abgebremst und geben ihre Energie in Form von Röntgenstrahlung ab. Ein wesentlicher Teil der Energie der Elektronen wird von den Atomen selbst absorbiert und als elektromagnetische Strahlung diskreter Wellenlängen wieder emittiert, die sogenannte charakteristische Strahlung. Bei der Absorbtion werden die Elektronen im Anodenmaterial herausgeschlagen, und das ``Loch'' wird durch ein Elektron aus einer höheren Schale wieder aufgefüllt, wobei das Atom wieder in ein energetisch niederen Zustand fällt.\\
+Schließlich können die Elektronen ihre Energie ganz oder teilweise beim Abbremsen im Feld der Atomkerne des Anodenmaterials abgeben, die sogenannte kontinuierliche Bremsstrahlung.\\
+Ein Röntgenspektrum ist schematisch in Abbildung 5 dargestellt.\\
+\begin{figure}
+\vspace{70mm}
+\caption{Röntgenspektrum}
+\end{figure}
+Die Benennung der Elektronenschalen erfolgt von innen nach außen mit den Buchstaben K,L,M,.... Fällt ein Elektron vo der L-Schale in die K-Schale, spricht man von $K_\alpha$-Strahlung. Der griechische Buchstabe gibt an, aus welcher Schale das Elektron stammt. Um zu kennzeichnen welchen Drehimpulszustand das Elektron besitzt, verwendet man einen weiteren Index. Der Übergang $P_\frac{1}{2} \mapsto S_\frac{1}{2}$ von der L-Schale in die K-Schale wird mit$ K_\alpha1$-Strahlung bezeichnet und der Übergang $P_\frac{3}{2} \mapsto S_\frac{1}{2}$ mit K$_\alpha2$-Strahlung. Die Frequenz der K$_\alpha $-Strahlung erhält man aus dem Mosleyschen Gesetz:
+\begin{equation}
+\nu_{K_{\alpha}} = \frac{3}{4}R_\infty (Z-1)^2
+\end{equation}
+mit\\
+$R_\infty$ : Rydbergkonstante, Z: Ordnungszahl\\
+Da wir, wie oben erwähnt, monochromatische Röntgenstrahlung benötigen, selektieren wir die K$_\alpha$ -Linie mit einem geeigneten Filter. Dafür betrachten wir ein Absorptionsspektrum für Röntgenstrahlung (siehe Abbildung 4). Allgemein kann man sagen, daß energiereiche, d.h. kurzwellige Strahlung Materialien leichter durchdringt als langwellige Strahlung. Daher nimmt der Absorptionskoeffizient mit der Wellenlänge ab. Reicht die Energie, um Elektronen aus einer der Schalen herauszuschlagen, steigt die Absorption schlagartig an. Diese Wellenlängen nennt man Absorptionskanten. Um eine Wellenlänge aus dem Röntgenspektrum herauszufiltern, muß man ein Material wählen, bei dem ein Absorptionsminimum mit der gewünschten Wellenlänge zusammenfällt. Ein geeignetes Absorbermaterial fü reine Kupferanode ist Nickel.
+\begin{figure}
+\vspace{50mm} \caption{Verlauf des Absorptionskoeffizienten}
+\end{figure}
+\section{Auswertung und Ergebnisse}
+\subsection{Meßwerterfassung}
+Die belichteten Filme weisen um Eintritts- und Austrittsloch zentrierte Linienpaare auf. Der Abstand x zwischen zwei Linien eines Paares - über das Austrittsloch hinweg gemessen - steht zum Beugungswinkel $\theta$ in linearer Beziehung, wie geometrisch anhand Abbildung 5 direkt einsichtig ist. Die 360° des Kamerazylinders werden auf 360mm Film abgebildet, daher gilt\\
+\begin{equation}
+\theta=
+\frac{\pi}
+     {720mm}
+     x
+\end{equation}
+Für Braggwinkel $\theta>\frac{\pi}{4}$ kann x nicht direkt gemessen werden. Wir messen stattdessen x´ wie in Abbildung 7 gezeigt und erhalten x aus der Beziehung\\
+\begin{equation}
+x = 360mm - x'
+\end{equation}
+\begin{figure}[h]
+\vspace{30mm}
+\caption{Messung von x und x'}
+\end{figure}
+Zur Streckenmessung benutzen wir ein Präzisionslineal mit Milimeter-Skala und 10-Mikrometer-Schraube. Für eine Messung bringen wir eine Skalenteilung mit der gewünschten Linie in Deckung und ziehen dann die Anzeige der Mikrometerschraube vom Skalenwert des Lineals ab. Im Bereich kleiner Winkel zeigen unsere Aufnahmen von den bekannten Proben abweckselnd starke und schwache Linien. Zu größeren Winkeln hin verschwinden die schwachen Linien, wohingegen die starken Linien in Paare aufspalten. Die schwachen Linien gehören zur $K_{\beta}$-Linie unserer Röntgenquelle, die von dem vorgeschalteten Ni-Filter nicht vollständig eliminiert wird. Die starken Linien sind $K_{\alpha1}$ und $K_{\alpha2}$, deren Aufspaltung für $\theta\rightarrow\frac{\pi}{2}$ das wachsende Auflösungsvermögen der Debye-Scherrer-Kamera bei größeren Beugungswinkeln verdeutlicht.
+\medskip
+Die Aufnahmen bekannter kubischer Kristallstrukturen des esten Vesuchsteils indizieren wir nach der Quotientenmethode, die die Beziehung\\
+\begin{equation}
+sin^2(\theta_n)=
+\left[ \frac{\lambda}
+     {2a}
+\right]^2
+Q_n
+\end{equation}
+benutzt.
+Da aus
+\begin{equation}
+Q_n=
+\frac{sin^2(\theta_n)}
+     {sin^2(\theta_1)}
+\frac{\lambda_1^2}
+     {\lambda_n^2}
+Q_1
+\end{equation}
+folgt, daß die Sinusquadrate zu verschiedenen Beugungswinkeln nur ganzzahlige Verhältnisse bilden, wenn $\lambda$=const..\\
+Aus unserer Aufnahme läßt sich ferner für jeden Braggwinkel separat ein Wert für den einzigen freien Parameter kubischer Kristallgitter, a, ableiten, denn
+\begin{equation}
+a= d\sqrt{Q_n}= \frac{\lambda\sqrt{Q_n}}
+     {2sin(\theta_n)}
+\end{equation}
+\subsection{Fehlerrechnung}
+Das Präzisionslineal ermöglicht Streckenmessungen mit einem Fehler $\Delta$=0,05mm. Aufgrund der Struktur der Beugungslinien rechnen wir allerdings mit größeren Fehlern (siehe Auswertungstabellen).\\
+Für die indirekten Größen berechnen wir die mittleren Fehler mit:\\
+\begin{equation}
+\Delta I_n= 2 \sqrt{
+                   \frac{\Delta\theta_n^2}
+                        {\tan^2\theta_n}+
+                   \frac{\Delta\theta_1^2}
+                        {\tan^2\theta_1}
+                   }
+                   I_n
+\end{equation} \\
+\begin{equation}
+\Delta d=d
+         \frac{\Delta\theta_n}
+              {\tan\theta_n}
+\end{equation}
+(Siehe auch hierzu [GP] Abschnitt 1.1.7)
+\subsection{Bestimmung der Kristallstruktur der bekannten Proben}
+\subsubsection{Kupfer Cu}
+Beim Betrachten des Filmstreifens erkennt man, dass die Abstände
+der Linien untereinander eine Regelmäßigkeit aufweisen: 1[LE],
+4[LE], 3[LE], 1[LE], 4[LE], [3] usw.(LE: Längeneinheit) Wir
+identifizieren so Kupfer zum Typ kubisch-flächenzentriert mit der
+Indexdifferenzenfolge 1,4,3,1,4,3...(siehe auch EIN S.2).
+Betrachten wir nun Tabelle 1: In der Spalte `` x Ring'' wird die
+Nummer des auf dem Film betrachtetem Ringes eingetragen. Die
+nächste Spalte gibt an, ob der Winkel $\theta$ in Spalte
+``$\theta$ [rad]'' per (14) oder per (15) errechnet wird. Die
+Spalte ``$\delta$ x'' gibt den Fehler beim Ablesen an. Wir ordneten den schwachen Linien die Wellenlänge des $K_\beta$ -Übergangs zu und den stärkeren die $K_{\alpha 1}$ und $K_{\alpha 2}$ Übergängen. Für kleiner Winkel unterscheiden sich diese beiden Linien nicht sichtbar, so dass wir nun gezwungen waren, den Mittelwert beider Wellenlängen zur weiteren Berechnung zu verwenden. Gemäß der Quotientenmethode für kubische Kristalle wird ein kleinstes $(h^2+k^2+l^2)$ bzw.$ (Q_n)$ angenommen, worüber sich die anderen Quadratsummen $Q_n$ von $(h^2+k^2+l^2)$ ausrechnen lassen (gemäß 17).$Q_1$ bildet den Referenzwert für folgende $Q_n$. So wird in Tabelle 1 ab Ring 2 die Summe $(h^2+k^2+l^2)$ berechnet. Es folgen Spalten für d (per (9)) und a (gemäß (17) und (18)). Weiter sind die Fehler dieser Größen angegeben, siehe dazu (Kap. 4.2) Wir indizierten nun unseren ersten Beugungsring gem. [EIN Tabelle 1] zu $(h^2+k^2+l^2)=3$. In den Berechnungen zu $a_n$ kürzen sich aber nun alle zu n gehörigen Werte heraus, so dass $a_n$ nur noch von $a_1$ abhängig ist. Es ist daher genauso legitim, die Indizierung beispielsweise am letzten Beugungsring zu beginnen. So geschehen in Tabelle 2: Hier zählten wir die Ringe durch bis zum letzten und kamen so für den Ring 12b zu einem $(h^2+k^2+l^2)$ von 20. Diese Indizierung birgt den Vorteil, daß der bevorzugte Wert $I_1$ nun eine höhere Genauigkeit hat als in Tabelle 1: Denn der Ring 12b gehört definitiv zum $K_{\alpha2}$ -Übergang und nicht zu einer gemittelten Wellenlänge wie in Tabelle 1 (Ring 1). Jedenfalls enthalten nun die Tabellen 1 und 2 eindeutige Hinweise, welchen Ringen welches $(h^2+k^2+l^2)$ zuzuordnen ist. Diese Zuordnung fand in Tabelle 3 Berücksichtigung: Hier sind die $(h^2+k^2+l^2)$ nicht errechnet, sondern zugeordnet.\\
+Ergebnisse:\\
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Tabelle & $\overline a$\\
+\hline
+\hline
+Tabelle 1 & $3,598 ~ 10^{-10} \pm 2~10^{-12}$ m\\
+\hline
+Tabelle 2 & $3,612  ~10^{-10} \pm 2~10^{-12}$ m\\
+\hline
+Tabelle 3 & $3,611  ~10^{-10} \pm 2~10^{-12}$ m\\
+\hline
+Literatur & $3,607~10^{-10}$ m\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Berechnete Werte für Cu}
+\end{table}\\
+Alle berechneten Werte liegen innerhalb der Fehlerintervalle zum
+Literaturwert von $3,607~10^{-10}$ m (Siehe [LB]).
+\subsubsection{Niob Nb}
+Die Berechnung der Gitterkonstanten a von Nb geht analog
+vonstatten: In Tabelle 4 wird eine Indizierung von 2 angenommen,
+da der qualitative Look des Filmes auf eine kubisch-raumzentrierte
+Struktur deutet. (Abstande äquidistant) Doch konnten hier nicht
+alle Beugungslinien indiziert werden, auch eine Unterscheidung von
+$K_{\alpha}$ und $K_\beta$- Übergängen ist schwer. Die in Tabelle
+4 kursiv gedruckten $(h^2+k^2+l^2)$ sind von schwächeren Linien, die
+fettgedruckten stellen eine zufriedenstellende Indizierung dar.
+Die anderen Werte verhalten sich verschiedenen Indizierungen
+gegenüber äußerst widerspenstig; als Beispiel diene Tabelle 5, in
+der wir diese Werte mit der $K_\beta$ Linie mit Start Q von 1 zu
+indizieren versuchten. Jedenfalls vermuten wir bei diesen Werten
+nun Beugungsmuster einer komplizierteren Verunreinigung. Die
+übriggebliebenen Werte findet man nun in Tabelle 6 wieder.\\
+\newpage
+Ergebnisse:
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+Tabelle & $\overline a$\\
+\hline
+\hline
+Tabelle 4 & $3,316~10 {-10} \pm 1~10^{-12}$ m\\
+\hline
+Tabelle 5 &                              \\
+\hline
+Tabelle 6 & $3,307~10^{-10} \pm 8~10^{-12}$ m\\
+\hline
+Literatur & $3,30~10^{-10}$ m\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Berechnete Werte für Nb}
+\end{table}\\
+Die berechneten Werte für Nb liegen innerhalb der Fehlerintervalle
+zum Literaturwert von $3,30~10^{-10}$ m [LB].
+\subsection{Bestimmung der unbekannten Probe}
+Hier bestimmten wir aus sämtlichen Beugungslinien d per
+\begin{equation}
+d=
+\frac{\lambda}
+     {2sin(\theta_n)}
+\end{equation}
+wobei wir bei den Winkelbereichen, in denen keine Differenzierung
+zwischen den $K_{\alpha 1}$ und $K_{\alpha 2}$ Linien möglich ist,
+folgendes Verfahren anwendeten: Wir benutzen $\lambda$ aus den
+$K_{\alpha 1}$-Übergängen und aus den $K_{\alpha 2}$-Übergängen um
+für den Netzgitterabstand d einen Minimal- und Maximalwert zu
+erhalten. Die aus [EIN S. 7] gelieferten Netzebenenabstände von
+den vier möglichen Substanzen müssen dann innerhalb dieses
+Intervalles (inkl. Fehler) anzufinden sein. Für diejenigen
+Reflexe, die eine eindeute Zuordnung zulassen, wandten wir
+selbstverständlich eine solche Näherungmethode nicht an; der
+entsprechende Wert für den ,,anderen" Netzebenenabstand wird dann
+in der Tabelle weggelassen. Für $Hg(CN)_2$ konnten wir keine
+Übereinstimmung von Experiment und ``Vorlagentabelle'' (respektive
+Theorie) ausmachen: Kein in der Tabelle enthaltenes d von
+$Hg(CN)_2$ konnte im Versuch nachgewiesen werden. Anders bei
+$CaCl_2$: Hier deuten drei Reflexe auf diese Substanz hin, dennoch
+konnten die vielen anderen Netzebenen nicht nachgewiesen werden.
+Wir nehmen daher an, dass diese drei Reflexe auch von einer
+Verunreinigung stammen können. Anders bei WC und CsCl. Hier
+konnten wir einen überzeugenden Großteil der in der Tabelle
+wiedergegebenen Netzebenen nachweisen. Wir identifizieren daher
+die untersuchte Substanz zu WC und CsCl. Dennoch bleiben einige
+Reflexe übrig, (in Tabelle 7 ``ausgeixt'') die kein Äquivalent in
+der Tabelle finden konnten. Eben diese Reflexe schreiben wir auch
+der Verunreinigung zu, die uns bei den $CaCl_2$-Beugungen begegnet
+ist.
+\section{Zusammenfassung}
+Wir identifizierten die beiden bekannten Proben Cu und Nb zu den
+Typen kfz und krz. Diese Typen sind in Übereinstimmung zu [MO S.
+189]. Weiter bestimmten wir auch die Gitterkonstante a innerhalb
+der Fehlergrenzen zu den Literaturwerten.
+Die unbekannte Substanz konnten wir mit großer Sicherheit zu aus
+WC und CsCl bestehend bestimmen.
+Hinsichtlich der Schärfe von dem Film der unbekannten Probe müssen
+wir allerdings eingestehen, dass wir bei Cu und Nb noch großere
+Genauigkeiten hätten erreichen können. Unsere Probe war wohl doch
+nicht optimal zentriert.
+Angesichts dieser Erkenntnisse lassen sich die Möglichkeiten
+dieser Methode erhahnen. Sie dürfte wohl ein Standardverfahren in
+der Physik geworden sein.
+\section{Literatrurangaben}
+\begin{description}
+\item[EIN] Sven Einfeldt. FP4: Kristalluntersuchungen mit dem
+Debye-Scherrer-Verfahren (Versuchsanleitung Studiengang Physik).
+Universität Bremen
+\item[MO] Charles Mortimer. Chemie. 6. Auflage 1996. Thieme Verlag Stuttgart
+\item[GP] Gerthsen. Physik. 20. Auflage 1999. Springer Verlag
+\item[Ry] Peter Ryder. Kristallographie. Vorlesungsskripte 1991.
+Universität Bremen
+\item[LB] Landolt and Boernstein. Numerical data and functional relationships in science and technology. Band 3-6. Springer Verlag.
+\end{description}
+\end{document}
