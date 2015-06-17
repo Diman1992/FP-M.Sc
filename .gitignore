@@ -1,12 +1,13 @@
-*.toc
-*.aux
-*.out
-*.backup
-*tex/*.pdf
-*.log
-*.swp
-*.swo
-*.gz
-*.pdf
+**/*.pdf
+!/_Anleitungen/*
+!**/pics/*.pdf
+**/*.toc
+**/*.aux
+**/*.out
+**/*.backup
+**/*.log
+**/*.swp
+**/*.swo
+**/*.gz
 
-*.ts
+**/*.ts
