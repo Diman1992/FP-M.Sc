@@ -1,6 +1,10 @@
 **/*.pdf
 !/_Anleitungen/*
 !**/pics/*.pdf
+
+**/*.info
+**/*.nmr
+
 **/*.toc
 **/*.aux
 **/*.out
