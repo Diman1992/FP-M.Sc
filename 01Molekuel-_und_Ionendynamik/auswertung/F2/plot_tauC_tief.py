@@ -27,8 +27,6 @@ def expo(x,A,Ea):
 path = './tauC_values'
 temperature, T2, error = np.loadtxt(path, usecols=(0,1,2), unpack=True, comments='#')
 
-print(1/temperature, T2, error)
-
 plt.errorbar(1/temperature, T2, yerr=np.sqrt(error), fmt="none", marker="o")
 plt.plot(1/temperature, T2, marker="o",ms=3, ls="", label="Tau_C Werte")
 

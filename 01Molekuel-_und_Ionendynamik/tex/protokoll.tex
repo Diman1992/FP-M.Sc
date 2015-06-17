@@ -244,6 +244,8 @@ Echoamplituden werden mit einer weiteren Kohlrauschfunktion gefittet. Schließli
 Präparationszeit gemessen.
 
 \section{Auswertung}
+\subsection{Vorabbemerkung}
+Aufgrund einer Beschädigung des Thermostats für das Probenstäbche wurden während der Messungen im Hochtemperaturbereich nur die Kryostattemperaturen gemessen. Da für die Auswertung jedoch die Probentemperatur entscheidend ist und nicht eine unendlich lange Zeit nach den Aufheiz- und Abkühlvorgängen gewartet wurde, damit diese mit der  Kryostattemperatur übereinstimmt, wurde die Probentemperatur in beiden Bereichen durch eine lineare Regression aus der Kryostattemperatur errechnet.
 \subsection{$T_1$ Messung}
 Zunächst wird die $T_1$ Spin-Gitter Relaxationszeit mit der saturation-recovery Messung bei verschiedenen Probentemperaturen berechnet. Die dabei gemessenen Amplituden und Zeiten sind in Abb. \ref{pic_T1_hoch} und \ref{pic_T1_tief} dargestellt. 
 \begin{figure}[htbp]
@@ -330,7 +332,7 @@ an die Datenreihen angepasst. Die Ergebnisse des Fits sind in Tabelle aufgeführ
 \subsection{$F_2$ Messung}
 Um die $\tau_C$ Korrelationszeit zu bestimmen, wird die Echoamplitude in einem Plot gegen die Zeit aufgetragen und anschließend im Tieftemperaturbereich eine Funktion folgender Form angefittet:
 \begin{align}
-	h(t) = \left[M_\tau+(M_{z0}-M_\tau)\cdot e^{-\left(\frac{t}{T_c}\right)^{\beta_1}}\right]\cdot e^{-\left(\frac{t}{T_1}\right)^{\beta_2}}+M_0
+	h(t) = M_\tau\cdot e^{-\left(\frac{t}{\tau_c}\right)^{\beta_1}}
 \end{align}
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Plot.pdf}
@@ -354,7 +356,7 @@ Die Fit-Funktion ist:
 \end{align}
 und entspricht einer Geradengleichung in der Darstellung des Arrhenius-Plots.
 \begin{figure}[htbp]
-	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Plot.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Fit.pdf}
 	\caption{Arrhenius Plot der $\tau_C$ Werte des Tieftemperaturbereiches und Regressionsgerade. Die Steigung der Geraden entspricht der Aktivierungsenergie.}
 	\label{pic_F2_fit}
 \end{figure}

@@ -22,6 +22,7 @@ for arg in sys.argv:
 #########################################
 
 colors = iter(cm.jet(np.linspace(0, 1, 14)))
+markers = iter([".","d","2","x","8","4","s","*","D","+","o","x","3","p"])
 
 
 def lin(x,m,b):
@@ -40,9 +41,11 @@ def T1(path,ax,temp,f,f2):
     var, cov = optimize.curve_fit(kohlrausch, time, amplitude, p0=(0.5,0.99,-400,400), maxfev=1000000)
     xRef = np.linspace(min(time),max(time),num=1000)
     yRef = kohlrausch(xRef, var[0],var[1],var[2],var[3])
+    col=next(colors)
+    mark = next(markers)
 
-    plt.plot(xRef, yRef, "b-")
-    ax.scatter(time,amplitude, color=next(colors),label=str(int(temp))+"K")
+    plt.plot(xRef, yRef, color=col)
+    ax.scatter(time,amplitude, color=col, marker=mark, label=str(int(temp))+"K")
 
     f.write(str(temperature)+"\t"+str(var[0])+"\t"+str(np.sqrt(cov[0,0]))+"\n")
     tempString = str(temperature) + " & " + str('%.2E' % var[0])+"} & "+str('%.2E' % np.sqrt(cov[0,0]))+"} \\\\\\hline\n"
@@ -58,6 +61,8 @@ outFile = open('T1_valuesHoch', 'w')
 outFile2 = open('T1_valuesHoch_table', 'w')
 outFile.write("# Temperatur \t T1 \t std\n")
 outFile2.write("\\text{Temperatur } [K] & T_1\ [s] & \\text{Standardabweichung } [s] \\\\\\hline\n")
+
+filelist = list()
 
 for root, dirs, files in os.walk(path):
     options = root.split("_")
@@ -76,8 +81,11 @@ for root, dirs, files in os.walk(path):
 
             for f in files:
                 if(f.endswith(".nmr")):
-                    filePath = root+"/"+f
-                    T1(filePath,axT1,temperature,outFile,outFile2)
+                    filelist.append((temperature,root+"/"+f))
+
+filelist = sorted(filelist,key=lambda x: x[0])
+for temperature, filePath in filelist:
+    T1(filePath,axT1,temperature,outFile,outFile2)
 
 outFile.close()
 outFile2.close()

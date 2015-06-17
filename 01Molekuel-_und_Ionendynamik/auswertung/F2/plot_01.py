@@ -21,35 +21,38 @@ for arg in sys.argv:
 # Preparation				#
 #########################################
 
-def Mt(t,Mtau,Mz0,M0,Tc,T1,beta1,beta2):
-    return (Mtau+(Mz0-Mtau)*np.exp(-(t/Tc)**beta1))*np.exp(-(t/T1)**beta2)+M0
+def Mt(t,Mz0,Tc,beta1):
+    return Mz0*np.exp(-(t/Tc)**beta1)
 def lin(x,m,b):
     return m*x+b
 
 def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
-colors = iter(cm.jet(np.linspace(0, 1, 18)))
+colors = iter(cm.jet(np.linspace(0, 1, 10)))
+markers = iter([".","d","2","x","8","4","s","*","D","+","o","x","3","p"])
 
 def F2(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
 
-    var, cov = optimize.curve_fit(Mt, time, amplitude, p0=(400,700,-2,2,0.1,1,0.1), maxfev=1000000)
+    var, cov = optimize.curve_fit(Mt, time, amplitude, p0=(700,2,1), maxfev=1000000)
 
     xRef = np.logspace(-4,3,num=10000)
-    yRef = Mt(xRef, var[0],var[1],var[2],var[3],var[4],var[5],var[6])
+    yRef = Mt(xRef, var[0],var[1],var[2])
 
-    plt.scatter(time,amplitude, color=next(colors),label=temp+"K")
-    plt.plot(xRef,yRef)
+    col = next(colors)
+    plt.scatter(time,amplitude, color=col, marker=next(markers), label=temp+"K")
+    plt.plot(xRef,yRef,color=col)
 
-    f.write(temp+"\t"+str(var[3])+"\t"+str(np.sqrt(cov[3,3]))+"\n")
-    tempString = temp+" & "+str('%.2E' % var[3])+"} & "+str('%.2E' % np.sqrt(cov[3,3]))+"} \\\\\\hline\n"
+    f.write(temp+"\t"+str(var[1])+"\t"+str(np.sqrt(cov[1,1]))+"\n")
+    tempString = temp+" & "+str('%.2E' % var[1])+"} & "+str('%.2E' % np.sqrt(cov[1,1]))+"} \\\\\\hline\n"
     tempString=tempString.replace("E","^{")
     f2.write(tempString)
 
 
 
 path='../_daten/tieftemperatur/'
+filelist = list()
 fOut=open("tauC_values","w")
 fOut2=open("tauC_values_table","w")
 
@@ -66,8 +69,14 @@ for root, dirs, files in os.walk(path):
         if(typ=="F2"):
             for f in files:
                 if(f.endswith(".nmr")):
-                    filePath = root+"/"+f
-                    F2(filePath,axF2,str(temperature),fOut,fOut2)
+                    filelist.append((temperature,root+"/"+f))
+
+filelist = sorted(filelist,key=lambda x: x[0])
+tempo = filelist[-3]
+filelist[-3] = filelist[-4]
+filelist[-4] = tempo
+for temperature, filePath in filelist:
+    F2(filePath,axF2,str(temperature),fOut,fOut2)
 
 fOut.close()
 fOut2.close()

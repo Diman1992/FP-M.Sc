@@ -30,29 +30,21 @@ def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
 colors = iter(cm.jet(np.linspace(0, 1, 7)))
+markers = iter([".","d","2","x","8","4","s","*","D","+","o","x","3","p"])
 
 def T2(path,ax,temp,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
     var, cov = optimize.curve_fit(Mt2, time, amplitude, p0=(1e5,1e4,-1,1e-6,1e-8,-2,0.1), maxfev=1000000)
     #var, cov = optimize.curve_fit(Mt1, time, amplitude, p0=(0,600000,0,1e-4,0,-0.1,0), maxfev=1000000)
 
-    print("\n\ntemp: ", temp)
-    print("0: ", var[0])
-    print("1: ", var[1])
-    print("2: ", var[2])
-    print("3: ", var[3])
-    print("4: ", var[4])
-    print("5: ", var[5])
-    print("6: ", var[6])
-
     xRef = np.logspace(-5,-1,num=10000)
     yRef = Mt2(xRef, var[0],var[1],var[2],var[3],var[4],var[5],var[6])
 
-    #print("T21: ", var[3])
-    #print("T22: ", var[4])
+    col=next(colors)
+    mark = next(markers)
 
-    plt.plot(xRef, yRef, "b-")
-    plt.scatter(time,amplitude, color=next(colors),label=temp+"K")
+    plt.plot(xRef, yRef, color=col)
+    plt.scatter(time,amplitude, color=col, marker=mark, label=temp+"K")
     plt.xscale("log")
     plt.xlim((5e-6,5e-3))
     #plt.show()
@@ -66,6 +58,7 @@ def T2(path,ax,temp,f,f2):
 
 
 path='../_daten/tieftemperatur/'
+filelist = list()
 
 
 figT2 = plt.figure()
@@ -95,8 +88,11 @@ for root, dirs, files in os.walk(path):
                             temperature = round(temperature * 0.922 - 1.085)
             for f in files:
                 if(f.endswith(".nmr")):
-                    filePath = root+"/"+f
-                    T2(filePath,axT2,str(temperature),fOut,fOut2)
+                    filelist.append((temperature,root+"/"+f))
+
+filelist = sorted(filelist,key=lambda x: x[0])
+for temperature, filePath in filelist:
+    T2(filePath,axT2,temperature,fOut,fOut2)
 
 
 fOut.close()

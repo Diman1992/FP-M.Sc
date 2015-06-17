@@ -28,6 +28,7 @@ def p(var):
     print(var+" = "+'\n'+str(eval(var))+'\n')
 
 colors = iter(cm.jet(np.linspace(0, 1, 14)))
+markers = iter([".","d","2","x","8","4","s","*","D","+","o","x","3","p"])
 
 def T2(path,ax,temp):#,f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
@@ -38,7 +39,7 @@ def T2(path,ax,temp):#,f,f2):
 
     plt.plot(xRef, yRef, "b-")
     """
-    plt.scatter(time,amplitude, color=next(colors),label=temp+"K")
+    plt.scatter(time,amplitude, color=next(colors), marker=next(markers), label=str(temp)+"K")
     plt.xscale("log")
 
     """
@@ -51,6 +52,7 @@ def T2(path,ax,temp):#,f,f2):
 
 
 path='../_daten/hochtemperatur/'
+filelist = list()
 
 
 figT2 = plt.figure()
@@ -81,8 +83,11 @@ for root, dirs, files in os.walk(path):
                             temperature = round(temperature * 0.922 - 1.085)
             for f in files:
                 if(f.endswith(".nmr")):
-                    filePath = root+"/"+f
-                    T2(filePath,axT2,str(temperature))#,fOut,fOut2)
+                    filelist.append((temperature,root+"/"+f))
+
+filelist = sorted(filelist,key=lambda x: x[0])
+for temperature, filePath in filelist:
+    T2(filePath,axT2,temperature)#,outFile,outFile2)
 
 
 #fOut.close()

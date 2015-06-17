@@ -1,17 +1,16 @@
+# pdfs
 **/*.pdf
 !/_Anleitungen/*
 !**/pics/*.pdf
 
-**/*.info
-**/*.nmr
-
+# latex
 **/*.toc
 **/*.aux
 **/*.out
 **/*.backup
 **/*.log
-**/*.swp
-**/*.swo
 **/*.gz
 
-**/*.ts
+# vim
+**/*.swp
+**/*.swo
