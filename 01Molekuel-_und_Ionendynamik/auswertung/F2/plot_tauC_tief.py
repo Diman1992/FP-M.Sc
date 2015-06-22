@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import scipy.optimize as optimization
 import math
 import matplotlib.cm as cm
+import matplotlib.ticker as mtick
 
 for arg in sys.argv:
     if(arg=='silent'):
@@ -27,6 +28,9 @@ def expo(x,A,Ea):
 path = './tauC_values'
 temperature, T2, error = np.loadtxt(path, usecols=(0,1,2), unpack=True, comments='#')
 
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
 plt.errorbar(1/temperature, T2, yerr=np.sqrt(error), fmt="none", marker="o")
 plt.plot(1/temperature, T2, marker="o",ms=3, ls="", label="Tau_C Werte")
 
@@ -37,12 +41,14 @@ yRef=expo(xRef,var[0],var[1])
 plt.plot(xRef,yRef,label="exponentieller Fit")
 
 fOut=open("Ea.output","w")
-tempString = str('%.2E' % var[1])+"} \pm "+str('%.2E' % np.sqrt(cov[1,1])) +"}\n"
-fOut.write("E_A = (" + tempString.replace("E","\\cdot 10^{")+") [J]")
+tempVar=var[1]/constants.e
+tempCov=np.sqrt(cov[1,1])/constants.e
+tempString = str('%.2E' % tempVar)+"} \pm "+str('%.2E' % tempCov) +"}\n"
+fOut.write("E_A = (" + tempString.replace("E","\\cdot 10^{")+") [eV]")
 fOut.close()
 
 plt.yticks(np.arange(10e-5, 10e-4, 0.001))
-plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+ax.xaxis.set_major_formatter(mtick.FormatStrFormatter('%.1e'))
 plt.ticklabel_format(style='sci', axis='y', scilimits=(0,0))
 plt.grid()
 plt.yscale("log")

@@ -46,7 +46,7 @@ def F2(path,ax,temp,f,f2):
 
     f.write(temp+"\t"+str(var[1])+"\t"+str(np.sqrt(cov[1,1]))+"\n")
     tempString = temp+" & "+str('%.2E' % var[1])+"} & "+str('%.2E' % np.sqrt(cov[1,1]))+"} \\\\\\hline\n"
-    tempString=tempString.replace("E","^{")
+    tempString=tempString.replace("E","\\cdot10^{")
     f2.write(tempString)
 
 

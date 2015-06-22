@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import scipy.optimize as optimization
 import math
 import matplotlib.cm as cm
+import matplotlib.ticker as mtick
 
 for arg in sys.argv:
     if(arg=='silent'):
@@ -21,13 +22,15 @@ for arg in sys.argv:
 # Preparation				#
 #########################################
 
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
 path = './T1_valuesTief'
 temperature, T1, error = np.loadtxt(path, usecols=(0,1,2), unpack=True, comments='#')
 
-plt.errorbar(1/temperature, T1, yerr=error, fmt="none", marker="o")
-plt.plot(1/temperature, T1, marker="o", ls="", label="T1 Werte")
+plt.plot(1/temperature, T1, marker="o", ls="", color="black", label="T1 Werte")
 
-plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
+ax.xaxis.set_major_formatter(mtick.FormatStrFormatter('%.1e'))
 plt.grid()
 plt.yscale("log")
 plt.xlabel(r"Temperatur$^{-1} \left[\frac{1}{K}\right]$")
@@ -36,4 +39,5 @@ plt.ylabel("Zeit [s]")
 #plt.ylim((0.03,0.1))
 plt.legend()
 plt.title(r"Arrhenius Tieftemperatur $T_1$")
+plt.tight_layout()
 plt.savefig('T1_tiefTemperaturPlot.pdf')

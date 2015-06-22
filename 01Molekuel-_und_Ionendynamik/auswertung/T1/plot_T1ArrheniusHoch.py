@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import scipy.optimize as optimization
 import math
 import matplotlib.cm as cm
+import matplotlib.ticker as mtick
 
 for arg in sys.argv:
     if(arg=='silent'):
@@ -24,18 +25,22 @@ def quad(x,a,b,c):
 # Preparation				#
 #########################################
 
+fig = plt.figure()
+ax = fig.add_subplot(111)
+
+ax.xaxis.set_major_formatter(mtick.FormatStrFormatter('%.1e'))
+
 path = './T1_valuesHoch'
 table = np.loadtxt(path, usecols=(0,1,2), unpack=False, comments='#')
 table=table[np.lexsort((table[:,1],table[:,2],table[:,0]))]
 temperature, T1, error = (table[:,0],table[:,1],table[:,2])
 
-plt.errorbar(1/temperature, T1, yerr=error, fmt="none", marker="o")
-plt.plot(1/temperature, T1, marker="o", ls="", label="T1 Werte")
+plt.plot(1/temperature, T1, marker="o", ls="", color="black", label="T1 Werte")
 
 var, cov = optimize.curve_fit(quad, 1/temperature, T1, p0=(1,0,0.1), maxfev=100000)
 xRef=np.linspace(0.002,0.004,100)
 yRef=quad(xRef,var[0],var[1],var[2])
-plt.plot(xRef,yRef,label="quadratischer Fit")
+plt.plot(xRef,yRef,color="black",label="quadratischer Fit")
 
 
 f=open("minimum.output","w")
@@ -44,7 +49,6 @@ f.write(tempString.replace("E","\\cdot 10^{"))
 f.close()
 
 
-plt.ticklabel_format(style='sci', axis='x', scilimits=(0,0))
 plt.grid()
 plt.yscale("log")
 plt.xlabel(r"Temperatur$^{-1}$ $\left[\frac{1}{K}\right]$")
@@ -53,4 +57,5 @@ plt.ylabel("Zeit [s]")
 #plt.ylim((0.03,0.1))
 plt.legend()
 plt.title(r"Arrhenius Hochtemperatur $T_1$")
+plt.tight_layout()
 plt.savefig('T1_hochTemperaturPlot.pdf')
