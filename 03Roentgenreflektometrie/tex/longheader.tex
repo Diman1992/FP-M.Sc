@@ -30,7 +30,7 @@
 \usepackage{footnpag}
 
 \usepackage{ifthen}                 %%% package for conditionals in TeX
-\usepackage[amssymb]{SIunits}
+\usepackage{siunitx}
 %Fr textumflossene Bilder und Tablellen
 %\usepackage{floatflt} - veraltet
 
@@ -109,10 +109,10 @@ linkbordercolor={0 0 1},%          %%% blue frames around links
 pdfborder={0 0 112.0}]{hyperref}%  %%% border-width of frames
 %                                      will be multiplied with 0.009 by ps2pdf
 %
-\hypersetup{ pdfauthor   = {Hannes Franke; Julius Tilly},
-pdftitle    = {V301 Innenwiderstand und Leistungsanpassung}, pdfsubject  = {Protokoll FP}, pdfkeywords = {V301, Innenwiderstand, Leistungsanpassung},
-pdfcreator  = {LaTeX with hyperref package}, pdfproducer = {dvips
-+ ps2pdf} }
+%\hypersetup{ pdfauthor   = {Hannes Franke; Julius Tilly},
+%pdftitle    = {x}, pdfsubject  = {Protokoll FP}, pdfkeywords = {V301, Innenwiderstand, Leistungsanpassung},
+%pdfcreator  = {LaTeX with hyperref package}, pdfproducer = {dvips
+%+ ps2pdf} }
 %%%
 \else %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% PDFLATEX %%%
 %%%
@@ -127,12 +127,12 @@ breaklinks=true,%                  %%% break links if exceeding a single line
 linkbordercolor={0 0 1},
 linktocpage]{hyperref} %%% blue frames around links
 %                                  %%% pdfborder={0 0 1} is the default
-\hypersetup{
-pdftitle    = {V301 Innenwiderstand und Leistungsanpassung}, 
-pdfsubject  = {Protokoll AP}, 
-pdfkeywords = {V301, Innenwiderstand, Leistungsanpassung},
-pdfsubject  = {Protokoll AP},
-pdfkeywords = {V301, Innenwiderstand, Leistungsanpassung}}
+% \hypersetup{
+% pdftitle    = {V301 Innenwiderstand und Leistungsanpassung}, 
+% pdfsubject  = {Protokoll AP}, 
+% pdfkeywords = {V301, Innenwiderstand, Leistungsanpassung},
+% pdfsubject  = {Protokoll AP},
+% pdfkeywords = {V301, Innenwiderstand, Leistungsanpassung}}
 %                                  %%% pdfcreator, pdfproducer,
 %                                      and CreationDate are automatically set
 %                                      by pdflatex !!!
