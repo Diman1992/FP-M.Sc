@@ -28,17 +28,17 @@ sortArrayUpways(r2_mess)
 #####s-theorie
 h1 = np.array([2,2,3,3,3])
 k1 = np.array([0,2,1,2,3])
-l1 = np.array([0,0,0,0,2])
-h2 = np.array([2,2,3,2,3,4,3])
-k2 = np.array([0,2,1,2,2,1,3])
-l2 = np.array([0,0,0,2,1,0,1])
+l1 = np.array([0,0,0,1,2])
+h2 = np.array([2,2,2,3,4,3,4,5,6,6,5,6])
+k2 = np.array([0,1,2,1,0,3,2,3,0,2,4,2])
+l2 = np.array([0,1,0,0,0,0,0,0,0,0,1,2])
 
 #####Winkel
-theta1 = r1_mess/(np.pi*R)*180
+theta1 = r1_mess/(2*R)
 theta1_0 = theta1[0]
-theta2 = r2_mess/(np.pi*R)*180
+theta2 = r2_mess/(2*R)
 theta2_0 = theta2[0]
-print("theta", theta2)
+#print("theta", theta2)
 #####Strukturfaktoren
 s_exp1 = 4*(np.sin(theta1))**2/(np.sin(theta1_0))**2
 s_theo1 = h1**2 + k1**2 + l1**2
