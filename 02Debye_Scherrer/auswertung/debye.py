@@ -78,3 +78,21 @@ ax = plt.gca()
 ax.scatter(t, s)
 #plt.show()
 
+
+#####Faktorprüfung
+
+for i in range(0,len(h1)):
+	if((h1[i] + k1[i] + l1[i])%2 ==0):
+		print("1: True")
+	else:
+		print("1: False")
+
+for i in range(0,len(h2)):
+	if(h2[i]%2==0 and k2[i]%2==0 and l2[i]%2==0):
+		print("2: True")
+	elif((h2[i]%2!=0 or h2[i]==0) and (k2[i]%2!=0 or k2[i]==0) and (l2[i]%2!=0 or l2[i]==0)):
+		print("2: True")
+	else:
+		print("2: False")
+
+

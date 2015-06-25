@@ -46,6 +46,7 @@ theta22 = r22_mess/(2*R)
 theta22_0 = theta22[0]
 thetaReal = rReal2_mess/(2*R)
 thetaReal0 = thetaReal[0]
+print("theta", theta21)
 
 #####Strukturfaktoren
 s_exp1 = 4*(np.sin(theta1))**2/(np.sin(theta1_0))**2
@@ -76,4 +77,22 @@ fig = plt.figure()
 ax = plt.gca()
 ax.scatter(t, s)
 #plt.show()
+
+
+#####Faktorprüfung
+
+for i in range(0,len(h1)):
+	if((h1[i] + k1[i] + l1[i])%2 ==0):
+		print("1: True")
+	else:
+		print("1: False")
+
+for i in range(0,len(h2)):
+	if(h2[i]%2==0 and k2[i]%2==0 and l2[i]%2==0):
+		print("2: True")
+	elif((h2[i]%2!=0 or h2[i]==0) and (k2[i]%2!=0 or k2[i]==0) and (l2[i]%2!=0 or l2[i]==0)):
+		print("2: True")
+	else:
+		print("2: False")
+
 
