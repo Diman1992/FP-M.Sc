@@ -10,7 +10,7 @@ def sortArrayUpways(arr):
 				arr[i] = temp
 
 lattice = list()
-indextriple = 42
+indextriple = 6
 maxindex = 7
 
 for h in range(0,maxindex+1):
