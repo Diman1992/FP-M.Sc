@@ -74,16 +74,14 @@ Da es für die $n_i$ keine Begrenzung gibt, existieren unendlich viele verschied
 	\caption{Auflistung der 14 Bravaisgitter im dreidimensionalen Raum.}
 	\label{pic:bravais}
 \end{figure}
-
 Besonderes Interesse  kommt dabei der sog. Elementarzelle zu. Dies ist die kleinste Einheit, die eine Kristallstruktur vollkommen festlegt. Beispielsweise kann man dazu das von den Vektoren a , b und c aufgespannte Parallelepiped benutzen. Liegen nur auf den Eckpunkten Atome, enthält die Zelle also im Ganzen nur ein einzelnes Atom, so nennt man sie primitiven Elementarzelle. 
-Nicht jede Kristallstruktur lässt sich jedoch durch Vervielfachung einer primitiven Elementarzelle aufbauen. Die in diesem Versuch untersuchten Stoffe haben eine kubische Grundstruktur, daher wird nur dieses System im Folgenden detaillierter beschrieben. In Abbildung \ref{pic:gitterTyp}
-
-\begin{figure}[htbo]
+Nicht jede Kristallstruktur lässt sich jedoch durch Vervielfachung einer primitiven Elementarzelle aufbauen. Die in diesem Versuch untersuchten Stoffe haben eine kubische Grundstruktur, daher wird nur dieses System im Folgenden detaillierter beschrieben. In Abbildung \ref{pic:gitterTyp} sind die zwei möglichen Abwandlungen des kubischen Bravais-Gitters dargestellt.
+\begin{figure}[htbp]
 	\centering
 	\begin{subfigure}[b]{0.3\textwidth}
 		\includegraphics[width=\textwidth]{../pics/bcc.png}
 		\caption{bcc-Gitter}
-		\label{fig:bcc}
+		\label{pic:bcc}
 	\end{subfigure}
 	~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
 	%(or a blank line to force the subfigure onto a new line)
@@ -95,21 +93,46 @@ Nicht jede Kristallstruktur lässt sich jedoch durch Vervielfachung einer primit
 	\caption{Verschiedene}
 	\label{pic:gitterTyp}
 \end{figure}
+Das kubisch-raumzentrierte \ref{pic:bcc} enthält zusätzlich zu den Eckpunkten noch ein weiteres Atom im Zentrum. Damit is es keine primitive Einheitszelle mehr, da die Zelle insgesamt 2 Atome enthält. Bei der kubisch-flächenzentrierten \ref{pic:fcc} Zelle sitzt dagegen auf jeder Flächenmitte ein weiteres Atom, wodurch die Einheitszelle sogar 4 Atome enthält.
 
+Beschrieben werden diese verschiedenen Zelltypen durch die Position der Atome in der Basiszelle. Im Falle der primitiven Einheitszellen wäre dies lediglich ein Atom: $(0,0,0)$, im bcc Gitter zwei Atome: $(0,0,0)$ und $(\nicefrac{1}{2},\nicefrac{1}{2},\nicefrac{1}{2})$ und im fcc Gitter vier Atome: $(0,0,0)$, $(0,\nicefrac{1}{2},\nicefrac{1}{2})$, $(\nicefrac{1}{2},0,\nicefrac{1}{2})$ und $(\nicefrac{1}{2},\nicefrac{1}{2},0)$.
+
+\subsection{Netzebenen}
+Eine weitere wichtige Eigenschaft von Kristallen ist die Orientierung ihrer Netzebenen und deren Abstände.
+Unter einer Netzebene im Kristall versteht man eine Ebene, in der Schwerpunkte von Atomen liegen. Die Gesamtheit aller Netzebenen, die zu einer vorgegebenen parallel liegen und daher äquidistant sind, bezeichnet man als Netzebenenschar. Ihre Orientierung wird durch die sog. Millerschen Indizes beschrieben. Diese sind ein Zahlentripel (hkl) aus natürlichen Zahlen und werden wie folgt bestimmt:
+\begin{figure}[htbp]
+	\includegraphics[width=0.3\textwidth]{../pics/miller.png}
+	\caption{Bedeutung der Millerschen Indizes anhand eines Beispiels. Eingezeichnet sind eine Netzebene und der Koordinatenursprung mit seinen Achsen.}
+	\label{pic:miller}
+\end{figure}
+In Abbildung \ref{pic:miller} schneidet eine Netzebene die Koordinatenachsen bei $2a$, $\nicefrac{1}{2}$ b und $\nicefrac{1}{3}$ c. Von diesen Zahlen nimmt man nun die Kehrwerte und multipliziert diese mit dem kleinsten gemeinsamen Vielfachen, damit man ganze Zahlen erhält. Die Millerschen Indizes wären in diesem Fall also $(hkl) = (146)$. Negative Zahlen werden mit einem Strich $-4 \rightarrow \bar{4}$ gekennzeichnet und wenn eine Achse garnicht (im unendlichen) geschnitten wird, so ist der Indize $\nicefrac{1}{\infty}=0$.
+
+Für das kubische Kristallsystem lässt sich so auch der Netzebenabstand sehr einfach durch die Millerschen Indizes und der Gitterkonstanten a ausdrücken:
+\begin{align}
+d = \frac{a}{\sqrt{h^2 + k^2 + l^2}}
+\label{eq:gapMiller}
+\end{align}
+
+\subsection{Röntgenreflexion und Interferenz}
+Wird ein Kristall Röntgenstrahlung ausgesetzt, so werden die Elektronenhüllen der Atome an den Gitterplätzen zu Schwingungen angeregt und emittieren ihrerseits die Strahlung wieder. Da die Gitterplätze räumlich streng periodisch angeordnet sind, kann dadurch Interferenz auftreten. In Abbildung +++++ ist der geometrische Zusammenhang zum Gangunterschied $\Delta s$ dargestellt. Wenn dieser ein ganzzahliges Vielfaches der Wellenlänge $\lambda$ ist, so interferieren die Wellen konstruktiv und ein Röntgenreflex kann unter dem Winkel $\Theta$ festgestellt werden. Zusammen mit dem Netzebenabstand $d$ lautet die Interferenzbedingung für konstruktive Interferenz an parallelen Netzebenen:
 \begin{align}
  \lambda = 2 d \sin(\theta)
  \label{eq:bragg}
 \end{align}
-
-\begin{align}
- d = \frac{a}{\sqrt{h^2 + k^2 + l^2}}
- \label{eq:gapMiller}
-\end{align}
-
-
-
+Dies ist die sog. Braggsche Bedingung.
 
 \section{Durchführung}
+In diesem Versuch sollen die Elementarzellen eines Kristalls durch Röntgenreflexe untersucht werden. Dazu wird ein Kristall fein zerstäubt und auf ein Probenstäbchen wie in Abbildung \ref{pic:aufbau} aufgetragen.
+\begin{figure}[htbp]
+	\includegraphics[width=0.6\textwidth]{../pics/aufbau.png}
+	\caption{Im Versuch verwendeter Aufbau. Zusehen ist das zentrale Probenstäbchen, welches von den Röntgenstrahlen getroffen wird und Interferenzringe auf den Filmstreifen wirft.}
+	\label{pic:aufbau}
+\end{figure}
+Die Probe wird deshalb zerstäubt, da Interferenz nur beim richtigen Winkel auftritt und ein Einkristall a priori nicht korrekt ausgerichtet werden kann. Durch das zerstäuben werden viele kleine Mikrokristalle erzeugt und zufällig ausgerichtet, so dass immer eine ausreichend große Anzahl die richtige Ausrichtung aufweist. Um die Trefferquote zu erhöhen, wird zudem das Probenstäbchen durch einen Motor langsam gedreht. 
+
+Die Probe befindet sich in einer komplett verdunkelten Filmdose, die nur zwei Öffungen für den ein- und austretenden Strahl hat. In der Mantelfläche ist ein Fotofilm angebracht, der sich durch die reflektierte Röntgenstrahlung schwarz färbt. Mit diesem Filmstreifen können im Anschluss die Reflektionswinkel bestimmt werden.
+
+Jeder Mikrokristall erzeugt einen eigenen Röntgenreflex, die zwar alle unter dem gleichen Winkel, jedoch in eine andere Richtung ausfallen. Durch die zufällige Verteilung der Mikrokristalle ist als Summe ein kreisförmiger Reflex auf dem Fotofilm zu sehen.
 
 
 \section{Auswertung}
