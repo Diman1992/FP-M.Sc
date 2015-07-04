@@ -48,9 +48,8 @@ def T1(path,ax,temp,f,f2):
     ax.scatter(time,amplitude, color=col, marker=mark, label=str(int(temp))+"K")
 
     f.write(str(temperature)+"\t"+str(var[0])+"\t"+str(np.sqrt(cov[0,0]))+"\n")
-    tempString = str(temperature) + " & " + str('%.2f' % var[0])+" & "+str('%.2f' % np.sqrt(cov[0,0]))+" \\\\\\hline\n"
+    tempString = str(temperature) + " & " + str(round(var[0],2))+" \\pm "+str(round(np.sqrt(cov[0,0]),2))+" & " + str(round(var[1]*10,2))+" \\pm "+str(round(np.sqrt(cov[1,1])*10,2)) +" \\\\\\hline\n"
     f2.write(tempString.replace("E","\\cdot 10^{"))
-
 path='../_daten/tieftemperatur/'
 
 
@@ -59,7 +58,7 @@ axT1 = plt.gca()
 outFile = open('T1_valuesTief', 'w')
 outFile2 = open('T1_valuesTief_table', 'w')
 outFile.write("# Temperatur \t T1 \t std\n")
-outFile2.write("\\text{Temperatur } [K] & T_1\ [s] & \\text{Standardabweichung } [s]\\\\\\hline\n")
+outFile2.write("\\text{Temperatur } [K] & T_1\ [s] & \\nu\ [10^{-1}] \\\\\\hline\n")
 
 filelist = list()
 
@@ -69,14 +68,7 @@ for root, dirs, files in os.walk(path):
         typ = options[3]
         temperature = options[4][:-1]
         if(typ=="T1"):
-            for f in files:
-                if(f.endswith(".info")):
-                    filePath = root+"/"+f
-                    inpFile = open(filePath)
-                    for line in inpFile:
-                        if line.startswith("Cryostat Temperature"):
-                            temperature=float(line[line.find(":")+2:])
-                            temperature = round(temperature * 0.922 - 1.085)
+            temperature = round(float(temperature) * 0.922 - 1.085)
 
             for f in files:
                 if(f.endswith(".nmr")):

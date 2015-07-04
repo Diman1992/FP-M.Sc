@@ -11,8 +11,8 @@ clean:
 ./T1_tiefTemperaturFit.pdf: ./plot_T1tief.py
 	python $<
 
-./T1_hochTemperaturPlot.pdf: ./plot_T1ArrheniusHoch.py
+./T1_hochTemperaturPlot.pdf: ./plot_T1ArrheniusHoch.py ./T1_valuesHoch
 	python $<
 
-./T1_tiefTemperaturPlot.pdf: ./plot_T1ArrheniusTief.py
+./T1_tiefTemperaturPlot.pdf: ./plot_T1ArrheniusTief.py ./T1_valuesTief
 	python $<

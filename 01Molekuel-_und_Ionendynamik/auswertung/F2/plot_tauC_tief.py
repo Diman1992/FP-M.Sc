@@ -43,8 +43,8 @@ plt.plot(xRef,yRef,label="exponentieller Fit")
 fOut=open("Ea.output","w")
 tempVar=var[1]/constants.e
 tempCov=np.sqrt(cov[1,1])/constants.e
-tempString = str('%.2E' % tempVar)+"} \pm "+str('%.2E' % tempCov) +"}\n"
-fOut.write("E_A = (" + tempString.replace("E","\\cdot 10^{")+") [eV]")
+tempString = str(round(tempVar*1000,1))+" \pm "+str(round(tempCov*1000,1)) +"\n"
+fOut.write("E_A = (" + tempString +")\ \\text{[meV]}")
 fOut.close()
 
 plt.yticks(np.arange(10e-5, 10e-4, 0.001))

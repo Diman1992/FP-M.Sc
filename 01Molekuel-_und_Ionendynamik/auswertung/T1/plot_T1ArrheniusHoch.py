@@ -8,6 +8,7 @@ from scipy import optimize, interpolate, misc, stats, constants
 import os
 import sys
 import re
+import matplotlib
 import matplotlib.pyplot as plt
 import scipy.optimize as optimization
 import math
@@ -42,20 +43,24 @@ xRef=np.linspace(0.002,0.004,100)
 yRef=quad(xRef,var[0],var[1],var[2])
 plt.plot(xRef,yRef,color="black",label="quadratischer Fit")
 
+ax.set_yscale('log')
+ax.set_yticks([0.14, 0.16, 0.18,0.20,0.22,0.24,0.26])
+ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
 
-f=open("minimum.output","w")
-tempString = "b = \\left("+str('%.2E' % var[1])+"} \pm "+str('%.2E' % np.sqrt(cov[1,1]))+"}\\right) \\left[\\frac{1}{K}\\right]"
-f.write(tempString.replace("E","\\cdot 10^{"))
-f.close()
+
 
 
 plt.grid()
-plt.yscale("log")
 plt.xlabel(r"Temperatur$^{-1}$ $\left[\frac{1}{K}\right]$")
 plt.ylabel("Zeit [s]")
-#plt.xlim((96,110))
-#plt.ylim((0.03,0.1))
+plt.ylim((0.13,0.27))
 plt.legend()
 plt.title(r"Arrhenius Hochtemperatur $T_1$")
 plt.tight_layout()
 plt.savefig('T1_hochTemperaturPlot.pdf')
+
+
+f=open("minimum.output","w")
+tempString = "b = \\left("+str(round(var[1]*1e3,2))+" \pm "+str(round(np.sqrt(cov[1,1])*1e3,2))+"\\right) \\cdot 10^{-3}\ \\left[\\frac{1}{K}\\right]"
+f.write(tempString.replace("E","\\cdot 10^{"))
+f.close()

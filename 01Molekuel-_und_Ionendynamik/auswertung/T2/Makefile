@@ -1,6 +1,6 @@
 .PHONY: all clean
 
-all: ./T2_hochTemperaturFit.pdf ./T2_tiefTemperaturFit.pdf ./T2_hochTemperaturPlot.pdf
+all: ./T2_hochTemperaturFit.pdf ./T2_tiefTemperaturFit.pdf ./T2_tiefTemperaturPlot.pdf
 
 clean:
 	rm *.pdf
@@ -11,5 +11,5 @@ clean:
 ./T2_tiefTemperaturFit.pdf: ./plot_01tief.py
 	python $<
 
-#./T2_hochTemperaturPlot.pdf: ./plot_tauC_Hoch.py
-#	python $<
+./T2_tiefTemperaturPlot.pdf: ./plot_tauC_tief.py ./T2_data
+	python ./plot_tauC_tief.py

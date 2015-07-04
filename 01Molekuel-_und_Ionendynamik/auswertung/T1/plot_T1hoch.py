@@ -48,7 +48,7 @@ def T1(path,ax,temp,f,f2):
     ax.scatter(time,amplitude, color=col, marker=mark, label=str(int(temp))+"K")
 
     f.write(str(temperature)+"\t"+str(var[0])+"\t"+str(np.sqrt(cov[0,0]))+"\n")
-    tempString = str(temperature) + " & " + str('%.2E' % var[0])+"} & "+str('%.2E' % np.sqrt(cov[0,0]))+"} \\\\\\hline\n"
+    tempString = str(temperature) + " & " + str(round(var[0]*10,2))+" \\pm "+str(round(np.sqrt(cov[0,0])*10,2))+" & " + str(round(var[1]*10,2))+" \\pm "+str(round(np.sqrt(cov[1,1])*10,2)) +" \\\\\\hline\n"
     f2.write(tempString.replace("E","\\cdot 10^{"))
 
 
@@ -60,7 +60,7 @@ axT1 = plt.gca()
 outFile = open('T1_valuesHoch', 'w')
 outFile2 = open('T1_valuesHoch_table', 'w')
 outFile.write("# Temperatur \t T1 \t std\n")
-outFile2.write("\\text{Temperatur } [K] & T_1\ [s] & \\text{Standardabweichung } [s] \\\\\\hline\n")
+outFile2.write("\\text{Temperatur } [K] & T_1\ [10^{-1}\ s] & \\nu\ [10^{-1}] \\\\\\hline\n")
 
 filelist = list()
 
