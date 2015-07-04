@@ -26,22 +26,31 @@ for arg in sys.argv:
 fig = plt.figure()
 ax = fig.add_subplot(111)
 
+# Plotte Hochtemperatur
+path = './T1_valuesHoch'
+table = np.loadtxt(path, usecols=(0,1,2), unpack=False, comments='#')
+table=table[np.lexsort((table[:,1],table[:,2],table[:,0]))]
+temperature, T1, error = (table[:,0],table[:,1],table[:,2])
+plt.plot(1/temperature, T1, marker="o", ls="", color="black", label="T1 Werte")
+
+# Plotte Tieftemperatur
 path = './T1_valuesTief'
 temperature, T1, error = np.loadtxt(path, usecols=(0,1,2), unpack=True, comments='#')
 
-plt.plot(1/temperature, T1, marker="o", ls="", color="black", label="T1 Werte")
+plt.plot(1/temperature, T1, marker="o", ls="", color="black")
 
 ax.set_yscale('log')
-ax.set_yticks([20,22,24,26,28,30])
-ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
 
-ax.xaxis.set_major_formatter(mtick.FormatStrFormatter('%.2e'))
+ax.xaxis.set_major_locator(mtick.MaxNLocator(4))
+ax.xaxis.set_minor_locator(mtick.MaxNLocator(8))
+ax.xaxis.set_major_formatter(mtick.FormatStrFormatter('%.1e'))
 plt.grid()
 plt.xlabel(r"Temperatur$^{-1} \left[\frac{1}{K}\right]$")
 plt.ylabel("Zeit [s]")
 #plt.xlim((96,110))
-plt.ylim((21,29))
+#plt.ylim((21,29))
 plt.legend()
-plt.title(r"Arrhenius Tieftemperatur $T_1$")
+plt.title(r"Arrhenius Gesamttemperaturbereich $T_1$")
 plt.tight_layout()
 plt.savefig('T1_tiefTemperaturPlot.pdf')
+plt.show()

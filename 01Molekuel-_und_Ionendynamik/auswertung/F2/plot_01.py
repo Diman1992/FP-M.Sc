@@ -45,7 +45,7 @@ def F2(path,ax,temp,f,f2):
     plt.plot(xRef,yRef,color=col)
 
     f.write(temp+"\t"+str(var[1])+"\t"+str(np.sqrt(cov[1,1]))+"\n")
-    tempString = temp+" & "+str(round(var[1]*10,2))+" & "+str(round(np.sqrt(cov[1,1])*10,2))+" \\\\\\hline\n"
+    tempString = temp+" & "+str(round(var[1]*10,2))+" \\pm "+str(round(np.sqrt(cov[1,1])*10,2))+" \\\\\\hline\n"
     f2.write(tempString)
 
 

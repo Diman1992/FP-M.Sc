@@ -245,21 +245,52 @@ Präparationszeit gemessen.
 
 \section{Auswertung}
 \subsection{Vorabbemerkung}
-Aufgrund einer Beschädigung des Thermostats für das Probenstäbche wurden während der Messungen im Hochtemperaturbereich nur die Kryostattemperaturen gemessen. Da für die Auswertung jedoch die Probentemperatur entscheidend ist und nicht eine unendlich lange Zeit nach den Aufheiz- und Abkühlvorgängen gewartet wurde, damit diese mit der  Kryostattemperatur übereinstimmt, wurde die Probentemperatur in beiden Bereichen durch eine lineare Regression aus der Kryostattemperatur errechnet.
+Aufgrund einer Beschädigung des Thermostats für das Probenstäbche wurden während der Messungen im Hochtemperaturbereich nur die Kryostattemperaturen gemessen. Da für die Auswertung jedoch die Probentemperatur entscheidend ist und selbst nach einer unendlich langen Wartezeit die Probentemperatur aufgrund von Wärmeleitung durch die Haltevorrichtung nicht exakt mit der Kryostattemperatur übereinstimmen wird, wurde die Probentemperatur in beiden Bereichen durch eine lineare Regression aus der Kryostattemperatur errechnet. Damit die Ergebnisse konsistent bleiben, wurde die gleiche Umrechnung auch für den Temperaturbereich durchgeführt, indem die Probentemperatur noch gemessen werden konnte.
+\subsection{Temperaturausgleich}
+Um aus der Kryostattemperatur die Probentemperatur abzuleiten, wurden die in Tabelle \ref{tab:cryoSample} aufgelisteten Wertepaare einer linearen Regression unterzogen. Die graphische Darstellung erfolgt in Abbildung \ref{fig:linFit}.
+\begin{table}[htbp]
+	\begin{tabular}{c|c}
+		\input{../auswertung/cryoSampleFit/cryoSampleTemp_latex}
+	\end{tabular}
+	\caption{Wertepaare Kryostattemperatur - Probentemperatur. Aus diesen Wertepaaren wurde mittels linearer Regression die Probentemperatur während der Messung bestimmt, da das Probenthermometer ausgefallen war.}
+	\label{tab:cryoSample}
+\end{table}
+\begin{figure}[htbp]
+	\includegraphics[width=0.6\textwidth]{../auswertung/cryoSampleFit/01_regressionTemp.pdf}
+	\caption{Graphische Darstellung der linearen Regression zwischen Kryostat- und Probentemperatur. Die Werte entstammen Tab. \ref{tab:cryoSample}.}
+	\label{fig:linFit}
+\end{figure}
+
+Der Fit wurde mit einer Funktion 
+\begin{align}
+	f(x) = mx+b
+	\label{eq:linFit}
+\end{align}
+durchgeführt und ergab als Fitparameter:
+\begin{align*}
+	\input{../auswertung/cryoSampleFit/01_cryoFit:m}\\
+	\input{../auswertung/cryoSampleFit/01_cryoFit:b}
+\end{align*}
+Die Probentemperatur ist also im Allgemeinen etwa niedriger als die Kryostattemperatur. Im Folgenden ist jede angegebene Probentemperatur mit Gleichung \ref{eq:linFit} aus der Kryostattemperatur errechnet worden. 
 \subsection{$T_1$ Messung}
-Zunächst wird die $T_1$ Spin-Gitter Relaxationszeit mit der saturation-recovery Messung bei verschiedenen Probentemperaturen berechnet. Die dabei gemessenen Amplituden und Zeiten sind in Abb. \ref{pic_T1_hoch} und \ref{pic_T1_tief} dargestellt. 
+Zunächst wird die $T_1$ Spin-Gitter Relaxationszeit mit der saturation-recovery Messung bei verschiedenen Probentemperaturen berechnet. Untersucht wurden dabei ein Bereich von 300K bis 400K (im Folgenden als "Hochtemperatur" bezeichnet) und ein Bereich von 103K bis 115K (im Folgenden als "Tieftemperatur" bezeichnet). Die dabei gemessenen Amplituden und Zeiten sind in Abb. \ref{pic_T1_hoch} und \ref{pic_T1_tief} dargestellt. Im Hochtemperaturbereich wurde der Kryostat zunächst auf 300K eingestellt und die Temperatur in 20K Schritten bis auf 420K hochgefahren. Anschließend wurde das System in 20K Schritten abgekühlt, wobei ein Versatz von 10K zu den vorher aufgenommenen Daten eingehalten wurde.
+
+Im Tieftemperaturbereich wurden Messwerte bei einer Kryostattemperatur zwischen 115K und 103K aufgenommen, jedoch wurde die Probe nur durchgängig abgekühlt.
+Die Messung für 112K und 115K wurde doppelt durchgeführt und auch dort sieht man einen Versatz zwischen den Messreihen, da sich die Probentemperatur weiter der Kryostattemperatur angenähert hat.
+
+An den Datenpunkten 420K (Probentemperatur: 386K) kann man in Abbildung \ref{pic_T1_hoch} gut sehen, dass es bei gleicher Temperatur einen Versatz zwischen den Messreihen gibt. Dies ist darauf zurückzuführen, dass sich die Probentemperatur während der beiden Messungen dichter an die Kryostattemperatur angenähert hat.
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_hochTemperaturFit.pdf}
-	\caption{Amplituden als Funktion der Zeit}
+	\caption{Echo Amplituden der Spin-Gitter Relaxation als Funktion der Evolutionszeit im Hochtemperaturbereich.}
 	\label{pic_T1_hoch}
 \end{figure}
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_tiefTemperaturFit.pdf}
-	\caption{Amplituden als Funktion der Zeit}
+	\caption{Echo Amplituden der Spin-Gitter Relaxation als Funktion der Evolutionszeit im Tieftemperaturbereich.}
 	\label{pic_T1_tief}
 \end{figure}
 
-Eine Regressionsfunktion der Form 
+Regressionsfunktionen der Form 
 \begin{align}
 	f(t) = A\cdot e^{-\left(\frac{t}{T_1}\right)^\nu}+c
 \end{align}
@@ -267,30 +298,28 @@ Eine Regressionsfunktion der Form
 	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |}
 		\input{../auswertung/T1/T1_valuesHoch_table}
 	\end{tabular}
-	\caption{Temperaturen und gefittete $T_1$ Werte des Hochtemperaturbereiches.}
+	\caption{Hochtemperaturbereich: Probentemperaturen sowie $T_1$ und $\nu$ Werte aus dem Fit in Abb \ref{pic_T1_hoch}.}
 	\label{tab:T1_hoch}
 \end{table}
 \begin{table}[htbp]
 	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |}
 		\input{../auswertung/T1/T1_valuesTief_table}
 	\end{tabular}
-	\caption{Temperaturen und gefittete $T_1$ Werte des Tieftemperaturbereiches.}
+	\caption{Tieftemperaturbereich: Probentemperaturen sowie $T_1$ und $\nu$ Werte aus dem Fit in Abb \ref{pic_T1_tief}.}
 	\label{tab:T1_tief}
 \end{table}
-wurde an die einzelne Messreihen angenähert und so für verschiedene Temperaturen die Relaxationszeit $T_1$ bestimmt. Die Ergebnisse der Fits stehen in Tabellen \ref{tab:T1_hoch} und \ref{tab:T1_tief}.
-
+wurden an die einzelne Messreihen angenähert und so für verschiedene Temperaturen die Relaxationszeit $T_1$ bestimmt. Die Ergebnisse der Fits stehen in Tabellen \ref{tab:T1_hoch} und \ref{tab:T1_tief}.
 Diese T1 Werte können nun zusammen mit den entsprechenden Probentemperaturen in Arrhenius-Plots dargestellt werden. Zu sehen ist das Ergebnis in Abb. \ref{pic_T1Arr_hoch} und \ref{pic_T1Arr_tief}.
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_hochTemperaturPlot.pdf}
-	\caption{Arrhenius Plot der T1 Werte des Hochtemperaturbereiches. Die Fehlerbalken sind kleiner als die Marker und wurden daher nicht dargestellt.}
+	\caption{T1 Werte des Hochtemperaturbereiches. Die Fehlerbalken sind kleiner als die Marker und wurden daher nicht dargestellt.}
 	\label{pic_T1Arr_hoch}
 \end{figure}
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/T1/T1_tiefTemperaturPlot.pdf}
-	\caption{Arrhenius Plot der T1 Werte des Tieftemperaturbereiches. Die Fehlerbalken sind kleiner als die Marker und wurden daher nicht dargestellt.}
+	\caption{Arrhenius Plot der T1 Werte beider Temperaturbereiche. Die Fehlerbalken sind kleiner als die Marker und wurden daher nicht dargestellt.}
 	\label{pic_T1Arr_tief}
 \end{figure}
-
 Im Hochtemperaturbereich ist hierbei die Position des Minimus von Bedeutung. Dieses wird durch den Fit einer quadratischen Funktion der Form:
 \begin{align}
 	g(x) = a(x-b)^2+c
@@ -300,37 +329,40 @@ bestimmt. Für die Position des Minimus ergibt sich:
 	\input{../auswertung/T1/minimum.output}
 \end{align*}
 
-\newpage
 \subsection{$T_2$ Messung}
-Die Spin-Spin Relaxationszeit $T_2$ wird mit Hilfe eines Festkörperechos bestimmt. Dazu wird sowohl im Hoch- als auch im Tieftemperaturbereich die Echoamplitude gegen die Zeit aufgetragen. Die gemessenen Wertepaare sind in Abb. \ref{pic_T2_hoch} und \ref{pic_T2_tief} eingezeichnet.
+Die Spin-Spin Relaxationszeit $T_2$ wird nun ebenfalls mit Hilfe eines Festkörperechos bestimmt. Dazu wird sowohl im Hoch- als auch im Tieftemperaturbereich die Echoamplitude gegen die Zeit aufgetragen. Die gemessenen Wertepaare sind in Abb. \ref{pic_T2_hoch} und \ref{pic_T2_tief} eingezeichnet.
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/T2/T2_hochTemperaturFit.pdf}
-	\caption{Festkörperecho Amplituden als Funktion der Zeit im Hochtemperaturbereich.}
+	\caption{Festkörperecho Amplituden als Funktion der Evolutionszeit im Hochtemperaturbereich.}
 	\label{pic_T2_hoch}
 \end{figure}
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/T2/T2_tiefTemperaturFit.pdf}
-	\caption{Festkörperecho Amplituden als Funktion der Zeit im Tieftemperaturbereich.}
+	\caption{Festkörperecho Amplituden als Funktion der Evolutionszeit im Tieftemperaturbereich.}
 	\label{pic_T2_tief}
 \end{figure}
 
 Im Tieftemperaturbereich wurde eine Fitfunktion der Form
 \begin{align}
-	f(t) = \left[ M_\tau+(M_{Z_0}-M_\tau)\cdot e^{-\left(\frac{t}{T_{21}}\right)^{\beta_\tau}} \right] \cdot e^{-\left(\frac{t}{T_{22}}\right)^{\beta_{T_1}}}+M_0
+	f(t) = y_0 +
+	y_1 \cdot e^{-\left(\frac{2t}{T_{21}}\right)^{\beta_1}} +
+	y_2 \cdot e^{-\left(\frac{2t}{T_{22}}\right)^{\beta_2}}
 \end{align}
-an die Datenreihen angepasst. Die Ergebnisse des Fits sind in Tabelle aufgeführt.
+an die Datenreihen angepasst. Die Ergebnisse des Fits sind in Tabelle \ref{tab:T2_tief} aufgeführt.
+
+Im Hochtemperaturbereich gelingt es nicht, eine biexponentielle Zerfallskurve an die Daten anzulegen da nach etwa $10^{-4}s$ ein Peak in den Datenreihen auftaucht.
 \begin{table}[htbp]
-	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |>{$}c<{$} | >{$}c<{$} |}
+	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |>{$}c<{$} | >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |}
 		\input{../auswertung/T2/T2_data_latex}
 	\end{tabular}
 	\caption{Temperaturen und gefittete $T_{21}$ und $T_{22}$ Werte des Tieftemperaturbereiches.}
-	\label{tab:T1_tief}
+	\label{tab:T2_tief}
 \end{table}
 
 
 \newpage
 \subsection{$F_2$ Messung}
-Um die $\tau_C$ Korrelationszeit zu bestimmen, wird die Echoamplitude in einem Plot gegen die Zeit aufgetragen und anschließend im Tieftemperaturbereich eine Funktion folgender Form angefittet:
+Um die $\tau_C$ Korrelationszeit zu bestimmen, wird die Echoamplitude in einem Plot gegen die Zeit aufgetragen und anschließend im Tieftemperaturbereich eine Funktion folgender Form durch die Methode der kleinsten Quadrate an die Messwerte angepasst:
 \begin{align}
 	h(t) = M_\tau\cdot e^{-\left(\frac{t}{\tau_c}\right)^{\beta_1}}
 \end{align}
@@ -341,8 +373,8 @@ Um die $\tau_C$ Korrelationszeit zu bestimmen, wird die Echoamplitude in einem P
 \end{figure}
 Die Darstellung der Messwerte, sowie die Fitfunktionen ist in Abb. \ref{pic_F2_tief} sichtbar. Der Fit ergab für $\tau_c$ die in Tabelle \ref{tab:F2_tief} stehenden Werte.
 \begin{table}[htbp]
-	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} | >{$}c<{$} |}
-		\textbf{Temperatur }[K] & \tau_C & \text{Standardabweichung}\\\hline
+	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} |}
+		\textbf{Temperatur }[K] & \tau_C\ [10^{-3}\text{ s}] \\\hline
 		\input{../auswertung/F2/tauC_values_table}
 	\end{tabular}
 	\caption{Ergebnisse des Fits aus Abb. \ref{pic_F2_tief}.}
@@ -352,14 +384,15 @@ Die Darstellung der Messwerte, sowie die Fitfunktionen ist in Abb. \ref{pic_F2_t
 Trägt man diese Werte und ihre korrelierenden Temperaturen in einem Arrhenius-Plot wie in Abb. \ref{pic_F2_fit} auf, so kann aus der Steigung der Ausgleichsgeraden die Aktivierungsenergie $E_A$ bestimmt werden. 
 Die Fit-Funktion ist:
 \begin{align}
-	g(T) = A\cdot e^{-\frac{E_A}{k_BT}}
+	\tau(T) = \tau_0\cdot e^{-\frac{E_A}{k_BT}}
 \end{align}
 und entspricht einer Geradengleichung in der Darstellung des Arrhenius-Plots.
 \begin{figure}[htbp]
-	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Fit.pdf}
+	\includegraphics[width=0.7\textwidth]{../auswertung/F2/F2_Fit.pdf}
 	\caption{Arrhenius Plot der $\tau_C$ Werte des Tieftemperaturbereiches und Regressionsgerade. Die Steigung der Geraden entspricht der Aktivierungsenergie.}
 	\label{pic_F2_fit}
 \end{figure}
+
 Für die Aktivierungsenergie $E_A$ ergab der Fit folgenden Wert: 
 \begin{align}
 	\input{../auswertung/F2/Ea.output}
@@ -369,12 +402,17 @@ Für die Aktivierungsenergie $E_A$ ergab der Fit folgenden Wert:
 Die $T_1$ Messreihen passen sehr gut mit den gefitteten Theoriekurven überein und die Fehler der daraus bestimmten Parameter sind um einen Faktor $10^{-2}$ kleiner als die Parameter selbst.
 Die $T_1$ Arrheniusplots haben ebenfalls die Form, die im Hoch- bzw. Tieftemperaturbereich erwartet werden: Im Tieftemperaturbereich liegen die Werte auf einer Geraden (siehe Abb. \ref{pic_T1Arr_tief}) während die Werte im Hochtemperaturbereich ein Minimum ausbilden (siehe Abb. \ref{pic_T1Arr_hoch}).
 
-Messungen der Spin-Spin Relaxationszeit $T_2$ sind mit einem Fehler, der um einen Faktor $10^{-4}$ kleiner als die Messwerte sind, sogar noch genauer als die $T_1$ Messungen. In beiden Temperaturbereichen haben die Messreihen die Form eines biexponentiellen Abfalls. Die Zeiten $T_{21}$ und $T_{22}$ liegen um zwei Größenordnungen auseinander, daher ist davon auszugehen, dass es sich um zwei getrennte Prozesse handelt.
-Im Hochtemperaturbereich wurde kein Fit durchgeführt. Bei $t = 2\cdot 10^{-4}$ [s] haben alle Messreihen im Hochtemperaturbereich ein lokales Maximum. Dieses taucht bei niedrigen Temperaturen nicht auf.
+Messungen der Spin-Spin Relaxationszeit $T_2$ sind mit einem Fehler, der um einen Faktor $10^{-2}$ kleiner als die Messwerte sind, ebenso genau wie die $T_1$ Messungen. In beiden Temperaturbereichen haben die Messreihen die Form eines biexponentiellen Abfalls. Die Zeiten $T_{21}$ und $T_{22}$ liegen um zwei Größenordnungen auseinander, daher ist davon auszugehen, dass es sich um zwei getrennte Prozesse handelt.
+Im Hochtemperaturbereich wurde kein Fit durchgeführt, da bei $t = 2\cdot 10^{-4}$ [s] haben alle Messreihen einen kleinen Peak haben, der mit einem biexponentiellen Abfall nicht vereinbar ist. Dieser taucht bei niedrigen Temperaturen nicht auf.\\
+Das ursprüngliche Signal ist noch bis zu einer Evolutionszeit von $2\cdot 10^{-4}$\,s zu etwa 10\% vorhanden und damit noch nachweisbar. Nach $4\cdot 10^{-4}$\,s ist es jedoch völlig verschwunden und es bleibt nur Rauschen zurück.\\
+Die beiden Messreihen bei 105K Probentemperatur weichen stark von einander ab (siehe Abb. \ref{pic_T2_tief}). Dies ist möglicher Weise darauf zurückzuführen, dass nach dem Abkühlen von 285K (vorherige Messung) nicht lang genug gewartet wurde, bis die Probentemperatur genau mit der Kryostattemperatur übereinstimmt. Diese Abweichung hat einen besonders großen Einfluss auf die bestimmte $T_{21}$ Temperatur, die für diesen Messpunkt um einen Faktor 60 von der Vergleichsmessung abweicht (siehe Tab. \ref{tab:T2_tief}). Auf die $T_22$ Messung hat dies jedoch keinen großen Einfluss.
 
-Beim Fit der $F_2$ Messreihen sind die Fehler der Fitparameter in etwa von der selben Größe wie die Parameter selbst. Dies ist vermutlich darauf zurückzuführen, dass die Messwerte im Intervall zwischen \SI{1}{s} und \SI{10}{s} wieder von der X-Achse nach oben abweichen, obwohl sie für $t\rightarrow\infty$ gegen 0 laufen sollten.
+%Beim Fit der $F_2$ Messreihen sind die Fehler der Fitparameter in etwa von der selben Größe wie die Parameter selbst. Dies ist vermutlich darauf zurückzuführen, dass die Messwerte im Intervall zwischen \SI{1}{s} und \SI{10}{s} wieder von der X-Achse nach oben abweichen, obwohl sie für $t\rightarrow\infty$ gegen 0 laufen sollten.
 %\newpage
-%\Large{Literatur}\\\\
+\section*{Literaturverzeichnis}
+[1] Lehrstuhlversuch Skript: Molekül- und Ionendynamik in Festkörpern
+untersucht mit der Festkörper-NMR-Spektroskopie
+[Prof. Dr. R. Böhmer - TU Dortmund]
 
 % ========================================
 %	Literaturverzeichnis
