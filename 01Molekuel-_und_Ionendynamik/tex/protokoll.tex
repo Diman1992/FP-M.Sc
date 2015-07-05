@@ -10,7 +10,7 @@
 %	Angaben für das Titelblatt
 % ========================================
 
-\title{Molekül- und Ionendynamik in Festkörpern\\untersucht mit der Festkörper-NMR-Spektroskopie\\% Titel des Versuchs 
+\title{Molekül- und Ionendynamik in $^7$Li-Kristallen\\untersucht mit der Festkörper-NMR-Spektroskopie\\% Titel des Versuchs 
 \large TU Dortmund, Fakultät Physik\\ 
 \normalsize Fortgeschrittenen-Praktikum}
 
@@ -62,50 +62,52 @@ Dimitrios Skodras\\					% Name Praktikumspartner B
 \setcounter{page}{1}
 \section{Theorie}
 \subsection{Kernmomente in äußeren Magnetfeldern}
-Ziel des Versuchs ist es, die Relaxationszeiten $T_1$ und $T_2$ von Dimethylsulfon-Kristallen mit der Deuteron-NMR als Sonde zu errechnen. Mit diesen Werten
+Ziel des Versuchs ist es, die Relaxationszeiten $T_1$ und $T_2$ von $^7$Li-Kristallen mit der Deuteronen-NMR als Sonde zu errechnen. Mithilfe dieser Werte
 werden stimulierte Echos gemessen und die Korrelationszeit in Abhängigkeit von Evolutionszeit und Temperatur bestimmt.
 
 \subsubsection{Einführung einiger Kenngrößen}
-Eine charakteristische Größe für Atomkerne ist ihre Spinquantenzahl $I$, die ein magnetisches Moment $\mu$ induziert, abhängig von ihrem isotopenspezifischen
+Eine charakteristische Größe für Atomkerne ist ihre Spinquantenzahl $I$ (bei $^7$Li: $I = \sfrac32$), die ein magnetisches Moment $\mu$ induziert, abhängig von ihrem isotopenspezifischen
 gyromagnetischen Faktors $\gamma$. Wirkt ein statisches äußeres Magnetfeld $B_0$ auf diesen Kernspin ergibt sich quantenmechanisch eine Aufspaltung der
 Energieniveaus $E_m \propto - m \gamma B_0 = -m \omega_L $ mit $-I \leq m \leq +I$ als ganzen Zahl und $\omega_L$ der Larmorfrequenz. Dieser Effekt 
-ist als Zeeman-Effekt bekannt. Hinzu kommt eine Aufspaltung der Niveaus durch die Wechselwirkung des Quadrupolmoments des Kerns mit einem elektrischen 
+ist als Zeeman-Effekt bekannt. Hinzu kommt eine Verschiebung der Niveaus durch die Wechselwirkung des Quadrupolmoments des Kerns mit einem elektrischen 
 Feldgradienten. In Abbildung \ref{pic_deuteron} sind die beiden Aufspaltungseffekte für ein $I=1$ Teilchen, wie das Deuteron dargestellt.
 
 \begin{figure}[H]
  \includegraphics[width=0.4\textwidth]{../pics/deuteron.jpg}
- \caption{Niveauaufspaltungen durch Zeeman-Effekt und Quadrupolwechsewirkung eines Spin-1-Teilchens}
+ \caption{Niveauaufspaltungen durch Zeeman-Effekt und Quadrupolwechsewirkung eines Spin-1-Teilchens [1]}
  \label{pic_deuteron}
 \end{figure}
 
 \noindent 
 Im thermodynamischen Gleichgewicht sind diese Niveaus nach der Boltzmann-Verteilung besetzt, was zur makroskopischen Magnetisierung der Probe führt. Analog
 zur Ausweichbewegung eines rotierenden Kreisels im Gravitationsfeld erfolgt eine Präzessionsbewegung der Kernspins im Magnetfeld mit der Frequenz 
-$\omega_L =\gamma B_0$. Hierbei steht das Drehmoment $L\propto \sfrac{\dx I}{\dx t}$ senkrecht auf $B_0$ und $\mu$, was sich schreiben lässt als 
+$\omega_L =\gamma B_0$. Hierbei steht das Drehmoment $\vec L \propto \sfrac{\dx \vec I}{\dx t}$ senkrecht auf $\vec B_0$ und $\vec \mu$, dem Kerndipolmoment,
+was sich schreiben lässt als 
 \begin{align}
- \frac{\dx \mu}{\dx t} = \gamma \mu \times B_0.
+ \frac{\dx \vec \mu}{\dx t} = \gamma \vec \mu \times \vec B_0.
  \label{eq_dglMu}
 \end{align}
-Da $\vec B_0 = B_0 \textbf{e}_z$, zeigt auch die makroskopische Magnetisierung $M$ in $z$-Richtung, da die $x$- und $y$-Komponenten sich kompensieren, sodass
-\eqref{eq_dglMu} auch hierfür anwenden lässt
+Diese Betrachtung gilt jedoch nur für $I = \sfrac12$. 
+Da $\vec B_0 = B_0 \textbf{e}_z$, zeigt auch die makroskopische Magnetisierung $\vec M$ in $z$-Richtung, da die $x$- und $y$-Komponenten sich kompensieren, sodass
+sich Gleichung \eqref{eq_dglMu} auch hierfür anwenden lässt
 \begin{align}
- \frac{\dx M}{\dx t} = \gamma M \times B_0.
+ \frac{\dx \vec M}{\dx t} = \gamma \vec M \times \vec B_0.
  \label{eq_dglMagnetisierung}
 \end{align}
 
 \subsubsection{Einfluss von Hochfrequenzspulen}
 \label{sec_hochfrequenz}
-Beim Übergang auf zeitlich veränderliche, äußere Magnetfelder $B_1(t)$ ist die Transformation in ein sich mit $\Omega$ um die $z$-Achse rotierendes 
+Wenn nun zeitlich veränderliche, äußere Magnetfelder $B_1(t)$ verwendet werden, ist die Transformation in ein sich mit $\Omega$ um die $z$-Achse rotierendes 
 Koordinatensystem rechnerisch einfach zu handhaben. Die beiden Felder können dadurch in ein effektives Magnetfeld $B_\text{eff} = B_1 + B_0$ überführt
-und \eqref{eq_dglMagnetisierung} damit geschrieben werden. Im Fall $\Omega$ = $\omega_L$ verschwindet das effektive Feld. Explizit im Laborsystem wird
+und \eqref{eq_dglMagnetisierung} damit geschrieben werden. Im Fall $\Omega$ = $\omega_L$ verschwindet die $z$-Komponente des effektiven Felds. Explizit im Laborsystem wird
 das HF-Feld durch $B_1(t) = B_x \cos(\Omega t)$ gegeben. Dieses wird in zwei Komponenten entsprechend Abbildung \ref{pic_rotSystem} aufgeteilt, die mit
 $\Omega$ gegenläufig rotieren. Die Komponente $B_\text{rechts}$ wird nun festgehalten und die andere läuft nun mit $-2\Omega$, die vernachlässigbar wird,
 da sie von der Larmorfrequenz zu weit entfernt ist. Die Kernspins rotieren nun gleich mit $B_\text{rechts}$ und nehmen dieses als konstantes Feld mit 
-Amplitude $B_x /2$ wahr. Bei anfänglicher Längsmagnetisierung entlang $z$, ergibt sich eine Präzessionsbewegung um die tranformierte $x$-Achse mit der
+Amplitude $B_x /2$ wahr. Bei anfänglicher Längsmagnetisierung entlang $z$, ergibt sich eine Präzessionsbewegung um die transformierte $x$-Achse mit der
 Rabi-Frequenz $\omega_1 = \gamma |B_\text{eff}|$.
 \begin{figure}[H]
  \includegraphics[width=0.4\textwidth]{../pics/rotSystem.jpg}
- \caption{Zerlegung des HF-Felds}
+ \caption{Zerlegung des HF-Felds [1]}
  \label{pic_rotSystem}
 \end{figure}
 \noindent
@@ -116,11 +118,11 @@ Magnetfelds und dadurch auf verschiedene Larmorfrequenzen zurückführbar ist. S
 oder langsamer als andere, was zur Dephasierung und damit zum Verschwinden der Quermagnetisierung führt. Dieser Prozess ist jedoch reversibel durch 
 Einstrahlen eines ($\pi$)-Pulses, was in Abbildung \ref{pic_rephasierung} anschaulich wird. Zu Beginn wird ein ($\pi$/2)-Puls durchgeführt, woraufhin die
 Spins präzedieren und dephasieren. Der ($\pi$)-Puls erhält den Drehsinn und die Drehgeschwindigkeit, wodurch die Spins rephasieren. Das schließliche 
-Zusammentreffen wird Hahn-Echo bezeichnet.
+Zusammentreffen wird als Hahn-Echo bezeichnet.
 
 \begin{figure}[t]
  \includegraphics[width=0.6\textwidth]{../pics/rephasierung.jpg}
- \caption{Erzeugung von Quermagnetisierung, Dephasierung, $\pi$-Puls und Hahn-Echo}
+ \caption{Erzeugung von Quermagnetisierung, Dephasierung, $\pi$-Puls und Hahn-Echo [1]}
  \label{pic_rephasierung}
 \end{figure}
 
@@ -137,19 +139,19 @@ Die longitudinale Komponente $M_z$ relaxiert durch Spin-Gitter Effekte mit $T_1$
 $T_2$.
 
 \subsubsection{Spin-Gitter-Relaxation}
-Durch den ($\pi$)-Puls entsteht eine Besetzungsinversion entgegen der Boltzmann-Verteilung. Das thermische Gleichgewicht stellt sich durch Übergänge zwischen
+Durch einen ($\pi$)-Puls entsteht eine Besetzungsinversion entgegen der Boltzmann-Verteilung. Das thermische Gleichgewicht stellt sich durch Übergänge zwischen
 den Niveaus neu ein, was in der Größenordnung von $T_1$ geschieht. Jedoch passiert das in diesem Frequenzbereich weniger durch spontane Emission, sondern durch 
-magnetische Wechselfelder mit der Larmorfrequenz im Wesentlichen, die die Emission bedingt. Diese Inversionserholung kommt von stochastischen Bewegungen
+magnetische Wechselfelder mit der Larmorfrequenz, die die Emission induziert. Diese Inversionserholung kommt von stochastischen Bewegungen
 der Spins, die zu zeitlich fluktuierenden Magnetfeldern führt. Die Fouriertransformierte davon, die Spektraldichte $J(\omega)$ gibt die Wahrscheinlichkeit an,
-das ein Wechselfeld mit $\omega$ vorkommt. Je größer $J(\omega_L)$, umso effizienter der Kernspinübergang und damit $T_1$ auch. $T_1$ wird dann minimal, 
+das ein Wechselfeld mit $\omega$ vorkommt. Je größer $J(\omega_L)$, umso effizienter ist der Kernspinübergang und $T_1$ wird kleiner. $T_1$ wird dann minimal, 
 wenn Larmorfrequenz und Korrelationszeit $\tau_c$ einander entsprechen - $\omega_L \tau_c \approx 1$
 
 \subsubsection{Spin-Spin-Relaxation}
 Maßgeblich für diesen Prozess ist die magnetische Dipol-Dipol-Wechselwirkung, wobei die Spins einerseits selbst ein Magnetfeld erzeugen, aber auch bei anderen
 Spins abhängig vom Winkel zwischen der Momentausrichtung und der internuklearen Verbindungslinie zueinander. Bei einem Festkörper sollten die Spins statisch 
 verteilt sein, weshalb eine breite Verteilung lokaler Zusatzfelder und damit ein breiter Frequenzbereich für Resonanzabsorbtion zu erwarten ist. Bei
-einfachen Flüssigkeiten mitteln sich die Zusatzfelder durch Molekularbewegungen auf experimentellen Zeitskalen hinaus, sodass nur noch bei der Larmorfrequenz
-Resonanzabsorbtion auftritt. Hierbei erzeugte Quermagnetisierung relaxiert wenig, was einem langen $T_2$ entspricht.
+einfachen Flüssigkeiten mitteln sich die Zusatzfelder durch Molekularbewegungen auf experimentellen Zeitskalen aus, sodass nur noch bei der Larmorfrequenz
+Resonanzabsorption auftritt. Hierbei erzeugte Quermagnetisierung relaxiert langsam, was einem langen $T_2$ entspricht.
 
 \subsection{Untersuchungsmethoden}
 Durch die Rephasierung der Isochromaten, also die Wiederherstellung der makroskopischen Magnetisierung, entsteht ein messbares Echo. Die verschiedenen 
@@ -157,45 +159,47 @@ Möglichkeiten, ein solches herzustellen geschieht durch die charakterisierenden
 \ref{sec_hochfrequenz} und die hier Anwendung findenden Festkörperechos und die stimulierten Echos.
 \subsubsection{Festkörperechos}
 Festkörperechos sind im Gegensatz zu Hahn-Echos nützlich zur Refokussierung von Wechselwirkungen, die bilinear in den homonuklearen Spinoperatoren sind, wie
-zum Beispiel der Säkularanteil der Dipolwechselwirkung oder der Spinanteil der Quadrupolwechsewirkung 1. Ordnung. Der ($\pi$)-Puls des Hahn-Echos ändert den
-Hamiltonian nicht, wohingegen die Sequenz des Festkörperechos (vgl. Abb.) \ref{pic_festEchoFolge} das erreicht. Zu Beginn ein ($\pi/2$)$_x$-Puls und wartet
-eine Zeit $\tau$, worauf ein ($\pi/2$)$_y$-Puls folgt, der um 90$^\circ$ zum vorigen phasenverschoben sein soll. Nach einer weiteren Wartezeit $\tau$ ist das
+zum Beispiel der Säkularanteil der Dipolwechselwirkung oder der Spinanteil der Quadrupolwechselwirkung 1. Ordnung. Der ($\pi$)-Puls des Hahn-Echos ändert den
+Hamiltonian nicht, wohingegen die Sequenz des Festkörperechos (vgl. Abb.) \ref{pic_festEchoFolge} das erreicht. Zu Beginn erfolgt ein ($\pi/2$)$_x$-Puls und
+nach
+einer Zeit $\tau$ folgt ein ($\pi/2$)$_y$-Puls, der um 90$^\circ$ zum vorigen phasenverschoben sein soll. Nach einer weiteren Wartezeit $\tau$ ist das
 Echo messbar. 
 \begin{figure}[htbp]
  \includegraphics[width=0.5\textwidth]{../pics/festEchoFolge.jpg}
- \caption{Pulsfolge des Festkörperechos}
+ \caption{Pulsfolge des Festkörperechos [1]}
  \label{pic_festEchoFolge}
 \end{figure}
 \noindent
 
 \subsubsection{Stimulierte Echos}
-Für Prozesse, die für die Anwendung des Hahn-Echos zu langsam sind, muss das Depha-sierungs- und das Rephasierungsintervall getrennt werden. Der ($\pi$)-Puls
+Für Prozesse, die für die Anwendung des Hahn-Echos zu langsam sind, müssen das Dephasierungs- und das Rephasierungsintervall getrennt werden. Der ($\pi$)-Puls
 aus dem Hahn-Echo wird unterteilt in zwei Sequenzen. So wird zu Beginn ein ($\pi/2$)-Puls gegeben, um transversale Magnetisierung mit Amplitude $M_0$ zu
-erzeugen (vgl. Abb. \ref{pic_stimEchoFolge}) . Die Spins dephasieren in der Zeit $t_1$ und entwickeln eine Phase zueinander. Der zweite Puls kann nun den 
+erzeugen (vgl. Abb. \ref{pic_stimEchoFolge}). Die Spins dephasieren in der Zeit $t_1$ und entwickeln eine Phase zueinander. Der zweite Puls kann nun den 
 $\cos$- oder den $\sin$-Anteil wieder zurückklappen. Dieser wird Speicherpuls genannt, da die longitudinale Magnetisierung mit $T_1$ relaxiert, während
 der andere während der anschließenden Mischzeit $t_m$ dephasiert und die transversale Magnetisierung verschwindet. Schließlich kann ein dritter Puls den
 gespeicherten Anteil in die Nachweisebene klappen. Die rephasierenden Spins erzeugen nach einer Zeit $t_2 = t_1$ ein Echo beispielsweise für den $\cos$-Anteil,
 welches stimuliertes Echo bezeichnet wird. Die verbliebene Magnetisierung entspricht maximal der Hälfte von $M_0$. Bei chemischem Austausch sinkt dieser
-Maximalwert auf der Zeitskala der Korrelationszeit. Daher lässt sich $\tau_c$ ermitteln aus der Echohöhe als Funktion der Mischzeit. Die stimulierten 
+Maximalwert als Funktion von $t_m$ auf der Zeitskala der Korrelationszeit. Daher lässt sich $\tau_c$ ermitteln aus der Echohöhe als Funktion der Mischzeit. Die stimulierten 
 Echosignale $\langle\cos(\omega_1t_1)\cos(\omega_2t_2)\rangle$ und $\langle\sin(\omega_1t_1)\sin(\omega_2t_2)\rangle$ können für $t_1=t_2=t_p$ zu
-$S(t_p,t_m) \sim \langle\exp(\i\omega_1t_p)\exp(-\i\omega_2t_p)\rangle$ zusammengefasst werden. Die $\omega_i$ sind zwei Präzessionsfrequenzen, $t_p$ die
-Evolutionszeit.
+$S(t_p,t_m) \sim \langle\exp(\i\omega_1t_p)\exp(-\i\omega_2t_p)\rangle$ zusammengefasst werden. Die $\omega_i$ ($i=1,2$) sind zwei Präzessionsfrequenzen,
+die Evolutionsfrequenz und die Äquisitionsfrequenz. $t_p$ ist die Evolutionszeit.
 
 \begin{figure}[H]
  \includegraphics[width=0.6\textwidth]{../pics/stimEchoFolge.jpg}
- \caption{Pulsfolge des stimulierten Echos}
+ \caption{Pulsfolge des stimulierten Echos [1]}
  \label{pic_stimEchoFolge}
 \end{figure}
 \noindent
-Der Stoff Rb$_3$D(SO$_4$)$_2$ ist ein Ionenleiter, bei dem Deuteronen von Gitterplatz zu Gitterplatz kommen. Ein einem Einkristall davon gibt es zwei
+Der Stoff Rb$_3$D(SO$_4$)$_2$ ist ein Ionenleiter, bei dem Deuteronen von Gitterplatz zu Gitterplatz kommen. Bei einem Einkristall davon gibt es zwei
 unterscheidbare elektrische Feldgradienten beim Deuteron bzw. bei einer Leerstelle. Findet ein Sprung statt, ändert sich die NMR-Frequenz, was nachgewiesen
 werden kann. Während relativ langer Mischzeiten können Deuteronen in die Leerstellen springen. Hierbei kann sich im Allgemeinen 
 die Umgebung der Spins und damit die Präzessionsfrequenz ändern. Findet ein Sprung statt, entwickelt sich die Magnetisierung nach dem dritten Puls mit der
 neuen Frequenz. Je mehr Sprünge stattfinden, bei beispielsweise längerer Mischzeit, entwickelt sich ein immer größerer Teil der Magnetisierung mit der 
-neuen Frequenz, was in Abbildung \ref{pic_neueFrequenz} dargestellt ist.
+neuen Frequenz. Ist die Mischzeit sehr kurz kommt es kaum bis gar nicht zu Sprüngen, weshalb hierbei der Peak der neuen Frequenz nicht sichtbar ist.
+Dieser Zusammenhang ist in Abbildung \ref{pic_neueFrequenz} dargestellt. 
 \begin{figure}[H]
  \includegraphics[width=0.3\textwidth]{../pics/neueFrequenz.jpg}
- \caption{$t_m$-abhängige Austauschintensität}
+ \caption{$t_m$-abhängige Austauschintensität [1]}
  \label{pic_neueFrequenz}
 \end{figure}
 \subsection{Korrelationszeit}
@@ -206,23 +210,24 @@ const. Beispielhaft an K$_3$D(SO$_4$)$_2$ sind NMR-Messungen in Abbildung \ref{p
 was an der Kristallstruktur und den elektrischen Feldgradienten der Deuteronen plausibel wird.
 \begin{figure}[H]
  \includegraphics[width=0.4\textwidth]{../pics/tau(tp).jpg}
- \caption{$\tau_c$ als Funktion der Evolutionszeit $t_p$}
+ \caption{$\tau_c$ als Funktion der Evolutionszeit $t_p$ [1]}
  \label{pic_tau(tp)}
 \end{figure}
 \noindent
 Wenn die Deuteronen hüpfen, überwinden sie die Energiebarriere $E$ des Kristallfeldes durch thermischen Energie von $E \propto T$ mit einer Wahrscheinlichkeit
-von $\Gamma = \Gamma_0 \exp(-\sfrac{E}{k_bT})$. Dabei ist $\Gamma_0$ die Anklopffrequenz, mit der das Ion an die Potentialbarriere stößt. mit 
+von $\Gamma = \Gamma_0 \exp(-\sfrac{E}{k_bT})$. Dabei ist $\Gamma_0$ die Anklopffrequenz, mit der das Ion an die Potentialbarriere stößt. Mit 
 $\tau = \Gamma^{-1}$ ergibt sich das Arrhenius-Gesetz
 \begin{align}
  \tau = \tau_0 \exp \left(-\frac{E}{k_BT}\right).
  \label{eq_korrelationszeit}
 \end{align}
+Ein Arrheniusplot ist die Darstellung einer linearisierten Darstellung ovn Gleichung \eqref{eq_korrelationszeit} $\ln(\tau) \propto \sfrac{1}{T}$.
 In Abbildung \ref{pic_tau(T)} sind hier NMR-Messungen für Rb$_3$D(SO$_4$)$_2$ und K$_3$D(SO$_4$)$_2$ zu sehen. Die unterschiedlichen Steigungen entsprechen
 verschiedenen Energiebarrieren.
 
 \begin{figure}[H]
  \includegraphics[width=0.4\textwidth]{../pics/tau(T).jpg}
- \caption{$\tau_c$ als Funktion der Temperatur $T$}
+ \caption{$\tau_c$ als Funktion der Temperatur $T$[1]}
  \label{pic_tau(T)}
 \end{figure}
 
