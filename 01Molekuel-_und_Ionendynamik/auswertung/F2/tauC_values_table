@@ -1,10 +1,10 @@
-94 & 1.33 \pm 0.04 \\\hline
-94 & 1.85 \pm 0.02 \\\hline
-97 & 1.00 \pm 0.02 \\\hline
-97 & 1.53 \pm 0.02 \\\hline
-99 & 0.82 \pm 0.01 \\\hline
-99 & 1.21 \pm 0.02 \\\hline
-102 & 0.68 \pm 0.01 \\\hline
-102 & 0.94 \pm 0.01 \\\hline
-105 & 0.52 \pm 0.01 \\\hline
-105 & 0.72 \pm 0.01 \\\hline
+94 & 1.85 \pm 0.02 & 0.74 \pm 0.01 \\\hline
+\rowcolor{gray!10}94 & 1.33 \pm 0.04 & 0.72 \pm 0.03 \\\hline
+97 & 1.53 \pm 0.02 & 0.74 \pm 0.01 \\\hline
+\rowcolor{gray!10}97 & 1.0 \pm 0.02 & 0.71 \pm 0.02 \\\hline
+99 & 1.21 \pm 0.02 & 0.74 \pm 0.01 \\\hline
+\rowcolor{gray!10}99 & 0.82 \pm 0.01 & 0.72 \pm 0.01 \\\hline
+102 & 0.94 \pm 0.01 & 0.72 \pm 0.01 \\\hline
+\rowcolor{gray!10}102 & 0.68 \pm 0.01 & 0.71 \pm 0.01 \\\hline
+105 & 0.72 \pm 0.01 & 0.71 \pm 0.01 \\\hline
+\rowcolor{gray!10}105 & 0.52 \pm 0.01 & 0.68 \pm 0.01 \\\hline

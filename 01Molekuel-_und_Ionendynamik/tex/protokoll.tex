@@ -4,6 +4,7 @@
 
 \input{longheader.tex}
 \usepackage{xfrac}
+\usepackage[table]{xcolor}
 \renewcommand {\i} { \text{i} }
 
 % ========================================
@@ -144,7 +145,11 @@ den Niveaus neu ein, was in der Größenordnung von $T_1$ geschieht. Jedoch pass
 magnetische Wechselfelder mit der Larmorfrequenz, die die Emission induziert. Diese Inversionserholung kommt von stochastischen Bewegungen
 der Spins, die zu zeitlich fluktuierenden Magnetfeldern führt. Die Fouriertransformierte davon, die Spektraldichte $J(\omega)$ gibt die Wahrscheinlichkeit an,
 das ein Wechselfeld mit $\omega$ vorkommt. Je größer $J(\omega_L)$, umso effizienter ist der Kernspinübergang und $T_1$ wird kleiner. $T_1$ wird dann minimal, 
-wenn Larmorfrequenz und Korrelationszeit $\tau_c$ einander entsprechen - $\omega_L \tau_c \approx 1$
+wenn Larmorfrequenz und Korrelationszeit $\tau_c$ einander entsprechen
+\begin{align}
+\omega_L \tau_c \approx 1
+\label{eq:min}
+\end{align}
 
 \subsubsection{Spin-Spin-Relaxation}
 Maßgeblich für diesen Prozess ist die magnetische Dipol-Dipol-Wechselwirkung, wobei die Spins einerseits selbst ein Magnetfeld erzeugen, aber auch bei anderen
@@ -218,7 +223,7 @@ Wenn die Deuteronen hüpfen, überwinden sie die Energiebarriere $E$ des Kristal
 von $\Gamma = \Gamma_0 \exp(-\sfrac{E}{k_bT})$. Dabei ist $\Gamma_0$ die Anklopffrequenz, mit der das Ion an die Potentialbarriere stößt. Mit 
 $\tau = \Gamma^{-1}$ ergibt sich das Arrhenius-Gesetz
 \begin{align}
- \tau = \tau_0 \exp \left(-\frac{E}{k_BT}\right).
+ \tau = \tau_0 \exp \left(\frac{E}{k_BT}\right).
  \label{eq_korrelationszeit}
 \end{align}
 Ein Arrheniusplot ist die Darstellung einer linearisierten Darstellung ovn Gleichung \eqref{eq_korrelationszeit} $\ln(\tau) \propto \sfrac{1}{T}$.
@@ -373,44 +378,54 @@ Um die $\tau_C$ Korrelationszeit zu bestimmen, wird die Echoamplitude in einem P
 \end{align}
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{../auswertung/F2/F2_Plot.pdf}
-	\caption{Arrhenius Plot der F2 Werte des Tieftemperaturbereiches.}
+	\caption{Arrhenius Plot der F2 Werte des Tieftemperaturbereiches. Die Werte wurden bei zwei verschiedenen Evolutionszeiten: $1.5\cdot10^{-5}\,s$ und $2.0\cdot10^{-5}\,s$ aufgenommen.}
 	\label{pic_F2_tief}
 \end{figure}
 Die Darstellung der Messwerte, sowie die Fitfunktionen ist in Abb. \ref{pic_F2_tief} sichtbar. Der Fit ergab für $\tau_c$ die in Tabelle \ref{tab:F2_tief} stehenden Werte.
 \begin{table}[htbp]
-	\begin{tabular}{| >{$}c<{$} | >{$}c<{$} |}
-		\textbf{Temperatur }[K] & \tau_C\ [10^{-3}\text{ s}] \\\hline
+	\begin{tabular}{ >{$}c<{$} | >{$}c<{$} | >{$}c<{$} }
+		\textbf{Temperatur }[K] & \tau_C\ [10^{-1}\text{ s}] & \beta_1 \\\hline
 		\input{../auswertung/F2/tauC_values_table}
 	\end{tabular}
-	\caption{Ergebnisse des Fits aus Abb. \ref{pic_F2_tief}.}
+	\caption{Ergebnisse des Fits aus Abb. \ref{pic_F2_tief}. Die mit weiß hinterlegten Werte wurden bei einer Evolutionszeit von $1.5\cdot10^{-5}\,s$ aufgenommen und die grauen bei $2.0\cdot10^{-5}\,s$}
 	\label{tab:F2_tief}
 \end{table}
 
 Trägt man diese Werte und ihre korrelierenden Temperaturen in einem Arrhenius-Plot wie in Abb. \ref{pic_F2_fit} auf, so kann aus der Steigung der Ausgleichsgeraden die Aktivierungsenergie $E_A$ bestimmt werden. 
 Die Fit-Funktion ist:
 \begin{align}
-	\tau(T) = \tau_0\cdot e^{-\frac{E_A}{k_BT}}
+	\tau(T) = \tau_0\cdot e^{\frac{E_A}{k_BT}}
 \end{align}
 und entspricht einer Geradengleichung in der Darstellung des Arrhenius-Plots.
 \begin{figure}[htbp]
 	\includegraphics[width=0.7\textwidth]{../auswertung/F2/F2_Fit.pdf}
-	\caption{Arrhenius Plot der $\tau_C$ Werte des Tieftemperaturbereiches und Regressionsgerade. Die Steigung der Geraden entspricht der Aktivierungsenergie.}
+	\caption{Arrhenius Plot der $\tau_C$ Werte des Tieftemperaturbereiches und Regressionsgerade. Messwerte in rot wurden bei einer Evolutionszeit von \mbox{$1.5\cdot10^{-5}\,s$} aufgenommen, Messwerte in blau bei $2.0\cdot10^{-5}\,s$. Die Steigung der Geraden entspricht der Aktivierungsenergie. Zusätzlich eingetragen ist der grüne Datenpunkt, der aus der Position des Minimums aus Abb. \ref{pic_T1Arr_hoch} und Gleichung \ref{eq:min} hervor geht. Die verwendete Lamorfrequenz beträgt 117.025 MHz.}
 	\label{pic_F2_fit}
 \end{figure}
 
-Für die Aktivierungsenergie $E_A$ ergab der Fit folgenden Wert: 
-\begin{align}
-	\input{../auswertung/F2/Ea.output}
-\end{align}
+Für die vorliegenden Daten ergaben die Fits folgende Werte: 
+\\
+Evolutionszeit = $1.5\cdot10^{-5}\,s$
+\begin{align*}
+	\input{../auswertung/F2/Ea_1.output}
+\end{align*}
+Evolutionszeit = $2.0\cdot10^{-5}\,s$
+\begin{align*}
+		\input{../auswertung/F2/Ea_2.output}
+\end{align*}
 
 \section{Diskussion}
 Die $T_1$ Messreihen passen sehr gut mit den gefitteten Theoriekurven überein und die Fehler der daraus bestimmten Parameter sind um einen Faktor $10^{-2}$ kleiner als die Parameter selbst.
-Die $T_1$ Arrheniusplots haben ebenfalls die Form, die im Hoch- bzw. Tieftemperaturbereich erwartet werden: Im Tieftemperaturbereich liegen die Werte auf einer Geraden (siehe Abb. \ref{pic_T1Arr_tief}) während die Werte im Hochtemperaturbereich ein Minimum ausbilden (siehe Abb. \ref{pic_T1Arr_hoch}).
+Die $T_1$ Arrheniusplots haben ebenfalls die Form, die im Hoch- bzw. Tieftemperaturbereich erwartet werden: Im Hochtemperaturbereich bilden die Messwerte ein Minimum aus (siehe Abb. \ref{pic_T1Arr_hoch}), während sie im Tieftemperaturbereich auf einer Geraden liegen (siehe Abb. \ref{pic_T1Arr_tief}). Im Bereich dazwischen wurden keine Messwerte aufgenommen, jedoch kann man dem Graphen entnehmen, dass die beiden Messreihen ineinander übergehen werden, wenn die rechte Flanke des Minimums für tiefere Temperaturen etas abflacht. 
 
 Messungen der Spin-Spin Relaxationszeit $T_2$ sind mit einem Fehler, der um einen Faktor $10^{-2}$ kleiner als die Messwerte sind, ebenso genau wie die $T_1$ Messungen. In beiden Temperaturbereichen haben die Messreihen die Form eines biexponentiellen Abfalls. Die Zeiten $T_{21}$ und $T_{22}$ liegen um zwei Größenordnungen auseinander, daher ist davon auszugehen, dass es sich um zwei getrennte Prozesse handelt.
-Im Hochtemperaturbereich wurde kein Fit durchgeführt, da bei $t = 2\cdot 10^{-4}$ [s] haben alle Messreihen einen kleinen Peak haben, der mit einem biexponentiellen Abfall nicht vereinbar ist. Dieser taucht bei niedrigen Temperaturen nicht auf.\\
+Im Hochtemperaturbereich wurde kein Fit durchgeführt, da bei $t = 2\cdot 10^{-4}$ [s] alle Messreihen einen kleinen Peak haben, der mit einem biexponentiellen Abfall nicht vereinbar ist. Dieser taucht bei niedrigen Temperaturen nicht auf.\\
 Das ursprüngliche Signal ist noch bis zu einer Evolutionszeit von $2\cdot 10^{-4}$\,s zu etwa 10\% vorhanden und damit noch nachweisbar. Nach $4\cdot 10^{-4}$\,s ist es jedoch völlig verschwunden und es bleibt nur Rauschen zurück.\\
-Die beiden Messreihen bei 105K Probentemperatur weichen stark von einander ab (siehe Abb. \ref{pic_T2_tief}). Dies ist möglicher Weise darauf zurückzuführen, dass nach dem Abkühlen von 285K (vorherige Messung) nicht lang genug gewartet wurde, bis die Probentemperatur genau mit der Kryostattemperatur übereinstimmt. Diese Abweichung hat einen besonders großen Einfluss auf die bestimmte $T_{21}$ Temperatur, die für diesen Messpunkt um einen Faktor 60 von der Vergleichsmessung abweicht (siehe Tab. \ref{tab:T2_tief}). Auf die $T_22$ Messung hat dies jedoch keinen großen Einfluss.
+Die beiden Messreihen bei 105K Probentemperatur weichen stark von einander ab (siehe Abb. \ref{pic_T2_tief}). Dies ist möglicher Weise darauf zurückzuführen, dass nach dem Abkühlen von 285K (vorherige Messung) nicht lang genug gewartet wurde, bis die Probentemperatur genau mit der Kryostattemperatur übereinstimmt. Diese Abweichung hat einen besonders großen Einfluss auf die bestimmte $T_{21}$ Temperatur, die für diesen Messpunkt um einen Faktor 60 von der Vergleichsmessung abweicht (siehe Tab. \ref{tab:T2_tief}). Auf die $T_{22}$ Messung hat dies jedoch keinen großen Einfluss.
+
+Bei der $F_2$ Messung sollen im Wesentlichen zwei Größen untersucht werden: die Aktivierungsenergie $E_A$ und die inverse Anklopffrequenz $\tau_0$. Um diese Werte zu bestimmen wurde die in Gleichung \ref{eq_korrelationszeit} aufgeführte Gleichung an die Daten angepasst. In der logarithmischen Darstellung des Plots (Abbildung \ref{pic_T1Arr_hoch}) hat diese die Form einer Geraden. Wie in Abb. \ref{pic_F2_fit} zu sehen ist, liegen die Datenpunkte der Messreihe und der einzelne Datenpunkt aus der Lamorfrequenz jedoch nicht auf einer Geraden. Gewichtet man alle Messpunkte gleich stark, so erhält man für $\tau_0$ eine Zeit in der Größenordnung von $10^{-12}$\,s bzw. $10^{-9}$\,s und für die Aktivierungsenergie etwa 200\,meV bzw. 70\,meV mit und ohne den einzelnen Datenpunkt.\\
+Idealerweise sollte $\tau_0$ in der Größenordnung von Femtosekunden und die Aktivierungsenergie bei etwa 100\,meV liegen. Es wird also stehts einer der beiden Werte über-, bzw. unterschätzt.\\
+Der große Fehler von $\tau_0$ ist dadurch zu begründen, dass $\tau_0$ in der logarithmischen Darstellung der y-Achsenabschnitt des Graphen ist und die aufgenommenen Messwerte sehr weit von der y-Achse entfernt liegen. Die kleine Unsicherheit in der Steigung der Geraden wirkt sich daher in eine große Unsicherheit beim y-Achsenabschnitt aus.
 
 %Beim Fit der $F_2$ Messreihen sind die Fehler der Fitparameter in etwa von der selben Größe wie die Parameter selbst. Dies ist vermutlich darauf zurückzuführen, dass die Messwerte im Intervall zwischen \SI{1}{s} und \SI{10}{s} wieder von der X-Achse nach oben abweichen, obwohl sie für $t\rightarrow\infty$ gegen 0 laufen sollten.
 %\newpage

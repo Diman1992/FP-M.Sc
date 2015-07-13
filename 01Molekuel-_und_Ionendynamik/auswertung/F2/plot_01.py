@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import scipy.optimize as optimization
 import math
 import matplotlib.cm as cm
+from operator import itemgetter
 
 for arg in sys.argv:
     if(arg=='silent'):
@@ -32,7 +33,7 @@ def p(var):
 colors = iter(cm.jet(np.linspace(0, 1, 10)))
 markers = iter([".","d","2","x","8","4","s","*","D","+","o","x","3","p"])
 
-def F2(path,ax,temp,f,f2):
+def F2(path,ax,temp,evTime, f,f2):
     time, amplitude, error = np.loadtxt(path, usecols=(0,5,6), unpack=True, comments='#')
 
     var, cov = optimize.curve_fit(Mt, time, amplitude, p0=(700,2,1), maxfev=1000000)
@@ -41,11 +42,14 @@ def F2(path,ax,temp,f,f2):
     yRef = Mt(xRef, var[0],var[1],var[2])
 
     col = next(colors)
-    plt.scatter(time,amplitude, color=col, marker=next(markers), label=temp+"K")
+    print("ts:",evTime)
+    plt.scatter(time,amplitude, color=col, marker=next(markers), label=temp+"K, evo= " + str(evTime)+"s")
     plt.plot(xRef,yRef,color=col)
 
-    f.write(temp+"\t"+str(var[1])+"\t"+str(np.sqrt(cov[1,1]))+"\n")
-    tempString = temp+" & "+str(round(var[1]*10,2))+" \\pm "+str(round(np.sqrt(cov[1,1])*10,2))+" \\\\\\hline\n"
+    f.write(temp+"\t"+str(var[1])+"\t"+str(np.sqrt(cov[1,1]))+"\t" + str(evTime) +"\n")
+    tempString = temp+" & "+str(round(var[1]*10,2))+" \\pm "+str(round(np.sqrt(cov[1,1])*10,2))+" & "+str(round(var[2],2))+" \\pm "+str(round(np.sqrt(cov[2,2]),2))+" \\\\\\hline\n"
+    if(evTime==2.0e-5):
+        tempString="\\rowcolor{gray!10}" +tempString
     f2.write(tempString)
 
 
@@ -67,15 +71,27 @@ for root, dirs, files in os.walk(path):
         temperature = round(int(temperature) * 0.922 - 1.085)
         if(typ=="F2"):
             for f in files:
+                if(f.endswith(".info")):
+                    print(f)
+                    filePath = root+"/"+f
+                    inpFile = open(filePath)
+                    for line in inpFile:
+                        if line.startswith("Evolution time"):
+                            evTime=float(line[line.find(":")+2:])
+                            print(evTime)
+            for f in files:
                 if(f.endswith(".nmr")):
-                    filelist.append((temperature,root+"/"+f))
+                    print(evTime)
+                    filelist.append((temperature,root+"/"+f,evTime))
 
-filelist = sorted(filelist,key=lambda x: x[0])
+filelist = sorted(filelist,key=itemgetter(0,2))
+"""
 tempo = filelist[-3]
 filelist[-3] = filelist[-4]
 filelist[-4] = tempo
-for temperature, filePath in filelist:
-    F2(filePath,axF2,str(temperature),fOut,fOut2)
+"""
+for temperature, filePath, evTime in filelist:
+    F2(filePath,axF2,str(temperature), evTime, fOut,fOut2)
 
 fOut.close()
 fOut2.close()
@@ -86,3 +102,4 @@ plt.title("F2 Plot Tieftemperatur")
 plt.xlabel("Zeit [s]")
 plt.ylabel("Echo Amplitude")
 plt.savefig("F2_Plot.pdf")
+plt.show()

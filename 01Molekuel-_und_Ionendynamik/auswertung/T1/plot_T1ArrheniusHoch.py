@@ -48,6 +48,7 @@ ax.set_yticks([0.14, 0.16, 0.18,0.20,0.22,0.24,0.26])
 ax.get_yaxis().set_major_formatter(matplotlib.ticker.ScalarFormatter())
 
 
+print("var:",var)
 
 
 plt.grid()
