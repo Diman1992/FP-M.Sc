@@ -5,6 +5,7 @@
 \input{longheader.tex}
 \usepackage{xfrac}
 \usepackage[table]{xcolor}
+\usepackage{siunitx}
 \renewcommand {\i} { \text{i} }
 
 % ========================================
@@ -102,7 +103,7 @@ Wenn nun zeitlich veränderliche, äußere Magnetfelder $B_1(t)$ verwendet werde
 Koordinatensystem rechnerisch einfach zu handhaben. Die beiden Felder können dadurch in ein effektives Magnetfeld $B_\text{eff} = B_1 + B_0$ überführt
 und \eqref{eq_dglMagnetisierung} damit geschrieben werden. Im Fall $\Omega$ = $\omega_L$ verschwindet die $z$-Komponente des effektiven Felds. Explizit im Laborsystem wird
 das HF-Feld durch $B_1(t) = B_x \cos(\Omega t)$ gegeben. Dieses wird in zwei Komponenten entsprechend Abbildung \ref{pic_rotSystem} aufgeteilt, die mit
-$\Omega$ gegenläufig rotieren. Die Komponente $B_\text{rechts}$ wird nun festgehalten und die andere läuft nun mit $-2\Omega$, die vernachlässigbar wird,
+$\Omega$ gegenläufig rotieren. Die Komponente $B_\text{rechts}$ wird nun festgehalten und die andere läuft nun mit $-2$ $\Omega$, die vernachlässigbar wird,
 da sie von der Larmorfrequenz zu weit entfernt ist. Die Kernspins rotieren nun gleich mit $B_\text{rechts}$ und nehmen dieses als konstantes Feld mit 
 Amplitude $B_x /2$ wahr. Bei anfänglicher Längsmagnetisierung entlang $z$, ergibt sich eine Präzessionsbewegung um die transformierte $x$-Achse mit der
 Rabi-Frequenz $\omega_1 = \gamma |B_\text{eff}|$.
@@ -196,9 +197,8 @@ die Evolutionsfrequenz und die Äquisitionsfrequenz. $t_p$ ist die Evolutionszei
 \end{figure}
 \noindent
 Der Stoff Rb$_3$D(SO$_4$)$_2$ ist ein Ionenleiter, bei dem Deuteronen von Gitterplatz zu Gitterplatz kommen. Bei einem Einkristall davon gibt es zwei
-unterscheidbare elektrische Feldgradienten beim Deuteron bzw. bei einer Leerstelle. Findet ein Sprung statt, ändert sich die NMR-Frequenz, was nachgewiesen
-werden kann. Während relativ langer Mischzeiten können Deuteronen in die Leerstellen springen. Hierbei kann sich im Allgemeinen 
-die Umgebung der Spins und damit die Präzessionsfrequenz ändern. Findet ein Sprung statt, entwickelt sich die Magnetisierung nach dem dritten Puls mit der
+unterscheidbare elektrische Feldgradienten beim Deuteron bzw. bei einer Leerstelle. Findet ein Sprung statt, entwickelt sich die Magnetisierung nach dem 
+dritten Puls mit der
 neuen Frequenz. Je mehr Sprünge stattfinden, bei beispielsweise längerer Mischzeit, entwickelt sich ein immer größerer Teil der Magnetisierung mit der 
 neuen Frequenz. Ist die Mischzeit sehr kurz kommt es kaum bis gar nicht zu Sprüngen, weshalb hierbei der Peak der neuen Frequenz nicht sichtbar ist.
 Dieser Zusammenhang ist in Abbildung \ref{pic_neueFrequenz} dargestellt. 
@@ -241,12 +241,19 @@ Das NMR-Spektrometer erfüllt hier zwei Aufgaben. Die Manipulation des Spinsyste
 Magnetfelder gestört, welche durch Signale des HF-Generators induziert werden. Um starke Felder zu erzeugen, muss viel Leistung in den Probenstab gelangen,
 was über ein Diodenpärchen am Ende des $\lambda$/4-Kabels ermöglicht wird. Das Diodenpaar ist gesperrt, wenn die Detektion läuft, sodass das Kerninduktionssignal
 zum Vorverstärker gelangt. Dieses Signal $\omega_\text{RF}$ lässt sich nicht gut direkt messen, die Differenz davon mit $\omega_L$ jedoch schon. Daher wird
-eine Quadraturdetekion durchgeführt, bei der das Kernsignal auch mit einem um 90$^\circ$ verschobenen Signal gemischt wird. Der Probenkopf besteht im Grunde
-aus einem Reihenresonanzkreis, der auf die Larmorfrequenz abgestimmt ist, mit einer auf 50 $\Omega$ angepassten Impedanz. Die Impedanzanpassung vermeidet die 
+eine Quadraturdetekion durchgeführt, bei der das Kernsignal auch mit einem um 90$^\circ$ verschobenen Signal gemischt wird. 
+\\ \noindent Der Probenkopf besteht im Grunde
+aus einem Reihenresonanzkreis, der auf die Larmorfrequenz abgestimmt ist, mit einer auf \SI{50}{\ohm} angepassten Impedanz. Die Impedanzanpassung vermeidet die 
 Reflektion der eingestrahlen Welle und ist vor jeder Messung notwendig. Für die Anpassung wird ein Netzwerkanalysator verwendet für die Ausmessung des
 Stehwellenverhältnisses VSWR, welches ein Maß für den Anteil der reflektierten Leistung ist.
 
-\noindent Zu Beginn soll der Schwingkreis auf eine Resonanzfrequenz von 46,223 MHz eingestellt werden. Die Dauer eines $(\pi)$-Pulses soll mit einem 
+Die untersuchte Probe ist Li$_{10}$SnP$_2$S$_{12}$. Die Resonanzfrequenz wird auf \SI{117,02}{\mega\hertz} eingestellt. Nun werden die Messungen zur Bestimmung von T1, T2 
+und die stimulierten Echos durchgeführt. Für T1 wird ein Festkörperecho mit saturation recovery verwendet bei Temperaturen im Bereich von \SI{300}{\kelvin} bis \SI{420}{\kelvin} 
+in Schritten von \SI{20}{\kelvin}, sowie in anderer Richtung. Zudem im Temperaturbereich von \SI{115}{\kelvin} bis \SI{103}{kelvin} in Schritten von \SI{3}{\kelvin}. Saturation recovery Sequenzen bestehen
+aus multiplen 90$^\circ$-Pulsen, die in kurzen Abständen wiederholt werden, um die z-Magnetisierung zu beseitigen. Nach einer Zeit 
+
+
+\noindent Zu Beginn soll der Schwingkreis auf eine Resonanzfrequenz von \SI{46,223}{\mega\hertz} eingestellt werden. Die Dauer eines $(\pi)$-Pulses soll mit einem 
 Festkörperecho am Dimethylsulfon gemessen werden. $T_1$ wird durch eine saturation-recovery Messung bestimmt. Die Magnetisierung $M(t)$ soll mit einer
 Kohlrauschfunktion $\propto \exp[-(t/T_1)^{1-\nu}]$ angepasst werden. $T_2$ wird mit einem Festkörperecho ermittelt. Mit diesen Werten werden die Einstellungen
 für die stimulierten Echos festgesetzt. Bei einem bestimmten $t_p$ soll die Echohöhe in Abhängigkeit von $t_m$ gemessen werden. Die um $M(t)$ korrigierten

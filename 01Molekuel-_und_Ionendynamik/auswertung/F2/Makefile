@@ -6,8 +6,8 @@ clean:
 	rm *.pdf
 
 ./F2_Plot.pdf: ./plot_01.py
-	python $<
+	python3 $<
 
 
 ./F2_Fit.pdf: ./plot_tauC_tief.py ./tauC_values
-	python $<
+	python3 $<

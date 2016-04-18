@@ -6,10 +6,10 @@ clean:
 	rm *.pdf
 
 ./T2_hochTemperaturFit.pdf: ./plot_01hoch.py
-	python $<
+	python3 $<
 
 ./T2_tiefTemperaturFit.pdf: ./plot_01tief.py
-	python $<
+	python3 $<
 
 ./T2_tiefTemperaturPlot.pdf: ./plot_tauC_tief.py ./T2_data
-	python ./plot_tauC_tief.py
+	python3 ./plot_tauC_tief.py
