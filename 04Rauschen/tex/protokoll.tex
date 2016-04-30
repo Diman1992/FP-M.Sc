@@ -1,0 +1,170 @@
+% ========================================
+%	Header einbinden
+% ========================================
+
+\input{longheader.tex}
+
+% ========================================
+%	Angaben für das Titelblatt
+% ========================================
+
+\title{Versuch V57 - Rauschen\\				% Titel des Versuchs 
+\large TU Dortmund, Fakultät Physik\\ 
+\normalsize Fortgeschrittenen-Praktikum}
+
+\author{Jan Adam\\			% Name Praktikumspartner A
+{\small \href{jan.adam@tu-dortmund.de}{jan.adam@tu-dortmund.de}}	% Erzeugt interaktiven einen Link
+\and						% um einen weiteren Author hinzuzfügen
+Felix Wieland\\					% Name Praktikumspartner B
+{\small \href{felix.wieland@tu-dortmund.de}{felix.wieland@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
+}
+\date{09.06.2015}				% Das Datum der Versuchsdurchführung
+
+% ========================================
+%	Das Dokument beginnt
+% ========================================
+
+\begin{document}
+
+% ========================================
+%	Titelblatt erzeugen
+% ========================================
+
+\maketitle					% Jetzt wird die Titelseite erzeugt
+\thispagestyle{empty} 				% Weder Kopfzeile noch Fußzeile
+
+% ========================================
+%	Der Vorspann
+% ========================================
+
+%\newpage					% Wenn Verzeichnisse auf einer neuen Seite beginnen sollen
+%\pagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+
+\tableofcontents
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoffigures					% Abbildungsverzeichnis
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoftables					% Tabellenverzeichnis
+\newpage					% eine neue Seite
+
+
+% ========================================
+%	Kapitel
+% ========================================
+
+%\section{Einleitung}				% Bei Bedarf
+
+\section{Auswertung}
+\subsection{Eigenrauschen}
+Zunächst muss das Eigenrauschen der Apparatur bei verschiedenen Gain Einstellungen bestimmt werden, da alle folgenden Messungen um diesen Wert korrigiert werden müssen.
+
+Dazu wurde ein \SI{0}{\ohm} Widerstand an den Eingang angeschlossen und anschließend das Rauschspannungsquadrat $U_0^2$ bei allen Nachverstärkungsstufen $(V_N)$ gemessen. Die Ergebnisse der Messungen stehen in den Tabellen \ref{tab:eigenRauschen_norm} und \ref{tab:eigenRauschen_korr}.
+
+\begin{table}[h]
+	\begin{subtable}[c]{0.3\textwidth}
+		\begin{tabular}{lS}
+			{$V_N$} & {$U_0^2$ [\si{\milli\volt}]}\\
+			\toprule
+			1	& 4.0\\
+			2	& 4.0\\
+			5	& 4.0\\
+			10	& 4.0\\
+			20	& 4.0\\
+			50	& 4.0\\
+			100	& 3.6\\
+			200	& 1.0\\
+			500	& 12.0\\
+			1000& 55.6
+		\end{tabular}
+		\caption{Normale Schaltung}
+		\label{tab:eigenRauschen_norm}
+	\end{subtable}%
+	\hspace{1cm}%
+	\begin{subtable}[c]{0.3\textwidth}
+		\begin{tabular}{lS}
+			{$V_N$} & {$U_0^2$ [\si{\milli\volt}]}\\
+			\toprule
+			1	&-11.1 \\
+			2	&-10.9 \\
+			5	&-11.0 \\
+			10	&-11.1 \\
+			20	&-11.0 \\
+			50	&-10.8 \\
+			100	&-10.2 \\
+			200	&-9.8 \\
+			500	&0.5 \\
+			1000	&53.0
+		\end{tabular}
+		\caption{Korrelationsschaltung}
+		\label{tab:eigenRauschen_korr}
+	\end{subtable}
+	\caption{Eigenrauschen der Apparatur bei den beiden verwendeten Aufbauten.}
+	\label{tab:eigenRauschen}
+\end{table}
+
+\subsection{Eichung}
+Bevor die eigentlichen Messungen durchgeführt werden können, muss die Apparatur zudem geeicht werden.
+
+Ein Sinuswellengenerator wird mit einer Amplitude von \SI{175}{\milli\volt} an den Eingang angeschlossen und durch einen Abschwächer um den Faktor 1000 reduziert. Der Bandpass wird so eingestellt, dass er nur Frequenzen im Bereich von \SIrange{10}{20}{\kilo\hertz} passieren lässt und die Nachverstärkung wird so eingestellt, dass die Spannungen mit genug Nachkommastellen im Millivoltbereich abgelesen werden kann. Die Messwerte stehen in Tabelle \ref{} und eine graphische Darstellung der mittels Gleichung \ref normierten Spannung $\eta(\nu)$ ist in Abbildung \ref zusehen.
+
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{../auswertung/results/sin.pdf}
+	\caption{Messwerte aus der Eichmessung. Der Bandpass wurde auf das Intervall \SI{10}{\kilo\hertz} - \SI{20}{\kilo\hertz} eingestellt.}
+\end{figure}
+
+Um die Apparaturkonstante
+\begin{align}
+	\Delta\nu = \int_0^\infty \eta(\nu)\ d\nu
+\end{align}
+Zu bestimmen, wird die Integralfläche mittels Trapezregel bestimmt.
+Damit ergibt sich für A:
+\begin{align}
+	\Delta\nu = 3870.61 \pm 
+\end{align}
+Der Fehler wurde mittels des Restgliedes der Trapezregel abgeschätzt:
+\begin{align}
+	\textbar R(f)\textbar = \frac{b-a}{12}h^2\text{max}\left(f''(x)\right)
+\end{align}
+
+Um die Boltzmann-Konstante $k_B$ zu berechnen, wird der Sinusgenerator durch einen Variablen Widerstand ausgetauscht und die Rauschspannung gegen den Widerstand aufgetragen. Mittels linearer Regression, kann dann $k_B$ bestimmt werden.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{../auswertung/results/wid1.pdf}
+	\caption{Thermisches Rauschen Widerstand 1 (\SI{0}{\ohm} - \SI{100}{\ohm})}
+	\label{fig:thermRauschen1}
+\end{figure}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{../auswertung/results/wid2.pdf}
+	\caption{Thermisches Rauschen Widerstand 2 (\SI{0}{\ohm} - \SI{1000}{\ohm})}
+	\label{fig:thermRauschen2}
+\end{figure}
+
+Mittels der Niquist-Beziehung (Gleichung \ref) lässt sich aus den Steigungen der Ausgleichsgeraden die Boltzmannkonstante berechnen.
+
+\begin{align}
+	k_B = \frac{m}{4T\Delta\nu}
+\end{align}
+
+\vspace{2cm}
+\textbf{Literatur}
+
+\vspace{0.3cm}
+[1] Anleitung des Lehrstuhlversuchs
+
+% ========================================
+%	Literaturverzeichnis
+% ========================================
+
+%\bibliographystyle{plainnat}			% Bibliographie-Style auswählen
+%\bibliography{BIBDATEI}			% Literaturverzeichnis
+
+% ========================================
+%	Das Dokument endent
+% ========================================
+
+\end{document}
