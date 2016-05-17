@@ -148,9 +148,7 @@ Bei der Durchführung des Versuchs müssen zu Beginn Strahl und Probe justiert w
  Winkelbereich von ca. 0.45 bis 0.55 und der Detektorwinkel wird auf 0.5 geeicht.
 \end{enumerate}
 Nach Justage des Labordiffraktometers kann nun mit der Vermessung der Probe begonnen werden. Als Scanbereich (Winkel) wird das Intervall $0^\circ$ bis 
-$2.5^\circ$ mit einer Schrittweite von $0.0025^\circ$ gewählt. Pro Winkel wird die Intensität über eine Zeitraum von $t=\SI{10}{\second}$ gemessen. Um Fehler durch
-Streustrahlen zu vermindern, wird außerdem ein ``Diffuser Scan'' durchgeführt. Dabei wird die eben beschriebene Messung wiederholt, jedoch mit einem um
-$0.1^\circ$ verschobenen Detektor.
+$2.5^\circ$ mit einer Schrittweite von $0.0025^\circ$ gewählt. Pro Messung wird die Intensität über eine Zeitraum von $t=\SI{10}{\second}$ integriert. Um den Untergrund durch Streustrahlen zu unterdrücken, wird außerdem ein ``Diffuser Scan'' durchgeführt. Dabei wird die eben beschriebene Messung wiederholt, der Detektor wird jedoch um $0.1^\circ$ bezüglich des Ausfallwinkels der Röntgenstrahlung verschoben. Dadurch wird nur nur die diffus gestreute Röntgenstrahlung gemessen, die bei der eigentlichen Messung als Untergrund eingeht. Durch Subtraktion beider Scans kann die Messung um den Untergrund korrigiert werden.
 
 \section{Auswertung}
 In diesem Versuch sollen Dispersion und Rauigkeit des Siliziumwafers, sowie die Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht bestimmt werden.
@@ -162,10 +160,10 @@ In diesem Versuch sollen Dispersion und Rauigkeit des Siliziumwafers, sowie die 
 	\label{pic:daten}
 \end{figure}
 
-Abbildung \ref{pic:daten} zeigt die beim Scan aufgenommenen Daten. Nach der eigentlichen Reflektivitätsmessung wurde ein sogenannter "Diffuser Scan"\ durchgeführt, bei dem der Detektorwinkel um \SI{0.1}{\degree} gegenüber dem Einfallswinkel verschoben wurde. Dadurch wird der Anteil des gestreuten Röntgenlichts gemessen welches vom Reflektivitätsscan abgezogen werden muss.
+Abbildung \ref{pic:daten} zeigt die bei den Scans aufgenommenen Daten. Dargestellt sind die Reflektivitätsmessung sowie der "Diffuse Scan"\. Der Diffuse Scan wird vom Reflektivitätsscan subtrahiert.
 
 Anschließend müssen die Daten um den Geometriefaktor $G$ korrigiert werden.
-Der Geometriefaktor entspricht dem Anteil des Strahls, der die Fläche des Wafers trifft:
+Der Geometriefaktor $G$ entspricht dem Anteil des Strahls, der die Fläche des Wafers trifft:
 \begin{align}
 	G &= \frac{D}{d_0}\cdot \sin(\alpha_i) &\text{für $\alpha_i < \alpha_g$}\\
 	G &= 1 &\text{sonst}
@@ -192,16 +190,16 @@ In Abbildung \ref{pic:fit} wurde neben den Datenpunkten zwei gefittete Kurven ei
 \begin{align*}
 	n_2 &= 1-2.8\cdot 10^{-6}\\
 	n_3 &= 1-7.2\cdot 10^{-6}\\
-	\sigma_1 &= 5.5\cdot 10^{-10} \\
-	\sigma_2 &= 2.4\cdot 10^{-10}\\
-	z_2&= 210.0\cdot 10^{-10}
+	\sigma_1 &= 5.5\cdot 10^{-10}\,\si{\meter} \\
+	\sigma_2 &= 2.4\cdot 10^{-10}\,\si{\meter}\\
+	z_2&= 210.0\cdot 10^{-10}\,\si{\meter}
 \end{align*}
 
 Die blaue Kurve weicht jedoch um bis zu 30\% von den Messwerten ab. Daher wurden die angegebenen Parameter per Hand weiter optimiert, um eine bessere Abdeckung zu erzielen. Die neue Kurve wird in rot dargestellt.
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=\textwidth]{../tex/bilder/fit.pdf}
-	\caption{Messwerte mit und ohne Korrektur durch den Geometriefaktor}
+	\caption{Korrigierte Messwerte und Theoriekurven.}
 	\label{pic:fit}
 \end{figure}
 
@@ -210,19 +208,21 @@ Die rote Kurve ergibt sich durch folgende Parameterwahl:
 \begin{align*}
 n_2 &= 1-3.5\cdot 10^{-6}\\
 n_3 &= 1-9.24\cdot 10^{-6}\\
-\sigma_1 &= 4.78\cdot 10^{-10} \\
-\sigma_2 &= 3.28\cdot 10^{-10}\\
- z_2&= 209.8\cdot 10^{-10}
+\sigma_1 &= 4.78\cdot 10^{-10}\,\si{\meter} \\
+\sigma_2 &= 3.28\cdot 10^{-10}\,\si{\meter}\\
+ z_2&= 209.8\cdot 10^{-10}\,\si{\meter}
 \end{align*}
+
+Bei Durchführung des Fits ist es wichtig, darauf zu achten, dass der erste Peak bis ungefähr \SI{0.2}{\degree} nicht verwendet wird. Bei einem Winkel von $0^\circ < \alpha < 0.2^\circ$ trifft die Röntgenstrahlung so flach auf den Wafer, dass ein Teil von ihr den Wafer verfehlt und ohne Reflektion direkt in den Detektor trifft. Diese Werte dürfen daher nicht den Fit beeinflussen.
 
 \section{Diskussion}
 Es gelingt nicht, eine perfekte Übereinstimmung zwischen Messwerten und Theoriekurve zu erzielen.
 Dies deutet darauf hin, dass die Struktur der untersuchte Probe vom Theoriemodell abweicht. In der Tat bildet sich durch den Sauerstoff aus der Luft auf der Siliziumschicht eine feine Oxidschicht, die im verwendeten Modell nicht berücksichtigt wurde.
 Entsprechend gelingt es dem automatischen Fit nicht, die bestmöglichste Übereinstimmung zu finden.
 
-Durch eine manuelle Optimierung kann die Theoriekurve den Messwerten weiter angenähert werden, eine sehr gute Übereinstimmung kann jedoch entweder nur im ersten Peak oder nur in den nachfolgenden Erreicht werden. Hier wurde ein Tradeoff aus beidem gewählt, um starke lokale Schwankungen zu vermeiden.
+Durch eine manuelle Optimierung kann die Theoriekurve den Messwerten weiter angenähert werden, eine sehr gute Übereinstimmung kann jedoch entweder nur im ersten Peak oder nur in den nachfolgenden Erreicht werden. Hier wurde ein Kompromiss aus beidem gewählt, um starke lokale Schwankungen zu vermeiden.
 
-Beide Auswertungen gelangen zu einer ähnlichen Schichtdicke des Siliziums von etwa \SI{210}{\angstrom}.
+Beide Auswertungen gelangen zu einer ähnlichen Schichtdicke des Polysterols von etwa \SI{210}{\angstrom}.
 Die Rauigkeit dieser Schicht variiert jedoch je nach Fit zwischen \SI{2.4}{\angstrom} und \SI{3.2}{\angstrom}, was ein Hinweis auf die vorhandene Oxidschicht sein kann.
 
 
