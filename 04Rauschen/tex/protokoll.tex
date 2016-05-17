@@ -8,24 +8,24 @@
 %	Angaben für das Titelblatt
 % ========================================
 
-\title{Versuch V57 - Rauschen\\				% Titel des Versuchs 
-\large TU Dortmund, Fakultät Physik\\ 
-\normalsize Fortgeschrittenen-Praktikum}
+\title{Lehrstuhlversuch E1 - Röntgenreflektometrie\\				% Titel des Versuchs 
+	\large TU Dortmund, Fakultät Physik\\ 
+	\normalsize Fortgeschrittenen-Praktikum}
 
 \author{Jan Adam\\			% Name Praktikumspartner A
-{\small \href{jan.adam@tu-dortmund.de}{jan.adam@tu-dortmund.de}}	% Erzeugt interaktiven einen Link
-\and						% um einen weiteren Author hinzuzfügen
-Felix Wieland\\					% Name Praktikumspartner B
-{\small \href{felix.wieland@tu-dortmund.de}{felix.wieland@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
+	{\small \href{jan.adam@tu-dortmund.de}{jan.adam@tu-dortmund.de}}	% Erzeugt interaktiven einen Link
+	\and						% um einen weiteren Author hinzuzfügen
+	Felix Wieland\\					% Name Praktikumspartner B
+	{\small \href{felix.wieland@tu-dortmund.de}{felix.wieland@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
 }
-\date{09.06.2015}				% Das Datum der Versuchsdurchführung
+\date{25.04.2016}				% Das Datum der Versuchsdurchführung
 
 % ========================================
 %	Das Dokument beginnt
 % ========================================
 
 \begin{document}
-
+	
 % ========================================
 %	Titelblatt erzeugen
 % ========================================
@@ -56,8 +56,6 @@ Felix Wieland\\					% Name Praktikumspartner B
 %	Kapitel
 % ========================================
 
-%\section{Einleitung}				% Bei Bedarf
-
 \section{Auswertung}
 \subsection{Eigenrauschen}
 Zunächst muss das Eigenrauschen der Apparatur bei verschiedenen Gain Einstellungen bestimmt werden, da alle folgenden Messungen um diesen Wert korrigiert werden müssen.
@@ -65,6 +63,7 @@ Zunächst muss das Eigenrauschen der Apparatur bei verschiedenen Gain Einstellun
 Dazu wurde ein \SI{0}{\ohm} Widerstand an den Eingang angeschlossen und anschließend das Rauschspannungsquadrat $U_0^2$ bei allen Nachverstärkungsstufen $(V_N)$ gemessen. Die Ergebnisse der Messungen stehen in den Tabellen \ref{tab:eigenRauschen_norm} und \ref{tab:eigenRauschen_korr}.
 
 \begin{table}[h]
+	\centering
 	\begin{subtable}[c]{0.3\textwidth}
 		\begin{tabular}{lS}
 			{$V_N$} & {$U_0^2$ [\si{\milli\volt}]}\\
@@ -109,46 +108,148 @@ Dazu wurde ein \SI{0}{\ohm} Widerstand an den Eingang angeschlossen und anschlie
 \subsection{Eichung}
 Bevor die eigentlichen Messungen durchgeführt werden können, muss die Apparatur zudem geeicht werden.
 
-Ein Sinuswellengenerator wird mit einer Amplitude von \SI{175}{\milli\volt} an den Eingang angeschlossen und durch einen Abschwächer um den Faktor 1000 reduziert. Der Bandpass wird so eingestellt, dass er nur Frequenzen im Bereich von \SIrange{10}{20}{\kilo\hertz} passieren lässt und die Nachverstärkung wird so eingestellt, dass die Spannungen mit genug Nachkommastellen im Millivoltbereich abgelesen werden kann. Die Messwerte stehen in Tabelle \ref{} und eine graphische Darstellung der mittels Gleichung \ref normierten Spannung $\eta(\nu)$ ist in Abbildung \ref zusehen.
+Ein Sinuswellengenerator wird mit einer Amplitude von \SI{175}{\milli\volt} an den Eingang angeschlossen und durch einen Abschwächer um den Faktor 1000 reduziert. Der Bandpass wird so eingestellt, dass er nur Frequenzen im Bereich von \SIrange{10}{20}{\kilo\hertz} passieren lässt und die Nachverstärkung wird so eingestellt, dass die Spannungen mit genug Nachkommastellen im Millivoltbereich abgelesen werden kann. Die Messwerte stehen in Tabelle \ref{} und eine graphische Darstellung der mittels Gleichung \ref normierten Spannung $\eta(\nu)$ ist in Abbildung \ref{fig:eichmessung} zusehen.
 
 \begin{figure}[h]
-	\includegraphics[width=\textwidth]{../auswertung/results/sin.pdf}
+	\includegraphics[height=8.5cm]{../auswertung/results/sin.pdf}
 	\caption{Messwerte aus der Eichmessung. Der Bandpass wurde auf das Intervall \SI{10}{\kilo\hertz} - \SI{20}{\kilo\hertz} eingestellt.}
+	\label{fig:eichmessung}
 \end{figure}
+
 
 Um die Apparaturkonstante
 \begin{align}
 	\Delta\nu = \int_0^\infty \eta(\nu)\ d\nu
 \end{align}
 Zu bestimmen, wird die Integralfläche mittels Trapezregel bestimmt.
-Damit ergibt sich für A:
+Damit ergibt sich für die normale Schaltung:
 \begin{align}
-	\Delta\nu = 3870.61 \pm 
+\Delta\nu = (\input{../auswertung/results/sin1_DeltaNu.fit}) \SI{}{\hertz}
 \end{align}
-Der Fehler wurde mittels des Restgliedes der Trapezregel abgeschätzt:
+
+Die Fehler wurde mittels des Restgliedes der Trapezregel abgeschätzt:
 \begin{align}
 	\textbar R(f)\textbar = \frac{b-a}{12}h^2\text{max}\left(f''(x)\right)
+	\label{eq:restglied}
 \end{align}
+Mit diesem Wert kann nun die Rauschzahl der Schaltung berechnet werden. 
+\begin{align*}
+	T &= \SI{293}{\kelvin}\\
+	V^2_\text{ges} &= V_=V^2_VV^2_N = 10^{13}\, \si{\volt}\\
+	U^2(500\Omega) &= (706.0\pm 14.1)\,{\milli\volt}\\
+	F(500\Omega, \Delta\nu) &= \frac{U^2(500)}{4k_\text{B} \cdot \SI{293}{\kelvin} \cdot \SI{500}{\ohm} \cdot \Delta\nu \cdot V^2_\text{ges}} = \input{../auswertung/results/rausch1.fit}
+\end{align*}
+Der Fehler für die Spannung $U^2$ wurde dazu mit $2\%$ abgeschätzt.\\
 
-Um die Boltzmann-Konstante $k_B$ zu berechnen, wird der Sinusgenerator durch einen Variablen Widerstand ausgetauscht und die Rauschspannung gegen den Widerstand aufgetragen. Mittels linearer Regression, kann dann $k_B$ bestimmt werden.
+Um die Boltzmann-Konstante $k_B$ zu berechnen, wird der Sinusgenerator durch einen Variablen Widerstand ausgetauscht und die Rauschspannung gegen den Widerstand aufgetragen. Mittels linearer Regression, kann dann über die Nyquist-Beziehung (Gleichung \ref) $k_B$ bestimmt werden. Die graphische Darstellung der Messwerte ist in den Abbildungen \ref{fig:thermRauschen1} und \ref{fig:thermRauschen2} zu finden.\\
 
-\begin{figure}
+Ergebnis der Regression mit dem \SI{1000}{\ohm} Widerstand.
+\begin{align*}
+	m &= \input{../auswertung/results/wid1_m.fit}\\
+	b &= \input{../auswertung/results/wid1_b.fit}\\
+	k_{B,1000\,\Omega} &= \frac{m}{4T\Delta\nu} =\input{../auswertung/results/wid1_kb.fit}\\
+\end{align*}
+
+Ergebnis der Regression mit dem \SI{100}{\ohm} Widerstand.
+\begin{align*}
+m &= \input{../auswertung/results/wid2_m.fit}\\
+b &= \input{../auswertung/results/wid2_b.fit}\\
+k_{B,100\,\Omega} &= \input{../auswertung/results/wid2_kb.fit}
+\end{align*}
+
+\begin{figure}[H]
 	\includegraphics[width=\textwidth]{../auswertung/results/wid1.pdf}
-	\caption{Thermisches Rauschen Widerstand 1 (\SI{0}{\ohm} - \SI{100}{\ohm})}
+	\caption{Thermisches Rauschen mit dem \SI{1000}{\ohm} Widerstand.}
 	\label{fig:thermRauschen1}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 	\includegraphics[width=\textwidth]{../auswertung/results/wid2.pdf}
-	\caption{Thermisches Rauschen Widerstand 2 (\SI{0}{\ohm} - \SI{1000}{\ohm})}
+	\caption{Thermisches Rauschen mit dem \SI{100}{\ohm} Widerstand.}
 	\label{fig:thermRauschen2}
 \end{figure}
 
-Mittels der Niquist-Beziehung (Gleichung \ref) lässt sich aus den Steigungen der Ausgleichsgeraden die Boltzmannkonstante berechnen.
 
+\subsection{Korrelator-Schaltung}
+Nun wird die gleiche Rechnung für die Korrelatorschaltung wiederholt. Die Verstärkungsfaktoren sind dabei bis auf einen zusätzlichen Faktor 10 durch den Selektivverstärker identisch zur vorherigen Schaltung.
+
+Begonnen wird mit der Eichung. Mittels Trapezregel werden die Datenpunkte aus Abbildung \ref{fig:eichmessung_korrel} integriert. Der Fehler übersteigt den Messwert um mehrere Größenordnungen, da für die Restgliedabschätzung (Gleichung \ref{eq:restglied}) die zweite Ableitung verwendet wird und im Bereich des Peaks zu wenige Messungen durchgeführt wurden. Für alle folgenden Rechnungen wird daher der Fehler ignoriert.
 \begin{align}
-	k_B = \frac{m}{4T\Delta\nu}
+\Delta\nu= (\input{../auswertung/results/sin2_DeltaNu.fit})\,\si{\hertz}
 \end{align}
+
+Auch von der Korrelatorschaltung wird die Rauschzahl nach Gleichung \ref bestimmt
+
+\begin{align*}
+T &= \SI{293}{\kelvin}\\
+V^2_\text{ges} &= V_=V^2_VV^2_NV_S^2 = 10^{15}\, \si{\volt}\\
+U^2(500\Omega) &= (625.0\pm 12.5)\,{\milli\volt}\\
+F(500\Omega, \Delta\nu) &= \input{../auswertung/results/rausch2.fit}
+\end{align*}
+
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[height=8.5cm]{../auswertung/results/sin_korrel.pdf}
+	\caption{Messwerte aus der Eichmessung der Korrelationsschaltung. Die Selektivverstärker wurden auf \SI{15}{\kilo\Hz} eingeregelt.}
+	\label{fig:eichmessung_korrel}
+\end{figure}
+
+und mittels Nyquist-Beziehung die Boltzmann Konstante $k_\text{B}$ ermittelt.
+
+Bei der Korrelatorschaltung lässt sich die Rauschspannung zudem durch folgende Formel ausdrücken:
+\begin{align}
+	U^2_a = \frac{U_e^2}{Q^2}\frac{1}{\eta^2 + \eta^{-2} + Q^{-2} -2} \qquad \qquad ;\eta = \frac{\nu}{\nu_0}
+\end{align}
+Mit dem least-square Verfahren wurde die Formel an die Messpunkte angenähert (Abbildung \ref{fig:eichmessung_korrel}). Bei der grünen Kurve wurden alle drei Parameter durch den Algorithmus ermittelt und bei der roten Kurve wurden die Parameter $Q=10$ und $V_E=0.175\,\si{mV}$ gesetzt, was der Konfiguration des Experimentes entspricht.
+\begin{align}
+	\nu_0 &= (\input{../auswertung/results/sin2_nu0.fit}) \,\hertz\\
+	Q &= (\input{../auswertung/results/sin2_Q.fit})\\
+	V_E &= \input{../auswertung/results/sin2_U.fit}\, \si{\volt}
+\end{align}
+
+Der Sinusgenerator wird durch die Widerstände ersetzt:\\
+Ergebnis der Regression mit dem \SI{1000}{\ohm} Widerstand.
+\begin{align*}
+m &= \input{../auswertung/results/wid1_korrel_m.fit}\\
+b &= \input{../auswertung/results/wid1_korrel_b.fit}\\
+k_{B,1000\,\Omega} &= \frac{m}{4T\Delta\nu} =\input{../auswertung/results/wid1_korrel_kb.fit}\\
+\end{align*}
+
+Ergebnis der Regression mit dem \SI{100}{\ohm} Widerstand.
+\begin{align*}
+m &= \input{../auswertung/results/wid2_korrel_m.fit}\\
+b &= \input{../auswertung/results/wid2_korrel_b.fit}\\
+k_{B,100\,\Omega} &= \input{../auswertung/results/wid2_korrel_kb.fit}
+\end{align*}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{../auswertung/results/wid1_korrel.pdf}
+	\caption{Thermisches Rauschen mit dem \SI{1000}{\ohm} Widerstand.}
+	\label{fig:thermRauschen1}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{../auswertung/results/wid2_korrel.pdf}
+	\caption{Thermisches Rauschen mit dem \SI{100}{\ohm} Widerstand.}
+	\label{fig:thermRauschen2}
+\end{figure}
+
+
+
+\subsection{Reinmetall-Kathode}
+Zunächst werden Kennlinien der Reinmetall-Kathode aufgenommen, damit sichergestellt werden kann, dass die Kathode bei der Datennahme im Sättigungsbereich betrieben wird. Die Messwerte sind in Abbildung \ref{fig:kennlinie} dargestellt. Für alle folgenden Messungen wird eine Spannung von \SI{150}{\volt} eingestellt.
+\begin{figure}[h]
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/kathRein_sat.pdf}
+	\caption{Kennlinien der Reinkathode aufgenommen bei zwei verschiedenen Heizströmen.}
+	\label{fig:kennlinie}
+\end{figure}
+
+Die Schottky-Beziehung kann zu
+\begin{align}
+	U_a^2 = \frac{2e_0 \ \Delta\nu}{R} I_0
+\end{align}
+
+
 
 \vspace{2cm}
 \textbf{Literatur}
@@ -166,5 +267,4 @@ Mittels der Niquist-Beziehung (Gleichung \ref) lässt sich aus den Steigungen de
 % ========================================
 %	Das Dokument endent
 % ========================================
-
 \end{document}
