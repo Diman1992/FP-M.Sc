@@ -60,7 +60,7 @@ Dimitrios Skodras\\					% Name Praktikumspartner B
 
 \section{Theorie}
 \subsection{Fresnelsche Formeln}
-Die Fresnelformeln geben den Reflexions- (R) und den Transmissionsgrad (T) von EM-Wellen an der Grenzfläche zweier Medien mit Brechungsindizes $n_{1,2}$ an.
+Die Fresnelformeln geben den Reflexions- (R) und den Transmissionsgrad (T) von EM-Wellen an der Grenzfläche zweier Medien mit Brechungsindizes $n_1$ und $n_2$ an.
 Entsprechend der beiden Polarisationsrichtungen (senkrecht und parallel) gibt es vier verschiedene Formeln
 \begin{align}
  T_s &= \frac{2n_1}{n_1 \cos\alpha + n_2\cos\beta}\\
@@ -68,8 +68,13 @@ Entsprechend der beiden Polarisationsrichtungen (senkrecht und parallel) gibt es
  T_p &= \frac{2n_1}{n_2 \cos\alpha + n_1\cos\beta}\\
  R_p &= \frac{n_2 \cos\alpha - n_1\cos\beta}{n_2 \cos\alpha + n_1\cos\beta},
 \end{align}
+<<<<<<< HEAD
 \noindent mit $\alpha$ als Winkel zwischen einfallendem Stahl und Lot und $\beta$ als Winkel zwischen ausfallendem Stahl und Lot. Das Lorentz-Modell erklärt,
 dass Materie für Röntgenstrahlung einen Brechungsindex $n = 1-\delta + \text{i}\beta$ aufweist. Hierin lautet die dielektrische Funktion
+=======
+\noindent mit $\alpha$ als Winkel zwischen einfallendem Strahl und Lot und $\beta$ als Winkel zwischen ausfallendem Strahl und Lot. Das Lorentz-Modell erklärt,
+dass Materie für Röntgenstrahlung einen Brechungsindex $n = 1-\delta <1$ aufweist. Hierin lautet die dielektrische Funktion
+>>>>>>> 8f98f6e863d9bc882e0ca164831a37024b5eba31
 \begin{align}
  \epsilon(\omega) = 1 + \frac{4\pi n_0 e^2}{m_\text{e}} \sum\limits_i \frac{f_i}{\omega_i^2 - \omega^2 - \text{i}\omega\Gamma_i},
 \end{align}
@@ -86,7 +91,7 @@ große Winkel zu
 \end{align}
 
 \subsection{Zweischichtsystem}
-Kiessing-Ringe sind Modulationen der Reflexionskurve, hervorgerufen durch Interferenz der reflektierten Stahlung. Die Minima entstehen, wenn der 
+Kiessing-Ringe sind Modulationen der Reflexionskurve, hervorgerufen durch Interferenz der reflektierten Strahlung. Die Minima entstehen, wenn der 
 Phasenunterschied gerade ein ungerades Vielfaches der Wellenlänge $\lambda$ ist. Ziel hier ist eine Beziehung zwischen der Winkeldifferenz zweier Kiessing-Minima 
 in Beziehung zur Schichtdicke $d$ zu setzen. Der Gangunterschied liest sich
 \begin{align}
@@ -124,7 +129,7 @@ Mit \texttt{Python} lässt sich die Reflektivität graphisch (Abbildung \ref{pic
 \noindent
 Erweitern lässt sich dieses System noch um die Rauigkeit $\sigma$, was zu den modifizierten Fresnelformeln führt
 \begin{align}
- r^\sigma_{j,j+1} = r_{j,j+1} \cdot \text{e}^(-2k_{z,j}k_{z,j+1}\sigma_j^2.
+ r^\sigma_{j,j+1} = r_{j,j+1} \cdot \text{e}^{-2k_{z,j}k_{z,j+1}\sigma_j^2}.
 \end{align}
 Mit einem $\sigma = 6\mathring{A}$ und sonst identischen Parametern verändert sich die Kurve so, wie in Abbildung \ref{pic_ReflRau} gezeigt. Die Kurve fällt aufgrund
 der Rauigkeit deutlich schneller ab.
@@ -137,7 +142,7 @@ der Rauigkeit deutlich schneller ab.
 
 
 \section{Durchführung}
-Bei der Durchführung des Versuchs müssen zu Beginn Stahl und Probe justiert werden. Dazu werden folgende Schritte getätigt
+Bei der Durchführung des Versuchs müssen zu Beginn Strahl und Probe justiert werden. Dazu werden folgende Schritte getätigt:
 \begin{enumerate}
  \item Die Probe wird in das Labordiffraktometer eingeführt.
  \item Die Probe wird entlang der $z$-Achse aus dem Strahlengang gefahren.
@@ -151,14 +156,90 @@ Bei der Durchführung des Versuchs müssen zu Beginn Stahl und Probe justiert we
  Winkelbereich von ca. 0.45 bis 0.55 und der Detektorwinkel wird auf 0.5 geeicht.
 \end{enumerate}
 Nach Justage des Labordiffraktometers kann nun mit der Vermessung der Probe begonnen werden. Als Scanbereich (Winkel) wird das Intervall $0^\circ$ bis 
-$2.5^\circ$ mit einer Schrittweite von $0.0025^\circ$ gewählt. Pro Winkel wird die Intensität über eine Zeitraum von $t=10$ s gemessen. Um Fehler durch
-Streustrahlen zu vermindern, wird außerdem ein ``Diffuser Scan'' durchgeführt. Dabei wird die eben beschriebene Messung wiederholt, jedoch mit einem um
-$0.1^\circ$ verschobenen Detektor.
+$2.5^\circ$ mit einer Schrittweite von $0.0025^\circ$ gewählt. Pro Messung wird die Intensität über eine Zeitraum von $t=\SI{10}{\second}$ integriert. Um den Untergrund durch Streustrahlen zu unterdrücken, wird außerdem ein ``Diffuser Scan'' durchgeführt. Dabei wird die eben beschriebene Messung wiederholt, der Detektor wird jedoch um $0.1^\circ$ bezüglich des Ausfallwinkels der Röntgenstrahlung verschoben. Dadurch wird nur nur die diffus gestreute Röntgenstrahlung gemessen, die bei der eigentlichen Messung als Untergrund eingeht. Durch Subtraktion beider Scans kann die Messung um den Untergrund korrigiert werden.
 
 \section{Auswertung}
+In diesem Versuch sollen Dispersion und Rauigkeit des Siliziumwafers, sowie die Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht bestimmt werden.
 
-%\parskip 340pt
-%\Large{Literatur}\\\\
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{../tex/bilder/data.pdf}
+	\caption{Messwerte des Reflektivitätsscans und des diffusen Scans.}
+	\label{pic:daten}
+\end{figure}
+
+Abbildung \ref{pic:daten} zeigt die bei den Scans aufgenommenen Daten. Dargestellt sind die Reflektivitätsmessung sowie der "Diffuse Scan"\. Der Diffuse Scan wird vom Reflektivitätsscan subtrahiert.
+
+Anschließend müssen die Daten um den Geometriefaktor $G$ korrigiert werden.
+Der Geometriefaktor $G$ entspricht dem Anteil des Strahls, der die Fläche des Wafers trifft:
+\begin{align}
+	G &= \frac{D}{d_0}\cdot \sin(\alpha_i) &\text{für $\alpha_i < \alpha_g$}\\
+	G &= 1 &\text{sonst}
+\end{align}
+ und somit in Richtung des Detektors reflektiert wird. Bei Winkeln $\alpha_i >$ Geometriewinkel $\alpha_g$, trifft immer der gesamte Strahl auf die Probe, daher gilt dort $G=1$. Bei kleineren Winkeln geht jedoch ein Teil des Lichts verloren, wodurch nur ein Teil des eigentlichen Signals im Detektor gemessen wird. Hier muss das Signal um den Geometriefaktor korrigiert werden.
+
+Bei einem Strahldurchmesser von $D = \SI{0.1}{\milli\meter}$ und einer Probendicke von $d_0 = \SI{30}{\milli\meter}$ ergibt sich für den Geometriewinkel $\alpha_g$ ein Wert von
+\begin{align}
+	\alpha_\text{g} = \arcsin\left(\frac{d_0}{D}\right) = \SI{0.191}{\degree}.
+\end{align}
+Unterhalb dieses Winkels muss der Geometriefaktor bei der Auswertung berücksichtigt werden. In Abbildung \ref{pic:geometrie} sind sowohl die ursprüngliche Datenreihe, als auch die korrigierte Datenreihe eingetragen. Bei kleinen Winkeln beträgt die Korrektur mehr als eine Größenordnung.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{../tex/bilder/geometriefaktor.pdf}
+	\caption{Messwerte mit und ohne Korrektur durch den Geometriefaktor.}
+	\label{pic:geometrie}
+\end{figure}
+
+
+Um nun Dispersion und Rauigkeit des Siliziumwafers, sowie Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht zu bestimmen, wird mittels Python ein Fit der aufgenommenen Messwerte durchgeführt. Der Brechungsindex der Luft wird dabei konstant als $n_1=1$ angenommen.
+
+In Abbildung \ref{pic:fit} wurde neben den Datenpunkten zwei gefittete Kurven eingetragen. Die blaue Kurve ergibt sich durch die Parameter, die das Pythonscript errechnet hat:
+\begin{align*}
+	n_2 &= 1-2.8\cdot 10^{-6}\\
+	n_3 &= 1-7.2\cdot 10^{-6}\\
+	\sigma_1 &= 5.5\cdot 10^{-10}\,\si{\meter} \\
+	\sigma_2 &= 2.4\cdot 10^{-10}\,\si{\meter}\\
+	z_2&= 210.0\cdot 10^{-10}\,\si{\meter}
+\end{align*}
+
+Die blaue Kurve weicht jedoch um bis zu 30\% von den Messwerten ab. Daher wurden die angegebenen Parameter per Hand weiter optimiert, um eine bessere Abdeckung zu erzielen. Die neue Kurve wird in rot dargestellt.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../tex/bilder/fit.pdf}
+	\caption{Korrigierte Messwerte und Theoriekurven.}
+	\label{pic:fit}
+\end{figure}
+
+
+Die rote Kurve ergibt sich durch folgende Parameterwahl:
+\begin{align*}
+n_2 &= 1-3.5\cdot 10^{-6}\\
+n_3 &= 1-9.24\cdot 10^{-6}\\
+\sigma_1 &= 4.78\cdot 10^{-10}\,\si{\meter} \\
+\sigma_2 &= 3.28\cdot 10^{-10}\,\si{\meter}\\
+ z_2&= 209.8\cdot 10^{-10}\,\si{\meter}
+\end{align*}
+
+Bei Durchführung des Fits ist es wichtig, darauf zu achten, dass der erste Peak bis ungefähr \SI{0.2}{\degree} nicht verwendet wird. Bei einem Winkel von $0^\circ < \alpha < 0.2^\circ$ trifft die Röntgenstrahlung so flach auf den Wafer, dass ein Teil von ihr den Wafer verfehlt und ohne Reflektion direkt in den Detektor trifft. Diese Werte dürfen daher nicht den Fit beeinflussen.
+
+\section{Diskussion}
+Es gelingt nicht, eine perfekte Übereinstimmung zwischen Messwerten und Theoriekurve zu erzielen.
+Dies deutet darauf hin, dass die Struktur der untersuchte Probe vom Theoriemodell abweicht. In der Tat bildet sich durch den Sauerstoff aus der Luft auf der Siliziumschicht eine feine Oxidschicht, die im verwendeten Modell nicht berücksichtigt wurde.
+Entsprechend gelingt es dem automatischen Fit nicht, die bestmöglichste Übereinstimmung zu finden.
+
+Durch eine manuelle Optimierung kann die Theoriekurve den Messwerten weiter angenähert werden, eine sehr gute Übereinstimmung kann jedoch entweder nur im ersten Peak oder nur in den nachfolgenden Erreicht werden. Hier wurde ein Kompromiss aus beidem gewählt, um starke lokale Schwankungen zu vermeiden.
+
+Beide Auswertungen gelangen zu einer ähnlichen Schichtdicke des Polysterols von etwa \SI{210}{\angstrom}.
+Die Rauigkeit dieser Schicht variiert jedoch je nach Fit zwischen \SI{2.4}{\angstrom} und \SI{3.2}{\angstrom}, was ein Hinweis auf die vorhandene Oxidschicht sein kann.
+
+
+
+\vspace{2cm}
+\textbf{Literatur}
+
+\vspace{0.3cm}
+[1] Anleitung des Lehrstuhlversuchs
 
 % ========================================
 %	Literaturverzeichnis

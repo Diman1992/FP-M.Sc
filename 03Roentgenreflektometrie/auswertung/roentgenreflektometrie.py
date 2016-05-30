@@ -1,4 +1,7 @@
-# -*- coding: iso-8859-1 -*-
+
+# coding: utf-8
+
+# In[204]:
 
 # ==================================================
 # 	import modules
@@ -15,11 +18,13 @@ import uncertainties.unumpy as unp
 
 # calc with arrays
 import numpy as np
+import pandas as pd
 
 # plot engine
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as gridspec
 from matplotlib.widgets import Slider, Button
+from matplotlib import rc
 
 # for fitting curves
 from scipy import optimize
@@ -27,13 +32,18 @@ from scipy import optimize
 # constants
 import scipy.constants as const
 
-# ==================================================
-# 	function to print equations with
-# 	matplotlib
-# ==================================================
+font = {'size'   : 18,}
+#        'weight' : 'bold'}
+rc('font', **font)
 
+
+# In[205]:
 
 def show(var):
+    '''
+    print equations with matplotlib
+    '''
+    
     callers_local_vars = inspect.currentframe().f_back.f_locals.items()
     var_name = [
         var_name for var_name,
@@ -50,6 +60,8 @@ def show(var):
     print("")  # newline
 
 
+# In[206]:
+
 def print_tex(s):
     assert isinstance(s, str)
     fig = plt.figure()
@@ -61,71 +73,81 @@ def print_tex(s):
             )
     plt.show()
 
-###########################################################################
-#                            Beginn Auswertung                            #
-###########################################################################
 
-theta_rho, psd_rho = np.loadtxt(
-    "../daten/unt.dat",
-    unpack=True
-)
+# # Beginn Auswertung 
 
-theta_diff_rho, psd_diff_rho = np.loadtxt(
-    "../daten/ref.dat",
-    unpack=True
-)
+# In[207]:
+
+daten = pd.read_csv("../daten/unt.dat",
+                    header=None,
+                    skipinitialspace=True,
+                    sep=' ',
+                    names=['angle','diffuse'],
+                    index_col='angle',
+                   )
+daten_diff = pd.read_csv("../daten/ref.dat",
+                    header=None,
+                    skipinitialspace=True,
+                    sep=' ',
+                    names=['angle','reflection'],
+                    index_col='angle',
+                   )
+
+daten = pd.concat([daten, daten_diff], axis=1)
+daten['difference'] = daten.reflection - daten.diffuse
+daten.head()
 
 
-###########################################################################
-#                                Aufgabe 8                                #
-###########################################################################
+# #                                Aufgabe 8                                
+
+# In[208]:
 
 # ==================================================
 # 	Diffusen Scan von Reflektivitätsscan
 # 	abziehen
 # ==================================================
 
-psd1 = psd_rho - psd_diff_rho
+fig = plt.figure(figsize=(19.2,10.8))
+ax = fig.add_subplot(111)
+
+daten['reflection'].plot(
+    ax=ax,
+    color='r',
+    linestyle='none',
+    marker='+',
+    markersize=6,
+    label='Reflektivitätsscan'
+)
+
+daten['diffuse'].plot(
+    ax=ax,
+    color='b',
+    linestyle='none',
+    marker='o',
+    markersize=4,
+    label='Diffuser Scan'
+)
+
+ax.set_xlabel(r'$\alpha$ in Grad')
+ax.set_ylabel(r'Intensität')
+ax.set_xlim((0,4))
+ax.semilogy()
+ax.legend(loc='best')
+
+ax.grid()
+fig.tight_layout()
+fig.savefig("../tex/bilder/data.pdf")
+plt.show()
 
 
-def plot_data(theta, psd, psd_diff):
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
+# # ==================================================
+# # 	Geometriewinkel
+# # ==================================================
 
-    ax.semilogy(
-        theta,
-        psd,
-        color='k',
-        linestyle='none',
-        marker='+',
-        markersize=2,
-        label='Reflexionsscan'
-    )
+# In[209]:
 
-    ax.semilogy(
-        theta,
-        psd_diff,
-        color='k',
-        linestyle='none',
-        marker='x',
-        markersize=2,
-        label='Diffuser Scan'
-    )
-
-    ax.set_xlabel(r'$\alpha$ in \si{\deg}')
-    ax.set_ylabel(r'Intensit\"at')
-
-    ax.legend(loc='best')
-
-    fig.tight_layout()
-    fig.savefig("../tex/bilder/data.pdf")
-
-
-# plot_data(theta_rho, psd_rho, psd_diff_rho)
-
-# ==================================================
-# 	Geometriewinkel
-# ==================================================
+def Geom(a):
+    return D*np.sin(np.deg2rad(a))/d0
 
 d0 = 0.1  # mm
 D = 30  # mm
@@ -136,114 +158,76 @@ alpha_g_deg = np.rad2deg(alpha_g)
 show(alpha_g_deg)
 
 
-def Geom(a):
-    return D*np.sin(np.deg2rad(a))/d0
+# In[210]:
+
+daten['geom'] = Geom(theta_rho)
+daten['geom'][daten.index.values >= alpha_g_deg] = 1
+daten['geom'][0] = np.nan
+daten['corrected'] = daten['difference']/daten['geom']
+daten.head()
 
 
-sel = theta_rho < alpha_g_deg
-sel[0] = False  # durch Null teilen verhindern
-psd2 = np.array(psd1)
-psd2[sel] = psd1[sel] / Geom(theta_rho[sel])
+# In[211]:
 
 # ===== Plot =======================================
+fig = plt.figure(figsize=(19.2,10.8))
+ax = fig.add_subplot(111)
+
+daten['corrected'].plot(
+    ax=ax,
+    color='r',
+    linestyle='none',
+    marker='+',
+    markersize=6,
+    label='Mit Geometriefaktor'
+)
+
+daten['difference'].plot(
+    ax=ax,
+    color='b',
+    linestyle='none',
+    marker='o',
+    markersize=4,
+    label='Ohne Geometriefaktor'
+)
+
+ax.set_xlabel(r'$\alpha$ in Grad')
+ax.set_ylabel(r'Intensität')
+ax.semilogy()
+ax.set_xlim((0,1))
+ax.legend(loc='best')
+ax.grid()
+
+fig.tight_layout()
+fig.savefig("../tex/bilder/geometriefaktor.pdf")
+
+plt.show()
 
 
-def plot_geom(theta_rho, psd1, psd2):
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
-
-    ax.semilogy(
-        theta_rho,
-        psd1,
-        color='k',
-        linestyle='none',
-        marker=4,
-        markersize=2,
-        label='ohne Geometriefaktor'
-    )
-
-    ax.semilogy(
-        theta_rho,
-        psd2,
-        color='k',
-        linestyle='none',
-        marker='+',
-        markersize=2,
-        label='mit Geometriefaktor'
-    )
-
-    ax.set_xlabel(r'$\alpha$ in \si{\deg}')
-    ax.set_ylabel(r'Intensit\"at')
-
-    ax.legend(loc='best')
-
-    fig.tight_layout()
-    fig.savefig("../tex/bilder/geometriefaktor.pdf")
-
-    plt.show()
-
-
-# plot_geom(theta_rho, psd1, psd2)
+# In[212]:
 
 # ==================================================
 # 	Normierung
 # ==================================================
 
-# Schneide alles unterhalb des Plateaus ab
-sel = theta_rho > 0.082
-
-theta = theta_rho[sel]
-psd3 = psd2[sel]
-
-# Mittlere höhe des Plateaus
-sel = theta < 0.168
-
-N = np.mean(psd3[sel])
-
-# Normierung
-psd3 = psd3 / N
+norm = daten.query('angle > 0.06 & angle < 0.15').corrected.mean()
+print(norm)
+daten['normalized'] = daten['corrected']/norm
 
 
-def plot_norm(theta, psd3):
-    fig = plt.figure()
-    ax = fig.add_subplot(111)
+# ###########################################################################
+# #                                Aufgabe 9                                #
+# ###########################################################################
 
-    ax.semilogy(
-        theta,
-        psd3,
-        color='k',
-        linestyle='-',
-        marker='+',
-        markersize=2,
-        label='Messwerte'
-    )
-
-    ax.set_xlabel(r'$\alpha$ in \si{\deg}')
-    ax.set_ylabel(r'psd')
-
-    ax.legend(loc='best')
-
-    fig.tight_layout()
-
-    plt.show()
-
-
-# plot_norm(theta, psd3)
-
-###########################################################################
-#                                Aufgabe 9                                #
-###########################################################################
-
+# In[219]:
 
 # ==================================================
 # 	Fit
 # ==================================================
 
-
 def k_z(j, n, k, a):
     Return = k*np.sqrt(n[j]**2 - np.cos(a)**2)
     return Return
-    # return k*np.sqrt(n[j]**2 - np.cos(a)**2)
 
 
 def r_sig(j, n, k, a, sig):
@@ -285,21 +269,27 @@ def X_sig_fit_squared(X, z2, n2, n3, sig1, sig2):
 
 k = 2.0*np.pi / 1.54e-10
 z1 = 0.0
-z2 = -210.0e-10
+z2 = -209.8e-10
 n1 = 1.0
-n2 = 1.0 - 2.8 * 1e-06
-n3 = 1.0 - 7.2 * 1e-06
-sig1 = 5.5 * 1e-10
-sig2 = 2.4 * 1e-10
+n2 = 1.0 - 3.50 * 1e-06
+n3 = 1.0 - 9.24 * 1e-06
+sig1 = 4.78 * 1e-10
+sig2 = 3.28 * 1e-10
 n = [n2, n3]
 z = [z1, z2]
 sig = [sig1, sig2]
 
+initialFit = X_sig_fit_squared(
+            (theta_test_rad, 0),
+            *values,
+        )
+
+
 values = [z2, n2, n3, sig1, sig2]
 
-sel = (theta > 0.25) & (theta < 0.7)
-theta_fit = theta[sel]
-psd3_fit = psd3[sel]
+fit_data = daten.query('angle > 0.25 & angle < 1.3')
+theta_fit = fit_data.index.values
+psd3_fit = fit_data['normalized']
 sigma_fit = len(theta_fit) * [0.00001]
 
 val, cor = optimize.curve_fit(
@@ -311,132 +301,52 @@ val, cor = optimize.curve_fit(
     sigma=sigma_fit
 )
 
-# theta_plot = np.deg2rad(theta)
-theta_plot = np.deg2rad(theta)
+theta_plot = np.deg2rad(daten.index.values)
 theta_test = np.linspace(0.1, 2.5, 200)
 theta_test_rad = np.deg2rad(theta_test)
 
 
-fig = plt.figure()
-ax = fig.add_axes([0.15, 0.4, 0.75, 0.6])
+fig = plt.figure(figsize=(19.2,10.8))
+ax = fig.add_subplot(111)
 
-axcolor = 'lightgoldenrodyellow'
-ax_z2 = plt.axes([0.25, 0.3, 0.60, 0.03], axisbg=axcolor)
-ax_n2 = plt.axes([0.25, 0.25, 0.60, 0.03], axisbg=axcolor)
-ax_n2.set_xscale("log")
-ax_n3 = plt.axes([0.25, 0.2, 0.60, 0.03], axisbg=axcolor)
-ax_n3.set_xscale("log")
-ax_sig1 = plt.axes([0.25, 0.15, 0.60, 0.03], axisbg=axcolor)
-ax_sig1.set_xscale("log")
-ax_sig2 = plt.axes([0.25, 0.1, 0.60, 0.03], axisbg=axcolor)
-ax_sig2.set_xscale("log")
-
-ax_fit = plt.axes([0.1, 0.25, 0.05, 0.05])
-b_fit = Button(ax_fit, "Fit")
-
-s_z2 = Slider(ax_z2, "-z2", 120, 250, valinit=210)
-s_n2 = Slider(
-    ax_n2,
-    "n2",
-    1.0e-7,
-    1.0e-4,
-    valinit=2.8e-6,
-    valfmt="1.0 - %.2e"
-)
-s_n3 = Slider(
-    ax_n3,
-    "n3",
-    1.0e-7,
-    1.0e-4,
-    valinit=7.2e-6,
-    valfmt="1.0 - %.2e"
-)
-s_sig1 = Slider(
-    ax_sig1,
-    "sig1",
-    1.0e-11,
-    5.0e-9,
-    valinit=5.5e-10,
-    valfmt="%.2e"
-)
-s_sig2 = Slider(
-    ax_sig2,
-    "sig2",
-    1.0e-11,
-    1.0e-09,
-    valinit=2.4e-10,
-    valfmt="%.2e"
+daten['normalized'].plot(
+    ax=ax,
+    color='k',
+    linestyle='none',
+    marker='+',
+    markersize=4,
+    label='Messwerte'
 )
 
-l, = ax.semilogy(
+ax.semilogy(
+    theta_test,
+    initialFit,
+    color='r',
+    linestyle='-',
+    label='Per Hand angepasst'
+)
+ax.semilogy(
     theta_test,
     X_sig_fit_squared(
         (theta_test_rad, 0),
-        *values
+         -2.10e-08,
+        1-2.8e-06,
+        1-7.2e-06,
+        -5.5e-10,
+        2.4e-10,
     ),
-    color='k',
+    color='b',
     linestyle='-',
     label='Fit'
 )
 
-# s_z2.set_val(-val[0]*1e10)
-# s_n2.set_val(1.0 - val[1])
-# s_n3.set_val(1.0 - val[2])
-# s_sig1.set_val(val[3])
-# s_sig2.set_val(val[4])
+#ax.semilogy()
+ax.set_xlabel(r'$\alpha$ in Grad')
+ax.set_ylabel(r'Intensität')
 
-ax.semilogy(theta,psd3,color='k',linestyle='none',marker='+',markersize=2,label='Messwerte')
-
-ax.set_xlabel(r'$\alpha$ in \si{\deg}')
-ax.set_ylabel(r'Intensit\"at')
-
+ax.grid()
 ax.legend(loc='best')
 
-
-def update(val):
-    z2 = -s_z2.val * 1e-10
-    n2 = 1.0 - s_n2.val
-    n3 = 1.0 - s_n3.val
-    sig1 = s_sig1.val
-    sig2 = s_sig2.val
-
-    l.set_ydata(X_sig_fit_squared(
-        (theta_test_rad, 0), z2, n2, n3, sig1, sig2)
-    )
-    plt.draw()
-
-s_z2.on_changed(update)
-s_n2.on_changed(update)
-s_n3.on_changed(update)
-s_sig1.on_changed(update)
-s_sig2.on_changed(update)
-
-
-def update_button(value):
-    z2 = -s_z2.val * 1e-10
-    n2 = 1.0 - s_n2.val
-    n3 = 1.0 - s_n3.val
-    sig1 = s_sig1.val
-    sig2 = s_sig2.val
-
-    val, cor = optimize.curve_fit(
-        X_sig_fit_squared,
-        (np.deg2rad(theta_fit), 0),
-        psd3_fit,
-        p0=[z2, n2, n3, sig1, sig2],
-        maxfev=100000,
-        sigma=sigma_fit
-    )
-    l.set_ydata(X_sig_fit_squared(
-        (theta_plot, 0), *val)
-    )
-    print(val)
-    s_z2.set_val(-val[0]*1e10)
-    s_n2.set_val(1.0 - val[1])
-    s_n3.set_val(1.0 - val[2])
-    s_sig1.set_val(val[3])
-    s_sig2.set_val(val[4])
-
-b_fit.on_clicked(update_button)
-
+fig.savefig('../tex/bilder/fit.pdf')
 plt.show()
+
