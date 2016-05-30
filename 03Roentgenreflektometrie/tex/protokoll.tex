@@ -68,13 +68,10 @@ Entsprechend der beiden Polarisationsrichtungen (senkrecht und parallel) gibt es
  T_p &= \frac{2n_1}{n_2 \cos\alpha + n_1\cos\beta}\\
  R_p &= \frac{n_2 \cos\alpha - n_1\cos\beta}{n_2 \cos\alpha + n_1\cos\beta},
 \end{align}
-<<<<<<< HEAD
 \noindent mit $\alpha$ als Winkel zwischen einfallendem Stahl und Lot und $\beta$ als Winkel zwischen ausfallendem Stahl und Lot. Das Lorentz-Modell erklärt,
 dass Materie für Röntgenstrahlung einen Brechungsindex $n = 1-\delta + \text{i}\beta$ aufweist. Hierin lautet die dielektrische Funktion
-=======
 \noindent mit $\alpha$ als Winkel zwischen einfallendem Strahl und Lot und $\beta$ als Winkel zwischen ausfallendem Strahl und Lot. Das Lorentz-Modell erklärt,
 dass Materie für Röntgenstrahlung einen Brechungsindex $n = 1-\delta <1$ aufweist. Hierin lautet die dielektrische Funktion
->>>>>>> 8f98f6e863d9bc882e0ca164831a37024b5eba31
 \begin{align}
  \epsilon(\omega) = 1 + \frac{4\pi n_0 e^2}{m_\text{e}} \sum\limits_i \frac{f_i}{\omega_i^2 - \omega^2 - \text{i}\omega\Gamma_i},
 \end{align}
@@ -93,28 +90,31 @@ große Winkel zu
 \subsection{Zweischichtsystem}
 Kiessing-Ringe sind Modulationen der Reflexionskurve, hervorgerufen durch Interferenz der reflektierten Strahlung. Die Minima entstehen, wenn der 
 Phasenunterschied gerade ein ungerades Vielfaches der Wellenlänge $\lambda$ ist. Ziel hier ist eine Beziehung zwischen der Winkeldifferenz zweier Kiessing-Minima 
-in Beziehung zur Schichtdicke $d$ zu setzen. Der Gangunterschied liest sich
+in Beziehung zur Schichtdicke $d$ zu setzen. Der Gangunterschied ist ein ungeradzahliges Vielfaches der halben Wellenlänge und liest sich
 \begin{align}
- \delta = 2 d \sin\alpha.
+ \Delta l_i = 2 d \sin\alpha_i = \frac{2n+1}{2}\lambda.
 \end{align}
 Die Gangunterschieddifferenz ist daher
 \begin{align}
- \delta_n -\delta_{n-1}= 2 d \sin\alpha_n - 2d\sin\alpha_{n-1}.
+ \Delta l_i -\Delta l_{n-1}= 2 d \sin\alpha_i - 2d\sin\alpha_{i-1} \approx 2d (\alpha_i - \alpha_{i-1})
 \end{align}
-Die linke Seite entspricht je ungeradzahligen Vielfachen der Wellenlänge. Weiterhin kann man kleine Winkel annehmen $\sin\alpha \approx \alpha$, was zur
+mit der Annahme kleiner Winkel ($\sin\alpha \approx \alpha$).  , was zur
 gesuchten Relation führt
 \begin{align}
- d \approx \frac{\lambda}{2\Delta\alpha_i} = \frac{2\pi}{\Delta q_z}
+ d \approx \frac{\lambda}{2\Delta\alpha_i} = \frac{2\pi}{\Delta q_z},
 \end{align}
+mit $\vec q = \vec k_\text{f} - \vec k_\text{i}$ als Wellenvektorübertrag mit der $z$-Komponente $q_z = 2k\sin(\alpha_i)$ und $\Delta q_z$ als die Differenz dieser 
+Komponente an den Minima.
 
 \subsection{Parratt-Algorithmus}
 Bei mehreren Schichten wird die Reflektivität durch Überlagerung unterschiedlicher Brechungsindizes komplizierter. Hierzu wird der Paratt-Algorithmus als
-rekursive Lösung verwandt. Mit $r_{j,j+1} = \frac{k_{z,j}-k_{z,j+1}}{k_{z,j}+k_{z,j+1}}$ an Grenzfläche $j$ und $z$-Komponente $k_{z,j} = k\sqrt{n_j^2-\cos^2\alpha_i}$
+rekursive Lösung verwandt. Mit der Fresnelreflektivität $r_{j,j+1} = \frac{k_{z,j}-k_{z,j+1}}{k_{z,j}+k_{z,j+1}}$ an der Grenzfläche $j$ und der $z$-Komponente 
+des Wellenvektors $k_{z,j} = k\sqrt{n_j^2-\cos^2\alpha_i}$
 lautet das Amplitudenverhältnis nach dem Algorithmus
 \begin{align}
  X_j = \frac{R_j}{T_j} = \text{e}^{-2ik_{z,j}z_j}\frac{r_{j,j+1} + X_{j+1} \text{e}^{+2ik_{z,j}z_j}}{1 + r_{j,j+1} X_{j+1}\text{e}^{+2ik_{z,j}z_j}}.
 \end{align}
-Angewandt auf ein System mit $N=2$ Schichten mit unendlich dicken Vakuum und Substrat. Somit gilt als Startwert $X_3 = 0$ und damit für die beiden weiteren
+Angewandt auf ein System mit $N=2$ Schichten mit unendlich dickem Vakuum und Substrat. Somit gilt als Startwert $X_3 = 0$ und damit für die beiden weiteren
 \begin{align}
  X_2 &= r_{2,3}\text{e}^{-2ik_{z,2}z_2}\\
  X_1 &= \frac{r_{1,2}+\text{e}^{-2ik_{z,2}z_2}}{1+r_{1,2}\text{e}^{-2ik_{z,2}z_2}}.
@@ -142,31 +142,56 @@ der Rauigkeit deutlich schneller ab.
 
 
 \section{Durchführung}
-Bei der Durchführung des Versuchs müssen zu Beginn Strahl und Probe justiert werden. Dazu werden folgende Schritte getätigt:
-\begin{enumerate}
- \item Die Probe wird in das Labordiffraktometer eingeführt.
- \item Die Probe wird entlang der $z$-Achse aus dem Strahlengang gefahren.
- \item Der Detektor wird zur Röntgenröhre ausgerichtet. (Detektor Scan)
- \item Die $z$-Koordinate der Probe wird so gewählt, dass die dann gemessene Intensität gerade der halben Maximalintensität entspricht. (z-Scan)
- \item Der Strahlengang wird parallel zur Probenoberfläche eingestellt. (Rocking Scan)
- \item Die $z$-Koordinate der Probe wird erneut so gewählt, dass die dann gemessene Intensität der halben Maximalintensität entspricht. (z-Scan)
- \item Die Detektorröhre wird so eingestellt, dass sie bei Totalreflexion ($15^\circ$) genau im reflektierten Strahl liegt. (Rocking Scan)
- \item Die $z$-Koordinate der Probe wird erneut so gewählt, dass die dann gemessene Intensität der halben Maximalintensität entspricht. (z-Scan)
- \item Für große Einfallswinkel muss nun noch eine Feinjustage des Detektors folgen. Dazu wird ein Rocking Scan um $2\theta=1^\circ$ durchgeführt, also einem
- Winkelbereich von ca. 0.45 bis 0.55 und der Detektorwinkel wird auf 0.5 geeicht.
-\end{enumerate}
-Nach Justage des Labordiffraktometers kann nun mit der Vermessung der Probe begonnen werden. Als Scanbereich (Winkel) wird das Intervall $0^\circ$ bis 
-$2.5^\circ$ mit einer Schrittweite von $0.0025^\circ$ gewählt. Pro Messung wird die Intensität über eine Zeitraum von $t=\SI{10}{\second}$ integriert. Um den Untergrund durch Streustrahlen zu unterdrücken, wird außerdem ein ``Diffuser Scan'' durchgeführt. Dabei wird die eben beschriebene Messung wiederholt, der Detektor wird jedoch um $0.1^\circ$ bezüglich des Ausfallwinkels der Röntgenstrahlung verschoben. Dadurch wird nur nur die diffus gestreute Röntgenstrahlung gemessen, die bei der eigentlichen Messung als Untergrund eingeht. Durch Subtraktion beider Scans kann die Messung um den Untergrund korrigiert werden.
+\subsection{Das D8-Labordiffraktometer}
+Die Messungen werden an einem D8-Labordiffraktometer (auch $\theta - \theta$-Diffraktometer) durchgeführt. Die Röntgenstrahlung kommt von einer 
+Kupferanodenröhre, wird wird von mehreren parabolischen Spiegeln gebündelt und monochromatisiert, sodass der austretende Strahl eine Wellenlänge von
+$\lambda = 1.54 \AA$ und eine Intensität von $10-100$ s$^{-1}$m$^{-2}$ hat. Ein Autoabsorber schwächt die Intensität bei hohen Zählraten und eine Blende
+blockiert unerwünschte Streustahlung ausgehend von der Reflexion an der Probenoberfläche. Nach einer weiteren Blende folgt der Eintritt in den NaI(TI)-Detektor.
+\subsection{Probenjustage und Programm}
+\textbf{1.}\\
+Die Probe wird in das Diffraktometer zwischen Röhre und Detektor gelegt. Über Schrittmotoren lässt sich die Position in alle Raumrichtungen verschieben.\\
+\textbf{2.}\\
+Nun wird ein Detectorscan durchgeführt, bei dem die Röhre fix und der Detektor ohne Probe dazwischen bewegt wird. Aufgenommen wird das Intensitätmaximum
+bei einem gewissen Winkel, bei dem beide Bestandteile sich auf einer Achse befinden.
+\\ \textbf{3.}\\
+Die Probe liegt so, dass sie die halbe Intensität des Primärstrahls abschattet. Der Z-Scan ermittelt die $z$-Komponente, bei der dies der Fall ist.
+\\ \textbf{4.}\\
+Detektor und Röhre werden nun um denselben Winkel (zwischen $\pm1^\circ$ um die 0) gedreht, sodass sie sich permanenet gegenüber stehen. Idealerweise ergibt
+sich ein symmetrisches Dreieck in der Intensität bezüglich des Winkels. Die Breite des Dreiecks dient zur Auswertung des Geometriewinkels, bei dem der Strahl
+die gesamte Probenoberfläche abdeckt. Dieser Prozess wird Rockingscan genannt.
+\\ \textbf{5.}\\
+Die Schritte 3. und 4. sind ggf. zu wiederholen, bis die $z$-Kompenente zur halben Intensität führt und das Intensitätsdreieck symmetrisch ist.
+\\ \textbf{6.}\\
+Detektor und Röhre werden etwas aus ihrer gemeinsamen Achse gedreht, hier also $2\theta = 0.3^\circ$ kleiner als der kritische Winkel $\alpha_c$ zur Totalreflexion.
+Mit dieser Einstellung wird ein Rockingscan durchgeführt in einem Bereich von 0.1 und 0.2 wegen des zu erwartenden Maximums bei 0.15.
+\\ \textbf{7.}\\
+Ein erneuter Z-Scan unter $2\theta=0.3^\circ$ wird durchgeführt. Dieser dient der genaueren Feststellung des Maximums aus der Intensitätskurve. 
+\\ \textbf{8.}\\
+Beim Winkel $2\theta=1^\circ$ wird ein weiterer Rockingscan entsprechend 6. durchgeführt, jedoch um das erwartete Maximum bei 0.5.
+\\ \textbf{9.}\\
+Die Röntgenröhre ist nun an der richtigen Stelle bezüglich der größten Intensität, der Detektor ist jedoch nur relativ zur Röhre ausgerichtet, was auch heißt,
+dass $\alpha_\text{i} \neq \alpha_\text{f}$ ist. Also wird ein weiterer Detectorscan nach 2. durchgeführt mit genullten Winkeln und herausgefahrener Probe.
+\\ \textbf{10.}\\
+Schließlich werden noch weitere Rockingscans bei verschiedenen Winkeln durchgeführt, um zu prüfen, ob die Beziehung $2\theta = 2\alpha_\text{i}$ oberhalb
+und unterhalb des kritischen Winkels stimmt.%\vspace{0.2cm}
+\\
+\noindent
+Als Scanbereich (Winkel) wird das Intervall $0^\circ$ bis 
+$2.5^\circ$ mit einer Schrittweite von $0.0025^\circ$ gewählt. Pro Messung wird die Intensität über eine Zeitraum von $t=\SI{10}{\second}$ integriert. 
+Um den Untergrund durch Streustrahlen zu unterdrücken, wird außerdem ein ``Diffuser Scan'' durchgeführt. Dabei wird die eben beschriebene Messung wiederholt,
+der Detektor wird jedoch um $0.1^\circ$ bezüglich des Ausfallwinkels der Röntgenstrahlung verschoben. Dadurch wird nur nur die diffus gestreute 
+Röntgenstrahlung gemessen, die bei der eigentlichen Messung als Untergrund eingeht. Durch Subtraktion beider Scans kann die Messung um den Untergrund 
+korrigiert werden.
 
 \section{Auswertung}
 In diesem Versuch sollen Dispersion und Rauigkeit des Siliziumwafers, sowie die Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht bestimmt werden.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\textwidth]{../tex/bilder/data.pdf}
-	\caption{Messwerte des Reflektivitätsscans und des diffusen Scans.}
-	\label{pic:daten}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{../tex/bilder/data.pdf}
+% 	\caption{Messwerte des Reflektivitätsscans und des diffusen Scans.}
+% 	\label{pic:daten}
+% \end{figure}
 
 Abbildung \ref{pic:daten} zeigt die bei den Scans aufgenommenen Daten. Dargestellt sind die Reflektivitätsmessung sowie der "Diffuse Scan"\. Der Diffuse Scan wird vom Reflektivitätsscan subtrahiert.
 
@@ -184,12 +209,12 @@ Bei einem Strahldurchmesser von $D = \SI{0.1}{\milli\meter}$ und einer Probendic
 \end{align}
 Unterhalb dieses Winkels muss der Geometriefaktor bei der Auswertung berücksichtigt werden. In Abbildung \ref{pic:geometrie} sind sowohl die ursprüngliche Datenreihe, als auch die korrigierte Datenreihe eingetragen. Bei kleinen Winkeln beträgt die Korrektur mehr als eine Größenordnung.
 
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=\textwidth]{../tex/bilder/geometriefaktor.pdf}
-	\caption{Messwerte mit und ohne Korrektur durch den Geometriefaktor.}
-	\label{pic:geometrie}
-\end{figure}
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{../tex/bilder/geometriefaktor.pdf}
+% 	\caption{Messwerte mit und ohne Korrektur durch den Geometriefaktor.}
+% 	\label{pic:geometrie}
+% \end{figure}
 
 
 Um nun Dispersion und Rauigkeit des Siliziumwafers, sowie Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht zu bestimmen, wird mittels Python ein Fit der aufgenommenen Messwerte durchgeführt. Der Brechungsindex der Luft wird dabei konstant als $n_1=1$ angenommen.
@@ -204,12 +229,12 @@ In Abbildung \ref{pic:fit} wurde neben den Datenpunkten zwei gefittete Kurven ei
 \end{align*}
 
 Die blaue Kurve weicht jedoch um bis zu 30\% von den Messwerten ab. Daher wurden die angegebenen Parameter per Hand weiter optimiert, um eine bessere Abdeckung zu erzielen. Die neue Kurve wird in rot dargestellt.
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=\textwidth]{../tex/bilder/fit.pdf}
-	\caption{Korrigierte Messwerte und Theoriekurven.}
-	\label{pic:fit}
-\end{figure}
+% \begin{figure}[H]
+% 	\centering
+% 	\includegraphics[width=\textwidth]{../tex/bilder/fit.pdf}
+% 	\caption{Korrigierte Messwerte und Theoriekurven.}
+% 	\label{pic:fit}
+% \end{figure}
 
 
 Die rote Kurve ergibt sich durch folgende Parameterwahl:
