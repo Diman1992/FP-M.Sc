@@ -69,17 +69,20 @@ Entsprechend der beiden Polarisationsrichtungen (senkrecht und parallel) gibt es
  R_p &= \frac{n_2 \cos\alpha - n_1\cos\beta}{n_2 \cos\alpha + n_1\cos\beta},
 \end{align}
 \noindent mit $\alpha$ als Winkel zwischen einfallendem Stahl und Lot und $\beta$ als Winkel zwischen ausfallendem Stahl und Lot. Das Lorentz-Modell erklärt,
-dass Materie für Röntgenstrahlung einen Brechungsindex $n = 1-\delta <1$ aufweist. Hierin lautet die dielektrische Funktion
+dass Materie für Röntgenstrahlung einen Brechungsindex $n = 1-\delta + \text{i}\beta$ aufweist. Hierin lautet die dielektrische Funktion
 \begin{align}
  \epsilon(\omega) = 1 + \frac{4\pi n_0 e^2}{m_\text{e}} \sum\limits_i \frac{f_i}{\omega_i^2 - \omega^2 - \text{i}\omega\Gamma_i},
 \end{align}
 für Materialien mit $Z=\sum_i f_i$ Elektronen pro Atom mit $i$ unterschiedlichen Eigenfrequenzen $\omega_i$ und Dämpfungen $\Gamma_i$. $n$ erhält man als
-Realteil von $\sqrt{\epsilon}$ und lautet $f_i / \omega_i^2 - \omega^2$. Dieser wird für Röntgenstrahlung ($\omega_i <\omega$) negativ und $n<1$, was
-unterhalb eines kritischen Winkels $\alpha_c$ an der Grenzfläche zur Totalreflexion führt. Die Abweichung $\delta$ ist vernachlässigbar, sodass 
+Realteil von $\sqrt{\epsilon}$ und lautet $f_i / \omega_i^2 - \omega^2$. Der Imaginärteil $\beta$ beschreibt die Abschwächung der Amplitude im Medium.
+Der Realteil wird für Röntgenstrahlung ($\omega_i >\omega$) positiv und $\text{Re}(n)<1$, was
+unterhalb eines kritischen Winkels $\alpha_c\approx \sqrt{2\delta}=\lambda\sqrt{r_\text{e}\rho /\pi}$ an der Grenzfläche zur Totalreflexion führt, mit
+der Wellenlänge $\lambda$, der Elektronendichte im Material $\rho$ und dem klassischen Elektronenradius $r_\text{e}$. Die Abweichung $\delta$ ist 
+$\mathcal{O}(10^{-6})$, sodass 
 $n_1 \approx n_2 \approx 1$ genähert wird und Polarisationen nicht mehr unterschieden werden. Hiermit wird die Gesamtreflektivität $R_F = |R_{s,p}|^2$ für
 große Winkel zu
 \begin{align}
- R_F \approx \left(\frac{\alpha_c}{\alpha_i}\right)^2.
+ R_F \approx \left(\frac{\alpha_c}{\alpha_i}\right)^4.
 \end{align}
 
 \subsection{Zweischichtsystem}
