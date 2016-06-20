@@ -3,7 +3,7 @@
 % ========================================
 
 \input{longheader.tex}
-
+\usepackage{longtable}
 % ========================================
 %	Angaben für das Titelblatt
 % ========================================
@@ -186,12 +186,12 @@ korrigiert werden.
 \section{Auswertung}
 In diesem Versuch sollen Dispersion und Rauigkeit des Siliziumwafers, sowie die Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht bestimmt werden.
 
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{../tex/bilder/data.pdf}
-% 	\caption{Messwerte des Reflektivitätsscans und des diffusen Scans.}
-% 	\label{pic:daten}
-% \end{figure}
+\begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=\textwidth]{../tex/bilder/data.pdf}
+ 	\caption{Messwerte des Reflektivitätsscans und des diffusen Scans.}
+ 	\label{pic:daten}
+\end{figure}
 
 Abbildung \ref{pic:daten} zeigt die bei den Scans aufgenommenen Daten. Dargestellt sind die Reflektivitätsmessung sowie der "Diffuse Scan"\. Der Diffuse Scan wird vom Reflektivitätsscan subtrahiert.
 
@@ -209,12 +209,12 @@ Bei einem Strahldurchmesser von $D = \SI{0.1}{\milli\meter}$ und einer Probendic
 \end{align}
 Unterhalb dieses Winkels muss der Geometriefaktor bei der Auswertung berücksichtigt werden. In Abbildung \ref{pic:geometrie} sind sowohl die ursprüngliche Datenreihe, als auch die korrigierte Datenreihe eingetragen. Bei kleinen Winkeln beträgt die Korrektur mehr als eine Größenordnung.
 
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{../tex/bilder/geometriefaktor.pdf}
-% 	\caption{Messwerte mit und ohne Korrektur durch den Geometriefaktor.}
-% 	\label{pic:geometrie}
-% \end{figure}
+\begin{figure}[h]
+ 	\centering
+ 	\includegraphics[width=\textwidth]{../tex/bilder/geometriefaktor.pdf}
+ 	\caption{Messwerte mit und ohne Korrektur durch den Geometriefaktor.}
+ 	\label{pic:geometrie}
+\end{figure}
 
 
 Um nun Dispersion und Rauigkeit des Siliziumwafers, sowie Schichtdicke, Dispersion und Rauigkeit der Polysterolschicht zu bestimmen, wird mittels Python ein Fit der aufgenommenen Messwerte durchgeführt. Der Brechungsindex der Luft wird dabei konstant als $n_1=1$ angenommen.
@@ -229,12 +229,12 @@ In Abbildung \ref{pic:fit} wurde neben den Datenpunkten zwei gefittete Kurven ei
 \end{align*}
 
 Die blaue Kurve weicht jedoch um bis zu 30\% von den Messwerten ab. Daher wurden die angegebenen Parameter per Hand weiter optimiert, um eine bessere Abdeckung zu erzielen. Die neue Kurve wird in rot dargestellt.
-% \begin{figure}[H]
-% 	\centering
-% 	\includegraphics[width=\textwidth]{../tex/bilder/fit.pdf}
-% 	\caption{Korrigierte Messwerte und Theoriekurven.}
-% 	\label{pic:fit}
-% \end{figure}
+\begin{figure}[H]
+ 	\centering
+ 	\includegraphics[width=\textwidth]{../tex/bilder/fit.pdf}
+ 	\caption{Korrigierte Messwerte und Theoriekurven.}
+ 	\label{pic:fit}
+\end{figure}
 
 
 Die rote Kurve ergibt sich durch folgende Parameterwahl:
@@ -258,13 +258,25 @@ Durch eine manuelle Optimierung kann die Theoriekurve den Messwerten weiter ange
 Beide Auswertungen gelangen zu einer ähnlichen Schichtdicke des Polysterols von etwa \SI{210}{\angstrom}.
 Die Rauigkeit dieser Schicht variiert jedoch je nach Fit zwischen \SI{2.4}{\angstrom} und \SI{3.2}{\angstrom}, was ein Hinweis auf die vorhandene Oxidschicht sein kann.
 
+Für die Dispersionen $n = 1 -\delta$ des Polysterols und der Siliziumschicht werden Zahlenwerte von $\delta = 3.5\cdot10^{-6}$ bzw. $\delta = 7.6\cdot10^{-6}$ erwartet\cite{Anl}. Die errechneten Werte weichen jedoch von diesen ab.
+\begin{table}[H]
+	\begin{tabular}{lrr}
+		& Fit & Optimiert\\
+		\cmidrule{2-3}
+		Polysterol & $25.0\%$ & $0.0\,\%$\\
+		Silizium & $5.6\%$ & $17.7\,\%$
+	\end{tabular}
+	\caption{Abweichung der Dispersion}
+	\label{tab}
+\end{table}
+Tabelle \ref{tab} zeigt, dass die per Hand optimierte Funktion in Dispersionen resultiert, die näher am Literaturwert liegen als durch einen kleinste-Quadrate Fit. Jedoch ist es nicht möglich, beide Werte gleich gut zu bestimmen. Auch dies ist ein weiterer Hinweis darauf, dass eine Oxidschicht das Model beeinflusst.
 
 
-\vspace{2cm}
-\textbf{Literatur}
+\vfill
 
-\vspace{0.3cm}
-[1] Anleitung des Lehrstuhlversuchs
+\begin{thebibliography}{WissOnl}
+	\bibitem{Anl} TU Dortmund Versuchsanleitung zu Versuch Nr.57 (abgerufen am 20.4.2014) \url{http://129.217.224.2/HOMEPAGE/PHYSIKER/BACHELOR/FP/SKRIPT/V57.pdf}
+\end{thebibliography}
 
 % ========================================
 %	Literaturverzeichnis
