@@ -57,6 +57,60 @@
 % ========================================
 
 \section{Theoretical Essentials}
+This experiment aims to set up and fine tune a diode laser to match the absorbtion wavelength of rubidium - \SI{780}{nm}. A diode laser is a semiconductor element that emits coherent light but in contrast to a regular solid-state laser its wavelength can be changed almost freely.
+\subsection{Composition}
+The laser basically consists of these components:
+\begin{itemize}
+	\item Laser diode
+	\begin{itemize}
+		\item Active layer
+		\item Cavity mirrors
+	\end{itemize}
+	\item Diffraction grating
+\end{itemize}
+
+The laser diode operates with direct current and emits light in the so called active layer where electrons and holes of the semiconductor recombine into photons. The walls of the cavity reflects most of the light which results in standing waves inside this resonator. The direct current creates more and more electron-hole pairs resulting in occupation inversion and finally in stimulated emission of coherent photons.
+
+The wavelength of these photons mainly depend on the bandgap of the semiconductor. The width of the spectrum is very wide compared to regular lasers and also the laser diode is very sensitive to feedback of emitted light which can easily result in instabilities. 
+
+As counteract only a single wavelength of the emitted light gets reflected into the diode by placing a collimator lens and a diffraction grating into the light beam. The grating splits up the beam into its different wavelengths and reflects only a single one directly into the diode. Since the wavelength is much smaller than the width of the cavity ($\lambda \ll b$) almost every $\lambda$ can create standing waves. By reflecting only 15\% of the emitted light back into the laser the emission stabilises and the spectral width narrows down to less than \SI{1}{MHz} which is smaller than the spectral width of atomic transitions $(\sim \SI{5}{MHz})$.
+
+\section{Laser configuration}
+This section describes how to manipulate the wavelength of the laser diode to emit light that resonates with rubidium $(\sim \SI{780}{nm})$. A laser will basically always operate in the mode that has the highest net gain since more light of this mode will be reflected back into the cavity resulting in more stimulated emission of equal photons that in return get fed back into the diode resulting in a rapid increase of photons with the corresponding wavelength. There are several factors that have an impact on the gain function and these are displayed in \mbox{figure \ref{fig:gains}}.
+
+\subsection{Medium gain}
+As mentioned before the photon energy and therefore the wavelength depends on the bandgap which in return depends on the temperature. This peak however is very wide and it is therefore unnecessary to fine tune the temperature to match the rubidium exactly. The heating is done indirectly by changing the direct current.
+
+\subsection{Grating feedback}
+The gain of the grating has a maximum that is narrower and matches the reflected wavelength. There is only a single peak because only the 1. order reflection is scattered back into the diode.
+
+\subsection{Internal and external cavity}
+The internal cavity is the diode itself and its gain is periodic in frequency. The period is called 'free spectral range' and its size is:
+\begin{align}
+	\nu_\text{FSR} = \frac{c}{2Ln}
+\end{align}
+In case of the internal cavity this is $\approx \SI{60}{GHz}$
+With c - speed of light, $n\approx3.61$ - refractive index of the semiconductor and L - cavity length.
+
+This function can be shifted by changing the temperature of the diode which can be accomplished by changing the direct current.
+The direct current also effects the internal cavity in another way by changing the carrier concentration in the active layer. This reduces the optical path length (L) and effects the period width. Both effects don't have the same speed which results in so called 'mode hops' (further descriped below).
+
+The external cavity acts similar as the internal cavity but now L is the distance from one end of the cavity to the diffraction grating. Here: $\nu \approx \SI{10}{GHz}$. By tilting the grating using the two knobs L can be modulated accordingly.
+\begin{figure}[H]
+	\includegraphics[width=0.6\textwidth]{../pics/gains.jpg}
+	\caption{Gain functions that sum up to the total gain of the diode laser.}
+	\label{fig:gains}
+\end{figure}
+
+\section{Tuning and modehops}
+By modulating the gain functions listed above the wavelength of the emitted light can be changed. Figure \ref{fig:modeHop} shows how the gain functions add up together and how a so called mode hop occurs. As mentioned before the laser will always operate in the mode with the highest net gain. In figure \ref{fig:modeHop}a this is mode 'e0'. By shifting the internal cavity to the left, mode 'e-1' suddenly has the highest gain and the laser will start to operate in this mode (figure \ref{fig:modeHop}b). Moving further left the laser hops to mode 'e-2' (figure \ref{fig:modeHop}c) and then jumps all the way up to 'e3' because its gain is slightly bigger than 'e-3' (figure \ref{fig:modeHop}d).
+
+\begin{figure}[H]
+\includegraphics[width=0.6\textwidth]{../pics/modeHop.jpg}
+\caption{Gain functions of grating feedback and external cavity got summed up and are fixed, while internal cavity changes. This results in 'mode hops'.}
+\label{fig:modeHop}
+\end{figure}
+
 \section{Execution}
 During the execution of the experiment the setup changes gradually and these intermediate steps are captured as a picture from the oscillograph. The power
 of the laser is up to 30 mW and works at a wavelength around 780 nm. During the alignment safety goggles should be worn.
