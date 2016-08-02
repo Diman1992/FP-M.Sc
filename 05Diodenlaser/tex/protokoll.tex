@@ -8,7 +8,7 @@
 %	Angaben für das Titelblatt
 % ========================================
 
-\title{V60 - Der Diodenlaser\\				% Titel des Versuchs 
+\title{V60 - The Diode Laser\\				% Titel des Versuchs 
 	\large TU Dortmund, Fakultät Physik\\ 
 	\normalsize Fortgeschrittenen-Praktikum}
 
@@ -114,7 +114,7 @@ By modulating the gain functions listed above the wavelength of the emitted ligh
 \section{Execution}
 During the execution of the experiment the setup changes gradually and these intermediate steps are captured as a picture from the oscillograph. The power
 of the laser is up to 30 mW and works at a wavelength around 780 nm. During the alignment safety goggles should be worn.
-\subsection{Basic Settings and Laser Generating}
+\subsection{Basic Settings and Laser Generation}
 The Rubidium cell (RbC) gets heated up to 50 $^\circ$C by the controller (LC). Behind the focusing lense the light beam gets detected by an IR-card while
 the current for the diode increases as can be seen in picture \ref{pic_setup1}. 
 \begin{figure}[t]
@@ -123,7 +123,7 @@ the current for the diode increases as can be seen in picture \ref{pic_setup1}.
  \label{pic_setup1}
 \end{figure}
 With a camera the light spot can be seen on a TV monitor. Around the critical
-voltage of 3.03-3.08 V a sharp slope in intensity of the light beam can be perceived which represents the transition of the beaming behaviour of the diode,
+voltage of 3.03-3.08 V, which corresponds to a current of 30.3-30.8 mA, a sharp slope in intensity of the light beam can be perceived which represents the transition of the beaming behaviour of the diode,
 see also picture \ref{pic_stains}.
 Below this critical voltage, the diode functions like an LED and above, stimulated emission dominates so that it serves as a laser. By slightly adjusting
 the Top Knob and therefore the vertical orientation of the grating, the beam intensity gets maximized. the operating voltage is now a bit above the critical.
@@ -150,15 +150,16 @@ Now appearances of fluorescence in the RbC can be seen as blinkings on the scree
 
 \subsection{The Spectrum of Rubidium}
 We saw fluorescence in the RbC and now we can display the spectrum of Rubidium. To achieve this, a glass neutral density filter gets placed before the RbC and
-a photo diode (PD) right behind it. The PD gets connected to the oscillograph which displays its voltage.
+a photo diode (PD) right behind it. The overall light intensity is quite high and the neutral density filter attenuates it so that it is easier to identify
+the blinkings. The PD gets connected to the oscillograph which displays its voltage.
 \begin{figure}[t]
  \includegraphics[width=\textwidth]{../pics/peaks.jpg}
  \caption{The output signal of the PM (upper) and of the PD (lower). Absorbtions and mode hoppings can be seen.}
  \label{pic_peak1}
 \end{figure}
 In figure \ref{pic_peak1} one can see that the beam is attenuated for certain frequencies. They can be identified in the following way. Light with a wavelength
-$\lambda$ encounters the RbC. If it matches the exact difference between two energy levels the light gets absorbed by puting an electron from one level to
-the other. By falling down to its former level a photon gets emitted isotropically and therefore the intensity of the original beam decreases.
+$\lambda$ encounters the RbC. If it matches the exact difference between two energy levels the light gets absorbed by exciting an electron from the ground
+state to a higher level. When the electron goes back to its former level a photon gets emitted isotropically and therefore the intensity of the original beam decreases.
 With this method only the external resonater is modified by the PM and not the internal so that these jumps occur. So the laser does not pass through the 
 frequencies continuously but skips at several ones.
 
@@ -174,7 +175,7 @@ without jumps as in figure \ref{pic_peak1}.
 \end{figure}
 
 \subsection{Representation of the Bare Absorbtion Spectrum}
-Finally we want to represent the absorbtion spectrum of Rubidium without the ramp offset. By use of a semipermeable mirror (50:50) which splits the laser beam
+Finally we want to represent the absorbtion spectrum of Rubidium without the ramp offset. By use of a beam splitter (50:50) which splits the laser beam
 into two equivalently intense beams before it crosses the RbC as in figure \ref{pic_setup3}. This beam is detected by a second photo diode PDII which only
 plots the ramp offset without the Rubidium spectrum, though. Now the LC serves a function to balance two incoming signals. The input of PDI and PDII gets
 balanced by a regulator so that the common offset cancels out and only the bare absorbtion spectrum remains. This spectrum can be seen in figure 
@@ -202,10 +203,10 @@ the sample is indeed Rubidium.
 \end{figure}
 
 
-\begin{thebibliography}{WissOnl}
-	\bibitem{Anl} TU Dortmund instruction for experiment Nr.60 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
-	\bibitem{ref} Laser spectroscopy of rubidium \\ \url{http://www.photodigm.com/literature/applications-notes/rubidium-absorption-spectroscopy}
-\end{thebibliography}
+ \begin{thebibliography}{WissOnl}
+ 	\bibitem{Anl} TU Dortmund instruction for experiment Nr.60 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
+ 	\bibitem{ref} Laser spectroscopy of rubidium \\ \url{http://www.photodigm.com/literature/applications-notes/rubidium-absorption-spectroscopy}
+ \end{thebibliography}
 
 % ========================================
 %	Literaturverzeichnis
