@@ -51,6 +51,27 @@ l1 = np.array([0,0,1,0,0])
 h2 = np.array([1,2,2,3,4,3,4,5,6,6,5,6,4,5])
 k2 = np.array([0,1,2,1,0,3,2,3,0,2,4,2,4,5])
 l2 = np.array([0,1,0,0,0,0,0,0,0,0,1,2,4,1])
+"""
+"""
+##new ones nacl markus
+h1 = np.array([1,2,2,3,2])
+k1 = np.array([1,0,2,1,2])
+l1 = np.array([1,0,0,1,2])
+#fcc markus
+h2 = np.array([1,2,2,3,2,4,3,4,4,5,3,4,5,4])
+k2 = np.array([1,0,2,1,2,0,3,2,2,1,3,4,3,4])
+l2 = np.array([1,0,0,1,2,0,1,0,2,1,3,0,1,2])
+
+
+#new ones bcc markus
+h1 = np.array([1,2,2,3,2])
+k1 = np.array([1,0,2,1,2])
+l1 = np.array([0,0,0,0,2])
+"""#bcc markus
+h2 = np.array([1,2,2,3,2,3,3,4,3,4,5,5,4,5])
+k2 = np.array([1,0,2,1,2,2,3,2,3,2,1,2,4,3])
+l2 = np.array([0,0,0,0,2,1,0,0,2,2,0,1,0,0])
+"""
 
 #####Winkel
 theta1 = r1_mess/(2*R)
@@ -60,10 +81,12 @@ theta2_0 = theta2[0]
 print("Winkel1: ",theta1)
 
 #####Strukturfaktoren
-s_exp1 = (np.sin(theta1))**2/(np.sin(theta1_0))**2
+prefactor1 = h1[0]**2+k1[0]**2+l1[0]**2
+s_exp1 = prefactor1*(np.sin(theta1))**2/(np.sin(theta1_0))**2
 s_theo1 = h1**2 + k1**2 + l1**2
 #1 = bcc
-s_exp2 = (np.sin(theta2))**2/(np.sin(theta2_0))**2 #theta/2 laut V5-Gitterkonstantenbestimmung - sonst für theta>90 grad
+prefactor2 = h2[0]**2+k2[0]**2+l2[0]**2
+s_exp2 = prefactor2*(np.sin(theta2))**2/(np.sin(theta2_0))**2 #theta/2 laut V5-Gitterkonstantenbestimmung - sonst für theta>90 grad
 s_theo2 = h2**2 + k2**2 + l2**2
 #2 = fcc
 print("se1(bcc): ", s_exp1)
@@ -86,8 +109,8 @@ a2 = a2*10**7
 
 slope1, intercept1, r_value1, p_value1, std_err1 = stats.linregress(cosSquare1,a1)
 slope2, intercept2, r_value2, p_value2, std_err2 = stats.linregress(cosSquare2,a2)
-print("m1 = "+str(slope1), "b1 = "+str(intercept1), "MgS: 520 (falsche Farbe), BaO: 554, SrO: 516, LiBr: 550, KF: 534", r_value1, p_value1, std_err1)
-print("m2 = "+str(slope2), "b2 = "+str(intercept2), "Yb: 548, Sn: 583 (centerced tetragonal!), Sr: 608, Ge: 565" , r_value2, p_value2, std_err2)
+print("bcc, m1 = "+str(slope1), "b1 = "+str(intercept1), "MgS: 520 (falsche Farbe), BaO: 554, SrO: 516, LiBr: 550, KF: 534", r_value1, p_value1, "err= "+str(std_err1))
+print("NaCl, m2 = "+str(slope2), "b2 = "+str(intercept2), "Yb: 548, Sn: 583 (centerced tetragonal!), Sr: 608, Ge: 565" , r_value2, p_value2, "err= "+str(std_err2))
 x = np.linspace(0,1,100)
 fit1 = slope1*x+intercept1
 fit2 = slope2*x+intercept2
@@ -97,27 +120,27 @@ ax = plt.gca()
 
 ####output
 f = open('workfile','w')
-f.write("r1\ttheta\tsexp\tstheo\tmiller\ta\n")
+f.write("r1&\t\ttheta&\t\tsexp&\t\tstheo&\t\tmiller&\t\ta\n")
 for i in range(0,len(a1)):
-	f.write(str(round(r1_mess[i],2))+ "\t" + str( round(theta1[i],2)) + "\t" +  str( round(s_exp1[i],2)) +  "\t" + str(round(s_theo1[i],2)) +  "\t" + str(h1[i])+str(k1[i])+str(l1[i]) +str("\t") + str(round(a1[i],2)))
+	f.write(str(round(r1_mess[i],2))+ "&\t\t" + str( round(theta1[i],2)) + "&\t\t" +  str( round(s_exp1[i],2)) +  "&\t\t" + str(round(s_theo1[i],2)) +  "&\t\t" + str(h1[i])+str(k1[i])+str(l1[i]) +str("&\t\t") + str(round(a1[i],2))+"\\ ")
 	f.write("\n")
 
 f.write("\n\n\n")
-f.write("r2\ttheta\tsexp\tstheo\tmiller\ta\n")
+f.write("r2&\t\ttheta&\t\tsexp&\t\tstheo&\t\tmiller\t\ta\n")
 for i in range(0,len(a2)):
-	f.write(str(round(r2_mess[i],2))+ "\t" + str( round(theta2[i],2)) + "\t" +  str( round(s_exp2[i],2)) +  "\t" + str(round(s_theo2[i],2)) +  "\t" + str(h2[i])+str(k2[i])+str(l2[i]) +str("\t")+ str(round(a2[i],2)))
+	f.write(str(round(r2_mess[i],2))+ "&\t\t" + str( round(theta2[i],2)) + "&\t\t" +  str( round(s_exp2[i],2)) +  "&\t\t" + str(round(s_theo2[i],2)) +  "&\t\t" + str(h2[i])+str(k2[i])+str(l2[i]) +str("&\t\t")+ str(round(a2[i],2)))
 	f.write("\n")
 
 f.close()
 
-plt.plot(x,fit1)
+plt.plot(x,fit2)
 plt.xlim((0,1))
 plt.title("Korrektur zum Gitterparameter der ersten Probe")
 plt.xlabel(r"cos$^2 (\theta)$")
 plt.ylabel("Gitterparameter $a$")
 #plt.legend(loc=2)
 #plt.plot(x,fit2)
-ax.scatter(cosSquare1, a1)
+ax.scatter(cosSquare2, a2)
 #plt.savefig("a1",dpi=100)
 
 #ax.scatter(cosSquare2, a2)
