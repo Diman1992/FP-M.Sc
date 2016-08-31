@@ -51,7 +51,7 @@ Ziel dieses Versuches ist es die mittlere Lebensdauer kosmischer Myonen zu messe
 Gemäß dem Standard Modell lassen sich die elementaren Teilchen in zwei Gruppen aufteilen, für die jeweils die starke Wechselwirkung gilt (Quarks) bzw. nicht gilt (Leptonen). Myonen $\mu^-$ gehören zur zweiten Generation der Leptonenfamilie, da sie im Bezug auf ihre Masse zwischen den leichteren Elektronen $\textrm{e}^-$ und den schwereren Tauonen $\tau^-$ liegen, wobei für die Massen gilt
 
 \begin{align}
-\textrm{m}_\mu = 206,77 \textrm{m}_{\textrm{e}} = \frac{1}{3491}\textrm{m}_{\tau}\;.
+\textrm{m}_\mu = 206,77 \qquad \textrm{m}_{\textrm{e}} = \frac{1}{3491}\textrm{m}_{\tau}\;.
 \end{align}
 
 Aufgrund ihrer Ladung wechselwirken diese Teilchen elektromagnetisch mit ihrer Umgebung. Elektronen sind als einzige dieser drei Teilchen stabil, während Myonen und Tauonen eine endliche Lebensdauer haben. Da alle Leptonen Fermionen sind, gehorchen diese Teilchen der Fermi-Dirac Statistik und besitzen eine Spin von 1/2. Des Weiteren existieren neben den bereits genannten Teilchen noch die zugehörigen Antiteilchen und die Neutrinos für jede Leptonengeneration.
@@ -144,7 +144,13 @@ Zunächst muss die Verzögerungsleitung so eingestellt werden, dass von Signale,
 	\label{fig:koinzidenz}
 \end{figure}
 
-Die gemessene Verteilung ist in Abbildung \ref{fig:koinzidenz} dargestellt. Die Zählrate hat ein sehr breites Maximum. Der Fit einer Gausschen Normalverteilung
+\begin{table}[htbp]
+	\input{../auswertung/Koinzidenz.dat}
+	\caption{Messwerte für die Kalibrierung der Koinzidenzschaltung. t entspricht der relativen Verzögerung der Signale aus dem linken SEV gegenüber des rechten.}
+	\label{tab:koinzidenz}
+\end{table}
+
+Die gemessene Verteilung ist in Abbildung \ref{fig:koinzidenz} dargestellt und die Messwerte stehen in Tabelle \ref{tab:koinzidenz}. Die Zählrate hat ein sehr breites Maximum. Der Fit einer Gausschen Normalverteilung
 \begin{align}
 	f(x,\mu,\sigma) = A\cdot e^{-\frac{(x-\mu)^2}{\sigma^2}}
 \end{align}
@@ -157,16 +163,23 @@ A &= (233.69 \pm 46.4)\,\text{Counts}\\
 
 Für die Messung wurde eine Verzögerung von -4\,\si{ns} gewählt, da die Zählrate bei dieser Einstellung am größten war. Dieser Wert sollte das Ergebnis jedoch nicht beeinflussen, da er noch innerhalb der 1$\sigma$-Umgebung liegt.
 
-Anschließend wurde der Threshold des Univibrators so eingestellt, dass die Anfängliche Zählrate von etwa 50 Counts/s auf 25 Counts/s absinkt. Letzterer Wert entspricht in etwa der theoretisch erwarteten Zählrate von kosmischen Myonen auf die Fläche des Detektortankes bezogen.
+Anschließend wurde der Threshold des Univibrators so eingestellt, dass die anfängliche Zählrate von etwa 50 Counts/s auf 25 Counts/s absinkt. Letzterer Wert entspricht in etwa der theoretisch erwarteten Zählrate von kosmischen Myonen auf die Fläche des Detektortankes bezogen.
 
 \subsection{Eichung des Vielkanal-Analysators}
-Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und dem Stopsignal in eine Spannung um, die vom Vielkanalanalysator ausgelesen wird. Um den Zusammenhang zwischen Zeitdifferenz und Kanal zu erhalten, wird die Schaltung mit Sinusimpulsen betrieben, deren Abstand durch den Doppelimpulsgenerator vorgegeben wurden. Wenn eine Zeitdifferenz auf mehrere direkt nebeneinander liegende Kanäle abgebildet wurde, so wurde als Kanal der gewichtete Mittelwert gewählt. Die Zeitdifferenz wird in 1\,\si{ns} Schritten von 1\,ns bis 9\,ns variiert und gegen die Channel ID in \mbox{Abbildung \ref{fig:linFit}} aufgetragen.
+Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und dem Stopsignal in eine Spannung um, die vom Vielkanalanalysator ausgelesen wird. Um den Zusammenhang zwischen Zeitdifferenz und Kanal zu erhalten, wird die Schaltung mit Sinusimpulsen betrieben, deren Abstand durch den Doppelimpulsgenerator vorgegeben wurden. Wenn eine Zeitdifferenz auf mehrere direkt nebeneinander liegende Kanäle abgebildet wurde, so wurde als Kanal der gewichtete Mittelwert gewählt. Die Zeitdifferenz wird in 1\,\si{ns} Schritten von 1\,ns bis 9\,ns variiert und gegen die Channel ID in \mbox{Abbildung \ref{fig:linFit}} aufgetragen. Die Messwerte stehen in Tabelle \ref{tab:linFit}.
 
 \begin{figure}[H]
 	\includegraphics[width=0.8\textwidth]{./Bilder/linFit.pdf}
 	\caption{Zeitdifferenz aus dem Doppelpulsgenerator gegen die Channel ID des Vielkanal-Analysators aufgetragen. Der Verlauf entspricht dem einer Geraden.}
 	\label{fig:linFit}
 \end{figure}
+
+\begin{table}[htbp]
+	\input{../auswertung/LinFit.dat}
+	\caption{Messwerte aus der Eichung der Vielkanal-Analysators. Ungerade Channel Werte treten auf, wenn eine Messreihe auf mehrere benachbarte Channel abgebildet wurde.}
+	\label{tab:linFit}
+\end{table}
+
 
 Als Fitfunktion wurde eine Gerade der Form
 \begin{align}
@@ -201,7 +214,8 @@ Es gelang mit der Apparatur den Zerfall von Myonen im Detektortank nachzuweisen.
 
 Für den Peak in den Zählraten bei etwa 1\,\si{\micro\second} sowie den plötzlichen Abfall der Zählrate bei etwa 13\,\si{\micro\second} wurde keine Erklärung gefunden. Insbesondere letzterer macht sich in dem großen Fehler der Untergrund-Rate bemerkbar.
 
-\clearpage
+%\clearpage
+\vfill
 \begin{thebibliography}{WissOnl}
 \bibitem{Anl} TU Dortmund Versuchsanleitung zu Versuch Nr.01 (abgerufen am 20.6.2014) \url{http://129.217.224.2/HOMEPAGE/PHYSIKER/BACHELOR/FP/SKRIPT/V01.pdf}
 
