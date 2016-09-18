@@ -113,7 +113,7 @@ Ein Teil der Myonen, die in der oberen Atmosphäre entstanden sind, gelangt zur 
 
 Da Myonen durch ihren Weg durch die Atmosphäre bereits viel Energie verloren haben, werden einige Myonen im Szintillator bis zum Stillstand abgebremst und zerfallen anschließend, wodurch Elektronen oder Positronen mit hoher kinetischer Energie freigesetzt werden, welche im Szintillatormaterial ebenfalls einen Lichtblitz erzeugen. Sind die Myonen hinreichend niederenergetisch, so entstehen zwei Lichtsignale deren zeitlicher Abstand mit einer elektronischen Schaltung gemessen werden kann und gleich der Lebensdauer eines einzelnen Myons ist. Neben dem Myonenzerfall kann das negative Myon in Konkurrenz zum Zerfall von einem Atomkern unter Bildung eines hochangeregten myonischen Atoms eingefangen werden.
 
-Der Aufbau der Messaparatur gemäß Abbildung \ref{FIG:Aufbau} besteht aus einem Szintillationsdetektor mit einem Volumen von 50l, an dessen beiden Stirnseiten sich jeweils ein SEV befindet, dessen Photokathode optisch an das Szintillatormaterial angekoppelt ist, wobei ein organischer Szintillator (NE  102) gelöst in Toluol verwendet wird. Die Abklingdauer beträgt 10 ns und ist klein gegen die Lebensdauer von Myonen von 2,2 $\mu$s\cite{PDG}. Der mittlere zeitliche Abstand der Myonen ist groß gegenüber ihrer Lebensdauer, wodurch die Größe mit einem elektronischen Zählwerk gemessen werden kann, das durch den Impuls aus der Abbremsung des Myons gestartet wird und durch den Zerfallsimpuls gestoppt wird. Anschließend wird der zeitliche Abstand mit einem Zeit-Amplituden-Konverter (TAC) in einen Spannungsimpuls, dessen Höhe proportional zum zeitlichen Abstand zwischen Start- und Stopimpuls ist, umgewandelt. Danach werden diese Impulse in einem Vielkanalanalysator gemäß ihrer Höhe in einem elektronischem Speicher (Kanal) registriert. Aus der Impulshöhenverteilung lässt sich anschließend  eine Schätzung der Lebensdauer $\tau$ des Myons ableiten.
+Der Aufbau der Messaparatur gemäß Abbildung \ref{FIG:Aufbau} besteht aus einem Szintillationsdetektor mit einem Volumen von 50l, an dessen beiden Stirnseiten sich jeweils ein SEV befindet, dessen Photokathode optisch an das Szintillatormaterial angekoppelt ist, wobei ein organischer Szintillator (NE  102) gelöst in Toluol verwendet wird. Die Abklingdauer beträgt 10 ns und ist klein gegen die Lebensdauer von Myonen von 2,2 $\mu$s\cite{PDG}. Der mittlere zeitliche Abstand der Myonen ist groß gegenüber ihrer Lebensdauer, wodurch die Größe mit einem elektronischen Zählwerk gemessen werden kann, das durch den Impuls aus der Abbremsung des Myons gestartet wird und durch den Zerfallsimpuls gestoppt wird. Anschließend wird der zeitliche Abstand mit einem Zeit-Amplituden-Konverter (TAC) in einen Spannungsimpuls, dessen Höhe proportional zum zeitlichen Abstand zwischen Start- und Stoppimpuls ist, umgewandelt. Danach werden diese Impulse in einem Vielkanalanalysator gemäß ihrer Höhe in einem elektronischem Speicher (Kanal) registriert. Aus der Impulshöhenverteilung lässt sich anschließend  eine Schätzung der Lebensdauer $\tau$ des Myons ableiten.
 
 Viele Myonen zerfallen aufgrund ihrer hohen Energie nicht im Szintillator, sodass sie nur einen Start- aber keinen Stoppimpuls auslösen. Daher wird das Warten auf den Stoppimpuls nach einer gewissen Suchzeit $T_{\textrm{S}}$, die ein Vielfaches der Lebensdauer betragen aber klein gegen den mittleren Abstand zweier Startimpulse sein sollte, abgebrochen. Die Suchzeit wird in der Schaltung gemäß Abbildung \ref{FIG:Aufbau} durch eine monostabile Kippstufe (als Univibrator in der Darstellung bezeichnet) realisiert. Sobald ein Startimpuls auftritt, wird dieser über das 1. AND Gatter zum Start Eingang des TAC geleitet. Das Signal wird ebenfalls über eine Verzögerungsleitung auf den Univibrator gegeben, dessen negierter Ausgang gleichfalls am Start Eingang des TAC liegt. Somit wird die Messung begonnen.
 
@@ -166,7 +166,7 @@ Für die Messung wurde eine Verzögerung von -4\,\si{ns} gewählt, da die Zählr
 Anschließend wurde der Threshold des Univibrators so eingestellt, dass die anfängliche Zählrate von etwa 50 Counts/s auf 25 Counts/s absinkt. Letzterer Wert entspricht in etwa der theoretisch erwarteten Zählrate von kosmischen Myonen auf die Fläche des Detektortankes bezogen.
 
 \subsection{Eichung des Vielkanal-Analysators}
-Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und dem Stopsignal in eine Spannung um, die vom Vielkanalanalysator ausgelesen wird. Um den Zusammenhang zwischen Zeitdifferenz und Kanal zu erhalten, wird die Schaltung mit Sinusimpulsen betrieben, deren Abstand durch den Doppelimpulsgenerator vorgegeben wurden. Wenn eine Zeitdifferenz auf mehrere direkt nebeneinander liegende Kanäle abgebildet wurde, so wurde als Kanal der gewichtete Mittelwert gewählt. Die Zeitdifferenz wird in 1\,\si{ns} Schritten von 1\,ns bis 9\,ns variiert und gegen die Channel ID in \mbox{Abbildung \ref{fig:linFit}} aufgetragen. Die Messwerte stehen in Tabelle \ref{tab:linFit}.
+Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und dem Stoppsignal in eine Spannung um, die vom Vielkanalanalysator ausgelesen wird. Um den Zusammenhang zwischen Zeitdifferenz und Kanal zu erhalten, wird die Schaltung mit Sinusimpulsen betrieben, deren Abstand durch den Doppelimpulsgenerator vorgegeben wurden. Wenn eine Zeitdifferenz auf mehrere direkt nebeneinander liegende Kanäle abgebildet wurde, so wurde als Kanal der gewichtete Mittelwert gewählt. Die Zeitdifferenz wird in 1\,\si{ns} Schritten von 1\,ns bis 9\,ns variiert und gegen die Channel ID in \mbox{Abbildung \ref{fig:linFit}} aufgetragen. Die Messwerte stehen in Tabelle \ref{tab:linFit}.
 
 \begin{figure}[H]
 	\includegraphics[width=0.8\textwidth]{./Bilder/linFit.pdf}
@@ -187,9 +187,29 @@ Als Fitfunktion wurde eine Gerade der Form
 \end{align}
 verwendet. Der Fit ergab folgende Werte für die Parameter:
 \begin{align}
-	m = 0.045 \pm 2.64\cdot10^{-10}\\
-	b = 0.0055 \pm 4.08 \cdot 10^{-6}
+	m = (4.5 \pm 0.001) \cdot10^{-3} \left[\frac{\si{ns}}{\text{Channel}}\right]\\ 
+	b = (5.5 \pm 0.041) \cdot 10^{-4} [\si{ns}]
 \end{align}
+
+\subsection{Berechnung der Untergrundrate}
+Während der Messung  wurden $N_\text{Start} = 7894976$ Startsignale in $t = \SI{246420}{s}$ detektiert. Dies entspricht einer mittleren Rate von 
+\begin{align}
+	\overline{N} = \frac{N_\text{Start}}{t} = 32,04\pm 0,00036
+\end{align}
+Myonen pro Sekunde und liegt leicht oberhalb der erwarteten Rate von etwa 25 Myonen pro Sekunde???. Der Diskriminator ist daher etwas zu niedrig eingestellt und lässt ein paar Untergrundsignale der SEVs passieren. ?? 40269y
+ 
+Es ist möglich, dass während der Suchzeit $t_S = \SI{15}{\micro\second}$ ein zweites Myon in den Tank eintritt und dessen Startsignal als das Stoppsignal des ersten interpretiert wird. Dieser Untergrund kann durch eine Poissonverteilung abgeschätzt werden. Die Wahrscheinlichkeit, dass ein zweites Myon während der Suchzeit detektiert wird beträgt:
+\begin{align}
+ 	P(n=1) &= \frac{\left(\overline{N}\cdot t_S\right)^n}{n!}{e^{\left(\overline{N}\cdot t_S\right)}} = 0,00048\\
+ 	\intertext{Somit wurden im Mittel}
+ 	N_b &= P(n=1)\cdot N_\text{Start} = 3794,33 
+\end{align}
+Backgroundereignisse detektiert. Diese sind gleichförmig auf 480 Channel verteilt, so dass pro Channel 
+\begin{align}
+	U_\text{theo} = \frac{N_b}{480} = 7.90
+\end{align}
+Untergrundereignisse von den Daten abgezogen werden müssen.
+ 
 
 \subsection{Die Lebensdauer von Myonen}
 Entsprechend des zuvor ermittelten Zusammenhanges zwischen Kanal und Zeitdifferenz kann nun für die Durchgeführte Messung die Aufenthaltsdauer der Myonen im Detektortank in Abbildung \ref{fig:lebensdauer} visualisiert werden.
