@@ -44,19 +44,19 @@
 %	Kapitel
 % ========================================
 \section{Ziel}
-Ziel dieses Versuches ist es die mittlere Lebensdauer kosmischer Myonen zu messen.
+Ziel dieses Versuches ist es, die mittlere Lebensdauer kosmischer Myonen, d.h. die  charakteristische Zeit des statistischen Zerfallsprozess, zu bestimmen. Dafür wird eine elektronische Messapparatur aufgebaut und kalibriert. 
 
 \section{Theoretische Grundlagen}
 \subsection{Grundlegende Bemerkungen}
-Gemäß dem Standard Modell lassen sich die elementaren Teilchen in zwei Gruppen aufteilen, für die jeweils die starke Wechselwirkung gilt (Quarks) bzw. nicht gilt (Leptonen). Myonen $\mu^-$ gehören zur zweiten Generation der Leptonenfamilie, da sie im Bezug auf ihre Masse zwischen den leichteren Elektronen $\textrm{e}^-$ und den schwereren Tauonen $\tau^-$ liegen, wobei für die Massen gilt
+Gemäß dem Standardmodell lassen sich die elementaren Teilchen in zwei Gruppen aufteilen, für die jeweils die starke Wechselwirkung gilt (Quarks) bzw. nicht gilt (Leptonen). Des Weiteren existieren  Wechselwirkungsteilchen wie das Photon oder das Gluon, die aber in dieser Einteilung nicht berücksichtigt werden. Myonen $\mu^-$ gehören zur zweiten Generation der Leptonenfamilie, da sie im Bezug auf ihre Masse zwischen den leichteren Elektronen $\textrm{e}^-$ und den schwereren Tauonen $\tau^-$ liegen, wobei für die Massen gilt
 
 \begin{align}
-\textrm{m}_\mu = 206,77 \qquad \textrm{m}_{\textrm{e}} = \frac{1}{3491}\textrm{m}_{\tau}\;.
+\textrm{m}_\mu = 206,77 \textrm{m}_{\textrm{e}} = \frac{1}{3491}\textrm{m}_{\tau}\;.
 \end{align}
 
 Aufgrund ihrer Ladung wechselwirken diese Teilchen elektromagnetisch mit ihrer Umgebung. Elektronen sind als einzige dieser drei Teilchen stabil, während Myonen und Tauonen eine endliche Lebensdauer haben. Da alle Leptonen Fermionen sind, gehorchen diese Teilchen der Fermi-Dirac Statistik und besitzen eine Spin von 1/2. Des Weiteren existieren neben den bereits genannten Teilchen noch die zugehörigen Antiteilchen und die Neutrinos für jede Leptonengeneration.
 
-Myonen entstehen u.A. in der oberen Atmosphäre aus dem Zerfall von Pionen, die zuvor aus der Wechselwirkung von energiereichen Protonen der Höhenstrahlung mit Atomkernen der Luftmolekülen entstanden sind:
+Myonen entstehen u.A. in der oberen Atmosphäre aus dem Zerfall von Pionen, die zuvor aus der Wechselwirkung von energiereichen Protonen der Höhenstrahlung mit Atomkernen der Luftmoleküle entstanden sind:
 
 \begin{align}
 \pi^+ \longrightarrow &\; \mu^+ + \nu_\mu \\
@@ -64,16 +64,16 @@ Myonen entstehen u.A. in der oberen Atmosphäre aus dem Zerfall von Pionen, die 
 \end{align}
 
 \subsection{Die Lebensdauer $\tau$}
-Der Zerfall instabiler Teilchen ist ein statistischer Prozess und die Lebensdauer $\tau$ stellt eine charakteristische Größe zur Beschreibung instabiler Teilchen dar. Die Wahrscheinlichkeit $dW$ für den Eintritt eines Zerfalls lässt sich schreiben als
+Der Zerfall instabiler Teilchen ist ein statistischer Prozess und die Lebensdauer $\tau$ stellt eine charakteristische Größe zur Beschreibung instabiler Teilchen dar. Die Wahrscheinlichkeit $\textrm{d}W$ für den Eintritt eines Zerfalls lässt sich schreiben als
  
 \begin{align}
-dW = \lambda dt \;, \label{eqn:WSK}
+\textrm{d}W = \lambda \textrm{d}t \;, \label{eqn:WSK}
 \end{align}
 
-wobei der Zusammenhang zwischen der Konstante $\lambda$ und der Lebensdauer weiter unten hergestellt wird. Aus Gleichung \eqref{eqn:WSK} folgt, dass die Zerfallswahrscheinlichkeit nicht vom Alter der Teilchen abhängt. Da die Zerfälle mehrere Teilchen unabhängig voneinander sind, ergibt sich für die Zahl $dN$ der in einem Zeitintervall $dt$ zerfallenden Teilchen, bei insgesamt $N$ betrachteten Teilchen der Zusammenhang
+wobei der Zusammenhang zwischen der Konstante $\lambda$ und der Lebensdauer weiter unten dargestellt wird. Aus Gleichung \eqref{eqn:WSK} folgt, dass die Zerfallswahrscheinlichkeit nicht vom Alter der Teilchen abhängt. Da die Zerfälle mehrere Teilchen unabhängig voneinander sind, ergibt sich für die Zahl $\textrm{d}N$ der in einem Zeitintervall $\textrm{d}t$ zerfallenden Teilchen bei insgesamt $N$ betrachteten Teilchen der Zusammenhang
 
 \begin{align}
-dN = - NdW = - \lambda N dt \;, \label{eqn:WSK2}
+\textrm{d}N = - N\textrm{d}W = - \lambda N \textrm{d}t \;, \label{eqn:WSK2}
 \end{align}
 
 welcher auf das Zerfallsgesetz
@@ -82,16 +82,22 @@ welcher auf das Zerfallsgesetz
 N(t) = N_0 \exp(-\lambda t) \label{eqn:WSK3}
 \end{align}
 
-führt. Der Bruchteil der Teilchen mit der Lebensdauer zwischen $[t, t + dt]$, d.h. die Verteilungsfunktion der Lebensdauern folgt dabei einer Exponentialverteilung
+führt, wobei $N_0$ die Gesamtzahl der betrachteten Teilchen beschreibt. Man erhält aus 
 
 \begin{align}
-\frac{dN(t)}{N_0} = \lambda\exp(-\lambda t) dt \label{eqn:WSK4} \;.
+\frac{\textrm{d} N\left(t\right)}{N_0} = \frac{N(t) - N\left(t+\textrm{d}t\right)}{N_0} \label{eqn:WSK3b}
+\end{align}
+
+den Bruchteil der Teilchen mit der Lebensdauer zwischen $[t, t + \textrm{d}t]$. Die Verteilungsfunktion der Lebensdauern $t$ wird durch \eqref{eqn:WSK3b} beschrieben und folgt gemäß \eqref{eqn:WSK3} der sogenannten Exponentialverteilung
+
+\begin{align}
+\frac{\textrm{d}N(t)}{N_0} = \lambda\exp(-\lambda t) \textrm{d}t \label{eqn:WSK4} \;.
 \end{align}
 
 Bestimmt man die Lebensdauer $\tau$ als den Erwartungswert $\textrm{E}(t)$ dieser Verteilung, so findet man den Zusammenhang
 
 \begin{align}
-\tau = \textrm{E}(t) = \int_0^{\infty} \lambda t \exp (-\lambda t) dt = \frac{1}{\lambda}\;,
+\tau = \textrm{E}(t) = \int_0^{\infty} \lambda t \exp (-\lambda t) \textrm{d}t = \frac{1}{\lambda}\;,
 \end{align}
 
 wobei $\lambda$ als Zerfallskonstante bezeichnet wird. 
@@ -100,7 +106,7 @@ wobei $\lambda$ als Zerfallskonstante bezeichnet wird.
 Im Experiment wird eine Stichprobe bestehend aus einer endlichen Zahl $n$ von Individuallebensdauern gemessen, womit sich für $\tau$ schätzen lässt
 
 \begin{align}
-\langle t \rangle = &\; \frac{1}{n} \sum_{j=1}^n t_j 
+\tau = &\; \langle t \rangle = \frac{1}{n} \sum_{j=1}^n t_j 
 \intertext{mit dem Fehler des Mittelwertes}
 s^2 = &\; \frac{1}{\sqrt{n(n-1)}} \sum_{j=1}^n \left( \langle t \rangle - t_j \right)^2 \;.
 \end{align}
@@ -111,36 +117,47 @@ Da die Schaltungstechnik der Messapparatur es nicht gewährleistet, dass bei der
 \subsection{Beschreibung des Aufbau}
 Ein Teil der Myonen, die in der oberen Atmosphäre entstanden sind, gelangt zur Erdoberfläche, wo sie  mit Hilfe eines Szintillations-Detektors nachgewiesen werden können. Entlang ihres Weges durch die Szintillatormaterie übertragen sie einen Teil ihrer Energie, die mehrere Hundert MeV betragen kann, an die Szintillatormoleküle, die nach Rückkehr aus dem angeregtem Zustand Lichtquanten emittieren, welche im folgenden mit einem Sekundärelektronenvervielfacher (SEV) nachgewiesen werden können.
 
-Da Myonen durch ihren Weg durch die Atmosphäre bereits viel Energie verloren haben, werden einige Myonen im Szintillator bis zum Stillstand abgebremst und zerfallen anschließend, wodurch Elektronen oder Positronen mit hoher kinetischer Energie freigesetzt werden, welche im Szintillatormaterial ebenfalls einen Lichtblitz erzeugen. Sind die Myonen hinreichend niederenergetisch, so entstehen zwei Lichtsignale deren zeitlicher Abstand mit einer elektronischen Schaltung gemessen werden kann und gleich der Lebensdauer eines einzelnen Myons ist. Neben dem Myonenzerfall kann das negative Myon in Konkurrenz zum Zerfall von einem Atomkern unter Bildung eines hochangeregten myonischen Atoms eingefangen werden.
+Die Myonen verlieren entlang ihres Weges durch die Atmosphäre sowie insbesondere durch die Gebäudestrukturen des Laborgebäudes (bspw. durch Betonschichten) bereits viel Energie. Daher werden einige Myonen im Szintillator bis zum Stillstand abgebremst und zerfallen anschließend, wodurch Elektronen oder Positronen mit hoher kinetischer Energie freigesetzt werden, welche im Szintillatormaterial ebenfalls einen Lichtblitz erzeugen
 
-Der Aufbau der Messaparatur gemäß Abbildung \ref{FIG:Aufbau} besteht aus einem Szintillationsdetektor mit einem Volumen von 50l, an dessen beiden Stirnseiten sich jeweils ein SEV befindet, dessen Photokathode optisch an das Szintillatormaterial angekoppelt ist, wobei ein organischer Szintillator (NE  102) gelöst in Toluol verwendet wird. Die Abklingdauer beträgt 10 ns und ist klein gegen die Lebensdauer von Myonen von 2,2 $\mu$s\cite{PDG}. Der mittlere zeitliche Abstand der Myonen ist groß gegenüber ihrer Lebensdauer, wodurch die Größe mit einem elektronischen Zählwerk gemessen werden kann, das durch den Impuls aus der Abbremsung des Myons gestartet wird und durch den Zerfallsimpuls gestoppt wird. Anschließend wird der zeitliche Abstand mit einem Zeit-Amplituden-Konverter (TAC) in einen Spannungsimpuls, dessen Höhe proportional zum zeitlichen Abstand zwischen Start- und Stoppimpuls ist, umgewandelt. Danach werden diese Impulse in einem Vielkanalanalysator gemäß ihrer Höhe in einem elektronischem Speicher (Kanal) registriert. Aus der Impulshöhenverteilung lässt sich anschließend  eine Schätzung der Lebensdauer $\tau$ des Myons ableiten.
+Sind die Myonen hinreichend niederenergetisch, so entstehen zwei Lichtsignale, deren zeitlicher Abstand mit einer elektronischen Schaltung gemessen werden kann und gleich der Lebensdauer eines einzelnen Myons ist. Neben dem Myonenzerfall kann das negative Myon in Konkurrenz zum Zerfall von einem Atomkern unter Bildung eines hochangeregten myonischen Atoms eingefangen werden.
 
-Viele Myonen zerfallen aufgrund ihrer hohen Energie nicht im Szintillator, sodass sie nur einen Start- aber keinen Stoppimpuls auslösen. Daher wird das Warten auf den Stoppimpuls nach einer gewissen Suchzeit $T_{\textrm{S}}$, die ein Vielfaches der Lebensdauer betragen aber klein gegen den mittleren Abstand zweier Startimpulse sein sollte, abgebrochen. Die Suchzeit wird in der Schaltung gemäß Abbildung \ref{FIG:Aufbau} durch eine monostabile Kippstufe (als Univibrator in der Darstellung bezeichnet) realisiert. Sobald ein Startimpuls auftritt, wird dieser über das 1. AND Gatter zum Start Eingang des TAC geleitet. Das Signal wird ebenfalls über eine Verzögerungsleitung auf den Univibrator gegeben, dessen negierter Ausgang gleichfalls am Start Eingang des TAC liegt. Somit wird die Messung begonnen.
+Der Aufbau der Messaparatur gemäß Abbildung \ref{FIG:Aufbau} besteht aus einem Szintillationsdetektor mit einem Volumen von \SI{50}{l}, an dessen beiden Stirnseiten sich jeweils ein SEV befindet, dessen Photokathode optisch an das Szintillatormaterial angekoppelt ist, wobei ein organischer Szintillator (NE  102), gelöst in Toluol, verwendet wird. Die Abklingdauer beträgt \SI{10}{ns} und ist klein gegen die Lebensdauer von Myonen von \SI{2,2}{\micro{}s} \cite{PDG}. Der mittlere zeitliche Abstand der Myonen ist groß gegenüber ihrer Lebensdauer, wodurch die Größe mit einem elektronischen Zählwerk gemessen werden kann, das durch den Impuls aus der Abbremsung des Myons gestartet wird und durch den Zerfallsimpuls gestoppt wird. Anschließend wird der zeitliche Abstand mit einem Zeit-Amplituden-Konverter (TAC) in einen Spannungsimpuls, dessen Höhe proportional zum zeitlichen Abstand zwischen Start- und Stoppimpuls ist, umgewandelt. Danach werden diese Impulse in einem Vielkanalanalysator gemäß ihrer Höhe in einem elektronischem Speicher (Kanal) registriert. Der Vielkanalanalysator stellt hierzu 512 Kanäle bereit. Aus der Impulshöhenverteilung lässt sich anschließend  eine Schätzung der mittleren Lebensdauer $\tau$ des Myons ableiten.
+
+Viele Myonen zerfallen aufgrund ihrer hohen Energie nicht im Szintillator, sodass sie nur einen Start- aber keinen Stoppimpuls auslösen. Daher wird das Warten auf den Stopp\-impuls nach einer gewissen Suchzeit $T_{\textrm{S}}$, die ein Vielfaches der Lebensdauer betragen aber klein gegen den mittleren Abstand zweier Startimpulse sein sollte, abgebrochen. Die Suchzeit wird in der Schaltung gemäß Abbildung \ref{FIG:Aufbau} durch eine monostabile Kippstufe (als Univibrator in der Darstellung bezeichnet) realisiert. Sobald ein Startimpuls auftritt, wird dieser über das 1. AND Gatter zum Start Eingang des TAC geleitet. Das Signal wird ebenfalls über eine Verzögerungsleitung auf den Univibrator gegeben, dessen negierter Ausgang gleichfalls am Start Eingang des TAC liegt. Somit wird die Messung begonnen.
+
+Der hier verwendeten Elektronik liegt der sogenannte NIM-Standard zu Grunde, wobei eine logische "`1"' bzw. ein "`H"'- (für High-) Zustand durch ein Signal von \SI{-0,8}{V} an \SI{50}{\ohm} sowie eine logische "`0"' bzw. ein "`L"'- (für Low-) Zustand durch ein Signal von \SI{0}{V} repräsentiert wird.
 
 Für die Zeit $T_{\textrm{S}}$ liegt ein H-Signal am einen Eingang des 2. AND Gatters an. Wenn nun innerhalb der Suchzeit das Myon zerfällt, so gelangt dieser Impuls über das 2. AND Gatter an den Stopp Eingang des TAC, womit die zur Zeitdifferenz proportionale Spannung erzeugt wird, die anschließend im Vielkanalanalysator gespeichert wird. Zerfällt das Myon jedoch nicht im Detektor, so wird auch das Stopp Signal nicht ausgelöst, keine Ausgangsspannung auf dem Vielkanalanalysator gegeben und die Messapparatur kehrt nach der Suchzeit wieder in den Ausgangszustand zurück.
 
-Eine Fehlerquelle entsteht hierbei durch den Fall, das zwei Myonen dem Szintillatortank während der Suchzeit durchqueren, womit der beim Eingang des zweiten Myons ausgelöste Impuls als Stopp Signal für das erste Myon interpretiert wird, wodurch ein über alle Kanäle gleich verteilter Untergrund $U$ erzeugt wird, der bei der Auswertung subtrahiert werden muss.
+Eine Fehlerquelle entsteht hierbei durch den Fall, dass zwei Myonen den Szin\-tillator\-tank während der Suchzeit durchqueren, womit der beim Eingang des zweiten Myons ausgelöste Impuls als Stopp Signal für das erste Myon interpretiert wird, was zu einer Fehlmessung führt. Die Häufigkeit dieser fehlerhaften Messungen wird als Untergrundrate $U$ bezeichnet. Sie wird aus der mittleren Zählrate und der Suchzeit abgeschätzt. Dafür wird verwendet, dass die Wahrscheinlichkeit des Eintretens einer bestimmten Zahl von Ereignissen durch die Poisson-Verteilung beschrieben werden kann, wenn bekannt ist, wie viele Ereignisse im Mittel zu erwarten sind. Somit lässt sich die Gesamtzahl der Fehlmessungen berechnen, die sich gleichmäßig auf alle 512 Kanäle verteilt, womit sich anschließend die theoretisch erwartete Anzahl der Fehlmessungen pro Kanal berechnen lässt.
 
-Eine weitere Fehlerquelle entsteht durch die Photokathoden der Szintillations-Detektoren, welche zu einer spontanen Emission von Elektronen neigen, sodass auch Spannungsimpulse ausgegeben werden, obwohl keine Lichtquanten eingefallen sind. Um das thermische Rauschen der Photokathode weiter zu eliminieren werden zum einen Diskriminatoren verwendet, da die Rauschimpulse meist im Bezug auf ihre Höhe deutlich niedriger sind als die Pulse, die von Lichtblitzen herrühren. Des Weiteren verwendet man zwei SEV und  die Ausgänge der beiden SEV werden auf eine Koinzidenzschaltung gegeben, die nur dann einen Impuls abgibt, wenn an den beiden Eingängen innerhalb einer kurzen Zeitspanne Impulse eingehen. Da das thermische Rauschen der beiden SEVs unkorrelliert ist, kann so eine Reduktion der Rauschsignale erreicht werden.
+Eine weitere Fehlerquelle entsteht durch die Photokathoden der Szintillations-De\-tek\-to\-ren, welche aufgrund thermischen Rauschens zu einer spontanen Emission von Elektronen neigen, sodass auch Spannungsimpulse ausgegeben werden, obwohl keine Lichtquanten eingefallen sind. Um das thermische Rauschen der Photokathode weitgehend zu eliminieren, werden zwei Maßnahmen ergriffen:
+
+Zum einen schließt man einen Diskriminator an den Ausgang des SEV, der nur Signale durchlässt, die den eingestellten Schwellwert überschreiten. Somit kann über das Einstellen eines Schwellwertes eine erste Filterung vorgenommen werden, da die Rauschimpulse meist im Bezug auf ihre Höhe deutlich niedriger sind als die Pulse, die von Lichtblitzen herrühren. Der Schwellwert darf jedoch nicht so hoch gewählt werden, dass "`echte"' SEV-Pulse unterdrückt werden. Die Hauptaufgabe dieser Diskriminatoren besteht jedoch darin sicherzustellen, dass die über der Schwellspannung liegenden Eingangssignale am Ausgang auf Pulse einheitlicher Höhe transformiert werden.
+
+Zum zweiten verwendet man zwei SEVs und die Ausgänge der beiden SEVs werden auf eine Koinzidenzschaltung gegeben, die nur dann einen Impuls abgibt, wenn an den beiden Eingängen innerhalb einer kurzen Zeitspanne $\Delta t_{\textrm{K}}$ Impulse eingehen. Da das thermische Rauschen der beiden SEVs unkorrelliert ist, ist es sehr unwahrscheinlich, dass zwei Rauschimpulse innerhalb von $\Delta t_{\textrm{K}}$ eintreffen und daher kann so eine Reduktion der Rauschsignale erreicht werden.
+
+Ruft ein Myon hingegen einen Signal hervor, so trifft das Licht wegen seiner hohen Ausbreitungsgeschwindigkeit im schlechtesten Fall (Enstehungsort unmittelbar an einer Photokathode gelegen) mit einem Zeitunterschied von ca. \SI{4}{ns} $ < \Delta t_{\textrm{K}}$ auf beiden Kathoden auf.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth,height=0.8\textheight,keepaspectratio]{Bilder/block.png}
-	\caption{Blockschaltbild der Messapparatur \cite{Anl}}
+	\includegraphics[width=0.8\linewidth,height=0.8\textheight,keepaspectratio]{Bilder/blockAdaptiert.png}
+	\caption{Blockschaltbild der Messapparatur \cite[adaptiert]{Anl}}
 	\label{FIG:Aufbau}
 \end{figure}
 
 \subsection{Justage}
-Da die beiden SEV unterschiedliche elektrische Eigenschaften besitzen werden zunächst Verzögerungsleitungen einjustiert, sodass die Ausgangsrate nach der Koinzidenzschaltung maximal ist. Anschließend werden die Schwellwerte der Diskriminatoren einjustiert und die Suchzeit über den Univibrator eingestellt. Danach wird eine Kalbibration der Zeitachse vorgenommen und die Messung begonnen.
+Da die beiden SEVs unterschiedliche elektrische Eigenschaften besitzen werden zunächst Verzögerungsleitungen einjustiert, sodass die Ausgangsrate nach der Koinzidenzschaltung maximal ist. Anschließend werden die Schwellwerte der Diskriminatoren einjustiert und die Suchzeit über den Univibrator eingestellt. Danach wird eine Kalbibration der Zeitachse vorgenommen und die Messung begonnen.
 
 \section{Auswertung}
 
 \subsection{Verzögerungsleitung}
 Zunächst muss die Verzögerungsleitung so eingestellt werden, dass von Signale, die von beiden SEVs gemessen wurden, auch nahezu gleichzeitig in der Koinzidenzschaltung ankommen. Es wird dazu die Verzögerung im ns Bereich variiert und die Zählrate grafisch dargestellt. Die optimale Verzögerung liegt im Maximum der Zählrate.
+Für alle folgenden Messungen wurde eine Verzögerung von -4\,\si{ns} empirisch gewählt, da die Messwerte in Tabelle \ref{tab:koinzidenz} kein eindeutiges Maximum aufweisen. Durch die folgende Rechnung soll gezeigt werden, dass diese Wahl zulässig war. 
 
 \begin{figure}[htbp]
 	\includegraphics[width=0.8\textwidth]{./Bilder/koinzidenz.pdf}
-	\caption{Zählrate gegen die zeitliche Verzögerung der Signale aufgetragen. Der maximale Wert wird durch den Fit einer Gaussfunktion ermittelt.}
+	\caption{Zählrate gegen die zeitliche Verzögerung der Signale aufgetragen. Die Position des Maximums wird durch den Fit einer Gaussfunktion approximiert, um eine Abschätzung der Breite zu erhalten.}
 	\label{fig:koinzidenz}
 \end{figure}
 
@@ -150,18 +167,17 @@ Zunächst muss die Verzögerungsleitung so eingestellt werden, dass von Signale,
 	\label{tab:koinzidenz}
 \end{table}
 
-Die gemessene Verteilung ist in Abbildung \ref{fig:koinzidenz} dargestellt und die Messwerte stehen in Tabelle \ref{tab:koinzidenz}. Die Zählrate hat ein sehr breites Maximum. Der Fit einer Gausschen Normalverteilung
+Die gemessene Verteilung ist in Abbildung \ref{fig:koinzidenz} dargestellt und die Messwerte stehen in Tabelle \ref{tab:koinzidenz}. Der Fit einer Gausschen Normalverteilung
 \begin{align}
 	f(x,\mu,\sigma) = A\cdot e^{-\frac{(x-\mu)^2}{\sigma^2}}
 \end{align}
-ergab:
+wurde mit einem Pythonskript nach der Methode der kleinsten Quadrate durchgeführt. Die Messwerte wurden mit dem Kehrwert der Standardabweichung gewichtet:
 \begin{align}
 A &= (233.69 \pm 46.4)\,\text{Counts}\\
 \mu &= (-3.07 \pm 1.3)\,\si{ns}\\
 \sigma &= ({21.32} \pm 3.40)\,\si{\text{Counts}}
 \end{align}
-
-Für die Messung wurde eine Verzögerung von -4\,\si{ns} gewählt, da die Zählrate bei dieser Einstellung am größten war. Dieser Wert sollte das Ergebnis jedoch nicht beeinflussen, da er noch innerhalb der 1$\sigma$-Umgebung liegt.
+Die Zählrate hat ein sehr breites Maximum mit $\sigma = ({21.32} \pm 3.40)\,\si{\text{Counts}}$ um den Mittelwert $\mu = (-3.07 \pm 1.3)\,\si{ns}$ herum. Daher ist die gewählte Verzögerung von \SI{-4}{ns} zulässig und sollte die folgenden Messungen nicht beeinflussen.
 
 Anschließend wurde der Threshold des Univibrators so eingestellt, dass die anfängliche Zählrate von etwa 50 Counts/s auf 25 Counts/s absinkt. Letzterer Wert entspricht in etwa der theoretisch erwarteten Zählrate von kosmischen Myonen auf die Fläche des Detektortankes bezogen.
 
@@ -184,55 +200,73 @@ Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und 
 Als Fitfunktion wurde eine Gerade der Form
 \begin{align}
 	f(x) = mx + b
+	\label{eq:vielkanal}
 \end{align}
 verwendet. Der Fit ergab folgende Werte für die Parameter:
 \begin{align}
-	m = (4.5 \pm 0.001) \cdot10^{-3} \left[\frac{\si{ns}}{\text{Channel}}\right]\\ 
-	b = (5.5 \pm 0.041) \cdot 10^{-4} [\si{ns}]
+	m &= (4.5 \pm 0.001) \cdot10^{-3} \,\frac{\si{ns}}{\text{Channel}}\\ 
+	b &= (5.5 \pm 0.041) \cdot 10^{-4}\, \si{ns}
 \end{align}
 
-\subsection{Berechnung der Untergrundrate}
-Während der Messung  wurden $N_\text{Start} = 7894976$ Startsignale in $t = \SI{246420}{s}$ detektiert. Dies entspricht einer mittleren Rate von 
+\subsection{Berechnung der Langzeit-Untergrundrate}
+Während der Messung wurden $7894976$ Startsignale $N_\text{Start}$ in $t = \SI{246420}{s}$ detektiert. Dies entspricht einer mittleren Rate von 
 \begin{align}
-	\overline{N} = \frac{N_\text{Start}}{t} = 32,04\pm 0,00036
+	\overline{N} = \frac{N_\text{Start}}{t} = 32,04\pm 0,0004
 \end{align}
-Myonen pro Sekunde und liegt leicht oberhalb der erwarteten Rate von etwa 25 Myonen pro Sekunde???. Der Diskriminator ist daher etwas zu niedrig eingestellt und lässt ein paar Untergrundsignale der SEVs passieren. ?? 40269y
+Myonen pro Sekunde und liegt damit leicht oberhalb der erwarteten Rate von etwa 25 Myonen pro Sekunde. Der Diskriminator ist daher etwas zu niedrig eingestellt und lässt ein paar Untergrundsignale der SEVs passieren.
  
 Es ist möglich, dass während der Suchzeit $t_S = \SI{15}{\micro\second}$ ein zweites Myon in den Tank eintritt und dessen Startsignal als das Stoppsignal des ersten interpretiert wird. Dieser Untergrund kann durch eine Poissonverteilung abgeschätzt werden. Die Wahrscheinlichkeit, dass ein zweites Myon während der Suchzeit detektiert wird beträgt:
 \begin{align}
- 	P(n=1) &= \frac{\left(\overline{N}\cdot t_S\right)^n}{n!}{e^{\left(\overline{N}\cdot t_S\right)}} = 0,00048\\
+ 	P(n=1) &= \frac{\left(\overline{N}\cdot t_S\right)^n}{n!}{e^{-\overline{N}\cdot t_S}} = 0,00048\\
  	\intertext{Somit wurden im Mittel}
  	N_b &= P(n=1)\cdot N_\text{Start} = 3794,33 
 \end{align}
-Backgroundereignisse detektiert. Diese sind gleichförmig auf 480 Channel verteilt, so dass pro Channel 
+Hintergrundereignisse detektiert. Diese sind gleichförmig auf 480 Channel verteilt, so dass pro Channel 
 \begin{align}
 	U_\text{theo} = \frac{N_b}{480} = 7.90
+	\label{untergrund}
 \end{align}
 Untergrundereignisse von den Daten abgezogen werden müssen.
  
 
 \subsection{Die Lebensdauer von Myonen}
-Entsprechend des zuvor ermittelten Zusammenhanges zwischen Kanal und Zeitdifferenz kann nun für die Durchgeführte Messung die Aufenthaltsdauer der Myonen im Detektortank in Abbildung \ref{fig:lebensdauer} visualisiert werden.
+Entsprechend des ermittelten linearen Zusammenhanges zwischen Kanal und Zeitdifferenz kann nun für die durchgeführte Messung die Aufenthaltsdauer der Myonen im Detektortank in Abbildung \ref{fig:lebensdauer} visualisiert werden.
 
 \begin{figure}[htbp]
-	\includegraphics{./Bilder/lebensdauer.pdf}
-	\caption{Messwerte der kosmischen Myonen und an die Messwerte gefittete Exponentialfunktion.}
+	\begin{subfigure}[t]{0.45\textwidth}
+		\includegraphics[width=\textwidth]{./Bilder/lebensdauer.pdf}
+		\caption{$U_\text{theo}$ abgezogen}
+		\label{fig:uTheo}
+	\end{subfigure}
+	\begin{subfigure}[t]{0.45\textwidth}
+	\includegraphics[width=\textwidth]{./Bilder/lebensdauer_fit.pdf}
+	\caption{Untergrund gefittet}
+	\label{fig:uNoTheo}
+	\end{subfigure}
+	\caption{Messwerte der kosmischen Myonen und an die Messwerte gefittete Exponentialfunktionen. In Abbildung \ref{fig:uTheo} wurde der in Gleichung \eqref{untergrund} berechnete Untergrund vor dem Fit von den Daten abgezogen, während in Abbildung \ref{fig:uNoTheo} die Exponentialfunktion \eqref{eq:zerfall} um einen Untergrundterm zu $f(t) = N_0\cdot e^{-\lambda t} + U_c$ erweitert wurde.\\
+	Fünf Channel mit Ausreißern wurden nicht ausgewertet.}
 	\label{fig:lebensdauer}
 \end{figure}
 
-Als Verteilung wurde eine Exponentialverteilung entsprechend Gleichung \ref{eqn:WSK4} zugrunde gelegt. Der Fit ergibt für die mittlere Lebenszeit
+Als Verteilung wurde die Exponentialverteilung 
 \begin{align}
-	\tau = \frac{1}{\lambda} = (1.99 \pm 0.028)\,\text{$\mu$s}
+	f(t) = N_0\cdot e^{-\lambda t}
+	\label{eq:zerfall}
 \end{align}
-und für den konstanten Untergrund
+zugrunde gelegt. Die Fits in den Abbildungen \ref{fig:lebensdauer} ergaben für die mittlere Lebenszeit
 \begin{align}
-c = 4.28 \pm 126.39\,\text{Counts}
+	\tau_1 &= \frac{1}{\lambda} = (2,08 \pm 0.015)\,\si{\micro\second}\\
+	\tau_2 &= (2.11 \pm 0.01)\,\si{\micro\second}
+\end{align}
+und für den konstanten Untergrund in Abbildung \ref{fig:uNoTheo}
+\begin{align}
+U_c = 4.78 \pm 1.08\,\text{Counts}
 \end{align}
 
 \section{Diskussion}
-Es gelang mit der Apparatur den Zerfall von Myonen im Detektortank nachzuweisen. Die mittlere Lebensdauer von 1.99\,\si{\micro \second} liegt unterhalb des Literatur Werts von etwa 2.2\,\si{\micro\second}. Diese Abweichung könnte dadurch erklärt werden, dass der Threshold des Univibrators möglicherweise noch höher eingestellt werden muss. Wahrscheinlicher ist es jedoch, dass das Szintilatormedium die Lebensdauer der Myonen in Vakuum deutlich merklich reduziert.
+Es gelang mit der Apparatur den Zerfall von Myonen im Detektortank nachzuweisen. Die berechneten mittlere Lebensdauer von $(2,08 \pm 0.015)\,\si{\micro\second}$ und $(2.11 \pm 0.01)\,\si{\micro\second}$ um etwa 5\% vom Literaturwert\cite{PDG} mit 2.2\,\si{\micro\second} nach unten ab. Diese Abweichung kann dadurch erklärt werden, dass das Szintilatormedium die Lebensdauer der Myonen in Vakuum reduziert.
 
-Für den Peak in den Zählraten bei etwa 1\,\si{\micro\second} sowie den plötzlichen Abfall der Zählrate bei etwa 13\,\si{\micro\second} wurde keine Erklärung gefunden. Insbesondere letzterer macht sich in dem großen Fehler der Untergrund-Rate bemerkbar.
+Die Berechnung des Untergrundes liefert leicht widersprüchliche Zahlenwerte von\\\mbox{$7.90\,\text{Counts}$} und $4.78 \pm 1.08\,\text{Counts}$. Dieser Unterschied entsteht durch den Peak in den beiden Abbildungen \ref{fig:uNoTheo} bei etwa 0,7\,\si{\micro s}. In diesem Fit wurden die Ausreißer nicht für den Fit verwendet, sie beeinflussen jedoch den Untergrund \ref{untergrund}, da es zusätzliche Startsignale sind.
 
 %\clearpage
 \vfill
