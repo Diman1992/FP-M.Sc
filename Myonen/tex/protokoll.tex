@@ -48,7 +48,9 @@ Ziel dieses Versuches ist es, die mittlere Lebensdauer kosmischer Myonen, d.h. d
 
 \section{Theoretische Grundlagen}
 \subsection{Grundlegende Bemerkungen}
-Gemäß dem Standardmodell lassen sich die elementaren Teilchen in zwei Gruppen aufteilen, für die jeweils die starke Wechselwirkung gilt (Quarks) bzw. nicht gilt (Leptonen). Des Weiteren existieren  Wechselwirkungsteilchen wie das Photon oder das Gluon, die aber in dieser Einteilung nicht berücksichtigt werden. Myonen $\mu^-$ gehören zur zweiten Generation der Leptonenfamilie, da sie im Bezug auf ihre Masse zwischen den leichteren Elektronen $\textrm{e}^-$ und den schwereren Tauonen $\tau^-$ liegen, wobei für die Massen gilt
+Gemäß dem Standardmodell unterscheidet man zwischen Fermionen mit halbzahligen Spin und Bosonen mit ganzzahligen Spin. Zu den Fermionen gehören die Quarks, für die der starke Wechselwirkung unterliegen sowie die Leptonen für die die starke Wechselwirkung nicht gilt. Zu den Bosonen gehören des Weiteren die Wechselwirkungsteilchen (z.B. das Photon oder das Gluon).
+
+Myonen $\mu^-$ gehören zur zweiten Generation der Leptonenfamilie, da sie im Bezug auf ihre Masse zwischen den leichteren Elektronen $\textrm{e}^-$ und den schwereren Tauonen $\tau^-$ liegen, wobei für die Massen gilt
 
 \begin{align}
 \textrm{m}_\mu = 206,77 \textrm{m}_{\textrm{e}} = \frac{1}{3491}\textrm{m}_{\tau}\;.
@@ -76,7 +78,7 @@ wobei der Zusammenhang zwischen der Konstante $\lambda$ und der Lebensdauer weit
 \textrm{d}N = - N\textrm{d}W = - \lambda N \textrm{d}t \;, \label{eqn:WSK2}
 \end{align}
 
-welcher auf das Zerfallsgesetz
+welcher durch Integration auf das Zerfallsgesetz
 
 \begin{align}
 N(t) = N_0 \exp(-\lambda t) \label{eqn:WSK3}
@@ -94,7 +96,7 @@ den Bruchteil der Teilchen mit der Lebensdauer zwischen $[t, t + \textrm{d}t]$. 
 \frac{\textrm{d}N(t)}{N_0} = \lambda\exp(-\lambda t) \textrm{d}t \label{eqn:WSK4} \;.
 \end{align}
 
-Bestimmt man die Lebensdauer $\tau$ als den Erwartungswert $\textrm{E}(t)$ dieser Verteilung, so findet man den Zusammenhang
+Bestimmt man die mittlere Lebensdauer $\tau$ als den Erwartungswert $\textrm{E}(t)$ dieser Verteilung, so findet man den Zusammenhang
 
 \begin{align}
 \tau = \textrm{E}(t) = \int_0^{\infty} \lambda t \exp (-\lambda t) \textrm{d}t = \frac{1}{\lambda}\;,
@@ -115,6 +117,7 @@ Da die Schaltungstechnik der Messapparatur es nicht gewährleistet, dass bei der
 
 \section{Aufbau}
 \subsection{Beschreibung des Aufbau}
+\label{kap:aufbau}
 Ein Teil der Myonen, die in der oberen Atmosphäre entstanden sind, gelangt zur Erdoberfläche, wo sie  mit Hilfe eines Szintillations-Detektors nachgewiesen werden können. Entlang ihres Weges durch die Szintillatormaterie übertragen sie einen Teil ihrer Energie, die mehrere Hundert MeV betragen kann, an die Szintillatormoleküle, die nach Rückkehr aus dem angeregtem Zustand Lichtquanten emittieren, welche im folgenden mit einem Sekundärelektronenvervielfacher (SEV) nachgewiesen werden können.
 
 Die Myonen verlieren entlang ihres Weges durch die Atmosphäre sowie insbesondere durch die Gebäudestrukturen des Laborgebäudes (bspw. durch Betonschichten) bereits viel Energie. Daher werden einige Myonen im Szintillator bis zum Stillstand abgebremst und zerfallen anschließend, wodurch Elektronen oder Positronen mit hoher kinetischer Energie freigesetzt werden, welche im Szintillatormaterial ebenfalls einen Lichtblitz erzeugen
@@ -131,7 +134,7 @@ Für die Zeit $T_{\textrm{S}}$ liegt ein H-Signal am einen Eingang des 2. AND Ga
 
 Eine Fehlerquelle entsteht hierbei durch den Fall, dass zwei Myonen den Szin\-tillator\-tank während der Suchzeit durchqueren, womit der beim Eingang des zweiten Myons ausgelöste Impuls als Stopp Signal für das erste Myon interpretiert wird, was zu einer Fehlmessung führt. Die Häufigkeit dieser fehlerhaften Messungen wird als Untergrundrate $U$ bezeichnet. Sie wird aus der mittleren Zählrate und der Suchzeit abgeschätzt. Dafür wird verwendet, dass die Wahrscheinlichkeit des Eintretens einer bestimmten Zahl von Ereignissen durch die Poisson-Verteilung beschrieben werden kann, wenn bekannt ist, wie viele Ereignisse im Mittel zu erwarten sind. Somit lässt sich die Gesamtzahl der Fehlmessungen berechnen, die sich gleichmäßig auf alle 512 Kanäle verteilt, womit sich anschließend die theoretisch erwartete Anzahl der Fehlmessungen pro Kanal berechnen lässt.
 
-Eine weitere Fehlerquelle entsteht durch die Photokathoden der Szintillations-De\-tek\-to\-ren, welche aufgrund thermischen Rauschens zu einer spontanen Emission von Elektronen neigen, sodass auch Spannungsimpulse ausgegeben werden, obwohl keine Lichtquanten eingefallen sind. Um das thermische Rauschen der Photokathode weitgehend zu eliminieren, werden zwei Maßnahmen ergriffen:
+Eine weitere Fehlerquelle entsteht durch die Photokathoden der Photomultiplier, die an das Detektormedium angeschlossen sind und zu einer spontanen Emission von Elektronen in Form von thermischen Rauschen neigen. Dieses Rauschen ist besonders deshalb problematisch, da durch die Sekundärelektronenverstärkung eine Kaskade von Elektronen ausgelöst wird, sodass auch Spannungsimpulse ausgegeben werden, obwohl keine Lichtquanten eingefallen sind. Um diesen Störeffekt weitgehend zu eliminieren, werden zwei Maßnahmen ergriffen:
 
 Zum einen schließt man einen Diskriminator an den Ausgang des SEV, der nur Signale durchlässt, die den eingestellten Schwellwert überschreiten. Somit kann über das Einstellen eines Schwellwertes eine erste Filterung vorgenommen werden, da die Rauschimpulse meist im Bezug auf ihre Höhe deutlich niedriger sind als die Pulse, die von Lichtblitzen herrühren. Der Schwellwert darf jedoch nicht so hoch gewählt werden, dass "`echte"' SEV-Pulse unterdrückt werden. Die Hauptaufgabe dieser Diskriminatoren besteht jedoch darin sicherzustellen, dass die über der Schwellspannung liegenden Eingangssignale am Ausgang auf Pulse einheitlicher Höhe transformiert werden.
 
@@ -141,8 +144,8 @@ Ruft ein Myon hingegen einen Signal hervor, so trifft das Licht wegen seiner hoh
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth,height=0.8\textheight,keepaspectratio]{Bilder/blockAdaptiert.png}
-	\caption{Blockschaltbild der Messapparatur \cite[adaptiert]{Anl}}
+	\includegraphics[width=0.7\linewidth,height=0.8\textheight,keepaspectratio]{Bilder/blockAdaptiert.png}
+	\caption{Blockschaltbild der Messapparatur adaptiert \cite{Anl}}
 	\label{FIG:Aufbau}
 \end{figure}
 
@@ -152,7 +155,7 @@ Da die beiden SEVs unterschiedliche elektrische Eigenschaften besitzen werden zu
 \section{Auswertung}
 
 \subsection{Verzögerungsleitung}
-Zunächst muss die Verzögerungsleitung so eingestellt werden, dass von Signale, die von beiden SEVs gemessen wurden, auch nahezu gleichzeitig in der Koinzidenzschaltung ankommen. Es wird dazu die Verzögerung im ns Bereich variiert und die Zählrate grafisch dargestellt. Die optimale Verzögerung liegt im Maximum der Zählrate.
+Zunächst muss die Verzögerungsleitung so eingestellt werden, so dass Signale, die von beiden SEVs gemessen wurden, auch nahezu gleichzeitig in der Koinzidenzschaltung ankommen. Es wird dazu die Verzögerung im ns Bereich variiert und die Zählrate grafisch dargestellt. Die optimale Verzögerung liegt im Maximum der Zählrate.
 Für alle folgenden Messungen wurde eine Verzögerung von -4\,\si{ns} empirisch gewählt, da die Messwerte in Tabelle \ref{tab:koinzidenz} kein eindeutiges Maximum aufweisen. Durch die folgende Rechnung soll gezeigt werden, dass diese Wahl zulässig war. 
 
 \begin{figure}[htbp]
@@ -163,7 +166,7 @@ Für alle folgenden Messungen wurde eine Verzögerung von -4\,\si{ns} empirisch 
 
 \begin{table}[htbp]
 	\input{../auswertung/Koinzidenz.dat}
-	\caption{Messwerte für die Kalibrierung der Koinzidenzschaltung. t entspricht der relativen Verzögerung der Signale aus dem linken SEV gegenüber des rechten.}
+	\caption{Messwerte für die Kalibrierung der Koinzidenzschaltung. t entspricht der relativen Verzögerung der Signale aus dem linken SEV gegenüber dem rechten.}
 	\label{tab:koinzidenz}
 \end{table}
 
@@ -171,31 +174,31 @@ Die gemessene Verteilung ist in Abbildung \ref{fig:koinzidenz} dargestellt und d
 \begin{align}
 	f(x,\mu,\sigma) = A\cdot e^{-\frac{(x-\mu)^2}{\sigma^2}}
 \end{align}
-wurde mit einem Pythonskript nach der Methode der kleinsten Quadrate durchgeführt. Die Messwerte wurden mit dem Kehrwert der Standardabweichung gewichtet:
+wurde mit dem Python Paket scipy.optimize nach der Methode der kleinsten Quadrate durchgeführt um eine Abschätzung über die Breite der Verteilung zu erhalten. Die Messwerte wurden mit dem Kehrwert der Standardabweichung gewichtet:
 \begin{align}
-A &= (233.69 \pm 46.4)\,\text{Counts}\\
-\mu &= (-3.07 \pm 1.3)\,\si{ns}\\
-\sigma &= ({21.32} \pm 3.40)\,\si{\text{Counts}}
+A &= (231,89 \pm 6,42)\,\text{Counts}\\
+\mu &= (-3,46 \pm 1,42)\,\si{ns}\\
+\sigma &= ({26,56} \pm 3,53)\,\si{ns}
 \end{align}
-Die Zählrate hat ein sehr breites Maximum mit $\sigma = ({21.32} \pm 3.40)\,\si{\text{Counts}}$ um den Mittelwert $\mu = (-3.07 \pm 1.3)\,\si{ns}$ herum. Daher ist die gewählte Verzögerung von \SI{-4}{ns} zulässig und sollte die folgenden Messungen nicht beeinflussen.
+Die gefittete Gaussverteilung hat eine Standardabweichung von $\sigma = ({26,56} \pm 3,53)\,\si{ns}$ um den Mittelwert $\mu = (-3,46 \pm 1,42)\,\si{ns}$ herum. Daher ist die gewählte Verzögerung von \SI{-4}{ns} zulässig und sollte die folgenden Messungen nicht beeinflussen.
 
-Anschließend wurde der Threshold des Univibrators so eingestellt, dass die anfängliche Zählrate von etwa 50 Counts/s auf 25 Counts/s absinkt. Letzterer Wert entspricht in etwa der theoretisch erwarteten Zählrate von kosmischen Myonen auf die Fläche des Detektortankes bezogen.
+Nun werden die Thresholds der beiden Diskriminatoren nacheinander so eingestellt, dass die Zählrate der Startsignale jeweils bei etwa 22 Counts/s liegt. Dies entspricht in etwa der theoretisch.
+ erwarteten Zählrate von kosmischen Myonen bezogen auf die Fläche des Detektortankes \cite{Anl}. Durch die Thresholds soll möglichst der gesamte Untergrund, den die beiden Photomultiplyer durch thermisches Rauschen erzeugen, weggefiltert werden. Der Bruchteil des thermischen Rauschens, der dennoch den Threshold überschreitet, wird anschließend fast vollständig von der Koinzidenzschaltung weggefiltert, wie am Ende von Kap. \ref{kap:aufbau} beschrieben.
 
-\subsection{Eichung des Vielkanal-Analysators}
-Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und dem Stoppsignal in eine Spannung um, die vom Vielkanalanalysator ausgelesen wird. Um den Zusammenhang zwischen Zeitdifferenz und Kanal zu erhalten, wird die Schaltung mit Sinusimpulsen betrieben, deren Abstand durch den Doppelimpulsgenerator vorgegeben wurden. Wenn eine Zeitdifferenz auf mehrere direkt nebeneinander liegende Kanäle abgebildet wurde, so wurde als Kanal der gewichtete Mittelwert gewählt. Die Zeitdifferenz wird in 1\,\si{ns} Schritten von 1\,ns bis 9\,ns variiert und gegen die Channel ID in \mbox{Abbildung \ref{fig:linFit}} aufgetragen. Die Messwerte stehen in Tabelle \ref{tab:linFit}.
+\subsection{Kalibrierung des Vielkanal-Analysators}
+Der Zeit-Amplituden-Konverter wandelt die Zeitdifferenz zwischen dem Start- und dem Stoppsignal in eine Spannung um, die vom Vielkanalanalysator ausgelesen wird. Um den Zusammenhang zwischen Zeitdifferenz und Kanal zu erhalten, wird die Schaltung mit einem Doppelimpulsgenerator betrieben, der Signalpulse mit fest definiertem Abstand zueinander ausgibt. Es ist dadurch möglich, eine Korrelation zwischen dem zeitlichen Abstand zwischen den Pulsen und dem Kanal, dem dieses Signal zugeordnet wird zu finden. Wenn eine Zeitdifferenz auf mehrere direkt nebeneinander liegende Kanäle abgebildet wurde, so wurde als Kanal der gewichtete Mittelwert gewählt. Die Zeitdifferenz wird in 1\,\si{ns} Schritten von 1\,ns bis 9\,ns variiert und gegen die Channel ID in \mbox{Abbildung \ref{fig:linFit}} aufgetragen. Die Messwerte stehen in Tabelle \ref{tab:linFit}.
 
 \begin{figure}[H]
 	\includegraphics[width=0.8\textwidth]{./Bilder/linFit.pdf}
-	\caption{Zeitdifferenz aus dem Doppelpulsgenerator gegen die Channel ID des Vielkanal-Analysators aufgetragen. Der Verlauf entspricht dem einer Geraden.}
+	\caption{Zeitdifferenz aus dem Doppelpulsgenerator gegen die Channel ID des Vielkanal-Analysators aufgetragen. Der Verlauf entspricht dem einer Geraden und die Fehlerbalken sind kleiner als die Datenpunkte.}
 	\label{fig:linFit}
 \end{figure}
 
 \begin{table}[htbp]
 	\input{../auswertung/LinFit.dat}
-	\caption{Messwerte aus der Eichung der Vielkanal-Analysators. Ungerade Channel Werte treten auf, wenn eine Messreihe auf mehrere benachbarte Channel abgebildet wurde.}
+	\caption{Messwerte aus der Kalibrierung des Vielkanal-Analysators. Channel mit Nachkommastellen treten auf, wenn eine Messreihe auf mehrere benachbarte Channel abgebildet wurde. In diesem Fall wurde der gewichtete Mittelwert gebildet.}
 	\label{tab:linFit}
 \end{table}
-
 
 Als Fitfunktion wurde eine Gerade der Form
 \begin{align}
@@ -204,70 +207,68 @@ Als Fitfunktion wurde eine Gerade der Form
 \end{align}
 verwendet. Der Fit ergab folgende Werte für die Parameter:
 \begin{align}
-	m &= (4.5 \pm 0.001) \cdot10^{-3} \,\frac{\si{ns}}{\text{Channel}}\\ 
-	b &= (5.5 \pm 0.041) \cdot 10^{-4}\, \si{ns}
+	m &= (4,5 \pm 0,1) \cdot10^{-2} \,\frac{\si{ns}}{\text{Channel}}\\ 
+	b &= (3,4 \pm 0,1) \cdot 10^{-3}\, \si{ns}
 \end{align}
+
+Da der Verlauf der Kurve für die ersten 200 Kanäle linear ist und nur sehr kleine Fehler aufweist, wird der Fit verwendet um alle 512 Kanäle auf Zeitintervalle abzubilden. Zudem werden für die weitere Rechnung die Fehler der Kalibrierung vernachlässigt, da diese sehr klein sind.
 
 \subsection{Berechnung der Langzeit-Untergrundrate}
 Während der Messung wurden $7894976$ Startsignale $N_\text{Start}$ in $t = \SI{246420}{s}$ detektiert. Dies entspricht einer mittleren Rate von 
 \begin{align}
-	\overline{N} = \frac{N_\text{Start}}{t} = 32,04\pm 0,0004
+	\overline{N} = \frac{N_\text{Start}}{t} = 32,04\pm 0,01
 \end{align}
 Myonen pro Sekunde und liegt damit leicht oberhalb der erwarteten Rate von etwa 25 Myonen pro Sekunde. Der Diskriminator ist daher etwas zu niedrig eingestellt und lässt ein paar Untergrundsignale der SEVs passieren.
  
-Es ist möglich, dass während der Suchzeit $t_S = \SI{15}{\micro\second}$ ein zweites Myon in den Tank eintritt und dessen Startsignal als das Stoppsignal des ersten interpretiert wird. Dieser Untergrund kann durch eine Poissonverteilung abgeschätzt werden. Die Wahrscheinlichkeit, dass ein zweites Myon während der Suchzeit detektiert wird beträgt:
+Es ist möglich, dass während der Suchzeit $t_S \approx \SI{12,5}{\micro\second}$ ein zweites Myon in den Tank eintritt und dessen Startsignal als das Stoppsignal des ersten interpretiert wird. Dieser Untergrund kann durch eine Poissonverteilung abgeschätzt werden. Die Wahrscheinlichkeit, dass ein zweites Myon während der Suchzeit detektiert wird beträgt:
 \begin{align}
- 	P(n=1) &= \frac{\left(\overline{N}\cdot t_S\right)^n}{n!}{e^{-\overline{N}\cdot t_S}} = 0,00048\\
+ 	P(n=1) &= \frac{\left(\overline{N}\cdot t_S\right)^n}{n!}{e^{-\overline{N}\cdot t_S}} = (4,803 \pm 0,002)\cdot10^{-4}\\
  	\intertext{Somit wurden im Mittel}
- 	N_b &= P(n=1)\cdot N_\text{Start} = 3794,33 
+ 	N_b &= P(n=1)\cdot N_\text{Start} = 3792,35 \pm 2,70 
 \end{align}
-Hintergrundereignisse detektiert. Diese sind gleichförmig auf 480 Channel verteilt, so dass pro Channel 
+Hintergrundereignisse detektiert. Diese sind gleichförmig auf die Channel mit \mbox{$\Delta t < \SI{12,5}{\micro s}$} verteilt. Mit den Ergebnissen aus dem linearen Fit in Abbildung \ref{fig:linFit} ergibt sich für die Channelobergrenze:
 \begin{align}
-	U_\text{theo} = \frac{N_b}{480} = 7.90
+	\text{Channel}_\text{max} = \SI{12,5}{\micro s}\cdot\frac{1}{m} - \frac{b}{m} = 276,22 \pm 0,01\
+\end{align}
+Somit müssen pro Channel
+\begin{align}
+	U_\text{theo} = \frac{N_b}{\text{Channel}_\text{max}} = 13,73 \pm 0,01
 	\label{untergrund}
 \end{align}
-Untergrundereignisse von den Daten abgezogen werden müssen.
+Untergrundereignisse erwartet werden.
  
 
 \subsection{Die Lebensdauer von Myonen}
 Entsprechend des ermittelten linearen Zusammenhanges zwischen Kanal und Zeitdifferenz kann nun für die durchgeführte Messung die Aufenthaltsdauer der Myonen im Detektortank in Abbildung \ref{fig:lebensdauer} visualisiert werden.
-
-\begin{figure}[htbp]
-	\begin{subfigure}[t]{0.45\textwidth}
-		\includegraphics[width=\textwidth]{./Bilder/lebensdauer.pdf}
-		\caption{$U_\text{theo}$ abgezogen}
-		\label{fig:uTheo}
-	\end{subfigure}
-	\begin{subfigure}[t]{0.45\textwidth}
-	\includegraphics[width=\textwidth]{./Bilder/lebensdauer_fit.pdf}
+\begin{figure}[htb]
+	\includegraphics[width=0.8\textwidth]{./Bilder/lebensdauer_fit.pdf}
 	\caption{Untergrund gefittet}
 	\label{fig:uNoTheo}
-	\end{subfigure}
-	\caption{Messwerte der kosmischen Myonen und an die Messwerte gefittete Exponentialfunktionen. In Abbildung \ref{fig:uTheo} wurde der in Gleichung \eqref{untergrund} berechnete Untergrund vor dem Fit von den Daten abgezogen, während in Abbildung \ref{fig:uNoTheo} die Exponentialfunktion \eqref{eq:zerfall} um einen Untergrundterm zu $f(t) = N_0\cdot e^{-\lambda t} + U_c$ erweitert wurde.\\
-	Fünf Channel mit Ausreißern wurden nicht ausgewertet.}
+	\caption{Messwerte der kosmischen Myonen und an die Messwerte gefittete Exponentialfunktion.
+	Die ersten drei Channel sowie Channel 14, 15, 16 und 17 wurden nicht verwendet, da die Werte zu stark nach unten bzw. nach oben abweichen. Eine genauere Diskussion der Bedeutung dieser Ausreißer erfolgt in Kap. \ref{kap:diskussion}. Auch Bins mit $\Delta t > \SI{12,5}{\micro s}$ wurden ignoriert, da die Verteilung aufgrund der endlichen Suchzeit hier abbricht.}
 	\label{fig:lebensdauer}
 \end{figure}
-
 Als Verteilung wurde die Exponentialverteilung 
 \begin{align}
-	f(t) = N_0\cdot e^{-\lambda t}
+	f(t) = N_0\cdot e^{-\lambda t} + U_\text{fit}
 	\label{eq:zerfall}
 \end{align}
-zugrunde gelegt. Die Fits in den Abbildungen \ref{fig:lebensdauer} ergaben für die mittlere Lebenszeit
+zugrunde gelegt. Der Fit in Abbildung \ref{fig:lebensdauer} ergab für die mittlere Lebenszeit
 \begin{align}
-	\tau_1 &= \frac{1}{\lambda} = (2,08 \pm 0.015)\,\si{\micro\second}\\
-	\tau_2 &= (2.11 \pm 0.01)\,\si{\micro\second}
-\end{align}
-und für den konstanten Untergrund in Abbildung \ref{fig:uNoTheo}
-\begin{align}
-U_c = 4.78 \pm 1.08\,\text{Counts}
+	\tau &= (2,11 \pm 0,01)\,\si{\micro\second}
+\intertext{und für den konstanten Untergrund}
+U_\text{fit} &= (4,78 \pm 1,08)\,\text{Counts}
 \end{align}
 
 \section{Diskussion}
-Es gelang mit der Apparatur den Zerfall von Myonen im Detektortank nachzuweisen. Die berechneten mittlere Lebensdauer von $(2,08 \pm 0.015)\,\si{\micro\second}$ und $(2.11 \pm 0.01)\,\si{\micro\second}$ um etwa 5\% vom Literaturwert\cite{PDG} mit 2.2\,\si{\micro\second} nach unten ab. Diese Abweichung kann dadurch erklärt werden, dass das Szintilatormedium die Lebensdauer der Myonen in Vakuum reduziert.
+\label{kap:diskussion}
+Es gelang mit der Apparatur den Zerfall von Myonen im Detektortank nachzuweisen. Die berechneten mittleren Lebensdauern von $(2,11 \pm 0,01)\,\si{\micro\second}$ weicht um etwa 5\% vom Literaturwert\,\cite{PDG} mit 2,2\,\si{\micro\second} nach unten ab. Diese Abweichung kann dadurch erklärt werden, dass die Myonen mit den Atomen im Szintilatormedium wechselwirken und daher die Lebensdauer der Myonen im Vergleich zum Vakuum reduziert.
 
-Die Berechnung des Untergrundes liefert leicht widersprüchliche Zahlenwerte von\\\mbox{$7.90\,\text{Counts}$} und $4.78 \pm 1.08\,\text{Counts}$. Dieser Unterschied entsteht durch den Peak in den beiden Abbildungen \ref{fig:uNoTheo} bei etwa 0,7\,\si{\micro s}. In diesem Fit wurden die Ausreißer nicht für den Fit verwendet, sie beeinflussen jedoch den Untergrund \ref{untergrund}, da es zusätzliche Startsignale sind.
+Die Berechnung des Untergrundes liefert leicht widersprüchliche Zahlenwerte von\\\mbox{$7,41\,\text{Counts}$} und $4,78 \pm 1,08\,\text{Counts}$. Dieser Unterschied entsteht durch den Peak in den beiden Abbildungen \ref{fig:uNoTheo} bei etwa 0,7\,\si{\micro s}. Die Ausreißer wurden nicht für den Fit verwendet, sie beeinflussen jedoch den theoretischen Untergrund (vgl. Gleichung(\ref{untergrund})), da es zusätzliche Startsignale sind. Ursache für den Peak könnte ein Fehler in der Verkabelung sein, durch den Reflektionen falsche Signale erzeugen.
 
+Insgesamt wurden im Zeitraum der Messung 7894976 Startsignale detektiert, von denen jedoch nur 40269 innerhalb der vorgegebenen Suchzeit von etwa $\SI{12,5}{\micro\second}$ ein Stoppsignal erhalten haben. Es sind somit nur etwa 0,51\% der einfallenden kosmischen Myonen im Detektor vollkommen abgebremst und zerfallen. Daher ist es notwendig, die Messung über einen Zeitraum von mehreren Tagen durchzuführen um genug Statistik zu erhalten.
+
+Der Vielkanalanalysator hat insgesamt 36908 Stoppsignale detektiert, es fehlen damit 3361 im Vergleich zu der Anzahl, die der Impulszähler gezählt hat. An dem Inhalt der Histogrammbins wird ersichtlich, dass in den ersten zwei Bins garkeine und im dritten nur 94 Signale enthalten sind. Bei einer Erwartung von durchschnittlich 700 Signalen pro Bin entspricht dies insgesamt 2006 fehlenden Signalen. Es scheint daher, dass der Zeit-Amplituden-Converter oder der Vielkanalanalysator diese besonders kurzen Signale nicht detektieren kann und vielleicht auch in den nächst höheren Bins noch weniger sensitiv als in den Übrigen ist.
 %\clearpage
 \vfill
 \begin{thebibliography}{WissOnl}

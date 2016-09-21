@@ -31,7 +31,10 @@
 \usepackage{footnpag}
 
 \usepackage{ifthen}                 %%% package for conditionals in TeX
-\usepackage{siunitx}
+\usepackage[%per=slash,
+            decimalsymbol=comma,
+loctolang={DE:ngerman},
+]{siunitx}
 \sisetup{tophrase={{\ bis\ }}}
 %Fr textumflossene Bilder und Tablellen
 %\usepackage{floatflt} - veraltet
