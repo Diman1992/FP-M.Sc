@@ -76,7 +76,7 @@ Hinsichtlich ihrer Symmetrieeigenschaften werden die dreidimensionalen Gitter in
 \end{figure}
 
 Besonderes Interesse  kommt dabei der sog. Elementarzelle zu. Dies ist die kleinste Einheit, die eine Kristallstruktur vollkommen festlegt. Beispielsweise kann man dazu das von den Vektoren $\vec{a}$, $\vec{b}$ und $\vec{c}$ aufgespannte Parallelepiped benutzen. Liegen nur auf den Eckpunkten Atome, enthält die Zelle also im Ganzen nur ein einzelnes Atom, so nennt man sie primitive Elementarzelle. 
-Nicht jede Kristallstruktur lässt sich jedoch durch Vervielfachung einer primitiven Elementarzelle aufbauen. Die in diesem Versuch untersuchten Stoffe haben eine kubische Grundstruktur, daher wird nur dieses System im Folgenden detaillierter beschrieben. Neben dem kubisch-primitiven Gitter, welches nur in den 8 Eckpunkten des Parallelepipeds Atome sitzen hat, gibt es noch das kubisch-raumzentrierte und das kubisch-flächenzentrierte Gitter. Diese werden in Abbildung \ref{pic:gitterTyp} dargestellt.
+Nicht jede Kristallstruktur lässt sich jedoch durch Vervielfachung einer primitiven Elementarzelle aufbauen. Die in diesem Versuch untersuchten Stoffe haben eine kubische Grundstruktur, daher wird nur dieses System im Folgenden detaillierter beschrieben. Neben dem kubisch-primitiven Gitter, welches nur in den 8 Eckpunkten des Parallelepipeds Atome sitzen hat, gibt es noch das kubisch-raumzentrierte und das kubisch-flächenzentrierte Gitter. Diese werden in Abbildung \ref{pic:gitterTyp1} dargestellt.
 
 \begin{figure}[htbp]
 	\centering
@@ -93,7 +93,7 @@ Nicht jede Kristallstruktur lässt sich jedoch durch Vervielfachung einer primit
 		\label{pic:fcc}
 	\end{subfigure}
 	\caption{Darstellung des kubisch-raumzentrierten und kubisch-flächenzentrierten Gitters. Es befindet sich ein weiteres Atom im inneren der Elementarzelle bzw. je eines in den Mitten der Würfelflächen.}
-	\label{pic:gitterTyp}
+	\label{pic:gitterTyp1}
 \end{figure}
 Das kubisch-raumzentrierte Gitter (Abb. \ref{pic:bcc}) enthält zusätzlich zu den Atomen an den Eckpunkten noch ein weiteres im Zentrum. Damit ist es keine primitive Einheitszelle mehr, da die Zelle insgesamt 2 Atome enthält. Bei der kubisch-flächenzentrierten Zelle (Abb. \ref{pic:fcc}) sitzt dagegen auf jeder Flächenmitte ein weiteres Atom, wodurch die Einheitszelle sogar 4 Atome enthält.
 
@@ -115,7 +115,7 @@ Beschrieben werden diese verschiedenen Zelltypen durch die Position der Atome in
 	\end{subfigure}
 	\caption{Darstellung der Steinsalz- und Zinkblendenstruktur. Das Steinsalzgitter besteht aus zwei um eine halbe Raumdiagonale zu einander verschobenen fcc-Gittern, mit verschiedenen Atomsorten; beispielsweise Na und Cl in Natriumchlorid.\\
 	Die Zinkblendenstruktur besteht ebenfalls aus zwei fcc Gittern, die jedoch um eine viertel Raumdiagonale zueinander verschoben sind. Ein Beispiel ist Zinksulfid.}
-	\label{pic:gitterTyp}
+	\label{pic:gitterTyp2}
 \end{figure}
 Für die durchgeführte Messung ebenfalls von Bedeutung sind:
 
@@ -188,12 +188,14 @@ Beugungswinkel kann nun mit $\theta_i = r_i/R$ errechnet werden, wobei $R=57,4$ 
  \label{pic:debyefilm}
 \end{figure}
 \noindent Abhängig von der Gitterstruktur wie bcc ($h+k+l$ gerade), oder fcc ($hkl$, alle gerade oder ungerade),
-wird der Reflex des niedrigsten Winkels $\theta_0$ an der ersten in Tabelle \ref{tab:hklstrukturen} aufgeführten
-gestreut. Die experimentellen Strukturfaktoren $s^\text{exp}_i$ sind demnach gegeben durch
+wird der Reflex des niedrigsten Winkels $\theta_0$ an der ersten in Tabelle \ref{tab:hklstrukturen} aufgeführten Netzebene $(hkl)$
+gestreut. 
+Die experimentellen Strukturfaktoren $s^\text{exp}_i$ sind gegeben durch
 \begin{align}
- s^\text{exp}_i = 4\frac{\sin^2(\theta_i)}{\sin^2(\theta_0)},
+ s^\text{exp}_i = N^2_0 \frac{\sin^2(\theta_i)}{\sin^2(\theta_0)},
  \label{eq:structExp}
 \end{align}
+hervorgehend aus der Bragg-Gleichung \eqref{eq:bragg} und \eqref{eq:gapMiller}.
 \begin{table}[t]
 \begin{tabular}{cc|cccc}
  $hkl$&$N^2$& bcc & fcc & Di & ZB./StS./Fl.\\
@@ -223,13 +225,14 @@ gestreut. Die experimentellen Strukturfaktoren $s^\text{exp}_i$ sind demnach geg
  Di = Diamant, ZB = Zinkblende, StS = Steinsalz, Fl = Flouritstruktur}
 \label{tab:hklstrukturen}
 \end{table}
-
-hervorgehend aus der Bragg-Gleichung \eqref{eq:bragg} und \eqref{eq:gapMiller}. Nun werden die entsprechenden $(h_ik_il_i)$-Tripel verrechnet zu
+\noindent  Nun werden die $(h_ik_il_i)$-Tripel
+verrechnet zu
 \begin{align}
- s^\text{theo}_i = h_i^2 + k_i^2 + l_i^2
+ s^\text{theo}_i = h_i^2 + k_i^2 + l_i^2,
  \label{eq:structTheo}
 \end{align}
-und mit den $s^\text{exp}$ verglichen. Durch Ausschlussverfahren erschließt sich, um welche Gitterstruktur es sich handelt. Aus der Ähnlichkeit der Werte
+mit den $s^\text{exp}$ verglichen und ihre Differenz möglichst gering gehalten unter Variation der Millerschen Indizes. Durch Ausschlussverfahren 
+erschließt sich, um welche Gitterstruktur es sich handelt. Aus der Ähnlichkeit der Werte
 aus Tabelle \ref{tab:messreihe1} für \textit{Metall 1} ist die bcc-Struktur zu bevorzugen. Für \textit{Salz 1} die StS-Struktur.
 Damit kann man bereits den Gitterparameter $a$ berechnen als
 \begin{align}
@@ -284,7 +287,7 @@ Bei der Versuchsdurchführung treten zwei wesentliche, systematische Fehler auf.
 bemerkbar,
 was im Wesentlichen der Absorbtion der Röntgenstrahlen geschuldet ist. Und zum anderen fallen Probenachse und Filmzylinderachse nicht perfekt zusammen.
 Es zeigt sich, dass bei der Apparatur der Fehler $\Delta a$ näherungsweise von der Summe beider Fehler und linear von $\cos^2(\theta)$ abhängt. Mittels
-linearer Regression wird $a$ bei $\theta = 90^\circ$, also $\cos^2(\theta)=0$, als bester Wert angenommen (vgl. Abb. \ref{pic:fita1}, \ref{pic:fita2}). 
+linearer Regression durch \texttt{Python3} wird $a$ bei $\theta = 90^\circ$, also $\cos^2(\theta)=0$, als bester Wert angenommen (vgl. Abb. \ref{pic:fita1}, \ref{pic:fita2}). 
 
 
 \begin{figure}[H]
@@ -308,8 +311,7 @@ linearer Regression wird $a$ bei $\theta = 90^\circ$, also $\cos^2(\theta)=0$, a
 
 \noindent
 \section{Diskussion}
-Das Debye-Scherrer Verfahren zur Bestimmung von Gitterparametern von kristallinen Stoffen ist sehr intuitiv und führt zu vernünftigen Resultaten, sodass
-zur Probenbestimmung einige Kandidaten infrage kommen. 
+Mit den ermittelten Werten für die Gitterkonstanten beider Proben, lassen sich nun jeweils Kandidaten finden, die infrage kommen.
 
 \noindent Materialien mit einem Gitterparameter von $a_\text{Metall} = 4.64(163) \mathring{A}$ sind in Tabelle \ref{tab:matProb1} 
 aufgeführt.
