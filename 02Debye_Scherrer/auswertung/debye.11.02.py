@@ -123,7 +123,10 @@ cosSquare1 = np.cos(theta1)**2
 a1 = a1*10**7
 #a2 = a2*10**7
 
-slope1, intercept1, r_value1, p_value1, std_err1 = stats.linregress(cosSquare1,a1)
+xax = np.array([0,1,2,3,4])
+yax = np.array([0.1,-50.9,2,53.1,4.2])
+
+slope1, intercept1, r_value1, p_value1, std_err1 = stats.linregress(xax,yax)
 #slope2, intercept2, r_value2, p_value2, std_err2 = stats.linregress(cosSquare2,a2)
 print("m1 = "+str(slope1), "b1 = "+str(intercept1), "MgS: 520 (falsche Farbe), BaO: 554, SrO: 516, LiBr: 550, KF: 534", r_value1, p_value1, std_err1)
 #print("m2 = "+str(slope2), "b2 = "+str(intercept2), "Yb: 548, Sn: 583 (centerced tetragonal!), Sr: 608, Ge: 565" , r_value2, p_value2, std_err2)
@@ -135,29 +138,15 @@ fig = plt.figure()
 ax = plt.gca()
 
 ####output
-f = open('workfile','w')
-f.write("r1\ttheta\tsexp\tstheo\tmiller\ta\n")
-for i in range(0,len(a1)):
-	f.write(str(round(r1_mess[i],2))+ "\t" + str( round(theta1[i],2)) + "\t" +  str( round(s_exp1[i],2)) +  "\t" + str(round(s_theo1[i],2)) +  "\t" + str(h1[i])+str(k1[i])+str(l1[i]) +str("\t") + str(round(a1[i],2)))
-	f.write("\n")
 
-f.write("\n\n\n")
-"""
-f.write("r2\ttheta\tsexp\tstheo\tmiller\ta\n")
-for i in range(0,len(a2)):
-	f.write(str(round(r2_mess[i],2))+ "\t" + str( round(theta2[i],2)) + "\t" +  str( round(s_exp2[i],2)) +  "\t" + str(round(s_theo2[i],2)) +  "\t" + str(h2[i])+str(k2[i])+str(l2[i]) +str("\t")+ str(round(a2[i],2)))
-	f.write("\n")
-"""
-f.close()
 
 plt.plot(x,fit1)
-plt.xlim((0,1))
 plt.title("Korrektur zum Gitterparameter der ersten Probe")
 plt.xlabel(r"cos$^2 (\theta)$")
 plt.ylabel("Gitterparameter $a$")
 #plt.legend(loc=2)
 #plt.plot(x,fit2)
-ax.scatter(cosSquare1, a1)
+ax.scatter(xax, yax)
 #plt.savefig("a1",dpi=100)
 
 #ax.scatter(cosSquare2, a2)

@@ -1,0 +1,106 @@
+% ========================================
+%	Header einbinden
+% ========================================
+
+\input{longheader.tex}
+
+% ========================================
+%	Angaben für das Titelblatt
+% ========================================
+
+\title{Search for $t\bar t$ Resonances with ATLAS data \\ \vspace{.5cm}% Titel des Versuchs 
+	\large TU Dortmund, Fakultät Physik\\ 
+	\normalsize Fortgeschrittenen-Praktikum}
+
+\author{Dimitrios Skodras\\			% Name Praktikumspartner A
+	{\small \href{dimitrios.skodras@tu-dortmund.de}{dimitrios.skodras@tu-dortmund.de}}	% Erzeugt interaktiven einen Link
+				\and			% um einen weiteren Author hinzuzfügen
+	Julius Tilly\\					% Name Praktikumspartner B
+	{\small \href{julius.tilly@tu-dortmund.de}{julius.tilly@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
+}
+\date{27.09.2016}				% Das Datum der Versuchsdurchführung
+
+% ========================================
+%	Das Dokument beginnt
+% ========================================
+
+\begin{document}
+	
+% ========================================
+%	Titelblatt erzeugen
+% ========================================
+
+\maketitle					% Jetzt wird die Titelseite erzeugt
+\thispagestyle{empty} 				% Weder Kopfzeile noch Fußzeile
+
+% ========================================
+%	Der Vorspann
+% ========================================
+
+%\newpage					% Wenn Verzeichnisse auf einer neuen Seite beginnen sollen
+%\pagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+
+\tableofcontents
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoffigures					% Abbildungsverzeichnis
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoftables					% Tabellenverzeichnis
+\newpage					% eine neue Seite
+
+
+% ========================================
+%	Kapitel
+% ========================================
+
+\section{Introduction}
+
+
+\section{Selection conditions and their efficiencies}
+2+3
+% Notes:- plot description of example jet_m. 
+% 	- #_plot > #_ntuple? holds for leptonic entities: difference in number represents reconstructed leptons
+% 	- trigger and reconstruction requirements are maybe found in Jana_Novakova book ore elsewhere in the literature
+% 	- pT>17GeV (otherwise too much background) and eta<2,47 (interested in ``central'' letpons), phi has no constraints due to rotational invariance of the detector
+% 	- 3.1a not sure what they mean, but maybe: all-hadronic: bbqq; lepton+jets: bbql; dilepton: bbll. b=b-quark, q=any lighter quark, l=lepton.
+% 	- 3.1b if-environments in runSelection.C
+% 	- 3.1c ttbar, diboson, ww, zz, singletop - topology: bbql for amount of events and detectability. 
+% 	- 3.1e maybe include the table in output.info.txt
+% 	- 3.1g efficiencies from outputRunselection/; requirements: jetGood>lepN>met>btagged>jetN (with rising efficiency) for more or less all background processes
+% 	- efficiency for Z'(1000) is 21% 
+% 	- 3.1h main selected background process is ttbar with 10e5 events compared to the others being of order 10e3 or less
+	
+
+\section{Fundamental and derived quantities}
+4+5
+% Notes:- 4a+b: comparing a data set with ttbar
+% 	- taking inv_massSys as most powerful discriminant because it has resonances (peaks) at the particles or systems mass which is known (ttbar) or seeked (Z')
+
+\section{Data-MC comparisons and constraints on $Z'$-mass}
+6+7
+% Notes:- 6.2c: some have fluctuations -> nothing to worry about. But in jet_eta, jet_pt and lep_eta for example the data points are almost always below the MC-expectation by fairly the same amount ->maybe there is a small, overall factor missing
+% 	- 6.2d: from inv_massSys no Z' signal can be seen by eye.
+% 	- 7.1a: from results/notes we get a p-value of 0.46. For 95 C.F. you get chi=36.4149 which means that the impact of the Z' cross section gets increased until this chi is reached.
+% 	- 7.1d: by doing this, the lighter Z' overproduce the observed jets up to the mass of 850 GeV above which the Z' boson is still viable
+
+\section{Conclusion}
+
+ \begin{thebibliography}{WissOnl}
+ 	\bibitem{Anl} TU Dortmund instruction for experiment Nr.60 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
+ 	\bibitem{ref} Laser spectroscopy of Rubidium \\ \url{http://www.photodigm.com/literature/applications-notes/rubidium-absorption-spectroscopy}
+ \end{thebibliography}
+
+% ========================================
+%	Literaturverzeichnis
+% ========================================
+
+%\bibliographystyle{plainnat}			% Bibliographie-Style auswählen
+%\bibliography{BIBDATEI}			% Literaturverzeichnis
+
+% ========================================
+%	Das Dokument endent
+% ========================================
+\end{document}

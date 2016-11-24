@@ -43,6 +43,7 @@ lamda = 1.5417e-10
 r1_mess = np.array([45,65,81,97,114,135,157])
 r2_mess = np.array([28,39,48,56,63,69,83,89,95,102,114,122,148,163]) #original [28,39,48,56,63,69,83,89,95,102,114,122,148,163]
 r2_mess = r2_mess+3
+
 ####Theory filling for fcc and bcc
 fcc = list()
 bcc = list()
@@ -71,6 +72,13 @@ bcc1=np.array([2,4,6,8,10,12,14])
 fcc1=np.array([3,4,8,11,12,16,19])
 bcc2=np.array([2,4,6,8,10,12,14,16,18,20,22,24,26,30])#,32,34,36,38])
 fcc2=np.array([3,4,8,11,12,16,19,20,24,27,32,35,36,40])#,43,44,48,51])
+
+h1 = np.array([1,2,2,2,3,2,3])
+k1 = np.array([1,0,1,2,1,2,2])
+l1 = np.array([0,0,1,0,0,2,1])
+h2 = np.array([1,2,2,3,2,4,3,4,4,3,4,5,6,6])
+k2 = np.array([1,0,2,1,2,0,3,2,2,3,4,3,0,2])
+l2 = np.array([1,0,0,1,2,0,1,0,2,3,0,1,0,0])
 
 #####Winkel
 theta1 = r1_mess/(2*R)
@@ -105,15 +113,16 @@ print("difffcc",np.sum(abs(s2_expfcc-fcc2))/len(r2_mess))
 
 
 #netzebenen
-a1 = lamda/2*np.sin(theta1) * np.sqrt(bcc1)
-a2 = lamda/2*np.sin(theta2) * np.sqrt(fcc2)
+a1 = lamda/(2*np.sin(theta1)) * np.sqrt(bcc1)
+a2 = lamda/(2*np.sin(theta2)) * np.sqrt(fcc2)
 
 a1 = a1*10**10
 a2 = a2*10**10
 print("mean a1",np.mean(a1))
 print("mean a2",np.mean(a2))
 
-
+print("a1",a1)
+print("a2",a2)
 
 #fit
 cosSquare1 = np.cos(theta1)**2
@@ -124,6 +133,28 @@ slope1, intercept1, r_value1, p_value1, std_err1 = stats.linregress(cosSquare1,a
 slope2, intercept2, r_value2, p_value2, std_err2 = stats.linregress(cosSquare2,a2)
 print("m1 = "+str(slope1), "b1 = "+str(intercept1), "MgS: 520 (falsche Farbe), BaO: 554, SrO: 516, LiBr: 550, KF: 534", r_value1, p_value1, std_err1)
 print("m2 = "+str(slope2), "b2 = "+str(intercept2), "MgS: 520 (falsche Farbe), BaO: 554, SrO: 516, LiBr: 550, KF: 534", r_value2, p_value2, std_err2)
+
+
+####output
+s_exp1 = s1_expbcc
+s_theo1 = bcc1
+f = open('workfile','w')
+f.write("r1\ttheta\tsexp\tstheo\tmiller\ta\n")
+for i in range(0,len(a1)):
+	f.write(str(round(r1_mess[i],0))+ "&\t" + str( round(theta1[i],2)) + "&\t" +  str( round(s_exp1[i],1)) +  "&\t" + str(round(s_theo1[i],1)) +  "&\t" + str(h1[i])+str(k1[i])+str(l1[i]) +str("&\t") + str(round(a1[i],2)))
+	f.write("\n")
+
+f.write("\n\n\n")
+s_exp2 = s2_expfcc
+s_theo2 = fcc2
+f.write("r2\ttheta\tsexp\tstheo\tmiller\ta\n")
+for i in range(0,len(a2)):
+	f.write(str(round(r2_mess[i],0))+ "&\t" + str( round(theta2[i],2)) + "&\t" +  str( round(s_exp2[i],1)) +  "&\t" + str(round(s_theo2[i],1)) +  "&\t" + str(h2[i])+str(k2[i])+str(l2[i]) +str("&\t")+ str(round(a2[i],2)))
+	f.write("\n")
+
+f.close()
+
+
 
 #plot
 x = np.linspace(0,1,100)
@@ -137,7 +168,7 @@ plt.xlim((0,1))
 plt.xlabel(r"cos$^2 (\theta)$")
 plt.ylabel("Gitterparameter $a$")
 
-i=2
+i=1
 if (i==1):
 	plt.plot(x,fit1)
 	plt.title("Korrektur zum Gitterparameter des Metalls")

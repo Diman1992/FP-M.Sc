@@ -18,7 +18,7 @@
 Dimitrios Skodras\\					% Name Praktikumspartner B
 {\small \href{dimitrios.skodras@tu-dortmund.de}{dimitrios.skodras@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
 }
-\date{27. Mai 2015}				% Das Datum der Versuchsdurchführung
+\date{31. Oktober 2016}				% Das Datum der Versuchsdurchführung
 
 % ========================================
 %	Das Dokument beginnt
@@ -181,7 +181,7 @@ Die Messung wurde für zwei verschiedene Stoffe durchgeführt und anschließend 
 \section{Auswertung}
 \subsection{Bestimmung der Gitterkonstanten}
 Mit einem Lineal werden entsprechend Abbildung \ref{pic:debyefilm} die Abstände $r_i$ der Beugungsringe zum Austrittsloch gemessen. Der 
-Beugungswinkel kann nun mit $\theta_i = r_i/R$ errechnet werden, wobei $R=57,4$ mm der Kammerradius ist. 
+Beugungswinkel kann nun mit $2\theta_i = r_i/R$ errechnet werden, wobei $R=57,4$ mm der Kammerradius ist. 
 \begin{figure}[H]
  \includegraphics[width=\textwidth]{../pics/debyestreifen.jpg}
  \caption{Debye Filmaufnahme}
@@ -231,7 +231,7 @@ verrechnet zu
  s^\text{theo}_i = h_i^2 + k_i^2 + l_i^2,
  \label{eq:structTheo}
 \end{align}
-mit den $s^\text{exp}$ verglichen und ihre Differenz möglichst gering gehalten unter Variation der Millerschen Indizes. Durch Ausschlussverfahren 
+mit den $s^\text{exp}$ verglichen und ihre akkumulierte Differenz $\Delta=\left(\frac{|s^\text{exp}-s^\text{theo}|}{N_\text{Ringe}}\right)$ möglichst gering gehalten unter Variation der Millerschen Indizes. Durch Ausschlussverfahren 
 erschließt sich, um welche Gitterstruktur es sich handelt. Aus der Ähnlichkeit der Werte
 aus Tabelle \ref{tab:messreihe1} für \textit{Metall 1} ist die bcc-Struktur zu bevorzugen. Für \textit{Salz 1} die StS-Struktur.
 Damit kann man bereits den Gitterparameter $a$ berechnen als
@@ -239,47 +239,46 @@ Damit kann man bereits den Gitterparameter $a$ berechnen als
  a_i = \lambda\frac{\sqrt{s^\text{theo}_i}}{2\sin(\theta)}.
  \label{eq:gitterparameter}
 \end{align}
-mit $\lambda=154$ nm als Wellenlänge der Röntgenstrahlen. Die bisher angesprochenen Größen sind in den Tabellen 
+mit $\lambda=0,154$ nm als Wellenlänge der Röntgenstrahlen. Die bisher angesprochenen Größen sind in den Tabellen 
 \ref{tab:messreihe1} und \ref{tab:messreihe2} zu finden.
 
 \begin{table}[H]
  \begin{tabular}{cccccc}
 $r$ in mm&	$\theta$ in $\pi$& $s^\text{exp}$& $s^\text{theo}$ & MI &$a$ in $\mathring{A}$\\
 \hline
-32.0& 0.28&		2.0&		2&		110&		3.96\ \\
-44.0&		0.38&		3.69&		4&		200&		4.12\\
-53.0&		0.46&		5.24&		8&		220&		4.89\\ 
-65.0&		0.57&		7.6&		10&		310&		4.54\\ 
-81.0&		0.71&		11.11&		12&		222&		4.12\\ 
-  
+45&	0.39&	2.0&	2&	110&	2.85 \\
+65&	0.57&	3.9&	4&	200&	2.87\\
+81&	0.71&	5.8&	6&	211&	2.91\\
+97&	0.84&	7.7&	8&	220&	2.92\\
+114&	0.99&	9.6&	10&	310&	2.91\\
+135&	1.18&	11.7&	12&	222&	2.89\\
+157&	1.37&	13.1&	14&	321&	2.94
  \end{tabular}
- \caption{Messwerte zur Metall 1}
+ \caption{Messwerte zur Metall 1. Für die bcc Struktur ist $\Delta=0.31$ und für fcc $\Delta=1.10$.}
  \label{tab:messreihe1}
-
 \end{table}
 
 \begin{table}[H]
  \begin{tabular}{cccccc}
 $r$ in mm&	$\theta$ in $\pi$& $s^\text{exp}$& $s^\text{theo}$ & MI &$a$ in $\mathring{A}$\\
 \hline
-31.0&		0.27&		3.0&		3&		111&		5.0\\
-38.0&		0.33&		4.45&		4&		200&		4.74\\
-44.0&		0.38&		5.9&		8&		220&		5.83\\
-51.0&		0.44&		7.79&		11&		311&		5.95\\
-65.0&		0.57&		12.13&		12&		222&		4.98\\
-69.0&		0.6&		13.48&		16&		400&		5.45\\
-74.0&		0.64&		15.22&		19&		331&		5.59\\
-102.33&		0.89&		25.51&		20&		420&		4.43\\
-106.33&		0.93&		26.94&		24&		422&		4.72\\
-115.33&		1.0&		30.03&		27&		511&		4.75\\
-119.33&		1.04&		31.33&		27&		333&		4.65\\
-124.33&		1.08&		32.9&		32&		440&		4.94\\
-134.33&		1.17&		35.74&		35&		531&		4.95\\
-146.33&		1.27&		38.57&		36&		442&		4.84\\
+31&	0.27&	3.0&	3&	111&	5.00 \\
+42&	0.37&	5.4&	4&	200&	4.31\\
+51&	0.44&	7.8&	8&	220&	5.07\\
+59&	0.51&	10.2&	11&	311&	5.20\\
+66&	0.57&	12.5&	12&	222&	4.91\\
+72&	0.63&	14.5&	16&	400&	5.25\\
+86&	0.75&	19.6&	19&	331&	4.93\\
+92&	0.80&	21.8&	20&	420&	4.80\\
+98&	0.85&	23.9&	24&	422&	5.01\\
+105&	0.91&	26.5&	27&	333&	5.06\\
+117&	1.02&	30.6&	32&	440&	5.12\\
+125&	1.09&	33.1&	35&	531&	5.15\\
+151&	1.32&	39.5&	36&	600&	4.78\\
+166&	1.45&	41.5&	40&	620&	4.91
  \end{tabular}
- \caption{Messwerte zur Salz 1}
+ \caption{Messwerte zur Salz 1. Für die bcc Struktur ist $\Delta=1.39$ und für fcc $\Delta=1.11$.}
  \label{tab:messreihe2}
-
 \end{table}
 
 \subsection{Korrektur zum Gitterparameter und Bestimmung der Proben}
@@ -291,21 +290,21 @@ linearer Regression durch \texttt{Python3} wird $a$ bei $\theta = 90^\circ$, als
 
 
 \begin{figure}[H]
-	\includegraphics[width=0.7\textwidth]{../auswertung/metall.png}
+	\includegraphics[width=0.7\textwidth]{../pics/a1.png}
 	\caption{Korrigierter Wert für $a_\text{Metall}$ bei $\cos(\theta)=0$}
 	\label{pic:fita1}
 \end{figure}
 
 \begin{figure}[H]
-	\includegraphics[width=0.7\textwidth]{../auswertung/salz.png}
+	\includegraphics[width=0.7\textwidth]{../pics/a2.png}
 	\caption{Korrigierter Wert für $a_\text{Salz}$ bei $\cos(\theta)=0$}
 	\label{pic:fita2}
 \end{figure}
 
 \begin{align}
- a_\text{Metall} &= 4.64(163)\, \mathring{A} \\
+ a_\text{Metall} &= 2.93(10)\, \mathring{A} \\
  \nonumber
- a_\text{Salz} &= 4.62(37)\, \mathring{A} 
+ a_\text{Salz} &= 5.00(23)\, \mathring{A} 
  \label{eq:latticeResults}
 \end{align}
 
@@ -313,53 +312,52 @@ linearer Regression durch \texttt{Python3} wird $a$ bei $\theta = 90^\circ$, als
 \section{Diskussion}
 Mit den ermittelten Werten für die Gitterkonstanten beider Proben, lassen sich nun jeweils Kandidaten finden, die infrage kommen.
 
-\noindent Materialien mit einem Gitterparameter von $a_\text{Metall} = 4.64(163) \mathring{A}$ sind in Tabelle \ref{tab:matProb1} 
+\noindent Materialien mit einem Gitterparameter von $a_\text{Metall} = 2.93(10) \mathring{A}$ sind in Tabelle \ref{tab:matProb1} %4.64(163) früher
 aufgeführt.
 
 \begin{table}[H]
  \begin{tabular}{cc}
 Material &$a$ in $\mathring{A}$\\
 \hline
-W&3.16\\ 
-Mo& 3.15\\ 
-Nb & 3.30\\ 
-Ta & 3.31\\ 
-Tl & 3.88\\ 
-Ba & 5.02\\ 
-  
+Fe&2.87\\ 
+Cr& 2.88\\ 
+V & 3.02\\  
  \end{tabular}
- \caption{Kandidaten für Metall 1 mit bcc-Struktur \cite{Gitterparameter}}
+ \caption{Kandidaten für Metall 1 mit bcc-Struktur \cite{Gitterparameter}\cite{metall}}
  \label{tab:matProb1}
-
 \end{table}
-\noindent Obwohl Barium und Thallium dem Fitwert am nächsten sind, sind sie als Kandidaten auszuschließen, da sie gifitg sind und daher sicherlich nicht
-als Experimentierprobe ohne Vorkehrungen benutzt werden kann. Der Farbe nach zu urteilen, würde Molybdän dem am nächsten kommen. Der Fehlerbereich ist
-aufgrund der wenigen Messwerte recht hoch, sodass eine sicherere Bestimmung nicht vollends möglich ist.
+\noindent  Vanadium ist zwar im Fehlerbereich, ist aber schwer in Reinform zu bringen. Auch wenn es farblich zur Probe passen würde, schließen wir
+es aus. Chrom und Eisen sind farblich ebenfalls passend. Chrom ist ähnlich wie, aber eher als Vanadium rein zu erhalten und Eisen ist recht einfach
+zu erhalten. Mit Prüfung des Magnetismus der Probe könnte man feststellen, ob es sich bei der Experimentierprobe um Eisen oder Chrom handelt.
 
 \noindent
-Die NaCl-Struktur, die der fcc-Struktur sehr ähnlich ist, wird von den Salzen in Tabelle \ref{tab:matProb2} angenommen.
-
+Die NaCl-Struktur liefert Reflexe ähnlich der fcc-Struktur. Die Intesität variiert jedoch wenn die Miller-Indizes alle gerade
+(die Formfaktoren der beiden Elemente $f_1$,$f_2$ werden in den Strukturfaktoren addiert) oder alle ungerade (sie werden subtrahiert) sind \cite{Azaroff}. Diese
+Struktur wird von Salzen in Tabelle \ref{tab:matProb2} angenommen.
 \begin{table}[H]
  \begin{tabular}{cc}
 Material &$a$ in pm\\
 \hline
-NaF& 4.62\\
-CaO & 4.81\\
-AgF & 4.92\\
-  
+AgF & 4.92\\ %gelb, ätzend, giftig
+LiCl & 5.14\\ %weiß, 
+SrO& 5.16\\ %weiß, ätzend
+MgS & 5.20  %rötlich, ungefährlich
  \end{tabular}
- \caption{Kandidaten für die zweite Probe mit fcc-Struktur \cite{Gitterparameter}}
+ \caption{Kandidaten für die zweite Probe mit fcc-Struktur \cite{Gitterparameter}\cite{Salz}}
  \label{tab:matProb2}
 
 \end{table}
-\noindent Natriumfluorid passt perfekt mit dem Fitwert  $a_\text{Salz} = 4.62(37)\, \mathring{A} $ zusammen. Zudem ist es für die nicht weiter gesicherte
-Handhabe ungefährlich. Alle drei Salze, die im Fehlerbereich liegen passen optisch mit der Probe zusammen. Also schließen wir, dass es sich um Natriumfluorid
-handelt.
-
+\noindent Silberflourid und Magnesiumsulfid passen beide farblich nicht zur weißen Probe. Weiterhin ist AgF ätzend und giftig. Strontiumoxid passt
+zwar farblich ist jedoch ebenfalls ätzend, weshalb wir für die nicht weiter gesicherte Handhabe annehmen, dass sie nicht das Probenmaterial sind. 
+Schließlich bleibt Lithiumchlorid als Kandidat im Bereich von $a_\text{Salz} = 5.00(23)\, \mathring{A} $, der farblich passt und keine weiteren Sicherheitsvorkehrungen erfordert, sofern er nicht als Lösung
+vorliegt. 
 
 \begin{thebibliography}{xxx}
  \bibitem[1]{Anleitung}Versuchsanleitung: V41 Debye-Scherrer-Aufnahmen
- \bibitem[2]{Gitterparameter}N. Ashcroft, N. Mermin: \textit{Solid State Physics} (1976) \\ ISBN: 0-03-08993-9
+ \bibitem[2]{Gitterparameter}Ashcroft N. and Mermin N.: \textit{Solid State Physics}, Harcourt, Inc. (1976) 
+  \bibitem[3]{Azaroff}Azaroff,  L.V.  and  Buerger,  M.J.  \textit{The  Powder  Method  in  X-ray  Crystallography},  McGraw-Hill,  1958
+  \bibitem[4]{Salz}West A.R. \textit{Basic Solid State Chemistry}  2nd edn. John Wiley \& Sons, Chichester, 1999
+  \bibitem[5]{metall}Hermann K. \textit{Crystallography and Surface Structure: An Introduction for Surface Scientists and Nanoscientists}, WILEY-VCH Verlag GmbH \& Co. KGaA, 2011
 \end{thebibliography}
 
 

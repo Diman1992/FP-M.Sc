@@ -1,0 +1,165 @@
+
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+% Die Hyperref Option hyperref={pdfpagelabels=false} verhindert die Warnung:
+% Package hyperref Warning: Option `pdfpagelabels' is turned off
+% (hyperref)                because \thepage is undefined. 
+% Hyperref stopped early 
+%
+% \input{longheader.tex}
+% \input{global.tex}
+
+\usepackage{lmodern}
+% Das Paket lmodern erspart die folgenden Warnungen:
+% LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <4> not available
+% (Font)              size <5> substituted on input line 22.
+% LaTeX Font Warning: Size substitutions with differences
+% (Font)              up to 1.0pt have occurred.
+%
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+\usepackage{siunitx}
+\sisetup{load-configurations=abbreviations}
+\sisetup{
+	%locale=DE,
+	seperr=true,                    % Fehler anzeigen
+	tightpm,                        % Abstand zwischen Fehler verringern
+	tophrase={{\text{ bis }}},
+	fraction=nice,
+	per-mode=fraction,
+	free-standing-units=true,
+	space-before-unit=true,
+	use-xspace=true,
+	group-separator={{\text{~}}},
+	list-final-separator={{\text{ und }}}
+}
+\usepackage{natbib}
+\usepackage[labelformat=empty]{caption}
+\usepackage{movie15}
+\usepackage{xcolor,colortbl}
+\usepackage{slashed}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{amstext}
+\usepackage[ngerman,german]{babel, varioref}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{xfrac}
+\usepackage{booktabs}
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% Wenn \titel{\ldots} \author{\ldots} erst nach \begin{document} kommen,
+% kommt folgende Warnung:
+% Package hyperref Warning: Option `pdfauthor' has already been used,
+% (hyperref) ... 
+% Daher steht es hier vor \begin{document}
+
+\title[Arduino Vortrag]{Arduino: Helligkeitsempfindliche Radleuchte}  
+\institute{Fortgeschrittenen Praktikum\\
+Technische Universit\"at Dortmund}
+\author{Dimitrios Skodras} 
+\date{21.11.2016} 
+
+% zusaetzlich ist das usepackage{beamerthemeshadow} eingebunden 
+\usepackage{beamerthemeshadow}
+
+
+%  \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+%  sorgt dafuer das die Elemente die erst noch (zukuenftig) kommen 
+%  nur schwach angedeutet erscheinen 
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+% klappt auch bei Tabellen, wenn teTeX verwendet wird\ldots
+
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+
+\setbeamertemplate{footline}
+{%
+  \leavevmode%
+ \begin{beamercolorbox}%
+    [wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm]%
+    {author in head/foot}%
+    \usebeamerfont{author in head/foot}%
+    \hfill\insertshortauthor
+  \end{beamercolorbox}%
+  \begin{beamercolorbox}%
+    [wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm ,rightskip=.3cm]%
+    {title in head/foot}%
+    \usebeamerfont{title in head/foot}%
+    \insertshorttitle\hfill\insertframenumber{}
+  \end{beamercolorbox}%
+}%
+
+\setbeamertemplate{caption}{\raggedright\insertcaption\par}
+\captionsetup[figure]{font=small,skip=0pt}
+\begin{frame}
+\titlepage
+\end{frame} 
+
+% \begin{frame}
+% \frametitle{Gliederung}
+% \tableofcontents
+% \end{frame} 
+% 
+% \newcommand{\tmotiv}{Konzept}
+% \section{\tmotiv}
+% 
+
+ \begin{frame}
+  \frametitle{Motivation}
+  Wie kann ich möglichst alle zur Verfügung stehende Bauteile miteinbinden?
+  \vspace{0.3cm}
+  
+  
+  \begin{minipage}{0.49\textwidth}
+   Input:
+   \begin{itemize}
+    \item Photodiode
+    \item Button
+   \end{itemize}
+  \end{minipage}
+    \begin{minipage}{0.49\textwidth}
+    Output:
+   \begin{itemize}
+    \item 2 LED
+    \item 1 RGB LED
+   \end{itemize}
+  \end{minipage}
+
+ \end{frame}
+ 
+ \begin{frame}
+  \frametitle{Grobe Idee}
+  \begin{itemize}
+   \item Helligkeitsempfindliche Fahrradlampe
+   \item verschiedene Blinkfrequenzen durch Knopfdruck
+   \item mögliche, weitere Leuchtbedingung: Bewegung des Rads
+   \item[$\rightarrow$] Lampe muss bei eintretender Dunkelheit (ggf. während der Fahrt) nicht angeschaltet werden.
+  \end{itemize}
+ \end{frame}
+
+
+ \begin{frame}
+ \frametitle{Konzept}
+ \begin{itemize}
+  \item Photodiode misst Helligkeit
+  \item Button erhöht die Blinkfrequenz von nicht leuchtend zu dauerhaft leuchtend in 5 Stufen
+  \item Weiße LED bestätigt Knopfdruck
+  \item Gelbe LED zeigt in Helligkeit derzeitigen Status an
+  \item RGB LED leuchtet bei Dunkelheit und Frequenzstatus$>0$ in zufälligen Farbkombinationen
+ \end{itemize}
+
+ \end{frame}
+
+ 
+ \begin{frame}
+  \frametitle{Schaltplan}
+  \includegraphics[scale=0.15]{Schaltung.jpg}
+ \end{frame}
+
+
+
+
+\end{document}
