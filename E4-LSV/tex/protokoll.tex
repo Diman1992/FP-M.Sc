@@ -3,6 +3,8 @@
 % ========================================
 
 \input{longheader.tex}
+\usepackage{subcaption}
+\usepackage{placeins}
 
 % ========================================
 %	Angaben für das Titelblatt
@@ -57,9 +59,42 @@
 % ========================================
 
 \section{Introduction}
+Besides its properties to have very accurate estimations for the processes it is applicable to, the Standard Model (SM) lacks the explanation for 
+several phenomena. Many of them hint at the electroweak scale of order $\mathcal{O}$(100 GeV) where new physics is expected to occur. One new particle
+proposed by some models beyond the SM is $Z'$. Its properties are very similar to the SM-$Z$ boson but is around an order of magnitude heavier so that
+it can decay into a top-antitop pair $t\bar t$. It may furthermore serve as a mediator to a dark sector or may have flavour violatioting interactions, 
+possibly 
+explaining flavour anomalies in $B$-meson physics. Considerations as the latter two, however, are beyond the scope of this work. The top pair mainly
+gets produced via the strong interaction of two gluons $g$ and decays weakly into two $b$-quarks and two $W$-bosons which themselves decay further 
+expressed by three topologies. One may decay into a lepton pair and the other into a quark pair (i.e. lepton$+$jets) or both decay leptonically 
+(i.e. dilepton) or hadronically (i.e. all hadron). Due to its color representation and the quark flavour violation, decays into quarks is much more 
+probable compared tolepton involving ones. But they are more complicate to identify, i.e. reconstructed, as $t$ decay products as a result of 
+confinement. The tradeoff is therefore to focus on the lepton$+$jets topology, while we do not consider $\tau$ because of its various decay channels.
+\\
+\noindent The data \cite{Atlas} of the preselected sets gets further sorted out by additional requirements to obtain the requested topology. From direct and 
+derived kinematic entities one final discriminant, the invariant mass of the system, gets picked to separate the background from the signal emerging
+as a sharp peak. Background processes are modeled by Monte Carlo (MC) simulations whose validity is reviewed in the process. In the end, a statistical
+analysis shows no significance for neither an observation nor evidence for a $Z'$ resonance but a lower mass is set at $m_{Z'} >850$ GeV at 
+95\% CL
 
 
+\FloatBarrier
 \section{Selection conditions and their efficiencies}
+An example for a depiction of a dataset is shown in figure \ref{pic:examplePlot}. It represents a histogram fro the mass of the jets (jet\_m) in an
+event. Since mostly two jets are reconstructed $b$-quarks, i.e. b-tagged, the peak is a bit below twice the $b$-quark mass. 
+\begin{figure}[t]
+ \includegraphics[width= 0.5\textwidth]{../pics/2/jetm.pdf}
+ \caption{Histogram of the jet mass from data set 0.}
+ \label{pic:examplePlot}
+\end{figure}
+%TODO: maybe one sentence about the difference between #_plot and #_ntuple (2.1b)
+The used samples are already preselected with certain requirements. These include a lower bound on the momentum transverse to the beam axis $p_T>17$ GeV 
+\footnote[1]{Leptons coming from electroweak
+decays are rare in general but have a quite high $p_T$ expressed by this lower bound}and
+for the pseudorapidity $\eta$ which represents the alignment of the jet with the beam, we demand $|\eta| < 2.47$. With the detector being rotationally
+invariant along the beam axis, no requirement for the azimuthal angle $\phi$ is posed. To cover the requested topology, we demand 
+one lepton to be reconstructed. 
+
 2+3
 % Notes:- plot description of example jet_m. 
 % 	- #_plot > #_ntuple? holds for leptonic entities: difference in number represents reconstructed leptons
@@ -75,6 +110,65 @@
 	
 
 \section{Fundamental and derived quantities}
+
+\newpage
+\begin{figure}
+\begin{minipage}{0.32\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/leppt.pdf}
+\end{minipage}
+\begin{minipage}{0.32\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetpt.pdf}
+\end{minipage}
+\begin{minipage}{0.32\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetptLarge.pdf}
+\end{minipage}
+
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/lepeta.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jeteta.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetetaLarge.pdf}
+\end{minipage}
+
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/lepphi.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetphi.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetphiLarge.pdf}
+\end{minipage}
+
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/lepE.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetE.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetELarge.pdf}
+\end{minipage}
+
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetnum.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/jetbtag.pdf}
+\end{minipage}
+\begin{minipage}{0.33\textwidth}
+ \includegraphics[width=\textwidth]{../pics/4/misstrans.pdf}
+\end{minipage}
+\caption{bla}
+\label{pic:bla}
+\end{figure}
+
+
+
+
 4+5
 % Notes:- 4a+b: comparing a data set with ttbar
 % 	- taking inv_massSys as most powerful discriminant because it has resonances (peaks) at the particles or systems mass which is known (ttbar) or seeked (Z')
@@ -89,7 +183,7 @@
 \section{Conclusion}
 
  \begin{thebibliography}{WissOnl}
- 	\bibitem{Anl} TU Dortmund instruction for experiment Nr.60 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
+ 	\bibitem{Atlas} ATLAS Collaboration, The ATLAS Experiment at the CERN Large Hadron Collider, JINST 3 (2008) S08003
  	\bibitem{ref} Laser spectroscopy of Rubidium \\ \url{http://www.photodigm.com/literature/applications-notes/rubidium-absorption-spectroscopy}
  \end{thebibliography}
 
