@@ -5,6 +5,7 @@
 \input{longheader.tex}
 \usepackage{subcaption}
 \usepackage{placeins}
+\newcommand{\minwidth}{0.40}
 
 % ========================================
 %	Angaben für das Titelblatt
@@ -110,7 +111,21 @@ one lepton to be reconstructed.
 	
 
 \section{Fundamental and derived quantities}
-
+With these requirements several fundamental quantities are plotted in figure \ref{pic:fundamental}. 
+These include the transverse momentum $p_T$ and the missing part $E_\text{miss}$ as well as $\eta$, $\phi$ and $E$ for each reconstructed lepton or jet.
+The number of good jets, b-tagged jets and the magnitude of missing transverse energy hold by the not detectable neutrino are further depicted. 
+Since the $t\bar t$ process is the major background, its expecations related to the applicable plots are examined. The behaviour of quantities with
+a mass dimension of order 1, such as $p_T$, $E$ and $E_\text{miss}$ are distributed qualitatively equal with a peak in the region of order 
+$\mathcal{O}$(10 GeV) scale with an exponential decline beyond. Despite the fact that this is expected for this background process, it is nonspecific.
+Now we consider the angular quantities $\eta$ and $\phi$. As stated before, the detector is rotational around the beam axis and $\phi$ is hence
+distributed evenly as expected. This is also not unique for $t\bar t$. The pseudorapidity has a peak at 0, i.e. the collision products prefer to
+pervade the detector orthogonally. The top pair gets mainly produced by two interacting gluons, being bosons. Afterwards, it decays into six fermions.
+Calculating this process in an effective theory shows that the cross section for bosons into fermions $\sigma(BB\rightarrow f\bar f)\sim (1-\cos^2(\theta)$.
+having the same maximum as $\eta$. The notches in the leptonic plot around $\pm 1.5$ may be a result of statistical fluctuation since the equivalent
+plots do not show them. As stated, the top pair decays eventually into six fermions, two of them $b$-quarks. With the selections we made, we expect 
+two additional ones. Cases where just one or more than four jets are reconstructed refer to a loss or a misinterpretation of jets. For the amount
+of b-tagged jets, the same explanation is applicable. 
+%The fact that events with one b-tagged jet are more likely than ones with two jets is indeed puzzling. 
 \newpage
 \begin{figure}
 \begin{minipage}{0.32\textwidth}
@@ -122,51 +137,88 @@ one lepton to be reconstructed.
 \begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetptLarge.pdf}
 \end{minipage}
-
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/lepeta.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jeteta.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetetaLarge.pdf}
 \end{minipage}
-
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/lepphi.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetphi.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetphiLarge.pdf}
 \end{minipage}
-
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/lepE.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetE.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetELarge.pdf}
 \end{minipage}
-
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetnum.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/jetbtag.pdf}
 \end{minipage}
-\begin{minipage}{0.33\textwidth}
+\begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/misstrans.pdf}
 \end{minipage}
+\caption{\small{Fundamental distributions for several entities from the $t\bar t$ MC simulation. In the first row $p_T$ is represented, the second is for $\eta$, the third for $\phi$ and
+the fourth for $E$. The fifth represents the number of good jets, the number of b-tagged jets and the magnitude of the missing transverse momentum.
+The first column links to the reconstructed leptons, the second to jets and the third to the jet with larges $p_T$.}}
+\label{pic:fundamental}
+\end{figure}
+
+\begin{figure}
+\begin{center}
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/zprime/delPhi.pdf}
+\end{minipage}
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/tt/delPhi.pdf}
+\end{minipage}
+
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/zprime/invMass3.pdf}
+\end{minipage}
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/tt/invMass3.pdf}
+\end{minipage}
+
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/zprime/misstrans.pdf}
+\end{minipage}
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/tt/misstrans.pdf}
+\end{minipage}
+
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/zprime/etaSys.pdf}
+\end{minipage}
+\begin{minipage}{\minwidth\textwidth}
+ %\includegraphics[width=\textwidth]{../pics/5/tt/delPhi.pdf}
+\end{minipage}
+
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/zprime/invMassSys.pdf}
+\end{minipage}
+\begin{minipage}{\minwidth\textwidth}
+ \includegraphics[width=\textwidth]{../pics/5/tt/invMassSys.pdf}
+\end{minipage}
+\end{center}
 \caption{bla}
 \label{pic:bla}
 \end{figure}
-
-
 
 
 4+5
