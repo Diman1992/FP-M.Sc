@@ -183,7 +183,7 @@ the fourth for $E$. The fifth represents the number of good jets, the number of 
 The first column links to the reconstructed leptons, the second to jets and the third to the jet with larges $p_T$.}}
 \label{pic:fundamental}
 \end{figure}\\ \noindent
-While these quantities are directly measurable, none of them would be able to discriminate efficiently between the $t\bar t$ background and a $Z'$ 
+While these quantities are directly measurable, none of them would be able to discriminate efficiently between the $t\bar t$ background and a $Z'(1000)$ 
 signal. In figure \ref{pic:derived}, derived quantities are shown, such as the difference in the azimuthal angle of the lepton and the neutrino
 $\Delta \phi$. Further, the invariant mass for the three jets with largest $p_T$ as well as $\eta$ and the invariant mass for the whole system
 are included. It is obvious that the behaviour for the angular related quantities is different in this framework. While the azimuthal angle is indeed
@@ -192,11 +192,16 @@ pair. A cone, symmetric around the beam is a vivid example. Its opening angle re
 traces. The radian measure between them represent $\Delta \phi$. To explain a prefered angle a $\phi$ dependency for the $W$ trace might be an answer.
 The comparably large mass of the $W$ and the system altogether may also play a role to cause the restrictions.
 The position of the peak in the distribution, however, cannot be explained thoroughly. Maybe a consideration of the whole system has to be taken
-into account. It appears that $\eta$ also has a peak neither at the edge nor at the center of distribution but rather at the edge of our posed
+into account. It appears that $\eta$ also has a peak neither at the edge nor at the center of the distribution but rather at the edge of our posed
 requirement. While each particle prefers a trace orthogonal to the beam axis, within the joint distribution for the system they apparently cancel each other so that
 we find a root at 0. The distributions of the invariant masses in these two cases are primarily interesting since the position of a peak represents
 a resonance refering to the mass of a particle. Starting with the case wherein the three jets with the largest $p_T$ are considered, we see two peaks
-for the $Z'$ simulation. The first lies around the top mass while the second is around 500 GeV. 
+for the $Z'(1000)$ simulation. The first lies around the top mass while the second is around 500 GeV. This indicates that the three aforementioned particles
+carry the energy of each the half of either the top pair or the $Z'(1000)$. For the $t\bar t$ simulation, the same just without the $Z'(1000)$ resonance is 
+obtained. For the second case wherein the whole system is taken into account, a resonance at the doubled top mass is found for the top pair 
+as expected. The peak in the $Z'(1000)$ distribution is at a lower position than expected for this simulation. The invariant mass of the whole system
+is the best discriminator for the signal to background ratio considered here. The angular related quantities do not have a much different behaviour 
+for the two treated simulations. Hence, they should not be used as a discriminator. 
 
 \begin{figure}
 \begin{center}
@@ -244,13 +249,39 @@ top pair became useless by applying inappropriate limits.}}
 \label{pic:derived}
 \end{figure}
 
-
-4+5
 % Notes:- 4a+b: comparing a data set with ttbar
 % 	- taking inv_massSys as most powerful discriminant because it has resonances (peaks) at the particles or systems mass which is known (ttbar) or seeked (Z')
 
 \section{Data-MC comparisons and constraints on $Z'$-mass}
-6+7
+The approach to find BSM influences requires a good match of all summed up background contributions to the measured data in the expected background
+dominated regions of the phase space. If this is ensured, the distribution of the invariant mass of the system is investigated for discrepancies 
+from the background-only hypothesis \cite{anl}. 
+\begin{table}[b]
+ \begin{tabular}{l|l|r}
+ Process & $\sigma$ in pb & $N$\\
+ \hline
+Diboson &$2.9\cdot 10^{1}$& 20 \\
+Singletop&$5.2\cdot 10^{1}$& 436\\
+$t\bar t$&$2.5\cdot 10^{2}$& 7519\\
+$W+$jets&$3.6\cdot 10^{4}$& 2031\\
+$Z+$jets&$2.5\cdot 10^{3}$& 432\\
+\hline
+$Z'(400)$&$1.1\cdot 10^{2}$& 2745\\
+$Z'(500)$&$8.2\cdot 10^{1}$& 2535\\
+$Z'(750)$&$2.0\cdot 10^{2}$& 863\\
+$Z'(1000)$&$5.5\cdot 10^{0}$& 240\\
+$Z'(1250)$&$1.9\cdot 10^{0}$& 76\\
+$Z'(1500)$&$8.3\cdot 10^{-1}$& 29\\
+$Z'(1750)$&$3.0\cdot 10^{-1}$& 9\\
+$Z'(2000)$&$1.4\cdot 10^{-1}$& 4\\
+$Z'(2250)$&$6.7\cdot 10^{-2}$& 2\\
+$Z'(2500)$&$3.5\cdot 10^{-2}$& 1\\
+$Z'(3000)$&$1.2\cdot 10^{-2}$& 0
+ \end{tabular}
+ \caption{\small{Expected events and cross sections for all important background processes and $Z'$ for different masses.}}
+ \label{tab:expEvents}
+\end{table}
+
 % Notes:- 6.2c: some have fluctuations -> nothing to worry about. But in jet_eta, jet_pt and lep_eta for example the data points are almost always below the MC-expectation by fairly the same amount ->maybe there is a small, overall factor missing
 % 	- 6.2d: from inv_massSys no Z' signal can be seen by eye.
 % 	- 7.1a: from results/notes we get a p-value of 0.46. For 95 C.F. you get chi=36.4149 which means that the impact of the Z' cross section gets increased until this chi is reached.
@@ -259,8 +290,8 @@ top pair became useless by applying inappropriate limits.}}
 \section{Conclusion}
 
  \begin{thebibliography}{WissOnl}
- 	\bibitem{Atlas} ATLAS Collaboration, The ATLAS Experiment at the CERN Large Hadron Collider, JINST 3 (2008) S08003
- 	\bibitem{ref} Laser spectroscopy of Rubidium \\ \url{http://www.photodigm.com/literature/applications-notes/rubidium-absorption-spectroscopy}
+ 	\bibitem{Atlas} ATLAS Collaboration, \textit{The ATLAS Experiment at the CERN Large Hadron Collider}, JINST 3 (2008) S08003
+ 	\bibitem{anl} S. Bartkowski, J. Erdmann, K. Kröninger, \textit{Lehrstuhlversuch ``Search for $t\bar t$ resonances with ATLAS data}, (2016), TU Dortmund
  \end{thebibliography}
 
 % ========================================
