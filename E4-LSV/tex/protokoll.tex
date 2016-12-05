@@ -68,11 +68,11 @@ possibly
 explaining flavour anomalies in $B$-meson physics. Considerations as the latter two, however, are beyond the scope of this work. The top pair mainly
 gets produced via the strong interaction of two gluons $g$ and decays weakly into two $b$-quarks and two $W$-bosons which themselves decay further 
 expressed by three topologies (see fig. \ref{pic:feynman}). 
-\begin{figure}
- \includegraphics[width=0.5\textwidth]{../pics/e4.pdf}
- \caption{Most dominant process for creation and decay of a top pair at an hadron collider.}
- \label{pic:feynman}
-\end{figure}
+%\begin{figure}
+% \includegraphics[width=0.5\textwidth]{../pics/e4.pdf}
+% \caption{Most dominant process for creation and decay of a top pair at an hadron collider.}
+% \label{pic:feynman}
+%\end{figure}
 One may decay into a lepton pair and the other into a quark pair (i.e. lepton$+$jets) or both decay leptonically 
 (i.e. dilepton) or hadronically (i.e. all hadron). Due to its color representation and the quark flavour violation, decays into quarks is much more 
 probable compared tolepton involving ones. But they are more complicate to identify, i.e. reconstructed, as $t$ decay products as a result of 
@@ -87,20 +87,51 @@ analysis shows no significance for neither an observation nor evidence for a $Z'
 
 \FloatBarrier
 \section{Selection conditions and their efficiencies}
-An example for a depiction of a dataset is shown in figure \ref{pic:examplePlot}. It represents a histogram fro the mass of the jets (jet\_m) in an
+An example for a depiction of a dataset is shown in figure \ref{pic:examplePlot}. It represents a histogram of the mass of the jets (jet\_m) in an
 event. Since mostly two jets are reconstructed $b$-quarks, i.e. b-tagged, the peak is a bit below twice the $b$-quark mass. 
 \begin{figure}[t]
  \includegraphics[width= 0.5\textwidth]{../pics/2/jetm.pdf}
  \caption{Histogram of the jet mass from data set 0.}
  \label{pic:examplePlot}
 \end{figure}
-%TODO: maybe one sentence about the difference between #_plot and #_ntuple (2.1b)
+The number of entries in the plot is greater than the number of events in the data (\emph{ntuple->GetEntries()}). This difference represents the reconstructed leptons.
 The used samples are already preselected with certain requirements. These include a lower bound on the momentum transverse to the beam axis $p_T>17$ GeV 
 \footnote[1]{Leptons coming from electroweak
 decays are rare in general but have a quite high $p_T$ expressed by this lower bound}and
 for the pseudorapidity $\eta$ which represents the alignment of the jet with the beam, we demand $|\eta| < 2.47$. With the detector being rotationally
-invariant along the beam axis, no requirement for the azimuthal angle $\phi$ is posed. To cover the requested topology, we demand 
-one lepton to be reconstructed. 
+invariant along the beam axis, no requirement for the azimuthal angle $\phi$ is posed. To cover the requested topology, we demand one lepton to be reconstructed. 
+
+For the $Z'$-signal we expect the reconstructed objects in the all-hadronic decay mode to contain two $b$-quarks and two lighter quarks while for the lepton+jets decay mode a combination of two $b$-quarks, a lighter quark and a lepton is expected. For a dilepton $t\bar{t}$ decay mode two $b$-quarks and two leptons are expected.
+
+Relevant background processes include $t\bar{t}$, diboson, $WW$, $ZZ$ and single-top decays. Considering its detectability and the amount of events the two $b$-quark, one lighter quark and one lepton topology is chosen to study $t\bar{t}$ production. As a result events are selected with exactly one lepton, $E_\text{miss} > 35$ GeV and exactly four jets, which all pass jet quality requirements and of which at least one is \emph{b-tagged}.
+
+\begin{table}[H]
+	\begin{tabular}{l|c}
+		 Process & $N$\\
+		\hline
+		Diboson &$20.40$\\
+		Singletop&$435.71$\\
+		$t\bar t$&$7519.39$\\
+		$W+$jets&$2031.23$\\
+		$Z+$jets&$431.93$\\
+		\hline
+		$Z'(400)$&$2744.50$\\
+		$Z'(500)$&$2534.62 $\\
+		$Z'(750)$&$863.4$\\
+		$Z'(1000)$&$239.58$\\
+		$Z'(1250)$&$75.75$\\
+		$Z'(1500)$&$28.60$\\
+		$Z'(1750)$&$9.05$\\
+		$Z'(2000)$&$3.68$\\
+		$Z'(2250)$&$1.54$\\
+		$Z'(2500)$&$0.77$\\
+		$Z'(3000)$&$0.27$
+	\end{tabular}
+	\caption{Table of acceptance times efficiency of the event selection.}
+	\label{tab: acc_times_eff}
+\end{table}
+
+The event selection efficiencies for the different requirements show the following descendings
 
 2+3
 % Notes:- plot description of example jet_m. 
