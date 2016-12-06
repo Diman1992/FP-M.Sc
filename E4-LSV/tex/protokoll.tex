@@ -370,14 +370,14 @@ expected background events, we find that they exceed the amount of data events. 
 and yields 23.87 with a number of degrees of freedom (n.d.f) of 24. This results in a p-value of 0.46. Evidence for a signal can be claimed
 for a p-value of lower than $2.7\cdot 10^{-3}$ which is far below our caluclation. However, a lower bound for the $Z'$ mass can be set. The 
 theoretical cross sections from table \ref{tab:expEvents} are scaled to a point where the discrepancy between their contributions and the data
-lead to a p-value of 0.05. At this 95 \% confidence level (CL) $\chi^2 = 36.41$. The required cross sections for each mass hypothesis compared to
-its theoretical prediction is depicted in figure \ref{pic:limits}
+lead to a p-value of 0.05. At this 95 \% confidence level (CL) $\chi^2 = 36.41$. The required cross sections (black line) for each mass hypothesis 
+compared to their theoretical predictions (blue line) are depicted in figure \ref{pic:limits}.
 \begin{figure}
  \includegraphics[width=\textwidth]{../pics/limits.pdf}
  \caption{Upper limits for $Z'$ cross section depending on the mass. The mass region below the point of intersect is excluded at 95\% CL.}
  \label{pic:limits}
 \end{figure}
-
+This shows a lower bound on the $Z'$ mass of around 850 GeV. 
 
 
 % Notes:- 6.2c: some have fluctuations -> nothing to worry about. But in jet_eta, jet_pt and lep_eta for example the data points are almost always below the MC-expectation by fairly the same amount ->maybe there is a small, overall factor missing
@@ -386,10 +386,31 @@ its theoretical prediction is depicted in figure \ref{pic:limits}
 % 	- 7.1d: by doing this, the lighter Z' overproduce the observed jets up to the mass of 850 GeV above which the Z' boson is still viable
 
 \section{Conclusion}
+The goal of this execution was to look for BSM $t\bar t$ resonances in ATLAS data. Starting with preselected datasets, further selection conditions 
+for the samples are posed. Such as the occurence of one reconstructed lepton to cover the decay topology with the best balance of emergence and
+detectability. These conditions are also applied to MC simulations of significant background processes, most notably $t\bar t$. From the data and
+the simulations the invariant mass of the system as derived quantitiy gets chosen to have the best discriminatory power as it shows a peak at 
+the resonance of the applicable particle(s). Stacked plots of all background processes are made to identify a possible signal by comparison with
+the data. Since no significant signal was found, a lower bound on the $Z'$ mass is set at around 850 GeV at 95\% CL.\\
+\noindent This execution is indeed an interesting process to understand the origin of physical constraints needed by theorists. Particularly the 
+knowledge of the statistical analysis is an important gain. It is hard to tell whether the required amount of plots of some quantities is really 
+necessary after their behaviour becomes considered less important. Searching for $Z'$ signals is a major task nowadays. Depending on the chosen
+model, however, the achieved lower bound here is already outdated and is set to 2-5 TeV \cite{Atlaslimits}\cite{pdg}\cite{1503.08929}.
 
+\newpage
  \begin{thebibliography}{WissOnl}
- 	\bibitem{Atlas} ATLAS Collaboration, \textit{The ATLAS Experiment at the CERN Large Hadron Collider}, JINST 3 (2008) S08003
- 	\bibitem{anl} S. Bartkowski, J. Erdmann, K. Kröninger, \textit{Lehrstuhlversuch ``Search for $t\bar t$ resonances with ATLAS data}, (2016), TU Dortmund
+ \bibitem{Atlas} ATLAS Collaboration, \textit{The ATLAS Experiment at the CERN Large Hadron Collider}, JINST 3 (2008) S08003
+ \bibitem{anl} S. Bartkowski, J. Erdmann, K. Kröninger, \textit{Lehrstuhlversuch ``Search for $t\bar t$ resonances with ATLAS data}, (2016), TU Dortmund
+ \bibitem{Atlaslimits} ATLAS Collab., note ATLAS-CONF-2013-017, Mar. 2013.
+ \bibitem{pdg}   C.~Patrignani {\it et al.} [Particle Data Group Collaboration],
+ ``Review of Particle Physics,''
+  Chin.\ Phys.\ C {\bf 40}, no. 10, 100001 (2016).
+  doi:10.1088/1674-1137/40/10/100001
+ \bibitem{1503.08929}  P.~Athron, D.~Harries and A.~G.~Williams,
+  ``$Z'$ mass limits and the naturalness of supersymmetry,''
+  Phys.\ Rev.\ D {\bf 91}, 115024 (2015)
+  doi:10.1103/PhysRevD.91.115024
+  [arXiv:1503.08929 [hep-ph]].
  \end{thebibliography}
 
 % ========================================
