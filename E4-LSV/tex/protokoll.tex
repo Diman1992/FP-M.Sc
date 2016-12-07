@@ -5,7 +5,9 @@
 \input{longheader.tex}
 \usepackage{subcaption}
 \usepackage{placeins}
-\newcommand{\minwidth}{0.40}
+\newcommand{\minwidth}{0.47}
+\newcommand{\minwidththree}{0.49}
+
 
 % ========================================
 %	Angaben für das Titelblatt
@@ -68,11 +70,11 @@ possibly
 explaining flavour anomalies in $B$-meson physics. Considerations as the latter two, however, are beyond the scope of this work. The top pair mainly
 gets produced via the strong interaction of two gluons $g$ and decays weakly into two $b$-quarks and two $W$-bosons which themselves decay further 
 expressed by three topologies (see fig. \ref{pic:feynman}). 
-%\begin{figure}
-% \includegraphics[width=0.5\textwidth]{../pics/e4.pdf}
-% \caption{Most dominant process for creation and decay of a top pair at an hadron collider.}
-% \label{pic:feynman}
-%\end{figure}
+\begin{figure}
+ \includegraphics[width=0.5\textwidth]{../pics/e4.pdf}
+ \caption{Most dominant process for creation and decay of a top pair at an hadron collider.}
+ \label{pic:feynman}
+\end{figure}
 One may decay into a lepton pair and the other into a quark pair (i.e. lepton$+$jets) or both decay leptonically 
 (i.e. dilepton) or hadronically (i.e. all hadron). Due to its color representation and the quark flavour violation, decays into quarks is much more 
 probable compared tolepton involving ones. But they are more complicate to identify, i.e. reconstructed, as $t$ decay products as a result of 
@@ -87,7 +89,8 @@ analysis shows no significance for neither an observation nor evidence for a $Z'
 
 \FloatBarrier
 \section{Selection conditions and their efficiencies}
-An example for a depiction of a dataset is shown in figure \ref{pic:examplePlot}. It represents a histogram of the mass of the jets (jet\_m) in an
+\label{sec:selection}
+An example for a depiction of a dataset is shown in figure \ref{pic:examplePlot}. It represents a histogram fro the mass of the jets (jet\_m) in an
 event. Since mostly two jets are reconstructed $b$-quarks, i.e. b-tagged, the peak is a bit below twice the $b$-quark mass. 
 \begin{figure}[t]
  \includegraphics[width= 0.5\textwidth]{../pics/2/jetm.pdf}
@@ -105,7 +108,7 @@ For the $Z'$-signal we expect the reconstructed objects in the all-hadronic deca
 
 Relevant background processes include $t\bar{t}$, diboson, $WW$, $ZZ$ and single-top decays. Considering its detectability and the amount of events the two $b$-quark, one lighter quark and one lepton topology is chosen to study $t\bar{t}$ production. As a result events are selected with exactly one lepton, $E_\text{miss} > 35$ GeV and exactly four jets, which all pass jet quality requirements and of which at least one is \emph{b-tagged}.
 
-The event selection efficiencies for the different requirements show the following descending order: \emph{Number of Jets}$>$\emph{b-tagged}$>$\emph{Missing Energy}$>$\emph{Number of leptons}$>$\emph{jet-quality}. This is the same for all background processes. The selection efficiency of the $Z'(1000)$ Sample is $79\%$. After the selection the main background process is $t\bar t$ with $1\mathrm{e}{5}$ events in comparison to other processes with $1\mathrm{e}3$ or less events.
+The event selection efficiencies for the different requirements show the following descending order: \emph{Number of Jets}$>$\emph{b-tagged}$>$\emph{Missing Energy}$>$\emph{Number of leptons}$>$\emph{jet-quality}. This is the same for all background processes. The selection efficiency of the $Z'(1000)$ Sample is $79\%$. After the selection the main background process is $t\bar t$ with $10^5$ events in comparison to other processes with $10^3$ or less events.
 % Notes:- plot description of example jet_m. 
 % 	- #_plot > #_ntuple? holds for leptonic entities: difference in number represents reconstructed leptons
 % 	- trigger and reconstruction requirements are maybe found in Jana_Novakova book ore elsewhere in the literature
@@ -258,32 +261,127 @@ top pair became useless by applying inappropriate limits.}}
 \section{Data-MC comparisons and constraints on $Z'$-mass}
 The approach to find BSM influences requires a good match of all summed up background contributions to the measured data in the expected background
 dominated regions of the phase space. If this is ensured, the distribution of the invariant mass of the system is investigated for discrepancies 
-from the background-only hypothesis \cite{anl}. 
-\begin{table}[b]
- \begin{tabular}{l|l|r}
+from the background-only hypothesis \cite{anl}. \\
+\noindent In table \ref{tab:expEvents} the expected events for the main background processes as well as for some masses for $Z'$ are listed. 
+\begin{table}[hb]
+ \begin{tabular}{l|l|l}
  Process & $\sigma$ in pb & $N$\\
  \hline
-Diboson &$2.9\cdot 10^{1}$& 20 \\
-Singletop&$5.2\cdot 10^{1}$& 436\\
-$t\bar t$&$2.5\cdot 10^{2}$& 7519\\
-$W+$jets&$3.6\cdot 10^{4}$& 2031\\
-$Z+$jets&$2.5\cdot 10^{3}$& 432\\
+% Diboson &$2.9\cdot 10^{1}$& 20 \\
+% Singletop&$5.2\cdot 10^{1}$& 436\\
+% $t\bar t$&$2.5\cdot 10^{2}$& 7519\\
+% $W+$jets&$3.6\cdot 10^{4}$& 2031\\
+% $Z+$jets&$2.5\cdot 10^{3}$& 432\\
+% \hline
+% $Z'(400)$&$1.1\cdot 10^{2}$& 2745\\
+% $Z'(500)$&$8.2\cdot 10^{1}$& 2535\\
+% $Z'(750)$&$2.0\cdot 10^{2}$& 863\\
+% $Z'(1000)$&$5.5\cdot 10^{0}$& 240\\
+% $Z'(1250)$&$1.9\cdot 10^{0}$& 76\\
+% $Z'(1500)$&$8.3\cdot 10^{-1}$& 29\\
+% $Z'(1750)$&$3.0\cdot 10^{-1}$& 9\\
+% $Z'(2000)$&$1.4\cdot 10^{-1}$& 4\\
+% $Z'(2250)$&$6.7\cdot 10^{-2}$& 2\\
+% $Z'(2500)$&$3.5\cdot 10^{-2}$& 1\\
+% $Z'(3000)$&$1.2\cdot 10^{-2}$& 0
+Diboson &$2.9\cdot 10^{1}$& $6.5\cdot 10^{-1}$ \\
+Singletop&$5.2\cdot 10^{1}$& $1.6\cdot 10^{1}$\\
+$t\bar t$&$2.5\cdot 10^{2}$& $2.4\cdot 10^{2}$\\
+$W+$jets&$3.6\cdot 10^{4}$& $1.1\cdot 10^{3}$\\
+$Z+$jets&$2.5\cdot 10^{3}$& $2.9\cdot 10^{2}$\\
 \hline
-$Z'(400)$&$1.1\cdot 10^{2}$& 2745\\
-$Z'(500)$&$8.2\cdot 10^{1}$& 2535\\
-$Z'(750)$&$2.0\cdot 10^{2}$& 863\\
-$Z'(1000)$&$5.5\cdot 10^{0}$& 240\\
-$Z'(1250)$&$1.9\cdot 10^{0}$& 76\\
-$Z'(1500)$&$8.3\cdot 10^{-1}$& 29\\
-$Z'(1750)$&$3.0\cdot 10^{-1}$& 9\\
-$Z'(2000)$&$1.4\cdot 10^{-1}$& 4\\
-$Z'(2250)$&$6.7\cdot 10^{-2}$& 2\\
-$Z'(2500)$&$3.5\cdot 10^{-2}$& 1\\
-$Z'(3000)$&$1.2\cdot 10^{-2}$& 0
+$Z'(400)$&$1.1\cdot 10^{2}$& $3.0\cdot 10^{3}$\\
+$Z'(500)$&$8.2\cdot 10^{1}$& $2.1\cdot 10^{3}$\\
+$Z'(750)$&$2.0\cdot 10^{2}$& $1.7\cdot 10^{2}$\\
+$Z'(1000)$&$5.5\cdot 10^{0}$& $1.3\cdot 10^{1}$\\
+$Z'(1250)$&$1.9\cdot 10^{0}$& $1.4\cdot 10^{0}$\\
+$Z'(1500)$&$8.3\cdot 10^{-1}$& $2.3\cdot 10^{-1}$\\
+$Z'(1750)$&$3.0\cdot 10^{-1}$& $2.7\cdot 10^{-2}$\\
+$Z'(2000)$&$1.4\cdot 10^{-1}$& $5.1\cdot 10^{-3}$\\
+$Z'(2250)$&$6.7\cdot 10^{-2}$& $1.0\cdot 10^{-3}$\\
+$Z'(2500)$&$3.5\cdot 10^{-2}$& $2.7\cdot 10^{-4}$\\
+$Z'(3000)$&$1.2\cdot 10^{-2}$& $3.2\cdot 10^{-5}$\\
+\hline
+Dataset 6 & & $9.2\cdot 10^{2}$
  \end{tabular}
- \caption{\small{Expected events and cross sections for all important background processes and $Z'$ for different masses.}}
+ \caption{\small{Expected events and cross sections for all important background processes and $Z'$ for different masses. The outcome of the MC
+ simulations are properly normalised. These results are compared with dataset 6.}}
  \label{tab:expEvents}
 \end{table}
+The event numbers are calculated by $N=\mathcal{L}\sigma (A\times \epsilon)$ with the luminosity $\mathcal{L}=1$ fb$^{-1}$ and the acceptance times
+efficiency $A\times\epsilon$ compiled in section \ref{sec:selection}. A proper normalisation to the integrated luminosity of the dataset for MC 
+simulations requires a weight factor 
+$w=\mathcal{L}\sigma/N_\text{MC}$ multiplied to each distribution. $N_\text{MC}$ ist the event number before selection.
+For an increasing vector boson mass, the expected event number decreases. 
+The amount can already be confirmed for $t\bar t$ and $Z'(1000)$ with help
+of figure \ref{pic:derived}. 
+In figures \ref{pic:stackedlep} and \ref{pic:stackedjet} the composite contribution for derived leptonic or hadronic
+related quantities, relatively, is shown. 
+\begin{figure}
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/lepe6.pdf}
+\end{minipage}
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/leppt6.pdf}
+\end{minipage}
+
+
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/lepeta6.pdf}
+\end{minipage}
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/lphi6.pdf}
+\end{minipage}
+
+
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/Emiss6.pdf}
+\end{minipage}
+\caption{\small{Stacked plots for lepton related quantities. In the first row the energy and the transverse momentum are shown. In the second the distributions
+for $\eta$ and $\phi$ are depicted. The last figure represents the missing energy. The diboson contribution is included but insignificant.}}
+\label{pic:stackedlep}
+ 
+\end{figure}
+\begin{figure}
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/jete6.pdf}
+\end{minipage}
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/jetpt6.pdf}
+\end{minipage}
+
+
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/jeteta6.pdf}
+\end{minipage}
+\begin{minipage}{\minwidththree\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/jphi6.pdf}
+\end{minipage}
+
+
+\begin{minipage}{0.8\textwidth}
+ \includegraphics[width=\textwidth]{../pics/6/invmass6.pdf}
+\end{minipage}
+\caption{\small{Stacked plots for jet related quantities as for the first two rows in figure \ref{pic:stackedlep} for leptons. The last figure represents
+the invariant mass of the system. }}
+\label{pic:stackedjet} 
+\end{figure}
+These stacked plots show an overall accordance despite that the data points are occasionally below the background estimation. This may result from 
+the bin size in cases wherein bins with data points below the background alternate with bins with data points above. But considering the sum of
+expected background events, we find that they exceed the amount of data events. \\
+\noindent With a $\chi^2$ test we assess the accordance. To calculate $\chi^2$ the squared difference of data and background per bin is summed up
+and yields 23.87 with a number of degrees of freedom (n.d.f) of 24. This results in a p-value of 0.46. Evidence for a signal can be claimed
+for a p-value of lower than $2.7\cdot 10^{-3}$ which is far below our caluclation. However, a lower bound for the $Z'$ mass can be set. The 
+theoretical cross sections from table \ref{tab:expEvents} are scaled to a point where the discrepancy between their contributions and the data
+lead to a p-value of 0.05. At this 95 \% confidence level (CL) $\chi^2 = 36.41$. The required cross sections (black line) for each mass hypothesis 
+compared to their theoretical predictions (blue line) are depicted in figure \ref{pic:limits}.
+\begin{figure}
+ \includegraphics[width=\textwidth]{../pics/limits.pdf}
+ \caption{Upper limits for $Z'$ cross section depending on the mass. The mass region below the point of intersect is excluded at 95\% CL.}
+ \label{pic:limits}
+\end{figure}
+This shows a lower bound on the $Z'$ mass of around 850 GeV. 
+
 
 % Notes:- 6.2c: some have fluctuations -> nothing to worry about. But in jet_eta, jet_pt and lep_eta for example the data points are almost always below the MC-expectation by fairly the same amount ->maybe there is a small, overall factor missing
 % 	- 6.2d: from inv_massSys no Z' signal can be seen by eye.
@@ -291,10 +389,31 @@ $Z'(3000)$&$1.2\cdot 10^{-2}$& 0
 % 	- 7.1d: by doing this, the lighter Z' overproduce the observed jets up to the mass of 850 GeV above which the Z' boson is still viable
 
 \section{Conclusion}
+The goal of this execution was to look for BSM $t\bar t$ resonances in ATLAS data. Starting with preselected datasets, further selection conditions 
+for the samples are posed. Such as the occurence of one reconstructed lepton to cover the decay topology with the best balance of emergence and
+detectability. These conditions are also applied to MC simulations of significant background processes, most notably $t\bar t$. From the data and
+the simulations the invariant mass of the system as derived quantitiy gets chosen to have the best discriminatory power as it shows a peak at 
+the resonance of the applicable particle(s). Stacked plots of all background processes are made to identify a possible signal by comparison with
+the data. Since no significant signal was found, a lower bound on the $Z'$ mass is set at around 850 GeV at 95\% CL.\\
+\noindent This execution is indeed an interesting process to understand the origin of physical constraints needed by theorists. Particularly the 
+knowledge of the statistical analysis is an important gain. It is hard to tell whether the required amount of plots of some quantities is really 
+necessary after their behaviour becomes considered less important. Searching for $Z'$ signals is a major task nowadays. Depending on the chosen
+model, however, the achieved lower bound here is already outdated and is set to 2-5 TeV \cite{Atlaslimits}\cite{pdg}\cite{1503.08929}.
 
+\newpage
  \begin{thebibliography}{WissOnl}
- 	\bibitem{Atlas} ATLAS Collaboration, \textit{The ATLAS Experiment at the CERN Large Hadron Collider}, JINST 3 (2008) S08003
- 	\bibitem{anl} S. Bartkowski, J. Erdmann, K. Kröninger, \textit{Lehrstuhlversuch ``Search for $t\bar t$ resonances with ATLAS data}, (2016), TU Dortmund
+ \bibitem{Atlas} ATLAS Collaboration, \textit{The ATLAS Experiment at the CERN Large Hadron Collider}, JINST 3 (2008) S08003
+ \bibitem{anl} S. Bartkowski, J. Erdmann, K. Kröninger, \textit{Lehrstuhlversuch ``Search for $t\bar t$ resonances with ATLAS data}, (2016), TU Dortmund
+ \bibitem{Atlaslimits} ATLAS Collab., note ATLAS-CONF-2013-017, Mar. 2013.
+ \bibitem{pdg}   C.~Patrignani {\it et al.} [Particle Data Group Collaboration],
+ ``Review of Particle Physics,''
+  Chin.\ Phys.\ C {\bf 40}, no. 10, 100001 (2016).
+  doi:10.1088/1674-1137/40/10/100001
+ \bibitem{1503.08929}  P.~Athron, D.~Harries and A.~G.~Williams,
+  ``$Z'$ mass limits and the naturalness of supersymmetry,''
+  Phys.\ Rev.\ D {\bf 91}, 115024 (2015)
+  doi:10.1103/PhysRevD.91.115024
+  [arXiv:1503.08929 [hep-ph]].
  \end{thebibliography}
 
 % ========================================
