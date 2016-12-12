@@ -97,15 +97,18 @@ event. Since mostly two jets are reconstructed $b$-quarks, i.e. b-tagged, the pe
  \caption{Histogram of the jet mass from data set 0.}
  \label{pic:examplePlot}
 \end{figure}
-%TODO: maybe one sentence about the difference between #_plot and #_ntuple (2.1b)
+The number of entries in the plot is greater than the number of events in the data (\emph{ntuple->GetEntries()}). This difference represents the reconstructed leptons.
 The used samples are already preselected with certain requirements. These include a lower bound on the momentum transverse to the beam axis $p_T>17$ GeV 
 \footnote[1]{Leptons coming from electroweak
 decays are rare in general but have a quite high $p_T$ expressed by this lower bound}and
 for the pseudorapidity $\eta$ which represents the alignment of the jet with the beam, we demand $|\eta| < 2.47$. With the detector being rotationally
-invariant along the beam axis, no requirement for the azimuthal angle $\phi$ is posed. To cover the requested topology, we demand 
-one lepton to be reconstructed. 
+invariant along the beam axis, no requirement for the azimuthal angle $\phi$ is posed. To cover the requested topology, we demand one lepton to be reconstructed. 
 
-2+3
+For the $Z'$-signal we expect the reconstructed objects in the all-hadronic decay mode to contain two $b$-quarks and two lighter quarks while for the lepton+jets decay mode a combination of two $b$-quarks, a lighter quark and a lepton is expected. For a dilepton $t\bar{t}$ decay mode two $b$-quarks and two leptons are expected.
+
+Relevant background processes include $t\bar{t}$, diboson, $WW$, $ZZ$ and single-top decays. Considering its detectability and the amount of events the two $b$-quark, one lighter quark and one lepton topology is chosen to study $t\bar{t}$ production. As a result events are selected with exactly one lepton, $E_\text{miss} > 35$ GeV and exactly four jets, which all pass jet quality requirements and of which at least one is \emph{b-tagged}.
+
+The event selection efficiencies for the different requirements show the following descending order: \emph{Number of Jets}$>$\emph{b-tagged}$>$\emph{Missing Energy}$>$\emph{Number of leptons}$>$\emph{jet-quality}. This is the same for all background processes. The selection efficiency of the $Z'(1000)$ Sample is $79\%$. After the selection the main background process is $t\bar t$ with $10^5$ events in comparison to other processes with $10^3$ or less events.
 % Notes:- plot description of example jet_m. 
 % 	- #_plot > #_ntuple? holds for leptonic entities: difference in number represents reconstructed leptons
 % 	- trigger and reconstruction requirements are maybe found in Jana_Novakova book ore elsewhere in the literature
