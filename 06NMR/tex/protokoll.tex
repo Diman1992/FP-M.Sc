@@ -1,0 +1,81 @@
+% ========================================
+%	Header einbinden
+% ========================================
+
+\input{longheader.tex}
+
+% ========================================
+%	Angaben für das Titelblatt
+% ========================================
+
+\title{V49 - Messung von Diffusionskonstanten mittels gepulster Kernspinresonanz\\
+\hspace{15cm}% Titel des Versuchs 
+	\large TU Dortmund, Fakultät Physik\\ 
+	\normalsize Fortgeschrittenen-Praktikum}
+
+\author{Dimitrios Skodras\\			% Name Praktikumspartner A
+	{\small \href{dimitrios.skodras@tu-dortmund.de}{dimitrios.skodras@tu-dortmund.de}}	% Erzeugt interaktiven einen Link
+	\and						% um einen weiteren Author hinzuzfügen
+	Julius Tilly\\					% Name Praktikumspartner B
+	{\small \href{julius.tilly@tu-dortmund.de}{julius.tilly@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
+}
+\date{12.12.2016}				% Das Datum der Versuchsdurchführung
+
+% ========================================
+%	Das Dokument beginnt
+% ========================================
+
+\begin{document}
+	
+% ========================================
+%	Titelblatt erzeugen
+% ========================================
+
+\maketitle					% Jetzt wird die Titelseite erzeugt
+\thispagestyle{empty} 				% Weder Kopfzeile noch Fußzeile
+
+% ========================================
+%	Der Vorspann
+% ========================================
+
+%\newpage					% Wenn Verzeichnisse auf einer neuen Seite beginnen sollen
+%\pagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+
+\tableofcontents
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoffigures					% Abbildungsverzeichnis
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoftables					% Tabellenverzeichnis
+\newpage					% eine neue Seite
+
+
+% ========================================
+%	Kapitel
+% ========================================
+
+\section{Theoretical Essentials}
+\section{Execution}
+\section{Discussion}
+
+
+
+ \begin{thebibliography}{WissOnl}
+ 	\bibitem{Anl} TU Dortmund instruction for experiment Nr.60 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
+ 	\bibitem{ref} Laser spectroscopy of Rubidium \\ \url{http://www.photodigm.com/literature/applications-notes/rubidium-absorption-spectroscopy}
+ \end{thebibliography}
+
+% ========================================
+%	Literaturverzeichnis
+% ========================================
+
+%\bibliographystyle{plainnat}			% Bibliographie-Style auswählen
+%\bibliography{BIBDATEI}			% Literaturverzeichnis
+
+% ========================================
+%	Das Dokument endent
+% ========================================
+\end{document}

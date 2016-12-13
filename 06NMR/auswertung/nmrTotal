@@ -1,0 +1,36 @@
+a, 
+voreinstellung:
+	phasenverschiebung: +172 deg
+	larmorfreq. 21.67875 MHz/21.67875/ 21.67835
+	x: -1.52/9.33/-1.80
+	y: -6.17/-9.91/-7.48
+	z: 2.63/2.73/2.98
+	z2: -0.60/-1.68/-0.92
+	A: 4.6 mus
+	
+#	use 1st
+#	2nd was first try
+#	3rd due to (natural?) recalibration after cp and mg
+
+
+
+T1	B: 4.6 mus
+	A: 10.4 mus
+	rep-time: 10 s
+
+T2	A<-->B
+	tauCP = 5.2 ms
+	tauMG = 13.5 ms
+
+D
+	rep-time=10s
+	z=-10
+	t12:	mus	 ms
+			269  1
+			272  8
+			259  10
+						
+eta
+	t0 = 918 s
+	alpha = 1.024e-9 m2/s2
+	d(t0) aus linReg
