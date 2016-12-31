@@ -3,6 +3,7 @@
 % ========================================
 
 \input{longheader.tex}
+\usepackage{xfrac}
 \sisetup{output-decimal-marker = {,}}
 
 % ========================================
@@ -78,12 +79,12 @@ Rändern der Messreihe darum zentriert sind.
 sind die Zählraten auf 10\,s Messzeit aufgeführt.}
 \label{tab:koinz}
 \end{table}
-Entsprechend des Myonenstroms \cite{pdg} werden die Diskriminatoren einer Rate von 20-30\,\si{\per\second} entsprechend eingestellt. Die 
+Entsprechend des Myonenstroms \cite{pdg} werden die Diskriminatoren einer Rate von 20-30\,\si{\per\second} \cite{Anl} entsprechend eingestellt. Die 
 Pulsbreite wird am Oszillator zu \SI{11,5}{\s} abgelesen.
 \subsection{Kalibrierung der Zeitachse}
 Die Zeitdifferenz $\Delta t$ zwischen zwei vom Doppelimpulsgenerator Signalen wird vom TAC in eine Spannung umgewandelt, die vom Vielkanalanalysator 
 ausgelesen wird. Diese Differenz wird in \SI{1}{\nano\second}-Schritten von \SI{1}{\nano\second} bis \SI{9}{\nano\second} variiert und geprüft,
-welchem Kanal sie zugeordnet wird \footnote{Aufgrund eines mutmaßlichen, technischen Fehlers des TACs sind die zur weiteren Auswertung benötigten
+welchem Kanal sie zugeordnet wird \footnote[1]{Aufgrund eines mutmaßlichen, technischen Fehlers des TACs sind die zur weiteren Auswertung benötigten
 Daten vom Versuchsbetreuer \href{robert.theinert@tu-dortmund.de}{Robert Theinert} gestellt worden.}. Der sich abzeichnende lineare Zusammenhang
 \begin{align}
  f(x) = ax + b
@@ -91,7 +92,8 @@ Daten vom Versuchsbetreuer \href{robert.theinert@tu-dortmund.de}{Robert Theinert
 ist in Abbildung \ref{pic:linfit} 
 \begin{figure}[t]
  \includegraphics[width=0.7\textwidth]{../pics/linFit}
- \caption{}
+ \caption{Linearer Zusammenhang zwischen der Spannungsamplitude entsprechenden Zeitdifferenz $\Delta t$ und dem jeweiligen Kanal des 
+ Vielkanalanalysators.}
  \label{pic:linfit}
 \end{figure}
 dargestellt und seine Fitparameter, bestimmt durch \texttt{Python3.6}, ergeben sich zu
@@ -111,7 +113,7 @@ Während einer Messzeit von $t_\text{mess}=\SI{1449146}{\second}$ werden $N_\tex
  \bar N = \frac{N_\text{start}}{t_\text{mess}} = \SI{22,22(1)}{\per\second}
 \end{align}
 entspricht. Dies liegt im erwarteten Bereich, was darauf schließen lässt, dass die meisten Untergrundsignale von den Diskriminatoren herausgefiltert
-worden sind. Während der Suchzeit $t_S=\SI{22}{\mu\second}$ kann ein zweites Myon in den Tank eintreten. Das daherrührende Untergrundsignal kann
+worden sind. Während der Suchzeit $t_S=\SI{22}{\micro\second}$ kann ein zweites Myon in den Tank eintreten. Das daherrührende Untergrundsignal kann
 mit der Poisson-Verteilung abgeschätzt werden. Dass genau ein weiteres Myon eintritt, entspricht einer Wahrscheinlichkeit von
 \begin{align}
  P(n=1) = \bar N t_S \e^{-\bar N t_S} = \SI{4,886(1)e-4}{},
@@ -125,20 +127,50 @@ Kanäle zu
 \begin{align}
  \text{Kanal}_\text{max} = t_S\frac{1}{a} - \frac{b}{a}  = 484,84(1),
 \end{align}
-womit die Untergrundsignale
+womit die Untergrundsignale mit
 \begin{align}
- U_\text{erw} = \frac{N_b}{\text{Kanal}_\text{max}} = \SI{32,45(1)}{1\per Kanal}
+ U_\text{th} = \frac{N_b}{\text{Kanal}_\text{max}} = \SI{32,45(1)}{1\per Kanal}
+ \label{eq:backgrTh}
 \end{align}
 zu erwarten sind.
 \subsection{Bestimmung der Lebensdauer von Myonen}
-
-
+Mit dem Zusammenhang der Zeitdifferenz des Start- und Stoppimpulses und den Kanälen lässt sich die Messung\footnote[2]{Die Daten hierfür sind ebenfalls
+vom Versuchsbetreuer gestellt worden.} in Abbildung \ref{pic:lebensdauer} darstellen.
 \begin{figure}[t]
  \includegraphics[width=0.8\textwidth]{../pics/lebensdauer_fit}
- \caption{}
+ \caption{Gemessene Start-Stoppimpulse bei entsprechenden Zerfallsdauern. Der Fit schließt die ersten drei Kanäle, die Kanäle 14, 15, 16 und 17, sowie
+ alle Kanäle deren Pendant der Zeitdifferenz größer als $t_S$ ist.}
  \label{pic:lebensdauer}
 \end{figure}
-
+Einige Kanäle sind bei der Auswertung nicht miteinbezogen. Die ersten beiden Kanäle entsprechen einer zu kurzen Zerfallszeit,
+die die Apparatur offenbar nicht auflösen kann. Die Kanäle 14-17 weisen Ausreißer auf, für die keine vernünftige Begründung gefunden worden ist.
+Kanäle größer $t_S$ sind leer, sodass diese ebenfalls vernachlässigt werden.
+Die Exponentialverteilung
+\begin{align}
+ f(\Delta t) = N_0 \e^{-{\sfrac{1}{\tau}}\,\Delta t} + U_\text{fit}
+\end{align}
+wird zum Kurvenverlauf angenommen. Mit dem Modul \texttt{scipy.optimize} wird der Fit unter der Gewichtung der inversen Standardabweichung erstellt,
+der für die mittlere Lebensdauer
+\begin{align}
+ \tau = \SI{2,106(7)}{\micro\second}
+ \label{eq:tau}
+\end{align}
+und den Untergrund
+\begin{align}
+ U_\text{fit} = \SI{28,16(140)}{1\per Kanal}
+ \label{eq:backgrExp}
+\end{align}
+angibt.
+\section{Diskussion}
+Nach der Messung stehen \SI{32201706}{} Startsignale \SI{201862}{} Stoppsignalen gegenüber, sodass \SI{0,63}{\%} der einfallenden Myonen tatsächlich
+im Detektor zerfallen. Dies rechtfertigt eine lange Messdauer von 16 Tagen, um eine aussagekräftige Statistik zu ermöglichen. \\
+\noindent Die erwartete \eqref{eq:backgrTh} und die gemessene \eqref{eq:backgrExp} Untergrundrate haben eine Abweichung von \SI{14}{\%} zueinander,
+wobei die gemessene geringer ist. Dies kann daher rühren, dass die Ausreißer im Datenset nicht mit in den Fit einbezogen wurden, jedoch den zu
+erwartenden Untergrund beeinflussen. \\
+\noindent Ziel des Versuchs war es, die Lebensdauer von Myonen zu bestimmen. Diese ließ sich bestimmen zu $\tau = \SI{2,106(7)}{\micro\second}$,
+was \SI{4,1}{\%} unter dem Referenzwert \cite{pdg} von \SI{2,197}{\micro\second} liegt. Diese Differenz lässt sich damit erklären, dass die mittlere
+Lebensdauer von Teilchen im Vakuum von der im Medium sich unterscheiden und die Wechselwirkung, wie das Muoncapturing \cite{mCapture}
+zu einem schnelleren Zerfall führen.
 
 
 %\parskip 340pt
@@ -147,6 +179,11 @@ zu erwarten sind.
  \begin{thebibliography}{WissOnl}
  	\bibitem{Anl} TU Dortmund Anleitung für Versuch Nr.01 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
  	\bibitem{pdg} C. Patrignani et al. (Particle Data Group), Chin. Phys. C, 40, 100001 (2016).
+   	\bibitem{mCapture}   T.~Gorringe and H.~W.~Fearing,
+    \textit{Induced pseudoscalar coupling of the proton weak interaction},
+    Rev.\ Mod.\ Phys.\  {\bf 76}, 31 (2004)
+    doi:10.1103/RevModPhys.76.31
+    [nucl-th/0206039].
 	\end{thebibliography}
 
 % ========================================
