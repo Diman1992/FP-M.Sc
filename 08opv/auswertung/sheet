@@ -1,0 +1,131 @@
+
+
+
+a,
+Betriebspannung
+U-=-10V
+U+=10V
+Ub=20V
+R1=100Ohm
+
+Rn variiert
+	1kOhm		500Ohm		10kOhm		330Ohm
+kHz	file		file		file		file
+0.5	scope_0.csv	scope_50.csv	scope_51.csv	scope_100.csv
+0.75	scope_1.csv
+1	scope_2.csv
+2
+3
+4
+5
+6
+7
+8
+9
+10
+15
+20
+25
+30
+35
+40
+50
+60
+70
+80
+90
+100	
+150	scope_25.csv	scope_26.csv	scope_75.csv	scope_76.csv
+
+b,
+integrator
+c=102.3nF
+R=100Ohm
+
+sinus: b_1.csv b_2.png
+rechteck: b_3.png b_4.csv
+dreieck: b_5.csv b_6.png
+
+Uein=10V
+
+kHz	Uaus[-V]
+0.3	8.04
+0.4	8.37
+0.5	8.57
+0.6	8.70
+0.7	8.80
+0.8	8.86
+0.9	8.92
+1.0	8.95
+1.2	9.01
+1.4	9.06
+1.6	9.09
+1.8	9.11
+2.0	9.14
+2.2	9.15
+2.4	9.16
+2.6	9.17
+2.8	9.18
+3.0	9.19
+3.5	9.21
+4.0	9.22
+4.5	9.23
+5.0	9.23
+10.0	9.27
+20.0	9.30
+
+c,
+differentiator
+
+Uein=10V
+
+	dreieck		sinus		rechteck
+kHz	file		file 		file
+0.1	c_1.csv		c_26.csv	c_27.csv
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+1.4
+1.8
+2.2	c_13.csv	c_14.csv	
+
+d,
+schmitt trigger
+R1=1kOhm
+Rp=100kOhm
+Ukipp=0.182V
+
+e,
+Phasenverschiebung
+R1=1kOhm
+Rn=10kOhm
+
+kHz	file
+0.5	e_0.csv
+0.75	
+1.0
+2.0
+3.0
+4.0
+5.0
+10.0
+15.0
+20.0
+30.0
+40.0
+50.0
+75.0
+100.0	e_14.csv
+
+
+
+
+
+
+
