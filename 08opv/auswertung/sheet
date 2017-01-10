@@ -123,7 +123,15 @@ kHz	file
 75.0
 100.0	e_14.csv
 
-
+g,
+C=21.4nF und 23.5nF
+schwingfall
+f=713Hz
+Ua=11.3V
+g_0.csv
+g_1.csv
+dämpfung
+g_2.csv
 
 
 
