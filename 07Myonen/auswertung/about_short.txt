@@ -1,0 +1,30 @@
+V01 - Lebensdauer kosmischer Myonen
+====================================
+
+Metadata
+--------
+
+  * Location: TU Dortmund Experimentierhalle
+  * People:   Robert Theinert
+  * Date:     2015-12-18
+
+
+
+Settings
+-------- 
+
+Delay line:
+  * delay 1 [ns]:	16
+  * delay 2 [ns]:	16
+
+Discriminator:
+  * pulsewidth [ns]:	10
+  
+Timing unit:
+  * searchtime [mus]:	22
+
+Myonenspectrum:
+  * time [s]:           1449146
+  * starts:		32201706
+  * stops:		201862
+
