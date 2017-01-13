@@ -119,6 +119,7 @@ in $+\vec z$-Richtung. Nach einer gewissen Wartezeit $\tau$ wird ein $\sfrac{\pi
 zu
 \begin{align}
  M_z(\tau) = M_0\left(1-2\exp\left(\frac{\tau}{T_1}\right)\right)
+ \label{eq:T1}
 \end{align}
 induziert wird. Mit Messungen für diverse $\tau$ lässt sich $T_1$, die Spin-Gitter-Relaxationszeit, bestimmen.
 
@@ -231,16 +232,19 @@ das FID-Echo seine Form verändert.}
 \end{table}
 
 \subsection{Spin-Gitter-Relaxationszeit}
+\label{sec: T1}
 Zur $T_1$-Messung wird ein Spin-Echo verwandt mit den Pulszeiten $\Delta t_{\pi} =: B = \SI{10,4}{\micro\second}$
 und $\Delta t_{\sfrac{\pi}{2}} = A = \SI{4,6}{\micro\second}$, in dieser Reihenfolge.
 Die Zeit zwischen zwei Messungen liegt bei \SI{10}{\second}. 
-Im Bereich $\tau\in[0,1; 9,0]\SI{}{\second}$ werden 32 mal die Echoamplitude gemessen.
+Im Bereich $\tau\in[0,05; 1,35]\SI{}{\second}$ wird 26 mal die Echoamplitude gemessen.
 \subsection{Spin-Spin-Relaxationszeit}
+\label{sec: T2}
 Mit $N=100$ $\pi$-Pulsen nach dem $\sfrac{\pi}{2}$-Puls wird die CP-Methode mit $\tau = \SI{5.2}{\milli\second}$ durchgeführt und ein 
 Bild des Amplitudenverlaufs gespeichert. Durch Umlegen des MG-Schalters am Mainframe wird die MG-Methode mit $\tau = \SI{13.5}{\milli\second}$ 
 durchgeführt. Neben dem Amplitudenverlaufsbild werden die Datenpunkte zur weiteren Auswertung gespeichert.
 
 \subsection{Diffusionskonstante}
+\label{sec: diff}
 Um die Diffusionskonstante zu bestimmen, muss $G$ bekannt sein. Hierzu wird ein künstlicher Feldgradient erzeugt, indem der $z$-Gradient maximal 
 auf $-\SI{10}{\tesla\per\m}$ gestellt wird. Dieser lässt sich anschließend durch $t_{\sfrac12}$ näherungsweise angeben. Mit dem MG-Verfahren
 werden nun die Amplituden für $\tau\in[1;23]\SI{}{\milli\second}$ ermittelt. Um den Molekülradius zu berechnen, wird die Viskosität gemessen
@@ -249,14 +253,167 @@ dafür gemessen wird. Dieser wird ein Fehler $d(t)$ aus einer Tabelle zugeordnet
 berechnet.
 
 \section{Auswertung}
+\subsection{$T_1$-Zeit}
+
+Die Messung der $T_1$-Zeit wird wie in Abschnitt \ref{sec: T1} beschrieben durchgeführt. Die Messwerte sind in Tabelle \ref{Tab:T_1} aufgeführt und nach Gleichung \ref{eq:T1} in der Abb. \ref{Abb:T_1} als $\ln \left( \frac{M_0-M_z}{2M_0}\right)$ gegen t dargestellt.
+
+
+\begin{table}[htbp]
+	\begin{center}
+		\begin{tabular}{l|c||l|c}
+			$\tau$[s] & Spannung[V] & $\tau$[s] & Spannung[V] \\ \hline
+			\input{../auswertung/results/T1_tab.res}
+		\end{tabular}
+	\end{center}
+	\caption{Auflistung der zur Bestimmung der $T_1$-Zeit in Abhänigkeit von $\tau$ aufgezeichneten Magnetisierungs Maxima.}
+	\label{Tab:T_1}
+\end{table}
+
+
+\begin{figure}[H]
+	\centering
+	\vspace*{-0,85cm}
+	\includegraphics[scale= 0.735]{../auswertung/results/T1.pdf}
+	\caption{Darstellung der zur Bestimmung der $T_1$-Zeit in Abhänigkeit von $\tau$ aufgezeichneten Magnetisierungs Maxima. Die durch Ausgleichsrechnung erhaltene Gerade ist grün gestrichelt gekennzeichnet.}
+	\label{Abb:T_1}
+\end{figure}
+
+\noindent
+Es ergibt sich die $T_1$-Zeit aus der Steigung der Ausgleichsgeraden m$\cdot$x\\
+mit $\input{../auswertung/results/m.res}$ nach $T_1 = -\frac{1}{m}$ zu:
+\begin{center}
+	$\input{../auswertung/results/T1.res}$
+\end{center}
+Der Fehler von $T_1$ wird über $\Delta T_1 = \frac{1}{m^2} \cdot \Delta m$ bestimmt.
+
+\subsection{$T_2$-Zeit}
+
+Um $T_2$ zu bestimmen wird wie in \ref{sec: T2} beschrieben vorgegangen. 
+$T_2$ wird über die Meiboom-Gill-Methode bestimmt. Das zugehörige Zeitsignale ist in Abb. \ref{Abb:T_2_meiboom_gill} dargestellt.
+Die Carr-Purcell-Methode ist für die $T_2$-Bestimmung dagegen nicht geeignet, da sich Fehleinstellungen der Pulse und somit der Flipwinkel mit jedem $ \SI{180}{\degree} $-Flip akkumulieren. Dies ist an den oszillierenden Amplituden in Abb. \ref{abb:carr_purcell} zu erkennen.
+
+\begin{figure}[H]
+	\includegraphics[width=\textwidth]{../auswertung/results/T2_carr_purcell.pdf}
+	\caption{Vom Oszilloskop aufgenommene Messwerte des Carr-Purcell-Verfahrens. Aufgrund der sich addierenden Fehler enstehen Oszillationen des Spin-Echos.}
+	\label{abb:carr_purcell}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{../auswertung/results/T2.pdf}
+	\caption{Vom Osziloskop aufgenommene Messwerte des Meiboom-Gill-Verfahrens mit Fit zur Bestimmung von $T_2$.}
+	\label{Abb:T_2_meiboom_gill}
+\end{figure}
+
+Die in Abb. \ref{Abb:T_2_meiboom_gill} mit rotem Kreuz markierten Maxima werden für einen Fit mit
+\begin{align*}
+	U_{\text{fit}}(t) = U_0 \cdot \e^{-\frac{t}{T_2}},
+\end{align*}
+verwendet, welcher Mithilfe der Python Funktion \emph{scipy.optimize.curve\_fit()} ausgeführt wird.
+Der Fit ergibt für $U_0$ und das gesuchte $T_2$
+\begin{align*}
+U_0 &= \input{../auswertung/results/T2_M0.res} \\
+T_2 &= \input{../auswertung/results/T2.res}.
+\end{align*}
+
+
+\subsection{Diffusionskoeffizienten}
+\label{Kap:Dif_koef}
+
+Die Halbwertsbreite ergibt sich aus drei am Oszilloskop abgelesenen Breiten für verschiedene $\tau$ zu $t_{1/2}=\input{../auswertung/results/halfwidth.res}$.
+Die verwandten Messdaten sind in Tab. \ref{Tab: Halfw} eingetragen.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{l|c}
+			$t_{1/2}$ & $\tau[\si{\milli\second}]$\\ \hline
+			\input{../auswertung/results/halfw_tab.res}			
+		\end{tabular}
+	\end{center}
+	\caption{Messwerte zur Bestimmung der Halbwertsbreite}
+	\label{Tab: Halfw}
+\end{table}
+
+Zur Bestimmung des Diffusionskoeffizienten wird wie in Kapitel \ref{sec: diff} beschrieben die Magnetisierung in Abhänigkeit von $\tau$ bestimmt. Die hierfür aufgezeichneten Daten sind in der Tab. \ref{Tab:D} aufgelistet und werden zusammen mit der Ausgleichsgeraden in Abb. \ref{Abb:D} dargestellt.
+
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{l|c||l|c}
+			$\tau$[ms] & Spannung[V] & $\tau$[ms] & Spannung[V]\\ \hline
+			\input{../auswertung/results/diff_tab.res}
+		\end{tabular}
+	\end{center}
+	\caption{Tabelle mit Messwerten zur Bestimmung des Diffusionskoeffizienten bei maximalem Z-Gradienten.}
+	\label{Tab:D}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\vspace*{-0,4cm}
+	\includegraphics[scale= 0.74]{../auswertung/results/TDiff.pdf}
+	\caption{Darstellung der zur Bestimmung des Diffusionskoeffizienten bei maximalem Z-Gradienten aufgezeichneten Magnetisierungs Maxima. Der lineare Fit ist grün-gestrichelt aufgetragen.}
+	\label{Abb:D}
+\end{figure}
+
+\noindent
+Ausgehend von Gleichung \ref{eq:MyDiff} folgt:
+\begin{align*}
+\ln \left( \frac{M_y (t)}{M_0} \right) + \frac{t}{T_2} = \frac{D\gamma^2 G^2}{12}t^3 ~\\
+\overset{G= \frac{8.8}{t_{1/2}\gamma d}}{\Longrightarrow} \hspace*{0,5cm} \ln \left( \frac{M_y (t)}{M_0} \right) + \frac{t}{T_2} = \frac{484}{75}\frac{D t^3}{t^2_{1/2} d^2}
+\end{align*}
+Mit der Halbwertsbreite $\input{../auswertung/results/halfwidth.res}$ dem Probendurchmesser $d = 4.4\,$mm und der Steigung $\input{../auswertung/results/mdiff.res}$ der Ausgleichsgeraden ergibt sich resultierend über $D = -\frac{75}{484}t^2_{1/2} d^2\cdot m$ die Diffusionskonstante zu
+\begin{align*}
+\input{../auswertung/results/D.res}.\\
+\end{align*} 
+Hierbei wird der Fehler mittels
+\begin{align*}
+\Delta D = \sqrt{\left( -\frac{150~t_{1/2}~d^2~m}{484} \cdot \Delta t_{1/2}\right)^2 + \left( -\frac{75~t^2_{1/2}~d^2}{484} \cdot \Delta m \right)^2}.
+\end{align*}
+bestimmt.
+
+
+
+\subsection{Molekülradius von Wasser}
+
+Zur Bestimmung des Molekülradiuses über den in Abschnitt \ref{Kap:Dif_koef} bestimmten Diffusionskoeffizienten $D =\input{../auswertung/results/D.res}$ wird die Stokesche Formel
+\begin{align*}
+D= \frac{kT}{6\pi r \eta} \Leftrightarrow r= \frac{kT}{6\pi D \eta}
+\end{align*}
+verwendet. Bei einer Temperatur von $T\approx 295 \si{\kelvin}$ ergibt sich die Viskosität $\eta$ über die am Viskosimeter gemessenen Zeit von $t = 918 \si{\second}$ $\Leftrightarrow$ $\delta_t = 0.482 \si{\second}$ nach folgender Formel:
+\begin{align*}
+\eta(T) = \rho \cdot 1.024\cdot 10^{-9}\dfrac{\text{m}^2}{\text{s}^2} \left( t-\delta_t \right).
+\end{align*}
+Mit der Wasserdichte $\rho$= 997.77\,$\frac{\text{kg}}{\text{m}^3}$ bei 22$^\circ$C \cite{DichteWasser} ergeben sich folgende Werte:
+\begin{align*}
+	\eta = 937.4\cdot 10^{-6}\,\frac{\text{kg}}{\text{m}\cdot \text{s}} \Rightarrow \input{../auswertung/results/stokes_r.res}.
+\end{align*}
+Der Fehler des Molekülradiuses ergibt sich hierbei nach:
+\begin{align*}
+	\Delta r = \frac{kT}{6\pi D^2 \eta} \cdot \delta D.
+\end{align*}
+
+
 \section{Diskussion}
+
+Die bestimmten Relaxationszeiten von $T_1 = \input{../auswertung/results/T1.res}$ und $T_2 = \input{../auswertung/results/T2.res}$ liegen mit Abweichungen von unter $1\%$ bzw. ca $10\%$ (für $T_2$) recht nah an den Literaturwerten von $T_1$ = 2.160\,s ${\cite{RelaxWasser}}$ und $T_2$ = $\SI{1.568}{\second} {\cite{RelaxWasser}}$. Es ist jedoch anzumerken, dass die Literaturwerte nicht im Fehlerintervall liegen.
+Der bestimmte Diffusionskoeffizient $\input{../auswertung/results/D.res}$ ist um einen Faktor 37 größer als der Literaturwert $D$ = 2.03$ \cdot 10^{-9}$\,$\frac{\text{m}^2}{\text{s}} {\cite{Diff}}$. Diese große Abweichung kann eine Folge von nicht bemerkten Verstimmungen des durch Shimming ausgeglichenen externen Magnetfeldes (Erdmagnetfeld und von anderen Versuchen verursachtes Feld) sein. 
+Als Folge der Abweichung des Diffusionskoeffizienten ergibt sich auch bei der Berechnung des Molekülradius $r$ von Wasser über die Stokeschen Formeln ein Wert welcher um einen Faktor 34 vom Literaturwert $r$ = 0.975\,\AA ${\cite{Radius}}$ abweicht. Die über den kritischen Druck und die kritische Temperatur, sowie über das Molekulargewicht und die Dichte berechneten Werte für den Molekülradius r von Wasser ist um einen Faktor 1.5-1.8 größer als der Literaturwert${\cite{Radius}}$.\\
 
 
 \newpage
  \begin{thebibliography}{WissOnl}
  	\bibitem{Anl} TU Dortmund Anleitung für Versuch Nr.49 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
- 	\bibitem{conv} ConvertUnits.com, \textit{Molecular weight of Water}, Web. 13 Dec 2016 \url{http://www.convertunits.com/molarmass/Water}
-	\bibitem{chemie} chemie.de, \textit{Kritischer Punkt (Thermodynamik)}, Web. 13 Dec 2016 \url{http://www.chemie.de/lexikon/Kritischer_Punkt_(Thermodynamik).html}
+ 	\bibitem{conv} ConvertUnits.com, \textit{Molecular weight of Water}, Web. 13.12.2016 \url{http://www.convertunits.com/molarmass/Water}
+	\bibitem{chemie} chemie.de, \textit{Kritischer Punkt (Thermodynamik)}, Web. 13.12.2016
+	\url{http://www.chemie.de/lexikon/Kritischer_Punkt_(Thermodynamik).html}
+	
+	\bibitem{RelaxWasser} \textit{Relaxationszeiten von Wasser}, Web. 17.12.2016
+	\url{http://www-brs.ub.ruhr-uni-bochum.de/netahtml/HSS/Diss/JaschinskiVicki/diss.pdf}
+	\bibitem{Diff} \textit{Diffusionskoeffizient Wasser}, Web. 17.12.2016
+	\url{http://element.fkp.physik.tu-darmstadt.de/physik4bi/material/bivor11.pdf}
+	\bibitem{Radius} \textit{Molekülradius von Wasser}, Web. 17.12.2016
+	\url{http://webdoc.sub.gwdg.de/ebook/diss/2003/fu-berlin/2002/23/Kap$\_$2.pdf}
+	
  	\end{thebibliography}
 
 % ========================================
