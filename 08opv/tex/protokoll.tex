@@ -1,0 +1,92 @@
+% ========================================
+%	Header einbinden
+% ========================================
+
+\input{longheader.tex}
+\usepackage{xfrac}
+\usepackage{xcolor}
+\usepackage{setspace}\usepackage{threeparttable}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[official]{eurosym}
+\usepackage{geometry}
+\newcommand{\ti}{\text{i}}
+\usepackage{siunitx}
+\sisetup{output-decimal-marker = {,}}
+
+% ========================================
+%	Angaben für das Titelblatt
+% ========================================
+
+\title{V51 - Schaltungen mit Operationsverstärkern\\
+\hspace{15cm}% Titel des Versuchs 
+	\large TU Dortmund, Fakultät Physik\\ 
+	\normalsize Fortgeschrittenen-Praktikum}
+
+\author{Jan Latarius\\			% Name Praktikumspartner A
+	{\small \href{jan.latarius@tu-dortmund.de}{jan.latarius@tu-dortmund.de}}	% Erzeugt interaktiven einen Link
+	\and						% um einen weiteren Author hinzuzfügen
+	Dimitrios Skodras\\					% Name Praktikumspartner B
+	{\small \href{dimitrios.skodras@tu-dortmund.de}{dimitrios.skodras@tu-dortmund.de}}		% Erzeugt interaktiven einen Link
+}
+\date{09.01.2017}				% Das Datum der Versuchsdurchführung
+
+% ========================================
+%	Das Dokument beginnt
+% ========================================
+
+\begin{document}
+	
+% ========================================
+%	Titelblatt erzeugen
+% ========================================
+
+\maketitle					% Jetzt wird die Titelseite erzeugt
+\thispagestyle{empty} 				% Weder Kopfzeile noch Fußzeile
+
+% ========================================
+%	Der Vorspann
+% ========================================
+
+%\newpage					% Wenn Verzeichnisse auf einer neuen Seite beginnen sollen
+%\pagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+
+\tableofcontents
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoffigures					% Abbildungsverzeichnis
+
+%\newpage					% eine neue Seite
+%\thispagestyle{empty}				% Weder Kopf- noch Fußzeile für Verzeichnisse
+%\listoftables					% Tabellenverzeichnis
+\newpage					% eine neue Seite
+
+
+% ========================================
+%	Kapitel
+% ========================================
+
+\section{Theoretische Grundlagen}
+\section{Durchführung}
+
+\section{Auswertung}
+\section{Diskussion}
+
+
+\newpage
+ \begin{thebibliography}{WissOnl}
+ 	\bibitem{Anl} TU Dortmund Anleitung für Versuch Nr.51 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
+ 	\end{thebibliography}
+
+% ========================================
+%	Literaturverzeichnis
+% ========================================
+
+%\bibliographystyle{plainnat}			% Bibliographie-Style auswählen
+%\bibliography{BIBDATEI}			% Literaturverzeichnis
+
+% ========================================
+%	Das Dokument endent
+% ========================================
+\end{document}
