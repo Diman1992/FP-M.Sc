@@ -68,6 +68,204 @@
 % ========================================
 
 \section{Theoretische Grundlagen}
+Der Operationsverstärker (OPV) ist ein Halbleiterbauelement mit integrierter Schaltung. Er dient als
+Differenzverstärker sowohl für Gleichspannung als auch für Wechselspannung. Der OPV ist so konstruiert, 
+dass sein Verhalten von der äußeren Beschaltung beeinflusst werden kann. In diesem Versuch soll der OPV 
+in seinen verschiedenen äußeren Beschaltungen kennengelernt und untersucht werden.
+\subsection{Eigenschaften des OPVs}
+Die Ausgangsspannung $U_A$ des OPVs ist proportional zur Spannungsdifferenz an den beiden Eingängen, wobei
+die Ausgangsspannung begrenzt wird durch die Betriebsspannung,
+\begin{align}
+ U_A = V(U_P - U_N), \quad -U_B < U_A < U_B.
+ \label{eq:Uaus}
+\end{align}
+Der Faktor $V$ bezeichnet hierbei die Verstärkung des OPVs. Die Schaltung des OPV ist in Abbildung \ref{pic:basic}
+dargestellt. 
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/OPVBasic.png}
+ \caption{Anschlüsse des Operationsverstärkers \cite{Anl}.}
+ \label{pic:basic}
+\end{figure}
+Der mit $``+''$ gekennzeichnete Eingang wird nicht-invertierender Eingang genannt, der mit $``-''$ hingegen
+invertierend. Ist das Potenzial an dem nicht-invertierenden Eingang größer als am Invertierenden,
+so ist $U_A$ in Phase mit der Spannungsdifferenz $U_P-U_N$, im umgekehrten Fall gegenphasig. Die Kennlinie
+des OPV ist in Abbildung \ref{pic:linie} mit übertrieben niedriger Steigung dargestellt.
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/OPVLinie.png}
+ \caption{Kennlinie des Operationsverstärkers \cite{Anl}.}
+ \label{pic:linie}
+\end{figure}
+Zur Berechnung von Schaltungen mit dem OPV betrachtet man zur Vereinfachung einen idealen OPV. 
+Dieser ist dadurch gekennzeichnet, dass seine Leerlaufverstärkung sowie die Eingangswiderstände unendlich hoch
+sind und der Ausgangswiderstand gleich null ist. Diese Größen sind beim realen OPV natürlich
+nicht mehr infitesimal. Will man Schaltungen mit OPVs genauer beschreiben,
+so müssen weitere Größen betrachtet werden. Diese lauten
+\begin{itemize}
+ \item Gleichtaktverstärkung: Wenn $U_P = U_N$, dann ist $U_A$ dennoch ungleich null aufgrund von Asymmetrien 
+ der integrierten Schaltung des OPV.
+ \item Eingangsruhestrom: Dem endlichen Eingangswiderstand folgt auch ein geringer Eingangsstrom.
+ \item Offsetstrom: Dies ist die Differenz der beiden Eingangsströme.
+ \item Differenzeingangs- und Gleichtaktwiderstand: Mit den Eingangsruheströmen wird der Differenzeingangswiderstand
+ gemessen, während eine Eingangsspannung null ist. Der Gleichtaktwiderstand ergibt sich bei gleichen Eingangsspannungen
+ und der Summe der Eingangsruheströme.
+ \item Offsetspannung: Hiermit wird die Asymmetrie der Eingangsspannungen beschrieben. Die Offsetspannung ist diejenige
+ Spannung, welche eingestellt werden muss, damit die Ausgangsspannung gleich null ist.
+ \end{itemize}
+ \subsection{Linearverstärker}
+ Die Sättigung beim OPV erfolgt aufgrund seiner sehr hohen Verstärkung bereits bei geringen Ansteuerungen. 
+ Um die Ausgangsspannung 
+ zu begrenzen und zu kontrollieren,
+wird ein Teil der Ausgangsspannung an den invertierenden Eingang zurückgegeben, sodass
+die Eingangsspannung verringert und somit
+auch die Ausgangsspannung begrenzt wird.
+Dies wird mit Gegenkopplung bezeichnet. Die
+Schaltung der Linearverstärkers ist in Abbildung \ref{pic:linear}
+dargestellt. 
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/Linear.png}
+ \caption{Schaltung des Linearverstärkers \cite{Anl}.}
+ \label{pic:linear}
+\end{figure}
+Die Verstärkung lässt sich mithilfe
+des idealen OPVs wie folgt berechnen. Die Eingangsspannung des idealen OPVs ist
+unendlich. Daher ist der Strom $I_N$ gleich null. An dem Punkt A in Abbildung \ref{pic:linear}
+addieren sich die Ströme gerade zu null. Somit gilt
+\begin{align}
+ 0 = \frac{U_1}{R_1} + \frac{U_A}{R_N}.
+\end{align}
+Und die Verstärkung ergibt sich damit zu
+\begin{align}
+ V' = \frac{U_A}{U_1} = -\frac{R_N}{R_1}.
+ \label{eq:Vprime}
+\end{align}
+Bei dem realen OPV bewirken die oben genannten Größen geringfügige Korrekturen.
+In diesem Versuch soll nur der Einfluss der endlichen Leerlaufverstärkung betrachtet werden.
+Zur Herleitung der Leerlaufverstärkung $V'$ wird der Spannungsteiler $R_1,R_N$ betrachtet.
+Für diesen gilt
+\begin{align}
+ \frac{U_N-U_1}{U_A-U_1} = \frac{R_1}{R_1+R_N}.
+\end{align}
+Mit \eqref{eq:Uaus} ergibt sich die Leerlaufverstärkung zu
+\begin{align}
+ \frac{1}{V'} =& -\frac{U_1}{U_A} = \frac{1}{V} + \frac{R_1}{R_N}\left(1+\frac{1}{V}\right) \\
+ \approx& \frac{1}{V} + \frac{R_1}{R_N}.
+\end{align}
+Für $V\gg R_N/R_1$ ergibt sich \eqref{eq:Vprime}. 
+Damit zeigt sich, dass die Verstärkung 
+auch für einen realen OPV nur von
+dem Widerstandsverhältnis abhängt, wenn eine 
+große Gegenkopplung gewählt wird. Zudem 
+wird die Stabilität des Verstärkers erhöht,
+da der Einfluss der Temperatur und die damit 
+verbundenen Schwankungen von V nahezu
+verschwinden. Die Gegenkopplung wirkt sich
+zudem auf weitere Parameter des realen OPV
+aus. So wird der Ausgangswiderstand verkleinert 
+und die Bandbreite erhöht.
+
+\subsection{Umkehr-Integrator}
+Die Schaltung des Umkehr-Integrators ist in
+Abbildung \ref{pic:umInt} dargestellt. 
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/umkehrInt.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:umInt}
+\end{figure}
+Anstelle des Rückkopplungswiderstands ist hier ein Kondensator ein-
+gebaut. Die Funktionsweise als Integrator ist
+wie folgt zu sehen.
+Der Strom, der über den Widerstand in den
+Punkt A fließt, fließt nun auch in den Kon-
+densator. Zudem wird die Ausgangsspannung
+entegegen der Stromrichtung gemessen. Somit
+gilt
+\begin{align}
+ I_C = \frac{U_1}{R} = -C \frac{\dx U_A}{\dx t}.
+\end{align}
+Dividieren durch $C$ und integrieren führt zu
+\begin{align}
+ U_A = -\frac{1}{RC} \in U_1 \dx t\,.
+\end{align}
+
+\subsection{Umkehr-Differenziator}
+Die Schaltung des Differentiators ist in Abbildung \ref{pic:umDiff}
+dargestellt.
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/umkehrDiff.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:umDiff}
+\end{figure}
+Hier sind Widerstand 
+und Kondensator im Vergleich zum
+Integrator vertrauscht. Die Herleitung der Wirkungsweise 
+als Differentiator ist analog zu der
+des Integrators. Es ergibt sich die Ausgangsspannung zu
+\begin{align}
+ U_A = -RC \frac{\dx U_1}{\dx t}.
+\end{align}
+
+\subsection{Schmitt-Trigger}
+Der Schmitt-Trigger besitzt im Gegensatz zu
+den vorherigen Schaltungen eine Mitkopplung. 
+Dabei wird die Ausgangsspannung über
+einen Widerstand an den nicht-invertierenden
+Eingang zurückgegeben. Die Schaltung ist in
+Abbildung \ref{pic:schmitt} gezeigt. 
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/schmitt.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:schmitt}
+\end{figure}
+Hier wird die Eingangsspannung 
+verstärkt und gleichphasig zurück auf
+den Eingang gegeben. Somit wird die erhöhte
+Spannung noch weiter verstärkt. Dieses Verhalten 
+wird ausgenutzt, um den Schmitt-Trigger
+als Schalter zu verwenden. Ist hier eine bestimmte 
+Schwellspannung erreicht, so springt
+die Ausgangsspannung auf die positive oder
+entsprechend negative Betriebspannung. Die
+Schelle ist dabei durch
+\begin{align}
+ \frac{R_1}{R_P} U_B
+\end{align}
+gegeben und der doppelte Wert wird Schalthysterese bezeichnet.
+
+\subsection{Signalgenerator}
+Der Operationsverstärker kann ebenfalls verwendet werden, um verschiedene Formen
+von Wechselspannungen zu generieren. Möglichkeiten zur Kombination der OPVs 
+zu diesem Zweck sind in den Abbildungen \ref{pic:dreiRect}
+und \ref{pic:sinus} dargestellt.
+Für einen Rechteckgenerators wird die oszillierende Rechteckspannung durch einen
+Schmitt-Trigger erzeugt. Mithilfe eines Integrators kann dieses Signal 
+zu einer Dreiecksspannung umgewandelt werden.
+
+\begin{figure}[t]
+ \includegraphics[width = 0.9\textwidth]{../pics/DreiRect.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:dreiRect}
+\end{figure}
+
+\begin{figure}[t]
+ \includegraphics[width = 0.9\textwidth]{../pics/sinus.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:sinus}
+\end{figure}
+
+\subsection{Logarithmierer und Exponentialgenerator}
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/log.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:log}
+\end{figure}
+
+\begin{figure}[t]
+ \includegraphics[width = 0.5\textwidth]{../pics/exp.png}
+ \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \label{pic:exp}
+\end{figure}
+
+
 \section{Durchführung}
 
 \section{Auswertung}
