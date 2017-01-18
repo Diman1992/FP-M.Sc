@@ -164,6 +164,7 @@ aus. So wird der Ausgangswiderstand verkleinert
 und die Bandbreite erhöht.
 
 \subsection{Umkehr-Integrator}
+\label{sec:int}
 Die Schaltung des Umkehr-Integrators ist in
 Abbildung \ref{pic:umInt} dargestellt. 
 \begin{figure}[t]
@@ -186,8 +187,11 @@ Dividieren durch $C$ und integrieren führt zu
 \begin{align}
  U_A = -\frac{1}{RC} \in U_1 \dx t\,.
 \end{align}
+Im Falle einer Sinusspannung ist $U_A\propto \frac{1}{\omega} \cos(\omega t)$,
+mit $\omega$ der Kreisfrequenz.
 
 \subsection{Umkehr-Differenziator}
+\label{sec:diff}
 Die Schaltung des Differentiators ist in Abbildung \ref{pic:umDiff}
 dargestellt.
 \begin{figure}[t]
@@ -203,6 +207,7 @@ des Integrators. Es ergibt sich die Ausgangsspannung zu
 \begin{align}
  U_A = -RC \frac{\dx U_1}{\dx t}.
 \end{align}
+Wieder für eine Sinusspannung gilt $U_A\propto -\omega \cos(\omega t)$.
 
 \subsection{Schmitt-Trigger}
 Der Schmitt-Trigger besitzt im Gegensatz zu
@@ -236,37 +241,123 @@ Der Operationsverstärker kann ebenfalls verwendet werden, um verschiedene Forme
 von Wechselspannungen zu generieren. Möglichkeiten zur Kombination der OPVs 
 zu diesem Zweck sind in den Abbildungen \ref{pic:dreiRect}
 und \ref{pic:sinus} dargestellt.
-Für einen Rechteckgenerators wird die oszillierende Rechteckspannung durch einen
-Schmitt-Trigger erzeugt. Mithilfe eines Integrators kann dieses Signal 
-zu einer Dreiecksspannung umgewandelt werden.
-
 \begin{figure}[t]
  \includegraphics[width = 0.9\textwidth]{../pics/DreiRect.png}
  \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
  \label{pic:dreiRect}
 \end{figure}
-
 \begin{figure}[t]
  \includegraphics[width = 0.9\textwidth]{../pics/sinus.png}
  \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
  \label{pic:sinus}
 \end{figure}
+Für einen Rechteckgenerators wird die oszillierende Rechteckspannung durch einen
+Schmitt-Trigger erzeugt. Mithilfe eines Integrators kann dieses Signal 
+zu einer Dreiecksspannung umgewandelt werden.\\
+\noindent Die Differenzialgleichung für den gedämpften/angeregten
+harmonischen Oszillator
+\begin{align}
+ 0 = \frac{\dx^2 U_A}{\dx t}- \frac{\eta}{10 RC} \frac{\dx U_A}{\dx t} + \frac{1}{(RC)^2}U_A
+\end{align}
+lässt sich mit zwei hintereinander geschlossenen Integratoren und einem invertierenden
+Verstärker schalten, wobei $-1<\eta<1$ mit dem Potentiometer P eingestellt wird. Die Lösung
+für betragsmäßig kleine $\eta$ lautet
+\begin{align}
+ U_A(t) = U_0 \exp\left(\frac{\eta}{20RC}t\right) \sin\left(\frac{1}{RC}t\right).
+\end{align}
+Für die Schwingungsdauer ergibt sich $T=2\pi RC$ und für die Abklingdauer,
+die Zeit bei der die Amplitude auf den e-ten Teil bzw. das e-fache der Amplitude geht,
+gilt $\tau = 20RC/|\eta|$.
 
 \subsection{Logarithmierer und Exponentialgenerator}
+Auch wenn diese beiden Schaltungen nicht untersucht werden, soll ihre
+Funktionsweise kurz geschildert werden. Die Schaltungen für den 
+Logarithmierer und den Exponentialgenerator sind in den Abbildungen
+\ref{pic:log} bzw. \ref{pic:exp} dargestellt.
 \begin{figure}[t]
  \includegraphics[width = 0.5\textwidth]{../pics/log.png}
- \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \caption{Schaltung des Logarithmierers \cite{Anl}.}
  \label{pic:log}
 \end{figure}
-
 \begin{figure}[t]
  \includegraphics[width = 0.5\textwidth]{../pics/exp.png}
- \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \caption{Schaltung des Exponentialgenerators \cite{Anl}.}
  \label{pic:exp}
 \end{figure}
+Beide funktionieren unter Verwendung einer Diode. Beim Logarithmierer
+befindet sich diese im Rückkopplungszweig und beim Exponentialgenerator
+vor dem invertierenden Eingang. Die Diode wird verwandt, da sie eine
+exponentielle Kennlinie besitzt. Im Falle eines idealen Operationsverstärkers
+gelten daher
+\begin{align}
+ U_{A,\text{log}} = \frac{k_BT}{e_0} \ln\left(\frac{U_e}{I_0 R}\right),\\
+ U_{A,\text{exp}} = RI_0\exp\left(\frac{e_0U_e}{k_BT}\right).
+\end{align}
+
 
 
 \section{Durchführung}
+\subsection{Frequenzgang und Phasenbeziehung}
+Die Spannungen an den beiden Eingängen am OPV sind $U_\pm = 10$\,V.
+Zudem wird $R_1 = \SI{100}{\ohm}$ entsprechend Abbildung \ref{pic:linear}
+gesetzt. Es soll nun $R_N$ auf vier verschiedene Werte gesetzt werden, 
+um für die verschiedenen Verstärkungen $V'$ \eqref{eq:Vprime}das 
+Abnehmen der Amplitude
+mit steigender Frequenz $f$ festgestellt werden kann. Es soll weiterhin
+darauf geachtet werden, dass die Eingangsspannung nicht höher als
+\SI{100}{\milli\volt} ist. In Tabelle \ref{tab:verstaerkungen} sind
+die gewählten Widerstände des Rückkopplungszweigs aufgeführt. Der
+Frequenzbereich variiert zwischen $\SI{0.5}{\kilo\hertz} < f < \SI{150}{\kilo\hertz}$.
+\begin{table}[b]
+ \begin{tabular}{c|c}
+  $R_N/\Omega$ & $V'$\\
+  \hline
+  500 & 5\\
+  1000 & 10 \\
+  3300 & 33 \\
+  10000 & 100
+ \end{tabular}
+ \caption{Widerstände des Rückkopplungszweigs und Verstärkungen}
+\label{tab:verstaerkungen}
+\end{table}
+Für die Phasenverschiebung zwischen Eingangs- und Ausgangsspannung
+werden $R_1 = \SI{1}{\kilo\ohm}$ und $R_N = \SI{10}{\kilo\ohm}$ 
+verwandt. Ihr Auftreten wird für einen Frequenzbereich 
+$\SI{0.5}{\kilo\hertz} < f < \SI{100}{\kilo\hertz}$ beobachtet.
+
+\subsection{Umkehr-Integrator und -Differenziator}
+Entsprechend der Abbildungen \ref{pic:umInt} und \ref{pic:umDiff}
+sollen für eine Sinus-, Dreiecks- und Rechteckspannung die Abhängigkeiten
+von $U_A$ und $f=\omega/2\pi$ aus den Abschnitten \ref{sec:int} und
+\ref{sec:diff} überprüft werden. Der ohmsche Widerstand ist
+$R = \SI{100}{\ohm}$ und die Kapazität $C = \SI{102,3}{\nano\farad}$.
+Der DC-Offset sollte so gewählt werden, dass der Gleichspannungsanteil
+vom Frequenzgenerator verschwindet, damit kein konstantes Signal
+mit integriert wird.
+
+\subsection{Schmitt-Trigger}
+Die Schaltung ist entsprechend Abbildung \ref{pic:schmitt} zu bauen.
+Mit einer Sinusspannung am Eingang soll die Spannung ermittelt werden,
+bei der die Ausgangsspannung in die Sättigungsspannung mit umgekehrten
+Vorzeichen kippt. Hierfür werden $R_1 = \SI{1}{\kilo\ohm}$ und
+$R_P = \SI{100}{\kilo\ohm}$ verwandt.
+
+\subsection{Dreiecksgenerator}
+Beim Dreiecksgenerator, realisiert nach Abbildung \ref{pic:dreiRect},
+soll die Zeitabhängigkeit der Ausgangsspannung mit dem Oszilloskop
+festgestellt und die Schwingungsfrequenz und -amplitude gemessen werden.
+Die verwandten Größen sind $R_1 = \SI{1}{\kilo\ohm}$, $R_P = \SI{100}{\kilo\ohm},
+R= \SI{100}{\kilo\ohm}$, $C = \SI{15}{\nano\farad}$.
+
+\subsection{Sinusschwingungen mit zeitlich veränderlicher Amplitude}
+Entsprechend dem Schaltbild \ref{pic:sinus} wird eine Sinusspannung
+erzeugt mit $C_1 = \SI{21,4}{\nano\farad}$ und $C_2  = \SI{23,5}{\nano\farad}$.
+Mit einem Rechteckgenerator wird am nicht-invertierenden Eingang
+eine Anregung erzeugt. Die gedämpfte Schwingung $\eta = -1$ mit dem
+Potentiometer am Anschlag wird mit dem Oszilloskop gespeichert und
+die Frequenz im Schwingfall gemessen.
+
+
 
 \section{Auswertung}
 \section{Diskussion}
