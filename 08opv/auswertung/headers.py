@@ -2,7 +2,7 @@ import fileinput
 import sys
 import glob
 
-for file in glob.glob('./data/scope_*.csv'):
+for file in glob.glob('./data/e_*.csv'):
 	i = 0
 	for line in fileinput.input(file, inplace=True):
 		if(i < 2):

@@ -11,9 +11,9 @@ R1=100Ohm
 Rn variiert
 	1kOhm		500Ohm		10kOhm		330Ohm
 kHz	file		file		file		file
-0.5	scope_0.csv	scope_50.csv	scope_51.csv	scope_100.csv
-0.75	scope_1.csv
-1	scope_2.csv
+0.5	scope_1.csv	scope_50.csv	scope_51.csv	scope_100.csv
+0.75	scope_2.csv
+1	scope_3.csv
 2
 3
 4
