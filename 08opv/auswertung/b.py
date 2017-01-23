@@ -51,7 +51,7 @@ plt.close()
 dreieck = np.loadtxt("./data/b_5.csv",delimiter=',')
 plt.plot(dreieck[:,0],-dreieck[:,1]/getAmplitude(dreieck[:,1])*getAmplitude(dreieck[:,2]),'r-')#,linewidth=0.10)
 plt.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-')
-plt.savefig("./results/b/dreieck.pdf",format="pdf")
+#plt.savefig("./results/b/dreieck.pdf",format="pdf")
 plt.show()
 plt.close()
 

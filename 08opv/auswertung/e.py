@@ -48,12 +48,23 @@ def linearFit(x,y):
 	temp["y"] = f(temp["x"],var[0],var[1])
 	return temp
 
+def expFit(x,y):
+	def f(x,a,b,c):
+		return b*x**a + c
+
+	var, cov = optimize.curve_fit(f,x,y)
+	temp = dict()
+	temp["var"] = var
+	temp["cov"] = cov
+	temp["x"] = np.linspace(min(x),max(x),num=5000)
+	temp["y"] = f(np.linspace(min(x),max(x),num=5000),var[0],var[1],var[2])
+	return temp
 
 frequencies = np.loadtxt("./e_freq.csv")
 data = dict()
 for i in range(0,len(frequencies)):
-	print(frequencies[i])
-	data[frequencies[i]] = np.loadtxt(glob.glob("./data/e*.csv")[i],delimiter=",")
+	print(frequencies[i],": ",str("./data/e_" + str(i) + ".csv"))
+	data[frequencies[i]] = np.loadtxt(str("./data/e_" + str(i) + ".csv"),delimiter=",")
 
 #pprint.pprint(data)
 
@@ -72,56 +83,40 @@ plt.close()
 
 phases = list()
 for frequency in frequencies:
-	def getPhase(x,y1,y2):
-		def cos(t,omega,phi,A):
-			return A*np.cos(omega*t+phi)
+	def getPhase(t,y1,y2):
+		def cos(x,omega,phi,A):
+			return A*np.cos(omega*x+phi)
 
-		var1, cov1 = optimize.curve_fit(cos,x,y1)
-		var2, cov2 = optimize.curve_fit(cos,x,y2)
-		print(var1)
-		print(var2)
-		print((var1[1]-var2[1])/np.pi*180+180)
-		plt.plot(x,y1,"bx")
-#		plt.plot(x,y2,"rx")
-		plt.plot(np.linspace(min(x),max(x),num=5000),cos(np.linspace(min(x),max(x),num=5000),var1[0],var1[1],var1[2]),"b-")
-#		plt.plot(np.linspace(min(x),max(x),num=5000),cos(np.linspace(min(x),max(x),num=5000),var2[0],var2[1],var2[2]),"r-")
-		return ((var1[1]-var2[1])/np.pi*180+180)#, (cov1[1]-cov2[1])	
+		var1, cov1 = optimize.curve_fit(cos,t,y1,p0=[2*np.pi*frequency*1000,1,getAmplitude(y1)/2])
+		var2, cov2 = optimize.curve_fit(cos,t,y2,p0=[2*np.pi*frequency*1000,1,getAmplitude(y1)/2])
+		temp = dict()
+		temp["x"] = np.linspace(min(t),max(t),num=5000)
+		temp["y1"] = cos(temp["x"],var1[0],var1[1],var1[2])
+		temp["y2"] = cos(temp["x"],var2[0],var2[1],var2[2])
+		temp["phi"] = var1[1]-var2[1]/np.pi*180
+		temp["omega"] = [var1[0],var2[0]]
+		temp["A"] = [var1[2],var2[2]]
+		return temp
 
-	phases.append(getPhase(data[frequency][:,0],data[frequency][:,1],data[frequency][:,2]))
+	print(frequency)
+	fit = getPhase(data[frequency][:,0],data[frequency][:,1],data[frequency][:,2])
+	pprint.pprint(fit)
+	phases.append(fit["phi"])
 
-
-#	data[frequency][:,2] = data[frequency][:,2]/getAmplitude(data[frequency][:,2])*getAmplitude(data[frequency][:,1])
-#	print(frequency)
-#	maxima1 = peakutils.peak.indexes(data[frequency][:,1],thres=0.4,min_dist=3000) #signal.argrelextrema(data[frequency][:,1],np.greater,order=80,mode="wrap")
-#	peakutils.plot.plot(data[frequency][:,0],data[frequency][:,1],maxima1)
-#	maxima2 = peakutils.peak.indexes(data[frequency][:,2],thres=0.4,min_dist=3000) #signal.argrelextrema(data[frequency][:,2],np.greater,order=35,mode="wrap")
-#	if(True):#frequency == 0.5):
-#		plt.plot(data[frequency][:,0],data[frequency][:,1])
-#		plt.plot(data[frequency][:,0],data[frequency][:,2])
-#		print(len(maxima1))
-#		print(maxima1[0])
-#		print(data[frequency][maxima1[0][-1],0])
-#		print(len(maxima2))
-#		print(maxima2[0])
-#		print(data[frequency][maxima2[0][-1],0])
-#		deltat = data[frequency][maxima2[3],0]-data[frequency][maxima1[3],0]
-#		phase = frequency * 1000 * 360 * deltat
-#		phases.append(phase)
-#		print(phase)
-#		plt.show()
-#		plt.close()
-
-print(phases)
+#print(phases)
 for i in range(0,len(phases)):
-	while(phases[i] > 90):
+	while(phases[i] > 180):
 		phases[i] = phases[i] - 180
 	while(phases[i] < 0):
 		phases[i] = phases[i] + 180
 
-
+print(frequencies)
 print(phases)
 plt.close()
 plt.plot(frequencies,phases,"rx")
+fit = expFit(frequencies,phases)
+pprint.pprint(fit)
+plt.plot(fit["x"],fit["y"])
 plt.xscale("log")
 plt.yscale("log")
 plt.show()
