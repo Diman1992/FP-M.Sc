@@ -1,0 +1,5 @@
+f_dreieck = 6,kHZ
+U_dreieck = 0,44V
+
+f_rechteck = 5,98kHZ
+U_rechteck = 17,9V

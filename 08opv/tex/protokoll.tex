@@ -149,6 +149,7 @@ Mit \eqref{eq:Uaus} ergibt sich die Leerlaufverstärkung zu
 \begin{align}
  \frac{1}{V'} =& -\frac{U_1}{U_A} = \frac{1}{V} + \frac{R_1}{R_N}\left(1+\frac{1}{V}\right) \\
  \approx& \frac{1}{V} + \frac{R_1}{R_N}.
+ \label{eq:leerlauf}
 \end{align}
 Für $V\gg R_N/R_1$ ergibt sich \eqref{eq:Vprime}. 
 Damit zeigt sich, dass die Verstärkung 
@@ -196,7 +197,7 @@ Die Schaltung des Differentiators ist in Abbildung \ref{pic:umDiff}
 dargestellt.
 \begin{figure}[t]
  \includegraphics[width = 0.5\textwidth]{../pics/umkehrDiff.png}
- \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \caption{Schaltung des Umkehrdifferentiators \cite{Anl}.}
  \label{pic:umDiff}
 \end{figure}
 Hier sind Widerstand 
@@ -218,7 +219,7 @@ Eingang zurückgegeben. Die Schaltung ist in
 Abbildung \ref{pic:schmitt} gezeigt. 
 \begin{figure}[t]
  \includegraphics[width = 0.5\textwidth]{../pics/schmitt.png}
- \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \caption{Schaltung des Schmitt-Triggers \cite{Anl}.}
  \label{pic:schmitt}
 \end{figure}
 Hier wird die Eingangsspannung 
@@ -230,7 +231,7 @@ als Schalter zu verwenden. Ist hier eine bestimmte
 Schwellspannung erreicht, so springt
 die Ausgangsspannung auf die positive oder
 entsprechend negative Betriebspannung. Die
-Schelle ist dabei durch
+Schwelle ist dabei durch
 \begin{align}
  \frac{R_1}{R_P} U_B
 \end{align}
@@ -243,12 +244,12 @@ zu diesem Zweck sind in den Abbildungen \ref{pic:dreiRect}
 und \ref{pic:sinus} dargestellt.
 \begin{figure}[t]
  \includegraphics[width = 0.9\textwidth]{../pics/DreiRect.png}
- \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \caption{Schaltung des Dreiecks-/Rechteckgenerators \cite{Anl}.}
  \label{pic:dreiRect}
 \end{figure}
 \begin{figure}[t]
  \includegraphics[width = 0.9\textwidth]{../pics/sinus.png}
- \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
+ \caption{Schaltung des Sinusgenerators \cite{Anl}.}
  \label{pic:sinus}
 \end{figure}
 Für einen Rechteckgenerators wird die oszillierende Rechteckspannung durch einen
@@ -360,8 +361,123 @@ die Frequenz im Schwingfall gemessen.
 
 
 \section{Auswertung}
-\section{Diskussion}
+\subsection{Linearverstärker}
+Zuerst wird die Frequenzabhängigkeit des Verstärkungsgrades betrachtet. Dazu wird die Ausgangsspannung $U_\text{A}$ eines gegengekoppelten Linearverstärkers wie in Abb. \ref{pic:linear} abhängig von Frequenz $f$ und dem Widerstand $R_\text{N}$ untersucht, weiterhin ist $R_1 = 100\ \si{\ohm}$. Zunächst wurde die Funktion $g = b \cdot x^a$ an die rechte Flanke der gemessenen Ausgangsspannung gefittet. Mit diesem wird die Grenzfrequenz $f_\text{Grenz} =\sqrt[a]{\frac{V_\text{Real}}{b\sqrt{2}}}$ bestimmt. Weiterhin wird die Leerlaufverstärkung nach Gl. \ref{eq:leerlauf} ermittelt. Schließlich ist die Frequenzabhängigkeit in Abb. \ref{pic:a plot} zu sehen.
 
+\begin{table}
+	\centering
+	\caption{Gemessene und berechnete Kennwerte eines realen, gegenkoppelten Linearverstärkers}
+	\input{../auswertung/results/a/a_VReal.tex}
+	\label{table:a_real}
+\end{table}
+
+\begin{table}
+	\centering
+	\input{../auswertung/results/a/a_VTheorie.tex}
+	\caption{Theoretische Verstärkung eines idealen, gegengekoppelten Linearverstärkers}
+	\label{table:a_theorie}
+\end{table}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{../auswertung/results/a/a.pdf}
+	\caption{Frequenzabhägigkeit des Verstärkungsgrades eines gegengekoppelten Linearverstärkers mit $U_1 = 20$ V}
+	\label{pic:a plot}
+\end{figure}
+
+\subsection{Umkehrintegrator}
+Es wird eine Schaltung wie in Abb. \ref{pic:umInt} verwandt, um einen Umkehr-Integrator mit $R = 100\ \si{\ohm}$ und $C = 102.3\ \si{\nano\farad}$ zu realisieren. Als Eingangsspannungen werden nacheinander Sinus-,Rechteck- und Dreieckspannung angelegt. Am Ausgang sind dann die integrierten Spannungen zu messen, s. Abbildungen \ref{pic:b sinus},\ref{pic:b rechteck},\ref{pic:b dreieck}. Zur besseren Sichtbarkeit wurde die Amplitude des Eingangs- und Ausgangssignals normiert.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/sinus.pdf}
+	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrintegrators mit angelegter Sinusspannung, $f = 0.1\ \si{\kilo\hertz}$}
+	\label{pic:b sinus}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/rechteck.pdf}
+	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrintegrators mit angelegter Rechteckspannung, $f = 0.1\ \si{\kilo\hertz}$}
+	\label{pic:b rechteck}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/dreieck.pdf}
+	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrintegrators mit angelegter Dreieckspannung, $f = 0.1\ \si{\kilo\hertz}$}
+	\label{pic:b dreieck}
+\end{figure}
+
+Weiterhin wird die charakteristische Kurve der Schaltung aufgenommen. Dazu wird die Ausgangspannung gegen den Kehrwert der Frequenz aufgetragen. Für den Fit wurde die Funktion $g = b \cdot x^a$ verwandt, das Ergebnis ist in Abb. \ref{pic:b charKurve} zu sehen.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/charKurve.pdf}
+	\caption{Charakteristische Kurve des Umkehrintegrators mit angelegter Sinusspannung,\protect\input{../auswertung/results/b/ba.tex}, \protect\input{../auswertung/results/b/bb.tex} }
+	\label{pic:b charKurve}
+\end{figure}
+
+\subsection{Umkehrdifferentiator}
+An dieser Stelle wird eine Schaltung wie in Abb. \ref{pic:umDiff} verwandt. Es wurden die gleiche Kapazität und der gleiche Widerstand wie beim Umkehrintegrator verwandt.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/sinus.pdf}
+	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrdifferentiators mit angelegter Sinusspannung, $f = 0.1\ \si{\kilo\hertz}$}
+	\label{pic:c sinus}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/rechteck.pdf}
+	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrdifferentiators mit angelegter Rechteckspannung, $f = 0.1\ \si{\kilo\hertz}$}
+	\label{pic:c rechteck}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/dreieck.pdf}
+	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrdifferentiators mit angelegter Dreieckspannung, $f = 0.1\ \si{\kilo\hertz}$}
+	\label{pic:c dreieck}
+\end{figure}
+
+Auch hier wird eine charakteristische Kurve erstellt. Die Ergebnisse sind in Abb. \ref{pic:c charKurve} und Tab. \ref{table:c fitParameter} zu sehen.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/charKurve.pdf}
+	\caption{Charakteristische Kurven des Umkehrdifferentiators bei verschiedenen angelegten Spannungen}
+	\label{pic:c charKurve}
+\end{figure}
+
+\begin{table}
+	\centering
+	\input{../auswertung/results/c/cFitParameter.tex}
+	\caption{Ermittelte Fitparameter der charakteristischen Kurve für verschiedene Spannungsfunktionen angelegt an den Umkehrdifferentiator}
+	\label{table:c fitParameter}
+\end{table}
+
+\subsection{Schmitt-Trigger}
+Für die Schaltung nach Abb. \ref{pic:schmitt} wurden $R_1 = 1 \si{\kilo\ohm}$ und $R_p = 100 \si{\kilo\ohm}$ verwandt. Als Kippspannung wurde $U_\text{Kipp} = 0.182\ \si{\ohm}$ bestimmt.
+
+\subsection{Dreickeckgenerator}
+Die Schaltung wurde wie in Abb. \ref{pic:dreiRect} ausgeführt und es wurden die folgenden Bauteile verwandt: $R_1 = 1\ \si{\kilo\ohm}$, $R_p = 100\ \si{\kilo\ohm}$, $R = 100\ \si{\kilo\ohm}$ und $C$ = 15 nF. Die gemessenen Frequenzen betragen $f_\text{Rechteck} = 5.98\ \si{\kilo\hertz}$ und $f_\text{Dreieck} = 6.00\ \si{\kilo\hertz}$, sowie $U_\text{Rechteck} = 17.9\ \si{\volt}$ und $U_\text{Dreieck} = 0.44\ \si{\volt}$.
+
+\subsection{Phasenverschiebung}
+Mithilfe einer Schaltung wie in Abb. \ref{pic:linear} wird die Frequenzabhängigkeit der Phase zwischen Eingang und Ausgangs untersucht. Dazu wird ein Fit mit $g = A \cdot \cos (\omega t + \phi)$ an sowohl Eingangs- als auch Ausgangssignal durchgeführt. Die resultierende Phase ist dann $\Delta \varphi = \varphi_\text{Ein} - \varphi_\text{Aus}$. Diese wird gegen die Frequenz aufgetragen, in Abb. \ref{pic:e phase} zu sehen.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\textwidth]{../auswertung/results/e/phase.pdf}
+	\caption{Frequenzabhängiges Phasenverhalten eines gegengekoppelten Linearverstärkers}
+	\label{pic:e phase}
+\end{figure}
+
+\section{Diskussion}
+Besonders bei der Betrachtung des gegengekoppelten Linearvertärkers wird klar, wie weit der reale Operationsverstärker vom idealen entfernt ist. Die real gemessenen Verstärkungsgrade liegen weit unter den theoretisch möglichen, was unter anderem an der hohen Leerlaufverstärkung liegen könnte. Außerdem bewegt sich die Bandbreite innerhalb einer Größenordnung, was vielleicht an den sehr unterschiedlichen, eingesetzten Widerständen liegen kann.
+
+Sowohl Umkehrintegrator, als auch -differentiator haben sich in den untersuchten Bereichen wie erwartet verhalten. Beide verhielten sich $\propto f^{-1}$, was zu erwarten war, ausgenommen nur die Rechteckspannung am Differentiator, da die resultierenden Delta-Peaks die gleiche Höhe wie das Eingangssignal aufwiesen.
 
 \newpage
  \begin{thebibliography}{WissOnl}

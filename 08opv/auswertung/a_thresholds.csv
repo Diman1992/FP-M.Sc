@@ -1,5 +1,5 @@
-#Rn, mittelwert, untere grenze fit
-1000	3.3	46
+#Rn, mittelwert, untere grenze fit, obere grenze Vreal
+1000	11	46	
 500		11	46
 10000	3.5	12
 330		45	46

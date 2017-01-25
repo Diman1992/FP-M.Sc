@@ -50,7 +50,7 @@ def linearFit(x,y):
 
 def expFit(x,y):
 	def f(x,a,b,c):
-		return b*x**a + c
+		return b*x**a+c
 
 	var, cov = optimize.curve_fit(f,x,y)
 	temp = dict()
@@ -96,11 +96,13 @@ for frequency in frequencies:
 		temp["phi"] = var1[1]-var2[1]/np.pi*180
 		temp["omega"] = [var1[0],var2[0]]
 		temp["A"] = [var1[2],var2[2]]
+		temp["var1"] = var1
+		temp["var2"] = var2
 		return temp
 
 	print(frequency)
 	fit = getPhase(data[frequency][:,0],data[frequency][:,1],data[frequency][:,2])
-	pprint.pprint(fit)
+#	pprint.pprint(fit)
 	phases.append(fit["phi"])
 
 #print(phases)
@@ -110,14 +112,20 @@ for i in range(0,len(phases)):
 	while(phases[i] < 0):
 		phases[i] = phases[i] + 180
 
-print(frequencies)
-print(phases)
+#print(frequencies)
+#print(phases)
 plt.close()
-plt.plot(frequencies,phases,"rx")
+plt.plot(frequencies,phases,"bx",label="Messwerte und Fit")
 fit = expFit(frequencies,phases)
 pprint.pprint(fit)
 plt.plot(fit["x"],fit["y"])
+plt.xlabel("$f$ [kHz]")
+plt.ylabel("$\\varphi$ [rad]")
 plt.xscale("log")
-plt.yscale("log")
+#plt.yscale("log")
+plt.xlim(0.3,110)
+plt.ylim(90,130)
+plt.legend(loc="upper left")
+plt.savefig("./results/e/phase.pdf")
 plt.show()
 plt.close()

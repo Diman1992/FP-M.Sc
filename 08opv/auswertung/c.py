@@ -17,6 +17,8 @@ for arg in sys.argv:
 #from operator import truediv
 import glob
 import pprint
+import tabulate
+tabulate.LATEX_ESCAPE_RULES={}
 
 def getAmplitude(source):
 	min = source[0]
@@ -37,7 +39,7 @@ def getAverage(source):
 
 def linearFit(x,y):
 	def f(x,a,b):
-		return a*x+b
+		return b*x**a
 
 	var, cov = optimize.curve_fit(f,x,y,maxfev=10000)
 	temp = dict()
@@ -48,33 +50,92 @@ def linearFit(x,y):
 	return temp
 
 
-sinus = np.loadtxt("./data/b_1.csv",delimiter=',')
+sinus = np.loadtxt("./data/c_26.csv",delimiter=',')
 #print(sinus)
-plt.plot(sinus[:,0],sinus[:,1]/getAmplitude(sinus[:,1])*getAmplitude(sinus[:,2]),'r-')
-plt.plot(sinus[:,0],sinus[:,2]-getAverage(sinus[:,2]),'b-')
+plt.plot(sinus[:,0],sinus[:,1]/getAmplitude(sinus[:,1])*getAmplitude(sinus[:,2]),'r-',label=r"Angelegte Sinusspannung")
+plt.plot(sinus[:,0],sinus[:,2]-getAverage(sinus[:,2]),'b-',label=r"Gemessene Cosinusspannung")
+plt.xlabel("$t$ [s]")
+plt.ylabel("$U$ [V]")
+plt.ylim(-0.3,0.5)
+plt.legend()
+plt.savefig("./results/c/sinus.pdf")
 #plt.show()
 plt.close()
 
-rechteck = np.loadtxt("./data/b_4.csv",delimiter=',')
-plt.plot(rechteck[:,0],-rechteck[:,1]/getAmplitude(rechteck[:,1])*getAmplitude(rechteck[:,2]),'r-')
-plt.plot(rechteck[:,0],rechteck[:,2]-getAverage(rechteck[:,2]),'b-')
-plt.show()
-plt.close()
-
-dreieck = np.loadtxt("./data/b_5.csv",delimiter=',')
-plt.plot(dreieck[:,0],-dreieck[:,1]/getAmplitude(dreieck[:,1])*getAmplitude(dreieck[:,2]),'r-')#,linewidth=0.10)
-plt.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-')
-#plt.savefig("./results/b/dreieck.pdf",format="pdf")
-plt.show()
-plt.close()
-
-
-charCurve = np.loadtxt("./data/b.csv")
-#print(charCurve)
-plt.plot(1/charCurve[:,0],charCurve[:,1],"bx")
-fit = linearFit(1/charCurve[:,0],charCurve[:,1])
-plt.plot(fit["x"],fit["y"])
-#plt.xscale("log")
-#plt.yscale("log")
+rechteck = np.loadtxt("./data/c_27.csv",delimiter=',')
+plt.plot(rechteck[:,0],-rechteck[:,1]/getAmplitude(rechteck[:,1])*getAmplitude(rechteck[:,2]),'r-',label=r"Angelegte Rechteckspannung")
+plt.plot(rechteck[:,0],rechteck[:,2]-getAverage(rechteck[:,2]),'b-',label=r"Gemessene Delta-pearks")
+plt.xlabel("$t$ [s]")
+plt.ylabel("$U$ [V]")
+plt.ylim(-10,12)
+plt.legend()
+plt.savefig("./results/c/rechteck.pdf")
 #plt.show()
 plt.close()
+
+dreieck = np.loadtxt("./data/c_1.csv",delimiter=',')
+plt.plot(dreieck[:,0],-dreieck[:,1]/getAmplitude(dreieck[:,1])*getAmplitude(dreieck[:,2]),'r-',label=r"Angelegte Dreiecksspannung")#,linewidth=0.10)
+plt.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-',label=r"Gemessene Rechteckspannung")
+plt.xlabel("$t$ [s]")
+plt.ylabel("$U$ [V]")
+plt.ylim(-0.4,0.6)
+plt.legend()
+plt.savefig("./results/c/dreieck.pdf")
+#plt.show()
+plt.close()
+
+frequencies = np.loadtxt("c_freq.csv")
+amplitudes = list()
+for i in range(1,14):
+	if(True):
+#		print(str('./data/c_' + str(i) + '.csv'))
+		amplitudes.append(getAmplitude(np.loadtxt(str('./data/c_' + str(i) + '.csv'),delimiter=',')[:,2]))
+plt.plot(1/frequencies,amplitudes,"bx",label="Meswerte und Fit bei angelegter Dreiecksspannung")
+fit = linearFit(1/frequencies,amplitudes)
+plt.plot(fit["x"],fit["y"],"b-")
+dreiecka = str("$("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$")
+dreieckb = str("$("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$")
+
+amplitudes = list()
+for i in range(14,27):
+	if(True):
+#		print(str('./data/c_' + str(i) + '.csv'))
+		amplitudes.append(getAmplitude(np.loadtxt(str('./data/c_' + str(i) + '.csv'),delimiter=',')[:,2]))
+plt.plot(1/frequencies[::-1],amplitudes,"rx",label="Meswerte und Fit bei angelegter Sinusspannung")
+fit = linearFit(1/frequencies[::-1],amplitudes)
+plt.plot(fit["x"],fit["y"],"r-")
+sinusa = str("$("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$")
+sinusb = str("$("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$")
+
+
+amplitudes = list()
+for i in range(27,40):
+	if(True):
+#		print(str('./data/c_' + str(i) + '.csv'))
+		amplitudes.append(getAmplitude(np.loadtxt(str('./data/c_' + str(i) + '.csv'),delimiter=',')[:,2]))
+plt.plot(1/frequencies,amplitudes,"gx",label="Meswerte und Fit bei angelegter Rechtecksspannung")
+fit = linearFit(1/frequencies,amplitudes)
+plt.plot(fit["x"],fit["y"],"g-")
+rechtecka = str("$("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$")
+rechteckb = str("$("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$")
+
+
+#pprint.pprint(fit)
+plt.xlabel("$1/f$ [1/kHz]")
+plt.ylabel("$U$ [V]")
+plt.xlim(0.4,11)
+plt.legend()
+plt.xscale("log")
+plt.yscale("log")
+plt.savefig("./results/c/charKurve.pdf")
+plt.show()
+plt.close()
+
+fitParameter = np.array([["Spannungsfunktion","$a$","$b\\ [\\si{\\volt}]$"],
+	["Sinus",sinusa,sinusb],
+	["Dreieck",dreiecka,dreieckb],
+	["Rechteck",rechtecka,rechteckb]])
+#Matrix(VTheorie).generate_tex("./results/a/a_VTheorie")
+file = open("./results/c/cFitParameter.tex","w")
+file.write(tabulate.tabulate(fitParameter, tablefmt="latex", floatfmt=".2f"))
+file.close()
