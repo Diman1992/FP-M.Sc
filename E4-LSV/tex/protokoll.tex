@@ -65,7 +65,7 @@
 Besides its properties to have very accurate estimations for the processes it is applicable to, the Standard Model (SM) lacks the explanation for 
 several phenomena. Many of them hint at the electroweak scale of order $\mathcal{O}$(100 GeV) where new physics is expected to occur. One new particle
 proposed by some models beyond the SM is $Z'$. Its properties are very similar to the SM-$Z$ boson but is around an order of magnitude heavier so that
-it can decay into a top-antitop pair $t\bar t$. It may furthermore serve as a mediator to a dark sector or may have flavour violatioting interactions, 
+it can decay into a top-antitop pair $t\bar t$. It may furthermore serve as a mediator to a dark sector or may have flavour violating interactions, 
 possibly 
 explaining flavour anomalies in $B$-meson physics. Considerations as the latter two, however, are beyond the scope of this work. The top pair mainly
 gets produced via the strong interaction of two gluons $g$ and decays weakly into two $b$-quarks and two $W$-bosons which themselves decay further 
@@ -76,18 +76,34 @@ expressed by three topologies (see fig. \ref{pic:feynman}).
  \label{pic:feynman}
 \end{figure}
 One may decay into a lepton pair and the other into a quark pair (i.e. lepton$+$jets) or both decay leptonically 
-(i.e. dilepton) or hadronically (i.e. all hadron). Due to its color representation and the quark flavour violation, decays into quarks is much more 
-probable compared tolepton involving ones. But they are more complicate to identify, i.e. reconstructed, as $t$ decay products as a result of 
-confinement. The tradeoff is therefore to focus on the lepton$+$jets topology, while we do not consider $\tau$ because of its various decay channels.
+(i.e. dilepton) or hadronically (i.e. all hadron). Due to its color representation and the quark flavour violation, decays into quarks are much more 
+probable compared to lepton involving ones. But they are more complicate to identify, i.e. reconstructed, as $t$ decay products as a result of 
+confinement since jets can arise out of many other processes and the background in the hadronic channel is a lot bigger compared to the leptonic
+channel. The tradeoff is therefore to focus on the lepton$+$jets topology, while we do not consider $\tau$ because of its various decay channels.
 \\
 \noindent The data \cite{Atlas} of the preselected sets gets further sorted out by additional requirements to obtain the requested topology. From direct and 
 derived kinematic entities one final discriminant, the invariant mass of the system, gets picked to separate the background from the signal emerging
 as a sharp peak. Background processes are modeled by Monte Carlo (MC) simulations whose validity is reviewed in the process. In the end, a statistical
-analysis shows no significance for neither an observation nor evidence for a $Z'$ resonance but a lower mass is set at $m_{Z'} >850$ GeV at 
-95\% CL
+analysis shows no significance for neither an observation nor evidence for a $Z'$ resonance but a lower mass limit is set at $m_{Z'} >850$ GeV at 
+95\% CL.
 
 
 \FloatBarrier
+
+\section{The ATLAS Detector}
+The ATLAS detector \cite{Atlas} is a particle detector for general purpose, e.g. discovery of new particles,
+with an approximate forward-backward symmetry in its cylindrical geometry. Its four main components responsible
+for the identification and reconstruction of different particle types are: the innder detector (ID),
+the electromagnetic and hadronic calorimeters and the muon spectrometer (MS). The sub-detectors
+are each divided into two components, barrel and endcap. which provide a coverage close to $4\pi$ in
+solid angle. Charge and momentum measurements are allowed by to additional magnet systems.
+The ID is the component closest to the interaction point of colliding proton bunches and reconstructs
+the trajectories of charged particles in a region $|\eta|<2.5$\footnote{Quantitiy explained in the next chapter.} whilst
+measuring their momenta. Surrounding the ID, the electromagnetic calorimeter provides energy measurements with
+high granularity. The hadronic calorimeter covers the central pseudorapidity range ($|\eta|<1.7$). The MS, built around 
+the calorimeter system, consists of three layers of precision tracking chamers and fast detectors for triggering
+on muons. The coverage provided here goes up to $|\eta|<2.7$.
+
 \section{Selection conditions and their efficiencies}
 \label{sec:selection}
 An example for a depiction of a dataset is shown in figure \ref{pic:examplePlot}. It represents a histogram fro the mass of the jets (jet\_m) in an
@@ -97,18 +113,31 @@ event. Since mostly two jets are reconstructed $b$-quarks, i.e. b-tagged, the pe
  \caption{Histogram of the jet mass from data set 0.}
  \label{pic:examplePlot}
 \end{figure}
-The number of entries in the plot is greater than the number of events in the data (\emph{ntuple->GetEntries()}). This difference represents the reconstructed leptons.
+The number of entries in the plot is greater than the number of events in the data (\emph{ntuple->GetEntries()}). This difference comes due to 
+the flawed reconstruction of jets, wherein more than one jet is found in several events.
 The used samples are already preselected with certain requirements. These include a lower bound on the momentum transverse to the beam axis $p_T>17$ GeV 
 \footnote[1]{Leptons coming from electroweak
 decays are rare in general but have a quite high $p_T$ expressed by this lower bound}and
-for the pseudorapidity $\eta$ which represents the alignment of the jet with the beam, we demand $|\eta| < 2.47$. With the detector being rotationally
+for the pseudorapidity $\eta$ which represents the alignment of the jet with the beam, we demand $|\eta| < 2.47$. For larger values the ID cannot
+reconstruct charged particles.
+With the detector being rotationally
 invariant along the beam axis, no requirement for the azimuthal angle $\phi$ is posed. To cover the requested topology, we demand one lepton to be reconstructed. 
 
 For the $Z'$-signal we expect the reconstructed objects in the all-hadronic decay mode to contain two $b$-quarks and two lighter quarks while for the lepton+jets decay mode a combination of two $b$-quarks, a lighter quark and a lepton is expected. For a dilepton $t\bar{t}$ decay mode two $b$-quarks and two leptons are expected.
 
-Relevant background processes include $t\bar{t}$, diboson like $WZ$, $WW$, $ZZ$ and single-top decays. Furthermore there exist $Z+$jets and $W+$jets channels. Considering its detectability and the amount of events the two $b$-quark, one lighter quark and one lepton topology is chosen to study $t\bar{t}$ production. As a result events are selected with exactly one lepton, $E_\text{miss} > 35$ GeV and exactly four jets, which all pass jet quality requirements and of which at least one is \emph{b-tagged}.
+Relevant background processes include $t\bar{t}$, diboson like $WZ$, $WW$, $ZZ$ and single-top decays. Furthermore there exist $Z+$jets and 
+$W+$jets channels. Considering its detectability and the amount of events the two $b$-quark, one lighter quark and one lepton topology is chosen 
+to study $t\bar{t}$ production. As a result events are selected with exactly one lepton, $E^T_\text{miss} > 35$ GeV and exactly four jets, which all 
+pass jet quality requirements and of which at least one is \emph{b-tagged}. Here $E^T_\text{miss}$ denotes the transversal energy carried away by
+the undetectable neutrinos also produced in the weak leptonic $W$-decay. Due to the almost certain decay of the two top quark system into two 
+b quarks and the difficulty to successfully tag a b quark, we demand to find at least one of them.
 
-The event selection efficiencies for the different requirements show the following descending order: \emph{Number of Jets}$>$\emph{b-tagged}$>$\emph{Missing Energy}$>$\emph{Number of leptons}$>$\emph{jet-quality}. The big influence of the \emph{Number of Jets} criterion results from the high amount of jets coming from secondary processes, also fulfilling the preselection requirement for $p_t$. This is the same for all background processes. The selection efficiency of the $Z'(1000)$ Sample is $79\%$. After the selection the main background process is $t\bar t$ with $10^5$ events in comparison to other processes with $10^3$ or less events.
+The event selection efficiencies for the different requirements show the following descending order: 
+\emph{Number of Jets}$>$\emph{b-tagged}$>$\emph{Missing Energy}$>$\emph{Number of leptons}$>$\emph{jet-quality}. 
+The big influence of the \emph{Number of Jets} criterion results from the high amount of jets coming from secondary processes, also fulfilling the 
+preselection requirement for $p_t$. This is the same for all background processes. The selection efficiency of the $Z'(1000)$ Sample is $79\%$. 
+After the selection the main background process is $t\bar t$ with $\sim 7\cdot 10^5$ events in comparison to other processes with $10^3$ or less events
+compared to a total amount of data of $\sim 1\cdot 10^6$.
 % Notes:- plot description of example jet_m. 
 % 	- #_plot > #_ntuple? holds for leptonic entities: difference in number represents reconstructed leptons
 % 	- trigger and reconstruction requirements are maybe found in Jana_Novakova book ore elsewhere in the literature
@@ -123,21 +152,42 @@ The event selection efficiencies for the different requirements show the followi
 	
 
 \section{Fundamental and derived quantities}
-With these requirements several fundamental quantities are plotted in figure \ref{pic:fundamental}. 
-These include the transverse momentum $p_T$ and the missing part $E_\text{miss}$ as well as $\eta$, $\phi$ and $E$ for each reconstructed lepton or jet.
+With these requirements several fundamental quantities are plotted in Figure \ref{pic:fundamental}. 
+These include the transverse momentum $p_T$ and the missing part $E^T_\text{miss}$ as well as $\eta$, $\phi$ and $E$ for each reconstructed lepton or jet.
 The number of good jets, b-tagged jets and the magnitude of missing transverse energy hold by the not detectable neutrino are further depicted. 
 Since the $t\bar t$ process is the major background, its expecations related to the applicable plots are examined. The behaviour of quantities with
-a mass dimension of order 1, such as $p_T$, $E$ and $E_\text{miss}$ are distributed qualitatively equal with a peak in the region of order 
+a mass dimension of order 1, such as $p_T$, $E$ and $E^T_\text{miss}$ are distributed qualitatively equal with a peak in the region of order 
 $\mathcal{O}$(10 GeV) with an exponential decline beyond. Despite the fact that this is expected for this background process, it is nonspecific.
 Now we consider the angular quantities $\eta$ and $\phi$. As stated before, the detector is rotationally invariant around the beam axis and $\phi$ is hence
 distributed evenly as expected. This is also not unique for $t\bar t$. The pseudorapidity has a peak at 0, i.e. the collision products prefer to
 pervade the detector orthogonally to the beam axis. The top pair gets mainly produced by two interacting gluons, being bosons. Afterwards, it decays into six fermions.
 Calculating this process in an effective theory shows that the cross section for bosons into fermions $\sigma(BB\rightarrow f\bar f)\sim (1-\cos^2\theta)$
-having the same maximum as $\eta$. The notches in the leptonic plot around $\pm 1.5$ may be a result of statistical fluctuation since the equivalent
-plots of other particles do not show them. As stated, the top pair decays eventually into six fermions, two of them $b$-quarks. With the selections we made, we expect 
+having the same maximum as $\eta$. 
+At $|eta|\approx 1.5$ the low transverse momentum region exhibits a strong dependence on the pseudorapidity, which lies between the barrel and
+endcap calorimeters. This is the reason for the notches in the leptonic plot.
+As stated, the top pair decays eventually into six fermions, two of them $b$-quarks. With the selections we made, we expect 
 two additional ones. Cases where just one or more than four jets are reconstructed refer to a loss or a misinterpretation of jets. For the amount
 of b-tagged jets, the same explanation is applicable. %The fact that events with one b-tagged jet are more likely than ones with two jets is indeed puzzling. 
-%\newpage
+%\newpageWhile these quantities are directly measurable, none of them would be able to discriminate efficiently between the $t\bar t$ background and a $Z'(1000)$ 
+signal. In Figure \ref{pic:derived}, derived quantities are shown, such as the difference in the azimuthal angle of the lepton and the neutrino
+$\Delta \phi$. Further, the invariant mass for the three jets with largest $p_T$ as well as $\eta$ and the invariant mass for the whole system
+are included. It is obvious that the behaviour for the angular related quantities is different in this framework. While the azimuthal angle is indeed
+arbitrary when just one particle is concerned, a favoured $\Delta\phi$ arises. This may result from the decaying $W$-boson as the origin of the lepton
+pair. A cone, symmetric around the beam is a vivid example. Its opening angle refers to $\eta$ and the straight lines thereon represent the lepton 
+traces. The radian measure between them represent $\Delta \phi$. To explain a prefered angle a $\phi$ dependency for the $W$ trace might be an answer.
+The comparably large mass of the $W$ and the system altogether may also play a role to cause the restrictions.
+The position of the peak in the distribution, however, cannot be explained thoroughly. Maybe a consideration of the whole system has to be taken
+into account. It appears that $\eta$ also has a peak neither at the edge nor at the center of the distribution but rather at the edge of our posed
+requirement. While each particle prefers a trace orthogonal to the beam axis, within the joint distribution for the system they apparently cancel each other so that
+we find a root at 0. The distributions of the invariant masses in these two cases are primarily interesting since the position of a peak represents
+a resonance refering to the mass of a particle. Starting with the case wherein the three jets with the largest $p_T$ are considered, we see two peaks
+for the $Z'(1000)$ simulation. The first lies around the top mass while the second is around 500 GeV. This indicates that the three aforementioned particles
+carry the energy of each the half of either the top pair or the $Z'(1000)$. For the $t\bar t$ simulation, the same just without the $Z'(1000)$ resonance is 
+obtained. For the second case wherein the whole system is taken into account, a resonance at the doubled top mass is found for the top pair 
+as expected. The peak in the $Z'(1000)$ distribution is at a lower position than expected for this simulation. The invariant mass of the whole system
+is the best discriminator for the signal to background ratio considered here. The angular related quantities do not have a much different behaviour 
+for the two treated simulations. Hence, they should not be used as a discriminator. 
+
 \begin{figure}[H]
 \begin{minipage}{0.32\textwidth}
  \includegraphics[width=\textwidth]{../pics/4/leppt.pdf}
@@ -186,28 +236,9 @@ of b-tagged jets, the same explanation is applicable. %The fact that events with
 \end{minipage}
 \caption{\small{Fundamental distributions for several entities from the $t\bar t$ MC simulation. In the first row $p_T$ is represented, the second is for $\eta$, the third for $\phi$ and
 the fourth for $E$. The fifth represents the number of good jets, the number of b-tagged jets and the magnitude of the missing transverse momentum.
-The first column links to the reconstructed leptons, the second to jets and the third to the jet with larges $p_T$.}}
+The first column links to the reconstructed leptons, the second to jets and the third to the jet with largest $p_T$.}}
 \label{pic:fundamental}
 \end{figure}\noindent
-While these quantities are directly measurable, none of them would be able to discriminate efficiently between the $t\bar t$ background and a $Z'(1000)$ 
-signal. In figure \ref{pic:derived}, derived quantities are shown, such as the difference in the azimuthal angle of the lepton and the neutrino
-$\Delta \phi$. Further, the invariant mass for the three jets with largest $p_T$ as well as $\eta$ and the invariant mass for the whole system
-are included. It is obvious that the behaviour for the angular related quantities is different in this framework. While the azimuthal angle is indeed
-arbitrary when just one particle is concerned, a favoured $\Delta\phi$ arises. This may result from the decaying $W$-boson as the origin of the lepton
-pair. A cone, symmetric around the beam is a vivid example. Its opening angle refers to $\eta$ and the straight lines thereon represent the lepton 
-traces. The radian measure between them represent $\Delta \phi$. To explain a prefered angle a $\phi$ dependency for the $W$ trace might be an answer.
-The comparably large mass of the $W$ and the system altogether may also play a role to cause the restrictions.
-The position of the peak in the distribution, however, cannot be explained thoroughly. Maybe a consideration of the whole system has to be taken
-into account. It appears that $\eta$ also has a peak neither at the edge nor at the center of the distribution but rather at the edge of our posed
-requirement. While each particle prefers a trace orthogonal to the beam axis, within the joint distribution for the system they apparently cancel each other so that
-we find a root at 0. The distributions of the invariant masses in these two cases are primarily interesting since the position of a peak represents
-a resonance refering to the mass of a particle. Starting with the case wherein the three jets with the largest $p_T$ are considered, we see two peaks
-for the $Z'(1000)$ simulation. The first lies around the top mass while the second is around 500 GeV. This indicates that the three aforementioned particles
-carry the energy of each the half of either the top pair or the $Z'(1000)$. For the $t\bar t$ simulation, the same just without the $Z'(1000)$ resonance is 
-obtained. For the second case wherein the whole system is taken into account, a resonance at the doubled top mass is found for the top pair 
-as expected. The peak in the $Z'(1000)$ distribution is at a lower position than expected for this simulation. The invariant mass of the whole system
-is the best discriminator for the signal to background ratio considered here. The angular related quantities do not have a much different behaviour 
-for the two treated simulations. Hence, they should not be used as a discriminator. 
 
 \begin{figure}[H]
 \begin{center}
@@ -284,11 +315,11 @@ from the background-only hypothesis \cite{anl}. \\
 % $Z'(2250)$&$6.7\cdot 10^{-2}$& 2\\
 % $Z'(2500)$&$3.5\cdot 10^{-2}$& 1\\
 % $Z'(3000)$&$1.2\cdot 10^{-2}$& 0
-Diboson &$2.9\cdot 10^{1}$&$3.0\cdot 10^{-2}$ &$2.0\cdot 10^{0}$ \\
+Diboson &$2.9\cdot 10^{1}$&$6.9\cdot 10^{-4}$ &$2.0\cdot 10^{0}$ \\
 Singletop&$5.2\cdot 10^{1}$&$8.3\cdot 10^{-3}$ &$4.4\cdot 10^{1}$\\
-$t\bar t$&$2.5\cdot 10^{2}$&$6.9\cdot 10^{-4}$ &$7.5\cdot 10^{2}$\\
-$W+$jets&$3.6\cdot 10^{4}$&$1.7\cdot 10^{-4}$ &$2.0\cdot 10^{2}$\\
-$Z+$jets&$2.5\cdot 10^{3}$&$5.6\cdot 10^{-5}$ &$4.3\cdot 10^{1}$\\
+$t\bar t$&$2.5\cdot 10^{2}$&$3.0\cdot 10^{-2}$ &$7.5\cdot 10^{2}$\\
+$W+$jets&$3.6\cdot 10^{4}$&$5.6\cdot 10^{-5}$ &$2.0\cdot 10^{2}$\\
+$Z+$jets&$2.5\cdot 10^{3}$&$1.7\cdot 10^{-4}$ &$4.3\cdot 10^{1}$\\
 \hline
 $Z'(400)$&$1.1\cdot 10^{2}$&$2.4\cdot 10^{-2}$ &$2.7\cdot 10^{2}$\\
 $Z'(500)$&$8.2\cdot 10^{1}$&$3.1\cdot 10^{-2}$ &$2.5\cdot 10^{2}$\\
@@ -309,7 +340,7 @@ Dataset 6 & & &$9.2\cdot 10^{2}$
  \label{tab:expEvents}
 \end{table}
 The event numbers are calculated by $N=\mathcal{L}\sigma (A\times \epsilon)$ with the luminosity $\mathcal{L}=100$ pb$^{-1}$ and the acceptance times
-efficiency $A\times\epsilon = (N_e+N_\mu)/N_{MC}$ discussed in Section \ref{sec:selection}. $N_e$ and $N_\mu$ are the event numbers, where the found
+efficiency $A\times\epsilon = (N_e+N_\mu)/N_\text{MC}$ discussed in Section \ref{sec:selection}. $N_e$ and $N_\mu$ are the event numbers, where the found
 lepton was an electron or a muon, respectively. $N_\text{MC}$ is the event number before selection.
 For an increasing vector boson mass, the expected event number decreases. 
 In Figures \ref{pic:stackedlep} and \ref{pic:stackedjet} the composite contribution for derived leptonic or hadronic
@@ -399,6 +430,7 @@ model, however, the achieved lower bound here is already outdated and is set to 
 \newpage
  \begin{thebibliography}{WissOnl}
  \bibitem{Atlas} ATLAS Collaboration, \textit{The ATLAS Experiment at the CERN Large Hadron Collider}, JINST 3 (2008) S08003
+ \bibitem{etaNotch} ATLAS Collaboration, \textit{ATLAS Jet Trigger in the Early $\sqrt{s}$=7\,TeV Data}, ATLAS-CONF-2010-094, 2010. \href{https://cdsweb.cern.ch/record/1299109}{https://cdsweb.cern.ch/record/1299109}
  \bibitem{anl} S. Bartkowski, J. Erdmann, K. Kröninger, \textit{Lehrstuhlversuch ``Search for $t\bar t$ resonances with ATLAS data}, (2016), TU Dortmund
  \bibitem{Atlaslimits} ATLAS Collab., note ATLAS-CONF-2013-017, Mar. 2013.
  \bibitem{pdg}   C.~Patrignani {\it et al.} [Particle Data Group Collaboration],
