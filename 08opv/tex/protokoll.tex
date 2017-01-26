@@ -390,21 +390,21 @@ Es wird eine Schaltung wie in Abb. \ref{pic:umInt} verwandt, um einen Umkehr-Int
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/sinus.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/b/sinus.pdf}
 	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrintegrators mit angelegter Sinusspannung, $f = 0.1\ \si{\kilo\hertz}$}
 	\label{pic:b sinus}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/rechteck.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/b/rechteck.pdf}
 	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrintegrators mit angelegter Rechteckspannung, $f = 0.1\ \si{\kilo\hertz}$}
 	\label{pic:b rechteck}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/dreieck.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/b/dreieck.pdf}
 	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrintegrators mit angelegter Dreieckspannung, $f = 0.1\ \si{\kilo\hertz}$}
 	\label{pic:b dreieck}
 \end{figure}
@@ -413,7 +413,7 @@ Weiterhin wird die charakteristische Kurve der Schaltung aufgenommen. Dazu wird 
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/b/charKurve.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/b/charKurve.pdf}
 	\caption{Charakteristische Kurve des Umkehrintegrators mit angelegter Sinusspannung,\protect\input{../auswertung/results/b/ba.tex}, \protect\input{../auswertung/results/b/bb.tex} }
 	\label{pic:b charKurve}
 \end{figure}
@@ -423,21 +423,21 @@ An dieser Stelle wird eine Schaltung wie in Abb. \ref{pic:umDiff} verwandt. Es w
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/sinus.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/c/sinus.pdf}
 	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrdifferentiators mit angelegter Sinusspannung, $f = 0.1\ \si{\kilo\hertz}$}
 	\label{pic:c sinus}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/rechteck.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/c/rechteck.pdf}
 	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrdifferentiators mit angelegter Rechteckspannung, $f = 0.1\ \si{\kilo\hertz}$}
 	\label{pic:c rechteck}
 \end{figure}
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/dreieck.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/c/dreieck.pdf}
 	\caption{Gemessene Eingangs- und Ausgangspannung eines Umkehrdifferentiators mit angelegter Dreieckspannung, $f = 0.1\ \si{\kilo\hertz}$}
 	\label{pic:c dreieck}
 \end{figure}
@@ -446,7 +446,7 @@ Auch hier wird eine charakteristische Kurve erstellt. Die Ergebnisse sind in Abb
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/c/charKurve.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/c/charKurve.pdf}
 	\caption{Charakteristische Kurven des Umkehrdifferentiators bei verschiedenen angelegten Spannungen}
 	\label{pic:c charKurve}
 \end{figure}
@@ -469,15 +469,41 @@ Mithilfe einer Schaltung wie in Abb. \ref{pic:linear} wird die Frequenzabhängig
 
 \begin{figure}
 	\centering
-	\includegraphics[width=0.7\textwidth]{../auswertung/results/e/phase.pdf}
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/e/phase.pdf}
 	\caption{Frequenzabhängiges Phasenverhalten eines gegengekoppelten Linearverstärkers}
 	\label{pic:e phase}
 \end{figure}
+
+
+\subsection{Sinusgenerator}
+Wie in Abb. \ref{pic:sinus} dargestellt wird eine Schaltung zur Generation einer Sinusschwingung realisiert. Mithilfe des Potentiometers wird zwischen Schwing- und Dämpfungsfall unterschieden. Durch einen Fit der Funktion $g = A\cos(\omega t + \varphi)$ wird die Winkelgeschwindigkeit $\omega = 4485.89 \frac{1}{\si{\second}}$ für den Schwingfall bestimmt. Dieses Ergebnis ist in Abb. \ref{pic:g schwing} zu sehen.
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/g/schwing2.pdf}
+	\caption{Erzeugte Sinusschwingung und Fit}
+	\label{pic:g schwing}
+\end{figure}
+
+Weiterhin wird eine gedämpfte Sinusschwingung mit der gleichen Schaltung erzeugt: Für die benutzten Kapazitäten von $C = 21.4$ und $23.5$ nF wird eine Kreisfrequenz $\omega = \frac{1}{RC} \approx 4454.34 \frac{1}{\si{\second}}$ und eine Abklingdauer $\tau = \frac{20RC}{|\eta|} \approx 0.00449 \si{s}$ bei $\eta = -1$ erwartet. Die gemessenen Ergebnisse sind:
+
+\begin{align*}
+	\input{../auswertung/results/g/daempfParameter.tex}
+\end{align*}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{../auswertung/results/g/daempf.pdf}
+	\caption{Erzeugte gedämpfte Sinusschwingung und Fit}
+\end{figure}
+
 
 \section{Diskussion}
 Besonders bei der Betrachtung des gegengekoppelten Linearvertärkers wird klar, wie weit der reale Operationsverstärker vom idealen entfernt ist. Die real gemessenen Verstärkungsgrade liegen weit unter den theoretisch möglichen, was unter anderem an der hohen Leerlaufverstärkung liegen könnte. Außerdem bewegt sich die Bandbreite innerhalb einer Größenordnung, was vielleicht an den sehr unterschiedlichen, eingesetzten Widerständen liegen kann.
 
 Sowohl Umkehrintegrator, als auch -differentiator haben sich in den untersuchten Bereichen wie erwartet verhalten. Beide verhielten sich $\propto f^{-1}$, was zu erwarten war, ausgenommen nur die Rechteckspannung am Differentiator, da die resultierenden Delta-Peaks die gleiche Höhe wie das Eingangssignal aufwiesen.
+
+Weiterhin gelang die Frequenzgenerierung ziemlich genau, auch obwohl die Kondensatoren nicht die exakt gleiche Kapazität  besaßen, so lagen die gemessenen Werte um nur 10\% neben den erwarteten theoretischen Werten.
 
 \newpage
  \begin{thebibliography}{WissOnl}

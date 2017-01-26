@@ -109,7 +109,7 @@ plt.plot(schwing[:,0],schwing[:,1],"g-",label="Gemessene Sinusspannung")
 plt.xlabel("$t$ [s]")
 plt.ylabel("$U$ [V]")
 fit = cosFit(schwing[:,0],schwing[:,1])
-#print(fit["var"][0])
+print("omega: ", fit["var"][0])
 plt.plot(fit["x"],fit["y"],"r-")
 #plt.xlim(0.5,0.55)
 plt.legend()
@@ -121,17 +121,27 @@ def fff(t,omega,phi,A,l):
 	return A*np.e**(-l*t+phi)*np.sin(omega*t+phi)
 
 daempf = np.loadtxt("./data/g_2.csv",delimiter=",")
-#plt.plot(daempf[:,0],daempf[:,2],"b-",label="Angelegte Rechteckspannung")
+plt.plot(daempf[:,0],daempf[:,2],"b-",label="Angelegte Rechteckspannung")
 plt.plot(daempf[:,0],daempf[:,1],"g-",label="Gemessene gedämpfte Sinusspannung")
 plt.xlabel("$t$ [s]")
 plt.ylabel("$U$ [V]")
 daempf = daempf[(daempf[:,0]>0.546)&(daempf[:,0]<0.566)]
 fit = expSinFit(daempf[:,0],daempf[:,1])
 #print(fit["var"][0])
-plt.plot(fit["x"],fit["y"],"r-")
+plt.plot(fit["x"],fit["y"],"r-",label="Fit gedämpfte Sinusspannung")
 #plt.plot(daempf[:,0],fff(daempf[:,0],2*np.pi/0.0014,0.546,-20,5))
-#plt.xlim(0.5,0.55)
+plt.xlim(0.545,0.575)
 plt.legend()
 plt.savefig("./results/g/daempf.pdf")
 plt.show()
 plt.close()
+
+pprint.pprint(fit)
+
+file = open("./results/g/daempfParameter.tex","w")
+string = str("U_0 = " + str(fit["var"][2]) + 
+	" V\\\\ \\tau = " + str(1/fit["var"][3]) + 
+	" \si{\\second}\\\\ \\varphi = " + str(fit["var"][1])+
+	"\\\\ \\omega = " + str(fit["var"][0]) + "\\frac{1}{\\si{\\second}}")
+file.write(string)
+file.close()
