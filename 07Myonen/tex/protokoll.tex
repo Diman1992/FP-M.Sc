@@ -62,7 +62,7 @@ Dimitrios Skodras\\					% Name Praktikumspartner B
 
 \section{Ziel}
 %Ziel dieses Versuches ist es, die mittlere Lebensdauer kosmischer Myonen, d.h. die  charakteristische Zeit des statistischen Zerfallsprozess, zu bestimmen. Dafür wird eine elektronische Messapparatur aufgebaut und kalibriert. 
-Mit diesem Versuch soll die mittlere Lebensdauer von kosmischen Myonen bestimmt werden. Im Laufe des Versuchs wird zum einen der Aufbau getestet und kalibriert, anschlie/ssend wird /"uber mehrere Tage die Anzahl der Zerf/"alle gemessen.
+Mit diesem Versuch soll die mittlere Lebensdauer von kosmischen Myonen bestimmt werden. Im Laufe des Versuchs wird zum einen der Aufbau getestet und kalibriert, anschließend wird über mehrere Tage die Anzahl der Zerfälle gemessen.
 
 \section{Theorie}
 \subsection{Einleitung}
@@ -73,14 +73,19 @@ Der bekannteste Vertreter der Leptonen ist das Elektron. Neben diesem Beispiel a
 Hier sind vor allem die Myonen interessant, deren mittlere Zerfallsdauer in diesem Experiment bestimmt werden soll.
 
 \subsection{Zerfall vom Myon}
-Das Myon ist ca. 206-mal schwerer als das Elektron, es besitzt genauso wie sein leichterer Verwandter einen Spin $\frac{1}{2}$. Auf der Erde kommen Myonen vor allem in der oberen Atmosph\"are vor, wo sie durch die Interaktion von Sonnenwind mit Luftteilchen aus dem Zerfall von Pionen entstehen:
+Das Myon ist ca. 206-mal schwerer als das Elektron, es besitzt genauso wie sein leichterer Verwandter einen Spin $\frac{1}{2}$. Auf der Erde kommen Myonen vor allem in der oberen Atmosph\"are vor, wo sie durch die Interaktion von Sonnenwind mit Luftmolekülen aus dem Zerfall von Pionen entstehen:
 
 \begin{align*}
 	\pi^+ \rightarrow \mu^+ + \nu_\mu\\	
 	\pi^- \rightarrow \mu^- + \overline{\nu}_\mu.
 \end{align*}
 
-Diese kosmischen Myonen besitzen eine hohe kinetische Energie, sodass sie teilweise erst am Boden zerfallen, wo sie f\"ur uns messbar sind. 
+Diese kosmischen Myonen besitzen eine hohe kinetische Energie, sodass sie teilweise erst am Boden zerfallen, wo sie f\"ur uns messbar sind:
+
+\begin{align*}
+	\mu^+ \rightarrow e^+ + \nu_e + \bar{\nu}_\mu\\
+	\mu^- \rightarrow e^- + \bar{\nu}_e + \nu_\mu
+\end{align*}
 
 Der Teilchenzerfall ist ein statistischer Prozess, der durch die mittlere Lebensdauer $\tau$ charakterisiert wird. Die Wahrscheinlichkeit, dass ein Teilchen zerf\"allt, kann differentiell geschrieben werden als
 
@@ -88,7 +93,7 @@ Der Teilchenzerfall ist ein statistischer Prozess, der durch die mittlere Lebens
 	\text{d}W = \lambda \text{d}t.
 \end{align}
 
-Bei einer hinreichend gro{\ss}en Teilchenzahl $N$ ist die mittlere \"Anderung der Teilchenzahl gegeben durch
+Bei einer hinreichend gro{\ss}en Teilchenzahl $N$ und aufgrund der statistischen Unabhängigkeit der Ereignisse ist die mittlere \"Anderung der Teilchenzahl gegeben durch
 
 \begin{align*}
 	\text{d}N = - N \text{d}W = - \lambda \text{d}t,
@@ -115,7 +120,7 @@ dies entspricht der Verteilung der Lebensdauern der zerfallenden Teilchen. Wird 
 \end{align}
 
 \subsection{Absch\"atzung der Lebensdauer}
-Da dem Durchschnittsmensch keine unendlich langen Messzeiten zur Verf\"ugung stehen, muss die mittlere Lebensdauer mithilfe von endlichen Messungen abgesch\"atzt werden.
+Da keine unendlich langen Messzeiten zur Verf\"ugung stehen, muss die mittlere Lebensdauer mithilfe von endlichen Messungen abgesch\"atzt werden.
 
 Dazu werden gemessene Lebensdauern gemittelt:
 
@@ -129,34 +134,34 @@ wobei der Fehler dieser Mittelung gegeben ist durch
 	s(\tau) = \frac{1}{\sqrt{n(n-1)}} \sum_{i=1}^{n} (\langle t \rangle - t_i)^2 .
 \end{align}
 
-M\"ogliche systematische Fehler dieser Mittelung z.B. durch Abschneiden zu gro{\ss}er und zu kleiner Messwerte aufgrund des Messaufbaus werden durch einen linearen Fit der empirischen Verteilungsfunktion ausgeglichen.
+M\"ogliche systematische Fehler dieser Mittelung z.B. durch Abschneiden zu gro{\ss}er und zu kleiner Messwerte aufgrund des Messaufbaus werden durch einen exponentiellen Fit der empirischen Verteilungsfunktion ausgeglichen.
 
 \section{Aufbau}
 \subsection{Messapparatur}
-Kosmische Myonen entstehen in der oberen Atmosph\"are aus dem Zerfall von Pionen. Sie besitzen dann meist eine kinetische Energie im MeV-Bereich. Auf der Erdoberfl\"ache wird nun mithilfe einer Szintillationskammer die Energieabgabe der Myonen, die sich durch die Kammer bewegen, durch Bremsstrahlung bzw. einen Lichtblitz messbar. 
+Kosmische Myonen entstehen in der oberen Atmosph\"are aus dem Zerfall von Pionen. Sie besitzen dann meist eine kinetische Energie im GeV-Bereich. Auf der Erdoberfl\"ache wird nun mithilfe einer Szintillationskammer die Energieabgabe der Myonen, die sich durch die Kammer bewegen, durch Bremsstrahlung bzw. einen Lichtblitz messbar. 
 
 Die Myonen werden sowohl durch die Atmosph\"are als auch das beinhaltende Geb\"aude meist stark abgebremst. Deswegen kann es sein, dass einfallende Myonen in der Sintillatorkammer bis zum Stillstand abgebremst werden, sodass dort ihre eigentliche Lebensdauer bestimmt werden kann. Dies f\"uhrt zu einem weiteren Lichtblitz, der aufgrund der entstehenden hochenergetischen Elektronen und Positronen als Zerfallsprodukte entsteht. Der zeitliche Abstand dieser Signale entspricht der Lebensdauer eines Myons.
 
 \begin{figure}[t]
-	\includegraphics[width=0.7\textwidth]{../pics/block.png}
-	\caption{Schaltplan der verwandten Messaparatur}
+	\includegraphics[width=0.7\textwidth]{../pics/blockAdaptiert.png}
+	\caption{Schaltplan der verwandten, adaptierten Messaparatur \cite{Anl}}
 	\label{pic:setup}
 \end{figure}
 
-In Abb. \ref{pic:setup} ist der benutzte Aufbau zu sehen. Kernst\"uck ist die Szintillatorkammer mit einem Volumen von 50 l. In diesem Beh\"altnis ist ein organischer Szintillator mit kleiner Totzeit gegen\"uber der Lebensdauer von Myonen. Daran an gegen\"uberliegenden Seiten angeschlossen sind zwei Sekund\"arelektronenvervielfacher, die optisch mit der Kammer verbunden sind. Durch ihre Photokathode werden auftretende Signale registriert und verst\"arkt. Diese dienen nach Umwandlung als Start- und Endimpulse f\"ur das Z\"ahlwerk.
+In Abb. \ref{pic:setup} ist der benutzte Aufbau zu sehen. Kernst\"uck ist die Szintillatorkammer mit einem Volumen von 50\,l. In diesem Beh\"altnis ist ein organischer Szintillator mit kleiner Totzeit gegen\"uber der Lebensdauer von Myonen. Daran an gegen\"uberliegenden Seiten angeschlossen sind zwei Sekund\"arelektronenvervielfacher (SEV), die optisch mit der Kammer verbunden sind. Durch ihre Photokathode werden auftretende Signale registriert und verst\"arkt. Diese dienen nach Umwandlung als Start- und Endimpulse f\"ur das Z\"ahlwerk.
 
-Da die SEVs nicht komplettt symmetrisch angeschlossen sind, wird durch eine Verz\"ogerungsleitung der zeitliche Unterschied austariert. Weiterhin sorgt eine Diskriminatrschwelle daf\"ur, dass nur Impulse oberhalb einer Schwelle wahrgenommen werden, damit m\"oglichst viel der Untergrundstrahlung bereits hier ausgeblendet wird. Eine Koinzidenzschaltung sorgt daf\"r, dass die beiden Impulse aus den SEVs zeitlich als einer registriert wird, indem ein Doppelimpulsgenerator als Zeitgeber fungiert.
+Da die SEVs nicht komplettt symmetrisch angeschlossen sind, wird durch eine Verz\"ogerungsleitung der zeitliche Unterschied austariert. Weiterhin sorgt eine Diskriminatorschwelle daf\"ur, dass nur Impulse oberhalb einer Schwelle wahrgenommen werden, damit m\"oglichst viel der Untergrundstrahlung bereits hier ausgeblendet wird, und wandelt die unterschiedlich starken und breiten Pulse in NIM-Pulse um. Eine Koinzidenzschaltung sorgt daf\"ur, dass die beiden Impulse aus den SEVs zeitlich als einer registriert werden. 
 
 Diese zeitlichen Abst\"ande werden durch einen time amplitude converter (TAC) in eine entsprechende Spannung umgewandelt, die wiederum von einem Vielkanalanalysator im Computer in 512 Kan\"ale sortiert wird. Dies dient als Ausgangspunkt f\"ur die Auswertung zur Bestimmung der Lebensdauer von Myonen.
 
-Da nicht alle Myonen innerhalb der Szintillatorkammer komplett abgebremst werden, werden h\"aufig nur ein Start- und kein Endimpuls registriert. Dies wird in der Schaltung ber\"ucksichtigt: Dazu wird eine monostabile Kippschaltung oder Univibrator hinter einer Verz\"ogerungsleitung eingesetzt. Sie bewirkt, dass am AND-Gatter f\"ur Startimpulse Eingang 1 ein HIGH-Signal einl\"auft (HIGH und LOW entstammen dem NIM-Standard als bin\"are Logik f\"ur elektronische Schaltungen). Sobald der Startpuls vorbei ist, schlie{\ss}t der Univibrator das Start-AND wieder und dies wird als Eingangsimpuls beim TAC registriert. Entsprechend wird beim Endpuls das End-AND ge\"offnet und wieder geschlossen.
+Zur Messung der Lebensdauer sollen die Signale beim Eintritt und beim Zerfall als Start- und Stopsignal registriert werden. Da nicht alle Myonen innerhalb der Szintillatorkammer komplett abgebremst werden, werden h\"aufig nur ein Start- und kein Endimpulse registriert. Dies wird in der Schaltung ber\"ucksichtigt: Dazu wird eine monostabile Kippschaltung oder Univibrator hinter einer Verz\"ogerungsleitung eingesetzt. Sie bewirkt, dass am AND-Gatter f\"ur Startimpulse Eingang 1 ein HIGH-Signal einl\"auft (HIGH und LOW entstammen dem NIM-Standard als bin\"are Logik f\"ur elektronische Schaltungen). Sobald der Startpuls vorbei ist, schlie{\ss}t der Univibrator das Start-AND wieder und dies wird als Eingangsimpuls beim TAC registriert. Entsprechend wird beim Endpuls das End-AND ge\"offnet und wieder geschlossen. Kommt es zu keinem Endpuls, so setzt der Univibrator die Schaltung wieder zurück.
 
-Hier wird eine weitere Fehlerquelle ersichtlicht: Im Fall von zwei Myonen, die kurz nacheinander die Kammer durchqueren, kann dies als ein zerfallenes Myon interpretiert werden. Diese seltenen Ereignisse werden als Untergrund $U$ ber\"ucksichtigt. Als seltene Ereignisse werden sie durch die Poisson-Verteilung beschrieben, weiterhin kann mit der mittleren Z\"ahlrate und der Messdauer dieser Untergrund abgesch\"atzt werden.
+Hier wird eine weitere Fehlerquelle ersichtlich: Im Fall von zwei Myonen, die kurz nacheinander die Kammer durchqueren, kann dies als ein zerfallenes Myon interpretiert werden. Diese seltenen Ereignisse werden als Untergrund $U$ ber\"ucksichtigt. Als seltene Ereignisse werden sie durch die Poisson-Verteilung beschrieben, weiterhin kann mit der mittleren Z\"ahlrate und der Messdauer dieser Untergrund abgesch\"atzt werden.
 
-Eine weitere Fehlerquelle ist das thermische Rauschen der SEVs. Dabei kommt es zur thermischen Emission von Elektronen und damit von Photonen, die durch den Photomultiplier verst\"arkt werden und somit auch zum Untergrund beitragen. Diese Impulse sind aber schw\"acher als die der Myonen, sodass sie durch zwischengeschaltete Diskriminatoren unterdr\"uckt werden.
+Eine weitere Fehlerquelle ist das thermische Rauschen der SEVs. Dabei kommt es zur thermischen Emission von Elektronen, die mit verst\"arkt werden und somit auch zu den Fehlerimpulsen beitragen. Diese Impulse sind aber schw\"acher als die der Myonen, sodass sie durch zwischengeschaltete Diskriminatoren unterdr\"uckt werden.
 
 \subsection{Kalibration}
-Zuerst wird der zeitliche Unterschied zwischen den SEVs bestimmt. Dieser Unterschied wird daraufhin durch Einf\"ugen einer Verz\"ogerungsleitung ausgeglichen. Ziel ist die Maximierung der Z\"ahlrate nach der Koinzidenzschaltung.
+Zuerst wird der zeitliche Unterschied zwischen den SEVs mithilfe eines Doppelimpulsgenerators bestimmt. Dieser Unterschied wird daraufhin durch Einf\"ugen einer Verz\"ogerungsleitung ausgeglichen. Ziel ist die Maximierung der Z\"ahlrate nach der Koinzidenzschaltung.
 
 Weiterhin werden die Schwellwerte der Diskriminatoren eingeregelt. Au{\ss}erdem wird f\"ur den Univibrator passende Suchdauer gew\"ahlt.
 
