@@ -175,8 +175,15 @@ Abschlie{\ss}end wird die Zeitkonstante des Vielkanalanalysators so gew\"ahlt, d
 \section{Auswertung}
 \subsection{Verzögerungsleitung}
 Wie in Abbildung \ref{pic:setup} dargestellt und in Abschnitt \ref{sec:exec} beschrieben, soll gewährleistet werden, dass die Signale der SEVs 
-gleichzeitig zur Koinzidenzapparatur gelangen. Die Verzögerung erreicht mit hinzukommender Kabellänge sowie ihr Einfluss auf die Signalrate
-sind in Tabelle \ref{tab:koinz} aufgeführt. Man erkennt eine relativ geringe Einflussnahme der Verzögerung entsprechend des breiten Plateaus,
+gleichzeitig zur Koinzidenzapparatur gelangen. Die Verzögerung, erreicht mit hinzukommender Kabellänge sowie ihr Einfluss auf die Signalrate
+sind in Tabelle \ref{tab:koinz} aufgeführt und in \ref{pic:koinz} dargestellt. 
+\begin{figure}[t]
+ \includegraphics[width=0.7\textwidth]{../pics/koinzidenz.pdf}
+ \caption{Zählraten entsprechender Verzögerungen. Die benutzte Verzögerungsleitung sowie der Zusammenhang zur Pulsbreite sollen mit einer 
+ Gaussfunktion näher betrachtet werden.}
+ \label{pic:koinz}
+\end{figure}
+Man erkennt eine relativ geringe Einflussnahme der Verzögerung entsprechend des breiten Plateaus,
 weshalb angenommen wird, dass der tatsächlichen Wahl eine gewisse Freiheit beiwohnt. 
 Während der Versuchsdurchführung ist die Verzögungsleitung auf \SI{-3}{\nano\second} angestellt worden, da die abfallenden Flanken an den 
 Rändern der Messreihe darum zentriert sind. 
@@ -187,7 +194,23 @@ sind die Zählraten auf 10\,s Messzeit aufgeführt.}
 \label{tab:koinz}
 \end{table}
 Entsprechend des Myonenstroms \cite{pdg} werden die Diskriminatoren einer Rate von 20-30\,\si{\per\second} \cite{Anl} entsprechend eingestellt. Die 
-Pulsbreite wird am Oszillator zu \SI{11,5}{\s} abgelesen.
+Pulsbreite wird am Oszillator zu \SI{11,5}{\nano\second} abgelesen. Der Fit der Gaussfunktion an die Messreihe 
+\begin{align}
+ f(x) = A\exp\left[-\left(\frac{x-\mu}{\sigma}\right)^2\right]
+\end{align}
+liefert
+\begin{align}
+ A &= 212(5)\\
+ \mu &=  \SI{1.7(13)}{\nano\second}\\
+ \sigma &= \SI{51(3)}{\nano\second}.
+\end{align}
+Die gewählte Verzögerung liegt im angegebenen Bereich des Mittelwerts $\mu$. Wenn die Pulse mit ihrer vorderen bzw. hinteren Flanke an der 
+Koinzidenz ankommen, werden die Ereignisse als Counts gezählt. Entsprechend sollte man eine Halbwertsbreite von der etwa doppelten Pulsbreite,
+also \SI{13}{\nano\second}. Für Normalverteilungen ist die Halbwertsbreite $\sim 2,4\,\sigma \approx \SI{120}{\nano\second}$ \cite{standard}, also etwa 9-mal
+so groß. Die Toleranz der Koinzidenz $\Delta t_K \gtrsim \SI{4}{\nano\second}$ reicht zur Erklärung hierzu jedenfalls nicht aus. 
+Ein fehlerhaftes Ablesen der Pulsbreite könnte eine Ursache für diese Diskrepanz sein. 
+
+
 \subsection{Kalibrierung der Zeitachse}
 Die Zeitdifferenz $\Delta t$ zwischen zwei vom Doppelimpulsgenerator Signalen wird vom TAC in eine Spannung umgewandelt, die vom Vielkanalanalysator 
 ausgelesen wird. Diese Differenz wird in \SI{1}{\nano\second}-Schritten von \SI{1}{\nano\second} bis \SI{9}{\nano\second} variiert und geprüft,
@@ -203,7 +226,7 @@ ist in Abbildung \ref{pic:linfit}
  Vielkanalanalysators.}
  \label{pic:linfit}
 \end{figure}
-dargestellt und seine Fitparameter, bestimmt durch \texttt{Python3.6}, ergeben sich zu
+dargestellt und seine Fitparameter, bestimmt durch \texttt{Python3.6} mithilfe des Moduls \texttt{scipy.optimize}, ergeben sich zu
 \begin{align}
  a&= \SI{4,54(1)e-2}{\nano\second\per Kanal}\\
  b&= \SI{5,50(1)e-3}{\nano\second}.
@@ -240,6 +263,7 @@ womit die Untergrundsignale mit
  \label{eq:backgrTh}
 \end{align}
 zu erwarten sind.
+
 \subsection{Bestimmung der Lebensdauer von Myonen}
 Mit dem Zusammenhang der Zeitdifferenz des Start- und Stoppimpulses und den Kanälen lässt sich die Messung\footnote[2]{Die Daten hierfür sind ebenfalls
 vom Versuchsbetreuer gestellt worden.} in Abbildung \ref{pic:lebensdauer} darstellen.
@@ -256,7 +280,7 @@ Die Exponentialverteilung
 \begin{align}
  f(\Delta t) = N_0 \e^{-{\sfrac{1}{\tau}}\,\Delta t} + U_\text{fit}
 \end{align}
-wird zum Kurvenverlauf angenommen. Mit dem Modul \texttt{scipy.optimize} wird der Fit unter der Gewichtung der inversen Standardabweichung erstellt,
+wird zum Kurvenverlauf angenommen. Der Fit wird unter der Gewichtung der inversen Standardabweichung erstellt,
 der für die mittlere Lebensdauer
 \begin{align}
  \tau = \SI{2,106(7)}{\micro\second}
@@ -267,17 +291,28 @@ und den Untergrund
  U_\text{fit} = \SI{28,16(140)}{1\per Kanal}
  \label{eq:backgrExp}
 \end{align}
-angibt.
+angibt. Weiterhin ist
+\begin{align}
+ N_0 = 378(9).
+\end{align}
+
 \section{Diskussion}
 Nach der Messung stehen \SI{32201706}{} Startsignale \SI{201862}{} Stoppsignalen gegenüber, sodass \SI{0,63}{\%} der einfallenden Myonen tatsächlich
 im Detektor zerfallen. Dies rechtfertigt eine lange Messdauer von 16 Tagen, um eine aussagekräftige Statistik zu ermöglichen. \\
-\noindent Die erwartete \eqref{eq:backgrTh} und die gemessene \eqref{eq:backgrExp} Untergrundrate haben eine Abweichung von \SI{14}{\%} zueinander,
+\noindent Die erwartete \eqref{eq:backgrTh} und die gemessene \eqref{eq:backgrExp} Untergrundrate haben eine Abweichung von \SI{14}{\%} bzw.
+3,06\,$\sigma$ zueinander,
 wobei die gemessene geringer ist. Dies kann daher rühren, dass die Ausreißer im Datenset nicht mit in den Fit einbezogen wurden, jedoch den zu
 erwartenden Untergrund beeinflussen. \\
+\noindent Während $N_\text{stopp} = \SI{201862}{}$ sind in den Kanälen $N_\text{hist} = \SI{183911}{}$ gezählt. Die fehlenden Einträge sind insbesondere
+in den ersten drei Bins feststellbar, die verglichen mit den anderen (fast) leer sind, aber erwartungsgemäß sehr voll sein müssten. Es scheint,
+als würden der TAC oder der Vielkanalanalysator die entsprechend kurzzeitigen Signale nicht erfassen kann. Die verbliebenen, fehlenden Einträge
+können an einer zu geringen Sensitivität zum Impulszähler liegen.\\
 \noindent Ziel des Versuchs war es, die Lebensdauer von Myonen zu bestimmen. Diese ließ sich bestimmen zu $\tau = \SI{2,106(7)}{\micro\second}$,
-was \SI{4,1}{\%} unter dem Referenzwert \cite{pdg} von \SI{2,197}{\micro\second} liegt. Diese Differenz lässt sich damit erklären, dass die mittlere
+was \SI{4,1}{\%} bzw. 13,0\,$\sigma$ unter dem Referenzwert \cite{pdg} von \SI{2,197}{\micro\second} liegt. Diese Differenz lässt sich damit erklären, dass die mittlere
 Lebensdauer von Teilchen im Vakuum von der im Medium sich unterscheiden und die Wechselwirkung, wie das Muoncapturing \cite{mCapture}
-zu einem schnelleren Zerfall führen.
+zu einem schnelleren Zerfall führen. Ob weitere Effekte oder systematische Fehler noch miteinbezogen werden müssen, lässt sich nicht ausschließen.
+Weiterhin wird der Fehler durch die nicht miteinbezogenen Kanäle verkleinert, sodass der durchaus signifikante
+Unterschied vergrößert ist.
 
 
 %\parskip 340pt
@@ -291,6 +326,7 @@ zu einem schnelleren Zerfall führen.
     Rev.\ Mod.\ Phys.\  {\bf 76}, 31 (2004)
     doi:10.1103/RevModPhys.76.31
     [nucl-th/0206039].
+    \bibitem{standard} Weisstein, Eric W. "Gaussian Function." From MathWorld--A Wolfram Web Resource. \url{http://mathworld.wolfram.com/GaussianFunction.html }
 	\end{thebibliography}
 
 % ========================================
