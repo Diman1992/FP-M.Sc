@@ -17,7 +17,7 @@ for arg in sys.argv:
 #from operator import truediv
 import glob
 import pprint
-import peakutils
+#import peakutils
 
 def getAmplitude(source):
 	min = source[0]
