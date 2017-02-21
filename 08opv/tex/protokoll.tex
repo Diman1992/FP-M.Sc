@@ -89,7 +89,7 @@ dargestellt.
 Der mit $``+''$ gekennzeichnete Eingang wird nicht-invertierender Eingang genannt, der mit $``-''$ hingegen
 invertierend. Ist das Potenzial an dem nicht-invertierenden Eingang größer als am Invertierenden,
 so ist $U_A$ in Phase mit der Spannungsdifferenz $U_P-U_N$, im umgekehrten Fall gegenphasig. Die Kennlinie
-des OPV ist in Abbildung \ref{pic:linie} mit übertrieben niedriger Steigung dargestellt.
+des OPV ist in Abbildung \ref{pic:linie} dargestellt.
 \begin{figure}[t]
  \includegraphics[width = 0.5\textwidth]{../pics/OPVLinie.png}
  \caption{Kennlinie des Operationsverstärkers \cite{Anl}.}
@@ -123,7 +123,7 @@ Schaltung der Linearverstärkers ist in Abbildung \ref{pic:linear}
 dargestellt. 
 \begin{figure}[t]
  \includegraphics[width = 0.5\textwidth]{../pics/Linear.png}
- \caption{Schaltung des Linearverstärkers \cite{Anl}.}
+ \caption{Schaltung des Linearverstärkers. \cite{Anl}.}
  \label{pic:linear}
 \end{figure}
 Die Verstärkung lässt sich mithilfe
@@ -161,7 +161,7 @@ da der Einfluss der Temperatur und die damit
 verbundenen Schwankungen von V nahezu
 verschwinden. Die Gegenkopplung wirkt sich
 zudem auf weitere Parameter des realen OPV
-aus. So wird der Ausgangswiderstand verkleinert 
+aus. So wird der Eingangswiderstand verkleinert 
 und die Bandbreite erhöht.
 
 \subsection{Umkehr-Integrator}
@@ -173,12 +173,10 @@ Abbildung \ref{pic:umInt} dargestellt.
  \caption{Schaltung des Umkehr-Integrators \cite{Anl}.}
  \label{pic:umInt}
 \end{figure}
-Anstelle des Rückkopplungswiderstands ist hier ein Kondensator ein-
-gebaut. Die Funktionsweise als Integrator ist
+Anstelle des Rückkopplungswiderstands ist hier ein Kondensator mit Kapazität $C$ eingebaut. Die Funktionsweise als Integrator ist
 wie folgt zu sehen.
 Der Strom, der über den Widerstand in den
-Punkt A fließt, fließt nun auch in den Kon-
-densator. Zudem wird die Ausgangsspannung
+Punkt A fließt, fließt nun auch in den Kondensator. Zudem wird die Ausgangsspannung
 entegegen der Stromrichtung gemessen. Somit
 gilt
 \begin{align}
@@ -186,7 +184,7 @@ gilt
 \end{align}
 Dividieren durch $C$ und integrieren führt zu
 \begin{align}
- U_A = -\frac{1}{RC} \in U_1 \dx t\,.
+ U_A = -\frac{1}{RC} \int U_1 \dx t\,.
 \end{align}
 Im Falle einer Sinusspannung ist $U_A\propto \frac{1}{\omega} \cos(\omega t)$,
 mit $\omega$ der Kreisfrequenz.
@@ -265,6 +263,7 @@ Verstärker schalten, wobei $-1<\eta<1$ mit dem Potentiometer P eingestellt wird
 für betragsmäßig kleine $\eta$ lautet
 \begin{align}
  U_A(t) = U_0 \exp\left(\frac{\eta}{20RC}t\right) \sin\left(\frac{1}{RC}t\right).
+ \label{eq:sinusGen}
 \end{align}
 Für die Schwingungsdauer ergibt sich $T=2\pi RC$ und für die Abklingdauer,
 die Zeit bei der die Amplitude auf den e-ten Teil bzw. das e-fache der Amplitude geht,
@@ -298,18 +297,26 @@ gelten daher
 
 
 \section{Durchführung}
-\subsection{Frequenzgang und Phasenbeziehung}
-Die Spannungen an den beiden Eingängen am OPV sind $U_\pm = 10$\,V.
-Zudem wird $R_1 = \SI{100}{\ohm}$ entsprechend Abbildung \ref{pic:linear}
-gesetzt. Es soll nun $R_N$ auf vier verschiedene Werte gesetzt werden, 
-um für die verschiedenen Verstärkungen $V'$ \eqref{eq:Vprime}das 
-Abnehmen der Amplitude
-mit steigender Frequenz $f$ festgestellt werden kann. Es soll weiterhin
+Die ohmschen Widerstände wurden entsprechend ihrer 5 farbigen Linien in elektrische Widerstände übersetzt. Alle dabei verwandten haben eine
+Toleranz von 1\,\%. 
+Während der der Durchführung sämtlicher Schaltungen werden die Spannungen an den beiden Versorgungsanschlüssen des OPVs auf $U_B = 10$\,V Gleichspannung gestellt.
+Der Messfehler des Wavetek 15XL Multimeters \cite{meterman} liegt für diesen Spannungsbereich bei 1\,\%. Zur Messung der Kapazitäten wird das 
+Voltcraft LCR-9063 \cite{conrad} verwandt und eine Genauigkeit von 2\,\%. Diese Fehler wirken sich im Vergleich zum Oszilloskop dominierend auf
+die Amplitudenbestimmung aus.
+
+\subsection{Frequenzgang und Phasenverschiebung}
+Entsprechend Abbildung \ref{pic:linear} wird $R_1 = \SI{100}{\ohm}$
+gesetzt. Es sollen vier verschieden große ohmsche Widerstände $R_N$ in den Ast des nicht-invertierenden Eingangs gesetzt werden, um für
+die verschiedenen Verstärkungen $V'$ \eqref{eq:Vprime} das 
+Abnehmen der Amplitude $U_A$
+mit steigender Frequenz $f$ festzustellen. Es soll weiterhin
 darauf geachtet werden, dass die Eingangsspannung nicht höher als
 \SI{100}{\milli\volt} ist. In Tabelle \ref{tab:verstaerkungen} sind
 die gewählten Widerstände des Rückkopplungszweigs aufgeführt. Der
-Frequenzbereich variiert zwischen $\SI{0.5}{\kilo\hertz} < f < \SI{150}{\kilo\hertz}$.
+Frequenzbereich variiert zwischen $\SI{0.5}{\kilo\hertz} < f < \SI{150}{\kilo\hertz}$. Die Schrittweite ist dabei als eine Einheit der jeweils
+derzeitigen Größenordnung gewählt mit einzelnen Ausnahmen.
 \begin{table}[b]
+ \captionabove{Widerstände des Rückkopplungszweigs und Verstärkungen}
  \begin{tabular}{c|c}
   $R_N/\Omega$ & $V'$\\
   \hline
@@ -318,10 +325,9 @@ Frequenzbereich variiert zwischen $\SI{0.5}{\kilo\hertz} < f < \SI{150}{\kilo\he
   3300 & 33 \\
   10000 & 100
  \end{tabular}
- \caption{Widerstände des Rückkopplungszweigs und Verstärkungen}
 \label{tab:verstaerkungen}
 \end{table}
-Für die Phasenverschiebung zwischen Eingangs- und Ausgangsspannung
+Zur Ermittlung der frequenzabhängigen Phasenverschiebung zwischen Eingangs- und Ausgangssignal
 werden $R_1 = \SI{1}{\kilo\ohm}$ und $R_N = \SI{10}{\kilo\ohm}$ 
 verwandt. Ihr Auftreten wird für einen Frequenzbereich 
 $\SI{0.5}{\kilo\hertz} < f < \SI{100}{\kilo\hertz}$ beobachtet.
@@ -332,9 +338,9 @@ sollen für eine Sinus-, Dreiecks- und Rechteckspannung die Abhängigkeiten
 von $U_A$ und $f=\omega/2\pi$ aus den Abschnitten \ref{sec:int} und
 \ref{sec:diff} überprüft werden. Der ohmsche Widerstand ist
 $R = \SI{100}{\ohm}$ und die Kapazität $C = \SI{102,3}{\nano\farad}$.
-Der DC-Offset sollte so gewählt werden, dass der Gleichspannungsanteil
+Der DC-Offset des Frequenzgenerators sollte so gewählt werden, dass der Gleichspannungsanteil
 vom Frequenzgenerator verschwindet, damit kein konstantes Signal
-mit integriert wird.
+mit integriert wird \cite{Anl}.
 
 \subsection{Schmitt-Trigger}
 Die Schaltung ist entsprechend Abbildung \ref{pic:schmitt} zu bauen.
@@ -346,7 +352,7 @@ $R_P = \SI{100}{\kilo\ohm}$ verwandt.
 \subsection{Dreiecksgenerator}
 Beim Dreiecksgenerator, realisiert nach Abbildung \ref{pic:dreiRect},
 soll die Zeitabhängigkeit der Ausgangsspannung mit dem Oszilloskop
-festgestellt und die Schwingungsfrequenz und -amplitude gemessen werden.
+festgestellt und die Schwingungsfrequenz sowie die -amplitude gemessen werden.
 Die verwandten Größen sind $R_1 = \SI{1}{\kilo\ohm}$, $R_P = \SI{100}{\kilo\ohm},
 R= \SI{100}{\kilo\ohm}$, $C = \SI{15}{\nano\farad}$.
 
@@ -354,8 +360,9 @@ R= \SI{100}{\kilo\ohm}$, $C = \SI{15}{\nano\farad}$.
 Entsprechend dem Schaltbild \ref{pic:sinus} wird eine Sinusspannung
 erzeugt mit $C_1 = \SI{21,4}{\nano\farad}$ und $C_2  = \SI{23,5}{\nano\farad}$.
 Mit einem Rechteckgenerator wird am nicht-invertierenden Eingang
-eine Anregung erzeugt. Die gedämpfte Schwingung $\eta = -1$ mit dem
-Potentiometer am Anschlag wird mit dem Oszilloskop gespeichert und
+eine Anregung erzeugt. Um eine gedämpfte Schwingung zu erzeugen, wird $\eta = -1$ 
+aus Gl. \eqref{eq:sinusGen} mit dem Potentiometer am Anschlag eingestellt.
+Die Schwingungsamplitude wird mit dem Oszilloskop gespeichert und
 die Frequenz im Schwingfall gemessen.
 
 
@@ -508,6 +515,8 @@ Weiterhin gelang die Frequenzgenerierung ziemlich genau, auch obwohl die Kondens
 \newpage
  \begin{thebibliography}{WissOnl}
  	\bibitem{Anl} TU Dortmund Anleitung für Versuch Nr.51 \url{http://129.217.224.2/HOMEPAGE/Anleitung_FPBSc.html}
+ 	\bibitem{meterman} Meterman Test Tools \url{http://www.remelectronics.com/PDF/15XL.pdf}
+ 	\bibitem{conrad} Conrad Electronic SE, \textit{Komponententester digital VOLTCRAFT LCR-9063}, \url{https://www.conrad.de/de/komponententester-digital-voltcraft-lcr-9063-kalibriert-nach-iso-cat-i-anzeige-counts-2000-1238105.html}
  	\end{thebibliography}
 
 % ========================================

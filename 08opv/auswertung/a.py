@@ -19,7 +19,7 @@ import glob
 import pprint
 import tabulate
 tabulate.LATEX_ESCAPE_RULES={}
-from pylatex import Matrix
+#from pylatex import Matrix
 
 def getAmplitude(source):
 #	print(source)
