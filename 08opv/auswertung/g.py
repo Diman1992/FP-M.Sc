@@ -133,7 +133,7 @@ plt.plot(fit["x"],fit["y"],"r-",label="Fit gedämpfte Sinusspannung")
 plt.xlim(0.545,0.575)
 plt.legend()
 plt.savefig("./results/g/daempf.pdf")
-plt.show()
+#plt.show()
 plt.close()
 
 pprint.pprint(fit)
@@ -141,7 +141,7 @@ pprint.pprint(fit)
 file = open("./results/g/daempfParameter.tex","w")
 string = str("U_0 = " + str(fit["var"][2]) + 
 	" V\\\\ \\tau = " + str(1/fit["var"][3]) + 
-	" \si{\\second}\\\\ \\varphi = " + str(fit["var"][1])+
+	" \\si{\\second}\\\\ \\varphi = " + str(fit["var"][1])+
 	"\\\\ \\omega = " + str(fit["var"][0]) + "\\frac{1}{\\si{\\second}}")
 file.write(string)
 file.close()
