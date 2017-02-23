@@ -255,9 +255,12 @@ Schmitt-Trigger erzeugt. Mithilfe eines Integrators kann dieses Signal
 zu einer Dreiecksspannung umgewandelt werden.\\
 \noindent Die Differenzialgleichung für den gedämpften/angeregten
 harmonischen Oszillator
+
 \begin{align}
  0 = \frac{\dx^2 U_A}{\dx t}- \frac{\eta}{10 RC} \frac{\dx U_A}{\dx t} + \frac{1}{(RC)^2}U_A
+ \label{eq:dgl}
 \end{align}
+
 lässt sich mit zwei hintereinander geschlossenen Integratoren und einem invertierenden
 Verstärker schalten, wobei $-1<\eta<1$ mit dem Potentiometer P eingestellt wird. Die Lösung
 für betragsmäßig kleine $\eta$ lautet
@@ -369,7 +372,7 @@ die Frequenz im Schwingfall gemessen.
 
 \section{Auswertung}
 \subsection{Linearverstärker}
-Zuerst wird die Frequenzabhängigkeit des Verstärkungsgrades betrachtet. Dazu wird die Ausgangsspannung $U_\text{A}$ eines gegengekoppelten Linearverstärkers wie in Abb. \ref{pic:linear} abhängig von Frequenz $f$ und dem Widerstand $R_\text{N}$ untersucht, weiterhin ist $R_1 = 100\ \si{\ohm}$. Zunächst wurde die Funktion $g = b \cdot x^a$ an die rechte Flanke der gemessenen Ausgangsspannung gefittet. Mit diesem wird die Grenzfrequenz $f_\text{Grenz} =\sqrt[a]{\frac{V_\text{Real}}{b\sqrt{2}}}$ bestimmt. Weiterhin wird die Leerlaufverstärkung nach Gl. \ref{eq:leerlauf} ermittelt. Schließlich ist die Frequenzabhängigkeit in Abb. \ref{pic:a plot} zu sehen.
+Zuerst wird die Frequenzabhängigkeit des Verstärkungsgrades betrachtet. Dazu wird die Ausgangsspannung $U_\text{A}$ eines gegengekoppelten Linearverstärkers wie in Abb. \ref{pic:linear} abhängig von Frequenz $f$ und dem Widerstand $R_\text{N}$ untersucht, weiterhin ist $R_1 = 100\ \si{\ohm}$. Zunächst wurde die Funktion $g = b \cdot x^a$ an die rechte Flanke der gemessenen Ausgangsspannung gefittet. Mit diesem wird die Grenzfrequenz $f_\text{Grenz} =\sqrt[a]{\frac{V_\text{Real}}{b\sqrt{2}}}$ bestimmt. Weiterhin wird die Leerlaufverstärkung nach Gl. \ref{eq:leerlauf} ermittelt. Schließlich sind die Frequenzabhängigkeit in Abb. \ref{pic:a plot} und die ermittelten Anpassungsparameter in Tabelle \ref{table:a_real} zu sehen.
 
 \begin{table}
 	\centering
@@ -380,8 +383,8 @@ Zuerst wird die Frequenzabhängigkeit des Verstärkungsgrades betrachtet. Dazu w
 
 \begin{table}
 	\centering
-	\input{../auswertung/results/a/a_VTheorie.tex}
 	\caption{Theoretische Verstärkung eines idealen, gegengekoppelten Linearverstärkers}
+	\input{../auswertung/results/a/a_VTheorie.tex}
 	\label{table:a_theorie}
 \end{table}
 
@@ -393,7 +396,7 @@ Zuerst wird die Frequenzabhängigkeit des Verstärkungsgrades betrachtet. Dazu w
 \end{figure}
 
 \subsection{Umkehrintegrator}
-Es wird eine Schaltung wie in Abb. \ref{pic:umInt} verwandt, um einen Umkehr-Integrator mit $R = 100\ \si{\ohm}$ und $C = 102.3\ \si{\nano\farad}$ zu realisieren. Als Eingangsspannungen werden nacheinander Sinus-,Rechteck- und Dreieckspannung angelegt. Am Ausgang sind dann die integrierten Spannungen zu messen, s. Abbildungen \ref{pic:b sinus},\ref{pic:b rechteck},\ref{pic:b dreieck}. Zur besseren Sichtbarkeit wurde die Amplitude des Eingangs- und Ausgangssignals normiert.
+Es wird eine Schaltung wie in Abb. \ref{pic:umInt} verwandt, um einen Umkehr-Integrator mit $R = 100\ \si{\ohm}$ und $C = 102.3\ \si{\nano\farad}$ zu realisieren. Als Eingangsspannungen werden nacheinander Sinus-,Rechteck- und Dreieckspannung angelegt. Am Ausgang sind dann die integrierten Spannungen zu messen, s. Abbildungen \ref{pic:b sinus},\ref{pic:b rechteck},\ref{pic:b dreieck}. Zur besseren Sichtbarkeit wurde der Offset des Eingangs- und Ausgangssignals auf 0 gesetzt.
 
 \begin{figure}
 	\centering
@@ -421,7 +424,7 @@ Weiterhin wird die charakteristische Kurve der Schaltung aufgenommen. Dazu wird 
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\textwidth]{../auswertung/results/b/charKurve.pdf}
-	\caption{Charakteristische Kurve des Umkehrintegrators mit angelegter Sinusspannung,\protect\input{../auswertung/results/b/ba.tex}, \protect\input{../auswertung/results/b/bb.tex} }
+	\caption{Charakteristische Kurve des Umkehrintegrators mit angelegter Sinusspannung, \protect\input{../auswertung/results/b/ba.tex}, \protect\input{../auswertung/results/b/bb.tex} }
 	\label{pic:b charKurve}
 \end{figure}
 
@@ -460,19 +463,19 @@ Auch hier wird eine charakteristische Kurve erstellt. Die Ergebnisse sind in Abb
 
 \begin{table}
 	\centering
-	\input{../auswertung/results/c/cFitParameter.tex}
 	\caption{Ermittelte Fitparameter der charakteristischen Kurve für verschiedene Spannungsfunktionen angelegt an den Umkehrdifferentiator}
+	\input{../auswertung/results/c/cFitParameter.tex}
 	\label{table:c fitParameter}
 \end{table}
 
 \subsection{Schmitt-Trigger}
-Für die Schaltung nach Abb. \ref{pic:schmitt} wurden $R_1 = 1 \si{\kilo\ohm}$ und $R_p = 100 \si{\kilo\ohm}$ verwandt. Als Kippspannung wurde $U_\text{Kipp} = 0.182\ \si{\ohm}$ bestimmt.
+Für die Schaltung nach Abb. \ref{pic:schmitt} wurden $R_1 = 1\, \si{\kilo\ohm}$ und $R_p = 100\, \si{\kilo\ohm}$ verwandt. Als Kippspannung wurde $U_\text{Kipp} = 0.182\ \si{\volt}$ bestimmt.
 
 \subsection{Dreickeckgenerator}
 Die Schaltung wurde wie in Abb. \ref{pic:dreiRect} ausgeführt und es wurden die folgenden Bauteile verwandt: $R_1 = 1\ \si{\kilo\ohm}$, $R_p = 100\ \si{\kilo\ohm}$, $R = 100\ \si{\kilo\ohm}$ und $C$ = 15 nF. Die gemessenen Frequenzen betragen $f_\text{Rechteck} = 5.98\ \si{\kilo\hertz}$ und $f_\text{Dreieck} = 6.00\ \si{\kilo\hertz}$, sowie $U_\text{Rechteck} = 17.9\ \si{\volt}$ und $U_\text{Dreieck} = 0.44\ \si{\volt}$.
 
 \subsection{Phasenverschiebung}
-Mithilfe einer Schaltung wie in Abb. \ref{pic:linear} wird die Frequenzabhängigkeit der Phase zwischen Eingang und Ausgangs untersucht. Dazu wird ein Fit mit $g = A \cdot \cos (\omega t + \phi)$ an sowohl Eingangs- als auch Ausgangssignal durchgeführt. Die resultierende Phase ist dann $\Delta \varphi = \varphi_\text{Ein} - \varphi_\text{Aus}$. Diese wird gegen die Frequenz aufgetragen, in Abb. \ref{pic:e phase} zu sehen.
+Mithilfe einer Schaltung wie in Abb. \ref{pic:linear} wird die Frequenzabhängigkeit der Phase zwischen Eingang und Ausgang untersucht. Dazu wird ein Fit mit $g = A \cdot \cos (\omega t + \varphi)$ an sowohl Eingangs- als auch Ausgangssignal durchgeführt, wobei die Anpassung mithilfe der Parameter $A$, $\omega$ und $\varphi$ geschieht. Die resultierende Phase ist dann $\Delta \varphi = \varphi_\text{Ein} - \varphi_\text{Aus}$. Diese wird gegen die Frequenz aufgetragen, zu sehen in Abb. \ref{pic:e phase}.
 
 \begin{figure}
 	\centering
@@ -483,7 +486,7 @@ Mithilfe einer Schaltung wie in Abb. \ref{pic:linear} wird die Frequenzabhängig
 
 
 \subsection{Sinusgenerator}
-Wie in Abb. \ref{pic:sinus} dargestellt wird eine Schaltung zur Generation einer Sinusschwingung realisiert. Mithilfe des Potentiometers wird zwischen Schwing- und Dämpfungsfall unterschieden. Durch einen Fit der Funktion $g = A\cos(\omega t + \varphi)$ wird die Winkelgeschwindigkeit $\omega = 4485.89 \frac{1}{\si{\second}}$ für den Schwingfall bestimmt. Dieses Ergebnis ist in Abb. \ref{pic:g schwing} zu sehen.
+Wie in Abb. \ref{pic:sinus} dargestellt wird eine Schaltung zur Generation einer Sinusschwingung realisiert. Mithilfe des Potentiometers wird zwischen Schwing- und Dämpfungsfall unterschieden. Durch einen Fit der Funktion $g = A\cos(\omega t + \varphi)$ wird die Kreisfrequenz $\omega = 4485.89 \frac{1}{\si{\second}}$ für den Schwingfall bestimmt. Dieses Ergebnis ist in Abb. \ref{pic:g schwing} ersichtlich.
 
 \begin{figure}
 	\centering
@@ -506,11 +509,11 @@ Weiterhin wird eine gedämpfte Sinusschwingung mit der gleichen Schaltung erzeug
 
 
 \section{Diskussion}
-Besonders bei der Betrachtung des gegengekoppelten Linearvertärkers wird klar, wie weit der reale Operationsverstärker vom idealen entfernt ist. Die real gemessenen Verstärkungsgrade liegen weit unter den theoretisch möglichen, was unter anderem an der hohen Leerlaufverstärkung liegen könnte. Außerdem bewegt sich die Bandbreite innerhalb einer Größenordnung, was vielleicht an den sehr unterschiedlichen, eingesetzten Widerständen liegen kann.
+Besonders bei der Betrachtung des gegengekoppelten Linearvertärkers wird klar, wie weit der reale Operationsverstärker vom idealen entfernt ist. Dies ist auf das endliche Verhältnis der Widerstände zurückzuführen. Die real gemessenen Verstärkungsgrade liegen weit unter den theoretisch möglichen. Außerdem varierten die Grenzfrequenzen innerhalb einer Größenordnung, was vielleicht an den sehr unterschiedlichen, eingesetzten Widerständen liegen kann, sodass diese 
 
-Sowohl Umkehrintegrator, als auch -differentiator haben sich in den untersuchten Bereichen wie erwartet verhalten. Beide verhielten sich $\propto f^{-1}$, was zu erwarten war, ausgenommen nur die Rechteckspannung am Differentiator, da die resultierenden Delta-Peaks die gleiche Höhe wie das Eingangssignal aufwiesen.
+Sowohl Umkehrintegrator, als auch -differentiator haben sich in den untersuchten Bereichen wie erwartet verhalten, beide $\propto f$. Ausgenommen war nur die Rechteckspannung am Differentiator, da die resultierenden Peaks höher waren als die Eingangsspannung. Theoretisch sollte an den Sprungstellen die Spannung unendlich sein, reale Bauteile lassen das aber nicht zu. Weiterhin kam es zu schwächer ausgeprägten Peaks mit invertierter Amplitude an den gleichen Stellen, was sich vermutlich auf die retardierte Reaktion des realen Schaltkreises zurückführen lässt. Ähnliches ließ sich auch bei der Differenzierung und Integration der Rechteckspannung beobachten, hier kam es zu Überschwingern.
 
-Weiterhin gelang die Frequenzgenerierung ziemlich genau, auch obwohl die Kondensatoren nicht die exakt gleiche Kapazität  besaßen, so lagen die gemessenen Werte um nur 10\% neben den erwarteten theoretischen Werten.
+Weiterhin gelang die Frequenzgenerierung hinreichend genau, die gemessenen Werte lagen um nur 10\% neben den erwarteten theoretischen Werten. Auch dies könnte mit den nicht idealen Kondensatoren zusammenhängen. 
 
 \newpage
  \begin{thebibliography}{WissOnl}

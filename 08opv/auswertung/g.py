@@ -89,10 +89,10 @@ def cosFit(x,y):
 
 
 schwing = np.loadtxt("./data/g_0.csv",delimiter=",")
-plt.plot(schwing[:,0],schwing[:,1],"b-",label="Angelegte Rechteckspannung")
-plt.plot(schwing[:,0],schwing[:,2],"g-",label="Gemessene Sinusspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
+#plt.plot(schwing[:,0],schwing[:,1],"b-",label="Angelegte Rechteckspannung")
+plt.plot(schwing[:,0],schwing[:,1],"g-",label="Gemessene Sinusspannung")
+plt.xlabel("$t$/s")
+plt.ylabel("$U$/V")
 #schwing = schwing[(schwing[:,0]>0.505)&(schwing[:,0]<0.55)]
 #fit = cosFit(schwing[:,0],schwing[:,1])
 #print(fit["var"][0])
@@ -104,14 +104,15 @@ plt.savefig("./results/g/schwing1.pdf")
 plt.close()
 
 schwing = np.loadtxt("./data/g_1.csv",delimiter=",")
-plt.plot(schwing[:,0],schwing[:,2],"b-",label="Angelegte Rechteckspannung")
+#plt.plot(schwing[:,0],schwing[:,2],"b-",label="Angelegte Rechteckspannung")
 plt.plot(schwing[:,0],schwing[:,1],"g-",label="Gemessene Sinusspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
+plt.xlabel("$t$/s")
+plt.ylabel("$U_A$/V")
 fit = cosFit(schwing[:,0],schwing[:,1])
 print("omega: ", fit["var"][0])
-plt.plot(fit["x"],fit["y"],"r-")
+plt.plot(fit["x"],fit["y"],"r-",label="Fit Sinusschwingung")
 #plt.xlim(0.5,0.55)
+plt.ylim(-6,8)
 plt.legend()
 plt.savefig("./results/g/schwing2.pdf")
 #plt.show()
@@ -123,8 +124,8 @@ def fff(t,omega,phi,A,l):
 daempf = np.loadtxt("./data/g_2.csv",delimiter=",")
 plt.plot(daempf[:,0],daempf[:,2],"b-",label="Angelegte Rechteckspannung")
 plt.plot(daempf[:,0],daempf[:,1],"g-",label="Gemessene gedämpfte Sinusspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
+plt.xlabel("$t$/s")
+plt.ylabel("$U_A$/V")
 daempf = daempf[(daempf[:,0]>0.546)&(daempf[:,0]<0.566)]
 fit = expSinFit(daempf[:,0],daempf[:,1])
 #print(fit["var"][0])
@@ -139,9 +140,9 @@ plt.close()
 pprint.pprint(fit)
 
 file = open("./results/g/daempfParameter.tex","w")
-string = str("U_0 = " + str(fit["var"][2]) + 
-	" V\\\\ \\tau = " + str(1/fit["var"][3]) + 
-	" \\si{\\second}\\\\ \\varphi = " + str(fit["var"][1])+
-	"\\\\ \\omega = " + str(fit["var"][0]) + "\\frac{1}{\\si{\\second}}")
+string = str("A = " + str(np.around(fit["var"][2],2)) + 
+	" V\\\\ \\tau = " + str(np.around(1/fit["var"][3],4)) + 
+	" \\si{\\second}\\\\ \\varphi = " + str(np.around(fit["var"][1],2))+
+	"\\\\ \\omega = " + str( np.around(fit["var"][0],2)) + "\\frac{1}{\\si{\\second}}")
 file.write(string)
 file.close()

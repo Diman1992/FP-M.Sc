@@ -37,11 +37,11 @@ def getAverage(source):
 
 	return average/len(source)
 
-def linearFit(x,y):
+def linearFit(x,y,d):
 	def f(x,a,b):
 		return b*x**a
 
-	var, cov = optimize.curve_fit(f,x,y,maxfev=10000)
+	var, cov = optimize.curve_fit(f,x,y,sigma=d,maxfev=10000)
 	temp = dict()
 	temp["var"] = var
 	temp["cov"] = cov
@@ -49,37 +49,73 @@ def linearFit(x,y):
 	temp["y"] = f(temp["x"],var[0],var[1])
 	return temp
 
+C = 102.3 * 10**-9
+deltaC = 0.02
+R = 100
+deltaR = 0.01
+
+deltaUa = ( (deltaR)**2 + (deltaC)**2 )**0.5
+
 
 sinus = np.loadtxt("./data/c_26.csv",delimiter=',')
-#print(sinus)
-plt.plot(sinus[:,0],sinus[:,1]/getAmplitude(sinus[:,1])*getAmplitude(sinus[:,2]),'r-',label=r"Angelegte Sinusspannung")
-plt.plot(sinus[:,0],sinus[:,2]-getAverage(sinus[:,2]),'b-',label=r"Gemessene Cosinusspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
-plt.ylim(-0.3,0.5)
-plt.legend()
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot(sinus[:,0],sinus[:,1],'r-',label=r"Angelegte Sinusspannung")
+ax1.set_ylabel(r"$U_1$/V")
+ax1.set_ylim(-0.7,0.7)
+ax1.legend(loc="upper left")
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+ax2 = ax1.twinx()
+ax2.plot(sinus[:,0],sinus[:,2]-getAverage(sinus[:,2]),'b-',label=r"Gemessene Cosinusspannung")
+ax2.set_ylabel(r"$U_A$/V")
+ax2.set_ylim(-0.5,0.5)
+ax2.legend(loc="lower left")
+for tl in ax2.get_yticklabels():
+    tl.set_color('b')
+plt.xlabel("$t$/s")
 plt.savefig("./results/c/sinus.pdf")
 #plt.show()
 plt.close()
 
 rechteck = np.loadtxt("./data/c_27.csv",delimiter=',')
-plt.plot(rechteck[:,0],-rechteck[:,1]/getAmplitude(rechteck[:,1])*getAmplitude(rechteck[:,2]),'r-',label=r"Angelegte Rechteckspannung")
-plt.plot(rechteck[:,0],rechteck[:,2]-getAverage(rechteck[:,2]),'b-',label=r"Gemessene Delta-pearks")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
-plt.ylim(-10,12)
-plt.legend()
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot(rechteck[:,0],-rechteck[:,1],'r-',label=r"Angelegte Rechteckspannung")
+ax1.set_ylabel(r"$U_1$/V")
+ax1.set_ylim(-0.75,0.75)
+ax1.legend(loc="upper left")
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+ax2 = ax1.twinx()
+ax2.plot(rechteck[:,0],rechteck[:,2]-getAverage(rechteck[:,2]),'b-',label=r"Gemessene Delta-pearks")
+ax2.set_ylabel(r"$U_A$/V")
+ax2.set_ylim(-13,13)
+ax2.legend(loc="lower left")
+for tl in ax2.get_yticklabels():
+    tl.set_color('b')
+plt.xlabel("$t$/s")
 plt.savefig("./results/c/rechteck.pdf")
 #plt.show()
 plt.close()
 
 dreieck = np.loadtxt("./data/c_1.csv",delimiter=',')
-plt.plot(dreieck[:,0],-dreieck[:,1]/getAmplitude(dreieck[:,1])*getAmplitude(dreieck[:,2]),'r-',label=r"Angelegte Dreiecksspannung")#,linewidth=0.10)
-plt.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-',label=r"Gemessene Rechteckspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
-plt.ylim(-0.4,0.6)
-plt.legend()
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot(dreieck[:,0],-dreieck[:,1],'r-',label=r"Angelegte Dreiecksspannung")
+ax1.set_ylabel(r"$U_1$/V")
+ax1.set_ylim(-0.6,0.6)
+ax1.legend(loc="upper left")
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+ax2 = ax1.twinx()
+ax2.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-',label=r"Gemessene Rechteckspannung")
+ax2.set_ylabel(r"$U_A$/V")
+ax2.set_ylim(-0.65,0.65)
+ax2.legend(loc="lower left")
+for tl in ax2.get_yticklabels():
+    tl.set_color('b')
+plt.xlabel("$t$/s")
 plt.savefig("./results/c/dreieck.pdf")
 #plt.show()
 plt.close()
@@ -90,39 +126,44 @@ for i in range(1,14):
 	if(True):
 #		print(str('./data/c_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/c_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(1/frequencies,amplitudes,"bx",label="Meswerte und Fit bei angelegter Dreiecksspannung")
-fit = linearFit(1/frequencies,amplitudes)
+plt.errorbar(1/frequencies,amplitudes,yerr=deltaUa*amplitudes,fmt="bx")
+fit = linearFit(1/frequencies,amplitudes,deltaUa*amplitudes)
 plt.plot(fit["x"],fit["y"],"b-")
-dreiecka = str("$("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$")
-dreieckb = str("$("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$")
+dreiecka = str("("+str(np.around(fit["var"][0],2)) + " $\\pm$ " + str(np.around(fit["cov"][0,0],8)) + ")")
+dreieckb = str("("+str(np.around(fit["var"][1],2)) + " $\\pm$ " + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}")
 
 amplitudes = list()
 for i in range(14,27):
 	if(True):
 #		print(str('./data/c_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/c_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(1/frequencies[::-1],amplitudes,"rx",label="Meswerte und Fit bei angelegter Sinusspannung")
-fit = linearFit(1/frequencies[::-1],amplitudes)
+plt.errorbar(1/frequencies[::-1],amplitudes,yerr=deltaUa*amplitudes,fmt="rx")
+fit = linearFit(1/frequencies[::-1],amplitudes,deltaUa*amplitudes)
 plt.plot(fit["x"],fit["y"],"r-")
-sinusa = str("$("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$")
-sinusb = str("$("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$")
-
+sinusa = str("("+str(np.around(fit["var"][0],2)) + " $\\pm$ " + str(np.around(fit["cov"][0,0],8)) + ")")
+sinusb = str("("+str(np.around(fit["var"][1],2)) + " $\\pm$ " + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}")
 
 amplitudes = list()
 for i in range(27,40):
 	if(True):
 #		print(str('./data/c_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/c_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(1/frequencies,amplitudes,"gx",label="Meswerte und Fit bei angelegter Rechtecksspannung")
-fit = linearFit(1/frequencies,amplitudes)
+plt.errorbar(1/frequencies,amplitudes,yerr=deltaUa*amplitudes,fmt="gx")
+fit = linearFit(1/frequencies,amplitudes,deltaUa*amplitudes)
 plt.plot(fit["x"],fit["y"],"g-")
-rechtecka = str("$("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$")
-rechteckb = str("$("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$")
+rechtecka = str("("+str(np.around(fit["var"][0],2)) + " $\\pm$ " + str(np.around(fit["cov"][0,0],8)) + ")")
+rechteckb = str("("+str(np.around(fit["var"][1],2)) + " $\\pm$ " + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}")
 
 
 #pprint.pprint(fit)
-plt.xlabel("$1/f$ [1/kHz]")
-plt.ylabel("$U$ [V]")
+plt.xlabel("$\\frac{1}{f}$ /$10^3$ s")
+plt.ylabel("$U_A$/V")
 plt.xlim(0.4,11)
 plt.legend()
 plt.xscale("log")
@@ -131,7 +172,7 @@ plt.savefig("./results/c/charKurve.pdf")
 plt.show()
 plt.close()
 
-fitParameter = np.array([["Spannungsfunktion","$a$","$b\\ [\\si{\\volt}]$"],
+fitParameter = np.array([["Spannungsfunktion","$a$","$b/\\si{\\volt}]$"],
 	["Sinus",sinusa,sinusb],
 	["Dreieck",dreiecka,dreieckb],
 	["Rechteck",rechtecka,rechteckb]])

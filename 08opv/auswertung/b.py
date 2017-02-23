@@ -35,11 +35,11 @@ def getAverage(source):
 
 	return average/len(source)
 
-def linearFit(x,y):
+def linearFit(x,y,d):
 	def f(x,a,b):
 		return a*x+b
 
-	var, cov = optimize.curve_fit(f,x,y,maxfev=10000)
+	var, cov = optimize.curve_fit(f,x,y,sigma=d,maxfev=10000)
 	temp = dict()
 	temp["var"] = var
 	temp["cov"] = cov
@@ -48,58 +48,98 @@ def linearFit(x,y):
 	return temp
 
 sinus = np.loadtxt("./data/b_1.csv",delimiter=',')
-#print(sinus)
-plt.plot(sinus[:,0],sinus[:,1]/getAmplitude(sinus[:,1])*getAmplitude(sinus[:,2]),'r-',label=r"Angelegte Sinusspannung")
-plt.plot(sinus[:,0],sinus[:,2]-getAverage(sinus[:,2]),'b-',label=r"Gemessene Cosinusspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
-plt.ylim(-0.8,1.0)
-plt.legend()
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot(sinus[:,0],sinus[:,1],'r-',label=r"Angelegte Sinusspannung")
+ax1.set_ylabel(r"$U_1$/V")
+ax1.set_ylim(-0.04,0.04)
+ax1.legend(loc="upper left")
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+ax2 = ax1.twinx()
+ax2.plot(sinus[:,0],sinus[:,2]-getAverage(sinus[:,2]),'b-',label=r"Gemessene Cosinusspannung")
+ax2.set_ylabel(r"$U_A$/V")
+ax2.set_ylim(-0.9,0.9)
+ax2.legend(loc="lower left")
+for tl in ax2.get_yticklabels():
+    tl.set_color('b')
+plt.xlabel("$t$/s")
 plt.savefig("./results/b/sinus.pdf")
 #plt.show()
 plt.close()
 
 rechteck = np.loadtxt("./data/b_4.csv",delimiter=',')
-plt.plot(rechteck[:,0],-rechteck[:,1]/getAmplitude(rechteck[:,1])*getAmplitude(rechteck[:,2]),'r-',label=r"Angelegte Rechteckspannung")
-plt.plot(rechteck[:,0],rechteck[:,2]-getAverage(rechteck[:,2]),'b-',label=r"Gemessene Dreiecksspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
-plt.ylim(-1.5,1.7)
-plt.legend()
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot(rechteck[:,0],-rechteck[:,1],'r-',label=r"Angelegte Rechteckspannung")
+ax1.set_ylabel(r"$U_1$/V")
+ax1.set_ylim(-0.07,0.07)
+ax1.legend(loc="upper left")
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+ax2 = ax1.twinx()
+ax2.plot(rechteck[:,0],rechteck[:,2]-getAverage(rechteck[:,2]),'b-',label=r"Gemessene Dreiecksspannung")
+ax2.set_ylabel(r"$U_A$/V")
+ax2.set_ylim(-1.4,1.4)
+ax2.legend(loc="lower left")
+for tl in ax2.get_yticklabels():
+    tl.set_color('b')
+plt.xlabel("$t$/s")
 plt.savefig("./results/b/rechteck.pdf")
 #plt.show()
 plt.close()
 
+
 dreieck = np.loadtxt("./data/b_5.csv",delimiter=',')
-plt.plot(dreieck[:,0],-dreieck[:,1]/getAmplitude(dreieck[:,1])*getAmplitude(dreieck[:,2]),'r-',label=r"Angelegte Dreiecksspannung")#,linewidth=0.10)
-plt.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-',label=r"Gemessene Rechteckspannung")
-plt.xlabel("$t$ [s]")
-plt.ylabel("$U$ [V]")
-plt.ylim(-0.6,0.8)
-plt.legend()
+fig = plt.figure()
+ax1 = fig.add_subplot(111)
+ax1.plot(dreieck[:,0],dreieck[:,1],'r-',label=r"Angelegte Dreiecksspannung")
+ax1.set_ylabel(r"$U_1$/V")
+ax1.set_ylim(-0.03,0.03)
+ax1.legend(loc="upper left")
+for tl in ax1.get_yticklabels():
+    tl.set_color('r')
+ax2 = ax1.twinx()
+ax2.plot(dreieck[:,0],dreieck[:,2]-getAverage(dreieck[:,2]),'b-',label=r"Gemessene Rechteckspannung")
+ax2.set_ylabel(r"$U_A$/V")
+ax2.set_ylim(-0.9,0.9)
+ax2.legend(loc="lower left")
+for tl in ax2.get_yticklabels():
+    tl.set_color('b')
+plt.xlabel("$t$/s")
 plt.savefig("./results/b/dreieck.pdf")
 #plt.show()
 plt.close()
 
+R = 100
+deltaR = 0.01
+C = 102.3 * 10**-9
+deltaC = 0.02
+U0 = 10
+deltaU0 = 0.01
+
+deltaUa = ( (deltaR)**2 + (deltaC)**2 )**0.5
+print(deltaUa)
 
 charCurve = np.loadtxt("./data/b.csv")
 #print(charCurve)
 plt.plot(1/charCurve[:,0],charCurve[:,1],"bx",label="Messwerte und Fit")
-fit = linearFit(1/charCurve[:,0],charCurve[:,1])
+plt.errorbar(1/charCurve[:,0],charCurve[:,1],yerr=deltaUa*charCurve[:,1],fmt="bx")
+fit = linearFit(1/charCurve[:,0],charCurve[:,1],deltaUa*charCurve[:,1])
 plt.plot(fit["x"],fit["y"],"b-")
-pprint.pprint(fit)
-plt.xlabel("$1/f$ [1/kHz]")
-plt.ylabel("$U$ [V]")
+#pprint.pprint(fit)
+plt.xlabel("$\\frac{1}{f}$ /$10^3$ s")
+plt.ylabel("$U_A$/V")
 plt.legend()
 #plt.xscale("log")
 #plt.yscale("log")
 plt.savefig("./results/b/charKurve.pdf")
-#plt.show()
+plt.show()
 plt.close()
 
 file = open("./results/b/bb.tex","w")
-file.write(str("$b = ("+str(np.around(fit["var"][1],2)) + "\\pm" + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}$"))
+file.write(str("b = ("+str(np.around(fit["var"][1],2)) + " $\\pm$ " + str(np.around(fit["cov"][1,1],8)) + ")\\ \\si{\\volt}"))
 file.close()
 file = open("./results/b/ba.tex","w")
-file.write(str("$a = ("+str(np.around(fit["var"][0],2)) + "\\pm" + str(np.around(fit["cov"][0,0],8)) + ")$"))
+file.write(str("a = ("+str(np.around(fit["var"][0],2)) + " $\\pm$ " + str(np.around(fit["cov"][0,0],8)) + ")"))
 file.close()

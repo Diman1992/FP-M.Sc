@@ -34,13 +34,13 @@ def getAmplitude(source):
 #	print('min: ',min,' max: ',max)
 	return abs(max-min)
 
-def linearFit(x,y,minimum):
+def linearFit(x,y,minimum,d):
 	x = np.array(x)
 	y = np.array(y)
 	def f(x,a,b):
 		return b*x**a
 
-	var, cov = optimize.curve_fit(f,(x[x >minimum]),(y[x > minimum]),maxfev=10000)
+	var, cov = optimize.curve_fit(f,(x[x >minimum]),(y[x > minimum]),sigma=d[x>minimum],maxfev=10000)
 	temp = dict()
 	temp["var"] = var
 	temp["cov"] = cov
@@ -48,13 +48,13 @@ def linearFit(x,y,minimum):
 	temp["y"] = f(temp["x"],var[0],var[1])
 	return temp
 
-def constFit(x,y,maximum):
+def constFit(x,y,maximum,d):
 	x = np.array(x)
 	y = np.array(y)
 	def f(x,c):
 		return c
 
-	var, cov = optimize.curve_fit(f,(x[x <maximum]),(y[x < maximum]),maxfev=10000)
+	var, cov = optimize.curve_fit(f,(x[x <maximum]),(y[x < maximum]),sigma=d[x<maximum],maxfev=10000)
 	return var[0]
 
 
@@ -66,37 +66,44 @@ amplitudes = list()
 R1 = 100
 Rn = [1000,500,10000,330]
 Uein = 20
+deltaRn = 0.01
+deltaUein = 0.01
+deltaR1 = 0.01
 
-VTheorie = np.array([["$R_n$ [$\\Omega$]","$R_1$ [$\\Omega$]","$V_\\text{Theorie}$"],[Rn[0],R1,Rn[0]/R1],[Rn[1],R1,Rn[1]/R1],[Rn[2],R1,Rn[2]/R1],[Rn[3],R1,Rn[3]/R1]])
+VTheorie = np.array([["$R_n$/$\\Omega$","$R_1$/$\\Omega$","$V_\\text{Theorie}$"],[Rn[0],R1,Rn[0]/R1],[Rn[1],R1,Rn[1]/R1],[Rn[2],R1,Rn[2]/R1],[Rn[3],R1,Rn[3]/R1]])
 #Matrix(VTheorie).generate_tex("./results/a/a_VTheorie")
 file = open("./results/a/a_VTheorie.tex","w")
 file.write(tabulate.tabulate(VTheorie, tablefmt="latex", floatfmt=".2f"))
 file.close()
 
 aTable = np.array(
-	["$R_n$ [$\\Omega$]",
+	["$R_n$/$\\Omega$",
 	"$a$","$\\Delta a$",
-	"b [V]","$\\Delta$b [V]",
+	"$b$/V","$\\Delta b$/V",
 	"$V_\\text{Real}$",
-	"$f_\\text{Grenz}$ [kHz]","$\\Delta f_\\text{Grenz}$ [kHz]", 
-	"$V_\\text{Real} \\cdot f_\\text{Grenz}$ [kHz]",
+	"$f_\\text{Grenz}$/kHz","$\\Delta f_\\text{Grenz}$/kHz", 
+	"$V_\\text{Real} \\cdot f_\\text{Grenz}$/kHz",
 	"$V_\\text{Leerlauf}$"])
 
 Rn = 1000
 print("Rn = 1000")
+deltaUa = ( deltaRn**2 + deltaR1**2 )**0.5
+print(deltaUa)
 for i in range(1,26):
 	if(i != 12):
 #		print(str('./data/scope_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/scope_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(frequencies[frequencies != 10],amplitudes,'bx',label=r"Messwerte und Fit für R=1000 $\Omega$")
-fit = linearFit(frequencies[frequencies != 10], amplitudes, thresholds[0,2])
+plt.errorbar(frequencies[frequencies != 10],amplitudes,yerr=deltaUa*amplitudes,fmt="bx")
+fit = linearFit(frequencies[frequencies != 10], amplitudes, thresholds[0,2], deltaUa*amplitudes)
 plt.plot(fit["x"], fit["y"], 'b-')
 
 a = fit["var"][0]
 deltaa = fit["cov"][0,0]
 b = fit["var"][1]
 deltab = fit["cov"][1,1]
-Vreal = constFit(frequencies[frequencies != 10], amplitudes, thresholds[0,1])
+Vreal = constFit(frequencies[frequencies != 10], amplitudes, thresholds[0,1],deltaUa*amplitudes)
 Vfgrenz = Vreal/2**0.5
 fgrenz = (Vfgrenz/b)**(1/a)
 deltafgrenz = ( ( -(Vfgrenz/b)**(1/a)/a**2 * np.log(Vfgrenz/b) * deltaa )**2 + ( -(Vfgrenz/b)**(1/a)/a/b * deltab )**2 )**0.5
@@ -105,25 +112,26 @@ Vleerlauf = (1/Vreal - R1/Rn)
 bla = np.array([Rn,np.around(a,2),np.around(deltaa,4),np.around(b,2),np.around(deltab,3),np.around(Vreal,2),np.around(fgrenz,2),np.around(deltafgrenz,2),np.around(Vf,2),np.around(Vleerlauf,2)])
 aTable = np.vstack((aTable,bla))
 
-
-#pprint.pprint(fit)
-
 Rn = 500
 print("Rn = 500")
+deltaUa = ( deltaRn**2 + deltaR1**2 )**0.5
+print(deltaUa)
 amplitudes = list()
 for i in range(26,51):
 	if(True):
 #		print(str('./data/scope_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/scope_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(frequencies[::-1],amplitudes,'rx',label=r"Messwerte und Fit für R=500 $\Omega$")
-fit = linearFit(frequencies[::-1], amplitudes, thresholds[1,2])
+plt.errorbar(frequencies[::-1],amplitudes,yerr=deltaUa*amplitudes,fmt='rx')
+fit = linearFit(frequencies[::-1], amplitudes, thresholds[1,2], deltaUa*amplitudes)
 plt.plot(fit["x"], fit["y"], 'r-')
 
 a = fit["var"][0]
 deltaa = fit["cov"][0,0]
 b = fit["var"][1]
 deltab = fit["cov"][1,1]
-Vreal = constFit(frequencies, amplitudes, thresholds[1,1])
+Vreal = constFit(frequencies[::-1], amplitudes, thresholds[1,1],deltaUa*amplitudes)
 Vfgrenz = Vreal/2**0.5
 fgrenz = (Vfgrenz/b)**(1/a)
 deltafgrenz = ( ( -(Vfgrenz/b)**(1/a)/a**2 * np.log(Vfgrenz/b) * deltaa )**2 + ( -(Vfgrenz/b)**(1/a)/a/b * deltab )**2 )**0.5
@@ -135,20 +143,24 @@ aTable = np.vstack((aTable,bla))
 
 Rn = 10000
 print("Rn = 10000")
+deltaUa = ( deltaRn**2 + deltaR1**2 )**0.5
+print(deltaUa)
 amplitudes = list()
 for i in range(51,76):
 	if(True):
 #		print(str('./data/scope_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/scope_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(frequencies,amplitudes,'gx',label=r"Messwerte und Fit für R=10000 $\Omega$")
-fit = linearFit(frequencies, amplitudes, thresholds[2,2])
+plt.errorbar(frequencies,amplitudes,yerr=deltaUa*amplitudes,fmt='gx')
+fit = linearFit(frequencies, amplitudes, thresholds[2,2], deltaUa*amplitudes)
 plt.plot(fit["x"], fit["y"], 'g-')
 
 a = fit["var"][0]
 deltaa = fit["cov"][0,0]
 b = fit["var"][1]
 deltab = fit["cov"][1,1]
-Vreal = constFit(frequencies, amplitudes, thresholds[2,1])
+Vreal = constFit(frequencies, amplitudes, thresholds[2,1],deltaUa*amplitudes)
 Vfgrenz = Vreal/2**0.5
 fgrenz = (Vfgrenz/b)**(1/a)
 deltafgrenz = ( ( -(Vfgrenz/b)**(1/a)/a**2 * np.log(Vfgrenz/b) * deltaa )**2 + ( -(Vfgrenz/b)**(1/a)/a/b * deltab )**2 )**0.5
@@ -159,20 +171,24 @@ aTable = np.vstack((aTable,bla))
 
 Rn = 330
 print("Rn = 330")
+deltaUa = ( deltaRn**2 + deltaR1**2 )**0.5
+print(deltaUa)
 amplitudes = list()
 for i in range(76,101):
 	if(True):
 #		print(str('./data/scope_' + str(i) + '.csv'))
 		amplitudes.append(getAmplitude(np.loadtxt(str('./data/scope_' + str(i) + '.csv'),delimiter=',')[:,2]))
+amplitudes = np.array(amplitudes)
 plt.plot(frequencies[::-1],amplitudes,'kx',label=r"Messwerte und Fit für R=330 $\Omega$")
-fit = linearFit(frequencies[::-1], amplitudes, thresholds[3,2])
+plt.errorbar(frequencies[::-1],amplitudes,yerr=deltaUa*amplitudes,fmt='kx')
+fit = linearFit(frequencies[::-1], amplitudes, thresholds[3,2], deltaUa*amplitudes)
 plt.plot(fit["x"], fit["y"], 'k-')
 
 a = fit["var"][0]
 deltaa = fit["cov"][0,0]
 b = fit["var"][1]
 deltab = fit["cov"][1,1]
-Vreal = constFit(frequencies, amplitudes, thresholds[3,1])
+Vreal = constFit(frequencies[::-1], amplitudes, thresholds[3,1],deltaUa*amplitudes)
 Vfgrenz = Vreal/2**0.5
 fgrenz = (Vfgrenz/b)**(1/a)
 deltafgrenz = ( ( -(Vfgrenz/b)**(1/a)/a**2 * np.log(Vfgrenz/b) * deltaa )**2 + ( -(Vfgrenz/b)**(1/a)/a/b * deltab )**2 )**0.5
@@ -181,8 +197,8 @@ Vleerlauf = (1/Vreal - R1/Rn)
 bla = np.array([Rn,np.around(a,2),np.around(deltaa,4),np.around(b,2),np.around(deltab,3),np.around(Vreal,2),np.around(fgrenz,2),np.around(deltafgrenz,2),np.around(Vf,2),np.around(Vleerlauf,2)])
 aTable = np.vstack((aTable,bla))
 
-plt.xlabel(r"$f$ [kHz]")
-plt.ylabel(r"$U$ [V]")
+plt.xlabel(r"$f$/kHz")
+plt.ylabel(r"$U$/V")
 plt.xscale('log')
 plt.yscale('log')
 plt.legend(loc="upper right",prop={'size':10})
